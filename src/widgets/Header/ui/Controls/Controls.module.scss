@@ -1,0 +1,12 @@
+.right {
+  display: flex;
+  align-items: center;
+
+  &__search{
+    margin-right: 12px;
+    svg{
+      width: 22px;
+      height: 22px;
+    }
+  }
+}

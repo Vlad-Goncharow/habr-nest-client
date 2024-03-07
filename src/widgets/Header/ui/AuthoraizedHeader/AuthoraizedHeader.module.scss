@@ -1,0 +1,82 @@
+
+.user {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  
+
+  &__icon {
+    margin-right: 12px;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    &_user {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 3px;
+      border: 2px solid #929ca5;
+      border-radius: 4px;
+      margin-right: 0;
+    }
+  }
+
+  &__dropdown {
+    margin-top: 12px;
+    min-width: 300px;
+    position: absolute;
+    right: 24px;
+    top: 100%;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 12px rgb(0 0 0 / 16%);
+    color: #333;
+    z-index: 10;
+  }
+
+  &__overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, .2);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+  }
+
+  &__sidebar {
+    position: fixed;
+    height: 100vh;
+    width: 300px;
+    right: -300px;
+    z-index: 1000;
+    top: 0;
+    background: #fff;
+
+    &_open {
+      right: 0;
+      transition: all 0.3s;
+    }
+
+    &_close {
+      right: -300px;
+      transition: all 0.3s;
+    }
+
+    @media(max-height:380px) {
+      overflow-y: scroll;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+import React from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+import Paginations from "react-js-pagination";
+import s from './Pagination.module.scss'
+
+interface PaginationProps {
+  length: number
+  navigatePath: string
+}
+
+const Pagination: React.FC<PaginationProps> = ({navigatePath,length}) => {
+  const { page } = useParams()
+  const navigate = useNavigate()
+
+  const handlePageClick = (pageNumber: any) => {
+    navigate(`${navigatePath}/${pageNumber}`)
+  };
+  
+  return (
+    <Paginations
+      activePage={Number(page)}
+      itemsCountPerPage={2}
+      totalItemsCount={Number(length)}
+      pageRangeDisplayed={3}
+      onChange={handlePageClick}
+      prevPageText="< Сюда"
+      nextPageText="Туда >"
+      hideFirstLastPages={true}
+      innerClass={s.pagination}
+      linkClass={s.pagination__item}
+      activeLinkClass={s.pagination__item_active}
+      activeClass={s.pagination__item_selected}
+      linkClassPrev={s.pagination__controlos}
+      linkClassNext={s.pagination__controlos}
+    />
+  )
+}
+
+export default Pagination

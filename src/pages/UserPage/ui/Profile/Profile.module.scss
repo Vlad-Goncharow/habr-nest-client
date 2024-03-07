@@ -1,0 +1,21 @@
+.wrapper {
+  padding: 15px;
+  background: #fff;
+}
+
+.item {
+  margin-bottom: 15px;
+
+  &__title {
+    color: #000;
+    display: block;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: 1.15;
+    margin: 0 0 15px;
+  }
+
+  &__list {
+    display: flex;
+  }
+}

@@ -1,0 +1,21 @@
+.left {
+  display: flex;
+  align-items: center;
+
+  a {
+    height: 56px;
+    cursor: pointer;
+    font-weight: 500;
+    color: #909090;
+    font-size: .875rem;
+    line-height: 1rem;
+    margin-right: 15px;
+
+    display: flex;
+    align-items: center;
+  }
+
+  @media(max-width:768px) {
+    flex-direction: column;
+  }
+}
