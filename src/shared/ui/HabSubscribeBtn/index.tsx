@@ -1,15 +1,18 @@
 import classNames from 'classnames'
-import { getUserData } from 'entities/User'
+import { getUserData, userActions } from 'entities/User'
 import React from 'react'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import axios from '../../../axios'
 import s from './HabSubscribeBtn.module.scss'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
 interface HabSubscribeBtnProps{
   habId:number
 }
 
 const HabSubscribeBtn: React.FC<HabSubscribeBtnProps> = ({habId}) => {
+  const dispatch = useAppDispatch()
+  
   const { user } = useAppSelector(getUserData)
   const [active, setActive] = React.useState(false)
 
@@ -29,6 +32,7 @@ const HabSubscribeBtn: React.FC<HabSubscribeBtnProps> = ({habId}) => {
       })
       if (data.success === true) {
         setActive(false)
+        dispatch(userActions.userHabUnSubscribe({id:habId}))
       }
     } else {
       const { data } = await axios.post(`/habs/subscribe`,{
@@ -37,6 +41,7 @@ const HabSubscribeBtn: React.FC<HabSubscribeBtnProps> = ({habId}) => {
       })
       if (data.success === true) {
         setActive(true)
+        dispatch(userActions.userHabSubscribe({id:habId}))
       }
     }
   }

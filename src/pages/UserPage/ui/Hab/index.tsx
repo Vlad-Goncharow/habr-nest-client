@@ -3,12 +3,18 @@ import { IStatHab, IHab } from 'shared/types/habs'
 import s from './Hab.module.scss'
 import HabSubscribeBtn from 'shared/ui/HabSubscribeBtn'
 import axios from '../../../../axios'
+import { Link } from 'react-router-dom'
+import classNames from 'classnames'
+import { useAppSelector } from 'shared/hooks/useAppSelector'
+import { getUserData } from 'entities/User'
 
 interface HabProps{
   habData:IHab
 }
 
 const Hab: React.FC<HabProps> = ({habData}) => {
+  const {user} = useAppSelector(getUserData)
+
   const [habInfo, setHabInfo] = React.useState<IStatHab | null>(null)
   const habRef = React.useRef<HTMLDivElement>(null)
 
@@ -31,7 +37,14 @@ const Hab: React.FC<HabProps> = ({habData}) => {
 
   return (
     <div ref={habRef} className={s.hab}>
-      <div  className={s.title}>{habData.title}</div>
+      <Link 
+        to={`/hab/${habData.id}/articles`} 
+        className={classNames(s.title,{
+          [s.title_active]:user?.habSubscribers.find((el) => el.id === habData.id)
+        })}
+      >
+        {habData.title}
+      </Link>
       {
         menuIsAactive && 
         <div className={s.menu}>
@@ -49,7 +62,7 @@ const Hab: React.FC<HabProps> = ({habData}) => {
             <HabSubscribeBtn habId={habData.id} />
           <div className={s.stats}>
             <div className={s.stats__item}>Публикации {habInfo?.posts}</div>
-            <div className={s.stats__item}>Подписчики {habInfo?.authors}</div>
+              <div className={s.stats__item}>Подписчики {habInfo?.subscribers}</div>
           </div>
         </div>
       }

@@ -1,6 +1,6 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { IUser, formLogin, formRegister, userStateSchema } from "../types/user";
-import axios from '../../../../axios'
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from '../../../../axios';
+import { formLogin, formRegister, userStateSchema } from "../types/user";
 
 const initialState: userStateSchema = {
   user: null,
@@ -59,7 +59,29 @@ export const fetchLogout = createAsyncThunk('auth/fetchLogout',
 const userSlice = createSlice({
   name: 'user',
   initialState,
-  reducers: {},
+  reducers: {
+    userSubscribe(state, action){
+      if(state.user){
+        state.user?.subscriptions.push(action.payload)
+      }
+    },
+    userUnSubscribe(state, action) {
+      if(state.user){
+        state.user.subscriptions = state.user.subscriptions.filter((el) => el.id !== action.payload.id);
+      }
+    },
+
+    userHabSubscribe(state, action) {
+      if (state.user) {
+        state.user?.habSubscribers.push(action.payload)
+      }
+    },
+    userHabUnSubscribe(state, action) {
+      if (state.user) {
+        state.user.habSubscribers = state.user.habSubscribers.filter((el) => el.id !== action.payload.id);
+      }
+    }
+  },
   extraReducers(builder) {
     //refresh
     builder.addCase(fetchAuth.pending, (state) => {

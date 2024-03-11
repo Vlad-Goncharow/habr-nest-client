@@ -50,7 +50,7 @@ const subCategories: subCategoriesType[] = [
 ]
 
 const UserNav = () => {
-  const { type, subtype, userId } = useParams()
+  const { type, subType, userId } = useParams()
 
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
   const popupRef = React.useRef<HTMLDivElement>(null)
@@ -75,18 +75,18 @@ const UserNav = () => {
       </div>
       {
         type === 'publications' &&
-        <div className={s.menu}>
-          <div ref={popupRef} onClick={() => setPopupIsOpen(prev => !prev)} className={s.menu__item}>
-            {subCategories.find((el) => el.subCategoryEng === subtype)?.subCategoryRu}
+        <div ref={popupRef} className={s.menu}>
+          <div onClick={() => setPopupIsOpen(prev => !prev)} className={s.menu__item}>
+            {subCategories.find((el) => el.subCategoryEng === subType)?.subCategoryRu}
           </div>
           {
             popupIsOpen &&
-            <div  className={s.popup}>
+              <div className={s.popup}>
               {
                 subCategories.map((el:subCategoriesType) => 
                   <Link 
-                    to={`/user/${userId}/${type}/${el.subCategoryEng}/1}`}
-                    onClick={() => setPopupIsOpen(false)} 
+                    to={`/user/${userId}/${type}/${el.subCategoryEng}/1`}
+                    onClick={() => setPopupIsOpen(false)}
                     className={s.popup__item}
                   >
                     {el.subCategoryRu}

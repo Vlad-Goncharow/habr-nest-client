@@ -28,6 +28,11 @@
   min-height: 28px;
   text-decoration: none;
   vertical-align: middle;
+
+  &_active{
+    background-color: #d2ec93;
+    color:#000;
+  }
 }
 
 .menu {

@@ -4,10 +4,13 @@ import { useParams } from 'react-router-dom'
 import axios from '../../../../axios'
 import Profile from '../Profile'
 import UserHeader from '../UserHeader'
+import UserPosts from '../UserPosts'
 import s from './UserPage.module.scss'
 
 function UserPage() {
   const { userId, type } = useParams()
+  const [pageSize, setPageSize] = React.useState<number>(10)
+  
   const [userData, setUserData] = React.useState<IUser | null>(null)
   const [loading, setLoading] = React.useState(false)
 
@@ -39,6 +42,8 @@ function UserPage() {
                   <UserHeader userData={userData} />
                   {
                     type === 'profile' && <Profile userData={userData} />
+                  }{
+                    type === 'publications' && <UserPosts pageSize={pageSize} />
                   }
                 </div>
                 <div className="sidebar"></div>

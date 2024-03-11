@@ -19,7 +19,7 @@ function Root() {
 
   React.useEffect(() => {
     auth()
-    navigate('/flows/all/posts/1', { replace: true });
+    navigate('/flows/all/articles/1', { replace: true });
   }, [navigate])
 
   return (

@@ -23,7 +23,7 @@ const PostAuthor: React.FC<PostAuthorProps> = ({author}) => {
           <span>{`${author?.rating}`}</span>
           <p>Рейтинг</p>
         </div>
-        <SubscribeBtn userData={author} />
+        <SubscribeBtn userId={author.id} />
       </div>
       <Link to={`/user/${author.id}/posts/`} className={s.author__name}>{author?.nickname}</Link>
     </div>

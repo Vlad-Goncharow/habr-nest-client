@@ -27,7 +27,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({userData}) => {
             </div>
           </div>
         </div>
-        <SubscribeBtn userData={userData} />
+        <SubscribeBtn userId={userData.id} />
       </div>
       <h1 className={s.name}>{`@${userData?.nickname}`}</h1>
       <p className={s.descr}>{userData?.description}</p>

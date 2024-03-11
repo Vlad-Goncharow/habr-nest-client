@@ -3,25 +3,55 @@ import s from './PostsNavigation.module.scss'
 import { Link, useParams } from 'react-router-dom'
 import classNames from 'classnames'
 
-const PostCategories = [
+type categoriesType = {
+  categoryRu: String,
+  categoryEng: String
+}
+
+type subCategoriesType = {
+  subCategoryRu: String,
+  subCategoryEng: String
+}
+
+const postCategories: categoriesType[] = [
   {
-    typeRu: 'Разработка',
-    typeEng: 'develop'
+    categoryRu: 'Разработка',
+    categoryEng: 'develop'
   }, {
-    typeRu: 'Администрирование',
-    typeEng: 'admin'
+    categoryRu: 'Администрирование',
+    categoryEng: 'admin'
   }, {
-    typeRu: 'Дизайн',
-    typeEng: 'design'
+    categoryRu: 'Дизайн',
+    categoryEng: 'design'
   }, {
-    typeRu: 'Менеджмент',
-    typeEng: 'management'
+    categoryRu: 'Менеджмент',
+    categoryEng: 'management'
   }, {
-    typeRu: 'Маркетинг',
-    typeEng: 'marketing'
+    categoryRu: 'Маркетинг',
+    categoryEng: 'marketing'
   }, {
-    typeRu: 'Научпоп',
-    typeEng: 'popsci'
+    categoryRu: 'Научпоп',
+    categoryEng: 'popsci'
+  }
+]
+
+const subCategories: subCategoriesType[] = [
+  {
+    subCategoryRu: 'Статьи',
+    subCategoryEng: 'articles'
+  }, {
+    subCategoryRu: 'Посты',
+    subCategoryEng: 'posts'
+  },
+  {
+    subCategoryRu: 'Новости',
+    subCategoryEng: 'news'
+  }, {
+    subCategoryRu: 'Хабы',
+    subCategoryEng: 'habs'
+  }, {
+    subCategoryRu: 'Авторы',
+    subCategoryEng: 'authors'
   }
 ]
 
@@ -33,11 +63,11 @@ const PostsNavigation = () => {
 
   // ======== check current category
   const checkCategory = () => {
-    const check = PostCategories.find(el => el.typeEng === category)
+    const check = postCategories.find(el => el.categoryEng === category)
 
     if (check) {
       return (
-        <h1 className={s.title}>{check.typeRu}</h1>
+        <h1 className={s.title}>{check.categoryRu}</h1>
       )
     } else {
       return (
@@ -61,38 +91,18 @@ const PostsNavigation = () => {
         {checkCategory()}
       </>
       <div className={s.category}>
-        <Link
-          to={`/flows/${category}/posts/1`}
-          className={classNames(s.category__item, {
-            [s.category__item_active]: type === 'posts'
-          })}
-        >
-          посты
-        </Link>
-        <Link
-          to={`/flows/${category}/news/1`}
-          className={classNames(s.category__item, {
-            [s.category__item_active]: type === 'news'
-          })}
-        >
-          Новости
-        </Link>
-        <Link
-          to={`/flows/${category}/habs/1`}
-          className={classNames(s.category__item, {
-            [s.category__item_active]: type === 'habs'
-          })}
-        >
-          Хабы
-        </Link>
-        <Link
-          to={`/flows/${category}/authors/1`}
-          className={classNames(s.category__item, {
-            [s.category__item_active]: type === 'authors'
-          })}
-        >
-          Авторы
-        </Link>
+        {
+          subCategories.map((el:subCategoriesType) => 
+            <Link 
+              to={`/flows/${category}/${el.subCategoryEng}/1`}
+              className={classNames(s.category__item, {
+                [s.category__item_active]: type === el.subCategoryEng
+              })}
+            >
+              {el.subCategoryRu}
+            </Link>
+          )
+        }
       </div>
       {
         type === 'habs' || type === 'authors'

@@ -17,5 +17,5 @@ export interface IHab {
 export interface IStatHab {
   hab: IHab,
   posts:number,
-  authors:number
+  subscribers:number
 }

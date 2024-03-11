@@ -2,7 +2,7 @@ import { IHab } from "shared/types/habs";
 import { IPost } from "shared/types/posts";
 
 export interface IUser {
-  id: string;
+  id: number;
   email: string;
   password: string;
   nickname: string;

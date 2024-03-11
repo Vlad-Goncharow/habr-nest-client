@@ -9,9 +9,10 @@ interface PostsListProps{
   posts:IPost[] | []
   length:number,
   navigatePath:string
+  pageSize:number,
 }
 
-const PostsList: React.FC<PostsListProps> = ({ posts, length, navigatePath }) => {
+const PostsList: React.FC<PostsListProps> = ({ posts, length, navigatePath, pageSize }) => {
   return (
     posts.length > 0 ?
       <>
@@ -20,7 +21,7 @@ const PostsList: React.FC<PostsListProps> = ({ posts, length, navigatePath }) =>
             <Post post={el} />
           )
         }
-        <Pagination length={length} navigatePath={navigatePath} />
+        <Pagination length={length} navigatePath={navigatePath} pageSize={pageSize} />
       </>
     :
       <EmptyPosts />

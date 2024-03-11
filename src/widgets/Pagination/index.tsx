@@ -6,9 +6,10 @@ import s from './Pagination.module.scss'
 interface PaginationProps {
   length: number
   navigatePath: string
+  pageSize: number
 }
 
-const Pagination: React.FC<PaginationProps> = ({navigatePath,length}) => {
+const Pagination: React.FC<PaginationProps> = ({ navigatePath, length, pageSize }) => {
   const { page } = useParams()
   const navigate = useNavigate()
 
@@ -19,7 +20,7 @@ const Pagination: React.FC<PaginationProps> = ({navigatePath,length}) => {
   return (
     <Paginations
       activePage={Number(page)}
-      itemsCountPerPage={2}
+      itemsCountPerPage={pageSize}
       totalItemsCount={Number(length)}
       pageRangeDisplayed={3}
       onChange={handlePageClick}
