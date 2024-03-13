@@ -7,6 +7,7 @@ export interface IUser {
   password: string;
   nickname: string;
   avatar: string;
+  gender: string;
   description?: string | null;
   country?: string | null;
   karma:number,

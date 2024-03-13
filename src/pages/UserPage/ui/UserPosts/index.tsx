@@ -5,11 +5,7 @@ import PostsList from 'shared/ui/PostsList'
 import PostsSceleton from 'shared/ui/PostsSceleton'
 import axios from '../../../../axios'
 
-interface UserPostsProps{
-  pageSize:number
-}
-
-const UserPosts: React.FC<UserPostsProps> = ({pageSize}) => {
+const UserPosts: React.FC = () => {
   const { userId, type, subType, page } = useParams()
 
   const [loading, setLoading] = React.useState(true)
@@ -21,7 +17,7 @@ const UserPosts: React.FC<UserPostsProps> = ({pageSize}) => {
       try {
         if (type === 'publications') {
           setLoading(true)
-          const { data } = await axios.get(`/posts/user/${userId}/${subType}?page=${page}&pageSize=${pageSize}`)
+          const { data } = await axios.get(`/posts/user/${userId}/${subType}?page=${page}&pageSize=${10}`)
           setPosts(data.posts)
           setPostsLength(data.length)
           setLoading(false)
@@ -30,7 +26,7 @@ const UserPosts: React.FC<UserPostsProps> = ({pageSize}) => {
         setLoading(false)
       }
     })()
-  }, [userId, type, subType, pageSize, page])
+  }, [userId, type, subType, page])
 
   return (
     <>
@@ -39,7 +35,7 @@ const UserPosts: React.FC<UserPostsProps> = ({pageSize}) => {
         ?
           <PostsSceleton />
         :
-          <PostsList posts={posts} length={postsLength} pageSize={pageSize} navigatePath={`/user/${userId}/${type}/${subType}`} />
+          <PostsList posts={posts} length={postsLength} pageSize={10} navigatePath={`/user/${userId}/${type}/${subType}`} />
       }
     </>
   )

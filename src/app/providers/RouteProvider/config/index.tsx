@@ -4,6 +4,9 @@ import Login from 'pages/Login';
 import Main from 'pages/Main';
 import { PostPage } from 'pages/PostPage';
 import { UserPage } from 'pages/UserPage';
+import Profile from 'pages/UserPage/ui/Profile';
+import Subscribers from 'pages/UserPage/ui/Subscribers';
+import UserPosts from 'pages/UserPage/ui/UserPosts';
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
 
@@ -13,7 +16,12 @@ export const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/flows/:category/:type/:page" element={<Main />} />
       <Route path="/:type/:postId" element={<PostPage />} />
-      <Route path="/user/:userId/:type?/:subType?/:page?/" element={<UserPage />}/>
+      {/* <Route path="/user/:userId/:type?/:subType?/:page?/" element={<UserPage />}/> */}
+      <Route path="/user/" element={<UserPage />}>
+        <Route path=':userId/:type' element={<Profile />} />
+        <Route path=':userId/:type/:subType/:page' element={<UserPosts />} />
+        <Route path=':userId/:type/:page' element={<Subscribers />} />
+      </Route>
       <Route path="/hab/:habId/:type?/:page?/" element={<HabPage />}/>
     </Route>
   )

@@ -1,11 +1,9 @@
-import React from 'react'
 import ContentLoader from 'react-content-loader';
-import s from './PostsSceleton.module.scss'
 import useElementWidth from 'shared/hooks/UseElementWidth';
+import s from './PostsSceleton.module.scss';
 
 function PostsSceleton() {
   const width = useElementWidth(s.item)
-  console.log(width);
   
   return (
     <>

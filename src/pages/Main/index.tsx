@@ -30,7 +30,7 @@ function Main() {
   },[category,type,page])
   
   return (
-    <div className={s.page}>
+    <div className={'page'}>
       <div className="container">
         <div className="row">
           <PostsNavigation />

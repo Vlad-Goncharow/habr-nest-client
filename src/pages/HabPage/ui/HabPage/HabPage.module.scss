@@ -5,6 +5,7 @@
   &__left {
     flex: 1;
     margin-right: 16px;
-    max-width: calc(100% - 316px);
+    max-width: calc(100% - 320px);
+    min-width: calc(100% - 320px);
   }
 }

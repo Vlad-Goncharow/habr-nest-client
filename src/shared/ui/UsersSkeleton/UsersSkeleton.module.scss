@@ -1,0 +1,12 @@
+.skeleton{
+  background: #fff;
+  padding: 15px;
+}
+
+.item{
+  margin-bottom: 15px;
+
+  &:last-child{
+    margin-bottom: 0;
+  }
+}

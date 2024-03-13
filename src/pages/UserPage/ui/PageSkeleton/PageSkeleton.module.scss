@@ -1,0 +1,24 @@
+.wrapper{
+  flex: 1 1;
+  margin-right: 16px;
+  max-width: calc(100% - 320px);
+  min-width: calc(100% - 320px);
+
+  @media(max-width:1024px) {
+    max-width: 100%;
+    min-width: 100%;
+    margin-right: 0;
+  }
+}
+
+.user{
+  padding: 15px;
+  background: #fff;
+  margin-bottom: 15px;
+  width: 100%;
+}
+
+.profile{
+  padding: 15px;
+  background: #fff;
+}
