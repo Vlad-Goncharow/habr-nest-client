@@ -1,0 +1,115 @@
+.form {
+  width: 100%;
+  margin-top: 10px;
+  position: relative;
+
+  &__top {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex: 1;
+    border: 1px solid #548eaa;
+    border-radius: 7px;
+    overflow: hidden;
+
+    &_open {
+      border-bottom: 0;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+
+  &__input {
+    background-color: #fff;
+    color: #333;
+    display: block;
+    margin: 0;
+    padding: 0 14px;
+    height: 38px;
+    box-sizing: border-box;
+    border: 0;
+    outline: none;
+    font-size: 14px;
+    flex: 1 0;
+  }
+}
+
+.habs {
+  display: flex;
+  align-items: center;
+
+  &__item {
+    padding: 6px;
+    margin: 4px 0 5px 4px;
+    font-size: 12px;
+    line-height: 17px;
+    font-weight: 700;
+    color: #fff;
+    background-color: #8ba9bc;
+    border-radius: 2px;
+    cursor: pointer;
+    padding-right: 20px;
+    position: relative;
+  }
+
+  &__delete {
+    display: block;
+    width: 7px;
+    height: 7px;
+    position: absolute;
+    right: 2px;
+    margin: 5px;
+    top: calc(50% - 5px);
+    transform: translateY(-50%);
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      background: #fff;
+    }
+
+    &:before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 1px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      background: #fff;
+    }
+  }
+}
+
+.popup {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #548eaa;
+  list-style: none;
+  max-height: 200px;
+  overflow-y: scroll;
+  z-index: 10;
+
+  &__li {
+    cursor: pointer;
+    width: 100%;
+    line-height: 40px;
+    padding-left: 15px;
+    display: flex;
+    align-content: inherit;
+
+
+    &:hover {
+      background: #eff6fa;
+    }
+  }
+}

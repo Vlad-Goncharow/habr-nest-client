@@ -1,0 +1,55 @@
+.wrapper{
+  flex: 1 1;
+  max-width: calc(100% - 320px);
+  min-width: calc(100% - 320px);
+  position: relative;
+
+  &__top{
+    border:1px solid #548EAA;
+    margin-bottom: 15px;
+    padding: 15px 10px;
+    background: #eaf1f5;
+
+    span{
+      font-weight: 700;
+      color:#548EAA;
+      cursor: pointer;
+    }
+  }
+
+  &__bottom{
+    padding: 15px;
+    background: #fff;
+  }
+}
+
+
+.form{
+  width: 100%;
+}
+
+.input{
+  width: 100%;
+  font-size: 28px;
+  font-weight: 700;
+  border: 0;
+  margin-bottom: 25px;
+
+  &::placeholder{
+    font-size: 28px;
+  }
+}
+
+.content{
+  position: relative;
+  padding-bottom: 25px;
+  padding-left: 20px;
+}
+
+.buttons{
+  display: flex;
+}
+
+.toolbar{
+  font-size: 12px;
+}

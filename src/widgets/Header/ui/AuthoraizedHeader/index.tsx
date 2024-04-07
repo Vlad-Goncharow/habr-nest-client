@@ -60,7 +60,7 @@ const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({user}) => {
   
   return (
     <div className={s.user}>
-      <Link to='/post/create' className={s.user__icon}>
+      <Link to='/create' className={s.user__icon}>
         <CreateSvg />
       </Link>
       <div 

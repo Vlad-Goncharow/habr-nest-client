@@ -10,7 +10,6 @@ const useElementWidth = (className: string): number | null => {
       if (element instanceof HTMLElement) {
         const width = element.offsetWidth;
         setElementWidth(width);
-        console.log('width', width);
       }
     };
 

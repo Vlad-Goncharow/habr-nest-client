@@ -9,7 +9,7 @@ function PostsSceleton() {
     <>
       {
         Array.from({length: 8 }, (_, index) =>
-          <div className={s.item}>
+          <div key={index} className={s.item}>
             <ContentLoader
               speed={2}
               width={200}

@@ -1,0 +1,12 @@
+.inlines{
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 4px;
+  border-radius: 3px;
+  background: #fff;
+  z-index: 10;
+  box-shadow: 0 0 8px rgba(var(--asphalt-rgb, 0, 0, 0), .2);
+}

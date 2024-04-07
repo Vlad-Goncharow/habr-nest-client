@@ -2,38 +2,12 @@ import React, { ChangeEvent } from 'react'
 import s from './PostsNavigation.module.scss'
 import { Link, useParams } from 'react-router-dom'
 import classNames from 'classnames'
-
-type categoriesType = {
-  categoryRu: String,
-  categoryEng: String
-}
+import { postCategories } from 'shared/global'
 
 type subCategoriesType = {
-  subCategoryRu: String,
-  subCategoryEng: String
+  subCategoryRu: string,
+  subCategoryEng: string
 }
-
-const postCategories: categoriesType[] = [
-  {
-    categoryRu: 'Разработка',
-    categoryEng: 'develop'
-  }, {
-    categoryRu: 'Администрирование',
-    categoryEng: 'admin'
-  }, {
-    categoryRu: 'Дизайн',
-    categoryEng: 'design'
-  }, {
-    categoryRu: 'Менеджмент',
-    categoryEng: 'management'
-  }, {
-    categoryRu: 'Маркетинг',
-    categoryEng: 'marketing'
-  }, {
-    categoryRu: 'Научпоп',
-    categoryEng: 'popsci'
-  }
-]
 
 const subCategories: subCategoriesType[] = [
   {
@@ -54,7 +28,6 @@ const subCategories: subCategoriesType[] = [
     subCategoryEng: 'authors'
   }
 ]
-
 
 const PostsNavigation = () => {
   // ======== posts params
@@ -98,6 +71,7 @@ const PostsNavigation = () => {
               className={classNames(s.category__item, {
                 [s.category__item_active]: type === el.subCategoryEng
               })}
+              key={el.subCategoryEng}
             >
               {el.subCategoryRu}
             </Link>

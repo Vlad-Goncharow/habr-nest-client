@@ -1,4 +1,5 @@
 import Root from 'app/Root';
+import { CreatePost } from 'pages/CreatePost';
 import { HabPage } from 'pages/HabPage';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
@@ -16,13 +17,13 @@ export const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/flows/:category/:type/:page" element={<Main />} />
       <Route path="/:type/:postId" element={<PostPage />} />
-      {/* <Route path="/user/:userId/:type?/:subType?/:page?/" element={<UserPage />}/> */}
       <Route path="/user/" element={<UserPage />}>
         <Route path=':userId/:type' element={<Profile />} />
         <Route path=':userId/:type/:subType/:page' element={<UserPosts />} />
         <Route path=':userId/:type/:page' element={<Subscribers />} />
       </Route>
       <Route path="/hab/:habId/:type?/:page?/" element={<HabPage />}/>
+      <Route path="/create" element={<CreatePost />}/>
     </Route>
   )
 );

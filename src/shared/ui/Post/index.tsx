@@ -1,16 +1,21 @@
-import React from 'react'
-import s from './Post.module.scss'
-import { Link } from 'react-router-dom'
+import Draft, { Editor, EditorState, convertFromRaw } from 'draft-js'
 import moment from 'moment'
-import { IPost } from 'shared/types/posts'
-import classNames from 'classnames'
+import { blockRenderMap, styleMap } from 'pages/CreatePost/ui/FirstStep'
+import React from 'react'
+import { Link } from 'react-router-dom'
 import { IHab } from 'shared/types/habs'
+import { IPost } from 'shared/types/posts'
+import s from './Post.module.scss'
 
 interface PostProps{
   post:IPost
 }
 
 const Post: React.FC<PostProps> = ({post}) =>{
+  const contentStateFromJSON = convertFromRaw(JSON.parse(post.content));
+  const restoredEditorState = EditorState.createWithContent(contentStateFromJSON);
+
+  const extendedBlockRenderMap = Draft.DefaultDraftBlockRenderMap.merge(blockRenderMap);
   return (
     <div className={s.item}>
       <header className={s.item__header}>
@@ -32,12 +37,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
         <img src={`${process.env.REACT_APP_SERVER_URL}/${post.image}`} alt="" />
       </div>
       <div className={s.item__text}>
-        {/* <Editor onChange={onChange} editorState={editorState} /> */}
-        {/* {
-          parse(draftToHtml(
-            JSON.parse(post.content),
-          ))
-        } */}
+        <Editor editorState={restoredEditorState} blockRenderMap={extendedBlockRenderMap} customStyleMap={styleMap} readOnly />
       </div>
       <Link to={`/post/${post.id}`} className={s.item__link}>Читать далее</Link>
       <footer className={s.item__footer}>

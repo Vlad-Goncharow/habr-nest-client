@@ -6,3 +6,5 @@ declare module "uuid";
 declare module "axios";
 declare module "react-js-pagination";
 declare module "draftjs-to-html";
+declare module 'react-draft-wysiwyg'
+declare module 'draft-js'
