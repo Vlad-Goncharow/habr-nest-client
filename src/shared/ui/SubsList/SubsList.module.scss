@@ -51,5 +51,9 @@
   &__item {
     text-align: right;
     width: var(--user-stats);
+
+    @media(max-width:500px){
+      width: 50px;
+    }
   }
 }

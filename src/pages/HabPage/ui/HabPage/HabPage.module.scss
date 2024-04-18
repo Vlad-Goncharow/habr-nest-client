@@ -7,5 +7,11 @@
     margin-right: 16px;
     max-width: calc(100% - 320px);
     min-width: calc(100% - 320px);
+
+    @media(max-width:1024px) {
+      max-width: 100%;
+      min-width: 100%;
+      margin-right: 0;
+    }
   }
 }

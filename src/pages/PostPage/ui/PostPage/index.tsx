@@ -9,6 +9,11 @@ import moment from 'moment'
 import { IHab } from 'shared/types/habs'
 import classNames from 'classnames'
 import PostAuthor from '../PostAuthor'
+import { convertFromRaw } from 'draft-js'
+import Draft from 'draft-js'
+import { EditorState } from 'draft-js'
+import { blockRenderMap, styleMap } from 'pages/CreatePost/ui/FirstStep'
+import { Editor } from 'draft-js'
 
 function PostPage() {
   const { postId, type } = useParams()
@@ -27,8 +32,19 @@ function PostPage() {
         setLoading(false)
       }
     })()
-  },[])
+  },[postId, type])
 
+  let contentStateFromJSON;
+  let restoredEditorState;
+  let extendedBlockRenderMap;
+  if (postData !== null) {
+    contentStateFromJSON = convertFromRaw(JSON.parse(postData.content));
+    restoredEditorState = EditorState.createWithContent(contentStateFromJSON);
+    extendedBlockRenderMap = Draft.DefaultDraftBlockRenderMap.merge(blockRenderMap);
+  }
+  
+  
+  
   return (
     <>
       {
@@ -54,14 +70,10 @@ function PostPage() {
                       <img src={`${process.env.REACT_APP_SERVER_URL}${postData.image}`} alt="" />
                     </div>
                     <div className={s.post__text}>
-                      {/* {
-                        parse(draftToHtml(
-                          JSON.parse(postData.text),
-                        ))
-                      } */}
+                      <Editor editorState={restoredEditorState} blockRenderMap={extendedBlockRenderMap} customStyleMap={styleMap} readOnly />
                     </div>
                     <div className={s.post__info}>
-                      <span>Хабы</span>
+                      <span>Хабы:</span>
                       <ul>
                         {
                           postData.habs.map((el: IHab) =>

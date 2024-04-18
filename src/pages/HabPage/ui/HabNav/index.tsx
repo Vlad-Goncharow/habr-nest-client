@@ -33,7 +33,7 @@ function HabNav() {
           categories.map((el: categoriesType) =>
             <Link
               key={`${el.categoryEng}`}
-              to={`/hab/${habId}/${el.categoryEng}/1}`}
+              to={`/hab/${habId}/${el.categoryEng}/1`}
               className={classNames(s.navigation__item, {
                 [s.navigation__item_active]: el.categoryEng === type
               })}

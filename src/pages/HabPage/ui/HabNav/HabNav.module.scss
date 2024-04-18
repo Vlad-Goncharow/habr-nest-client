@@ -6,6 +6,10 @@
     display: flex;
     align-items: center;
     border-bottom: 1px solid #ccc;
+
+    @media(max-width:1024px) {
+      overflow-x: scroll;
+    }
   }
 
   &__item {

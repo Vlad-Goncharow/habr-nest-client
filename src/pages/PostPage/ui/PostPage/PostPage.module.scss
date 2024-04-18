@@ -127,7 +127,9 @@
 
   &__info {
     margin-bottom: 15px;
-
+    display: flex;
+    align-items: center;
+    
     &:last-child {
       margin-bottom: 25px;
     }

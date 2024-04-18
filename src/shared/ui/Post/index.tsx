@@ -29,7 +29,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
       <div className={s.item__habs}>
         {
           post.habs.map((hab: IHab) =>
-            <Link to={`/hab/${hab.id}/posts`} key={hab.id}>{hab.title}</Link>
+            <Link to={`/hab/${hab.id}/articles/1`} key={hab.id}>{hab.title}</Link>
           )
         }
       </div>

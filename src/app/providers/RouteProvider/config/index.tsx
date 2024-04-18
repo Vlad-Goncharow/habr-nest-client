@@ -22,7 +22,7 @@ export const router = createBrowserRouter(
         <Route path=':userId/:type/:subType/:page' element={<UserPosts />} />
         <Route path=':userId/:type/:page' element={<Subscribers />} />
       </Route>
-      <Route path="/hab/:habId/:type?/:page?/" element={<HabPage />}/>
+      <Route path="/hab/:habId/:type/:page" element={<HabPage />} />
       <Route path="/create" element={<CreatePost />}/>
     </Route>
   )
