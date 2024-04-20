@@ -1,23 +1,19 @@
-import React from 'react'
-import s from './PostPage.module.scss'
-import { IPost } from 'shared/types/posts'
-import axios from '../../../../axios'
-import { Link, useParams } from 'react-router-dom'
-import { useAppSelector } from 'shared/hooks/useAppSelector'
+import Draft, { Editor, EditorState, convertFromRaw } from 'draft-js'
 import { getUserData } from 'entities/User'
 import moment from 'moment'
-import { IHab } from 'shared/types/habs'
-import classNames from 'classnames'
-import PostAuthor from '../PostAuthor'
-import { convertFromRaw } from 'draft-js'
-import Draft from 'draft-js'
-import { EditorState } from 'draft-js'
 import { blockRenderMap, styleMap } from 'pages/CreatePost/ui/FirstStep'
-import { Editor } from 'draft-js'
+import React from 'react'
+import { Link, useParams } from 'react-router-dom'
+import { useAppSelector } from 'shared/hooks/useAppSelector'
+import { IHab } from 'shared/types/habs'
+import { IPost } from 'shared/types/posts'
+import axios from '../../../../axios'
+import Comments from '../Comments'
+import PostAuthor from '../PostAuthor'
+import s from './PostPage.module.scss'
 
 function PostPage() {
   const { postId, type } = useParams()
-  const {user} = useAppSelector(getUserData)
   const [postData, setPostData] = React.useState<IPost | null>(null)
   const [loading, setLoading] = React.useState(false)
 
@@ -25,7 +21,7 @@ function PostPage() {
     (async () => {
       try {
         setLoading(true)
-        const { data } = await axios.get(`/${type}/${postId}`)
+        const { data } = await axios.get(`/posts/${postId}`)
         setPostData(data)
         setLoading(false)
       } catch(e){
@@ -43,8 +39,6 @@ function PostPage() {
     extendedBlockRenderMap = Draft.DefaultDraftBlockRenderMap.merge(blockRenderMap);
   }
   
-  
-  
   return (
     <>
       {
@@ -53,7 +47,7 @@ function PostPage() {
           <div>loading</div>
         :
           postData !== null &&
-          <div className={s.page}>
+          <div className={'page'}>
             <div className={'container'}>
               <div className={s.wrapper}>
                 <div className={s.left}>
@@ -91,27 +85,11 @@ function PostPage() {
                         </svg>
                         <span>{`${postData.views}`}</span>
                       </div>
-                      {/* <div className={s.post__footerItem}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M20.25 4.5H3.75A1.5 1.5 0 0 0 2.25 6v14.887a1.472 1.472 0 0 0 .872 1.36 1.5 1.5 0 0 0 1.594-.206l2.972-2.503L20.25 19.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5Z" />
-                        </svg>
-                        <span>{`${postData.comments ? postData.comments.length : 0}`}</span>
-                      </div> */}
-                      {/* <div onClick={checkClickFavorite} className={classNames(s.post__footerItem, {
-                        [s.post__footerItem_active]: check
-                      })}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M17.25 3H6.75a1.5 1.5 0 0 0-1.5 1.5V21a.76.76 0 0 0 .384.656.712.712 0 0 0 .366.094.74.74 0 0 0 .394-.113L12 18.131l5.597 3.506a.779.779 0 0 0 .769.02.76.76 0 0 0 .384-.657V4.5a1.5 1.5 0 0 0-1.5-1.5Z" />
-                        </svg>
-                        <span>{`${postData.favorites}`}</span>
-                      </div> */}
                     </footer>
                   </div>
                   <PostAuthor author={postData.author} />
-                  {/* <PostComments comments={postData.comments} />
-                  <PopularPosts /> */}
+                  <Comments />
                 </div>
-                {/* <Sidebar category={postData.category} /> */}
               </div>
             </div>
           </div>}

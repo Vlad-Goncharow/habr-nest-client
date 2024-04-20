@@ -15,9 +15,16 @@ export interface IUser {
   habSubscribers: IHab[];
   subscribers: IUser[];
   subscriptions: IUser[];
+  roles: UserRolesSchema[]
   posts: IPost[];
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface UserRolesSchema {
+  id:number
+  value:string;
+  description:string
 }
 
 export interface userStateSchema {

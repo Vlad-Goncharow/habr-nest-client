@@ -10,7 +10,7 @@ function UsersSkeleton() {
     <div className={s.skeleton}>
       {
         Array.from({length:8}, (_, index) => 
-          <div className={s.item}>
+          <div key={`sekelet_${index}`} className={s.item}>
             <ContentLoader
               speed={2}
               width={Number(width)}
