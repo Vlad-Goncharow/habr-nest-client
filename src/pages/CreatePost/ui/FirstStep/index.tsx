@@ -7,6 +7,7 @@ import EditorControls from '../EditorControls'
 import InlineControls from '../InlineControls'
 import { valuesType } from '../CreatePost'
 import s from './FirstStep.module.scss'
+import classNames from 'classnames'
 
 export const styleMap = {
   CODE: {
@@ -226,6 +227,19 @@ const FirstStep: React.FC<FirstStepProps> = ({setValues,setStep,values}) => {
   // extendet default block types
   const extendedBlockRenderMap = Draft.DefaultDraftBlockRenderMap.merge(blockRenderMapp);
 
+  //nest button ref for active or disable
+  const nextButtonRef = React.useRef<HTMLButtonElement>(null)
+
+  //handle click
+  const handleButtonClick = () => {
+    if (nextButtonRef.current && nextButtonRef.current.classList.contains(s.next_active)) {
+      setStep(2);
+    }
+  };
+
+  //length editor state block for active or disable nest step
+  const lengthBlocks = values.content ? JSON.parse(values.content) ? JSON.parse(values.content).blocks.length : 1 : 1
+  
   return (
     <>
       
@@ -258,7 +272,16 @@ const FirstStep: React.FC<FirstStepProps> = ({setValues,setStep,values}) => {
             <CustomTooltip editorState={editorState} removeBlock={removeBlock} editorRef={editorRef} />
             <EditorControls editorState={editorState} toggleBlockType={toggleBlockType} editorRef={editorRef} />
           </div>
-          <button onClick={() => setStep(2)}>next step</button>
+          <button
+            ref={nextButtonRef}
+            className={classNames(s.next,{
+              [s.next_active]: (values.title.length > 5) && (lengthBlocks > 5),
+              [s.next_disable]: (values.title.length < 5) && (lengthBlocks < 5),
+            })} 
+            onClick={handleButtonClick}
+          >
+            Далее к настройкам
+          </button>
         </div>
       </div>
     </>

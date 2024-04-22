@@ -1,8 +1,6 @@
 .wrapper {
   flex: 1 1;
   margin-right: 16px;
-  max-width: calc(100% - 320px);
-  min-width: calc(100% - 320px);
   background: #fff;
   padding: 15px;
 }
@@ -212,24 +210,27 @@
   align-items: center;
   justify-content: space-between;
 
-  &__btn {
-    border: 0;
-    padding: 6px 12px;
-    font-size: 15px;
+  &__btn{
     cursor: pointer;
+    height: 32px;
+    padding: 8px 14px;
     border-radius: 3px;
+    font-size: .8125rem;
+    border:none;
+    color: #909090;
+  }
 
-    &_disable {
-      cursor: not-allowed;
-      opacity: 0.7;
-    }
+  &__prev{
+    background: #db4b4b;
+    color: #fff;
+  }
 
-    &_prev {
-      background: #db4b4b;
-      color: #fff;
-    }
+  &__create{
+    background-color: #fff;
+    border: 1px solid #c0c0c0;
 
-    &_create {
+    &_active{
+      color:#548eaa;
       background: transparent;
       border: 1px solid #548eaa;
 
@@ -237,6 +238,10 @@
         background: #548eaa;
         color: #fff;
       }
+    }
+
+    &_disable{
+      cursor: not-allowed;
     }
   }
 }

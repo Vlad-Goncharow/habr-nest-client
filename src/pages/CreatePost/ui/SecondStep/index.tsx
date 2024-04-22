@@ -5,6 +5,7 @@ import axios from '../../../../axios'
 import HabsList from '../HabsList'
 import { valuesType } from '../CreatePost'
 import s from './SecondStep.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 const postDifficulty = [
   {
@@ -32,6 +33,7 @@ interface SecondStepProps {
 }
 
 const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) => {
+  const navigate = useNavigate()
   //image file
   const [image, setImage] = React.useState<string | null>(null);
   const [imageFile, setImageFile] = React.useState<any>(null)
@@ -108,6 +110,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
 
     try {
       axios.post(`/posts`, formData);
+      navigate('/flows/all/all/1')
     } catch (error) {
       console.error(error);
     }
@@ -115,18 +118,23 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
   
   //check create post btn is available
   const checkCreateAvailable = () => {
-    if(
-      values.title.length < 15 ||
-      values.habs.length === 1 ||
-      values.image === null ||
-      values.content.length < 50
-    ) {
-      return false
-    } else {
+    if (values.habs.length < 1 || values.image === null){
+      return false 
+    } else{
       return true
     }
   }
 
+  //create button ref for disable or active click
+  const createButtonRef = React.useRef<HTMLButtonElement>(null)
+
+  //handle button click
+  const handleButtonClick = () => {
+
+    if (createButtonRef.current && createButtonRef.current.classList.contains(s.buttons__create_active)) {
+      createPost()
+    }
+  };
   return (
     <div className={s.wrapper}>
       <div className={s.item}>
@@ -209,11 +217,22 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
         </div>
       </div>
       <div className={s.buttons}>
-        <button className={`${s.buttons__btn} ${s.buttons__btn_prev}`} onClick={() => setStep(1)}>Назад</button>
-        <button className={classNames(s.buttons__btn, {
-          [s.buttons__btn_create]: checkCreateAvailable() === true,
-          [s.buttons__btn_disable]: checkCreateAvailable() === false
-        })} onClick={createPost}>Создать публикацию</button>
+        <button 
+          className={`${s.buttons__btn} ${s.buttons__prev}`} 
+          onClick={() => setStep(1)}
+        >
+          Назад
+        </button>
+        <button 
+          ref={createButtonRef}
+          className={classNames(`${s.buttons__btn} ${s.buttons__create}`,{
+            [s.buttons__create_active]: checkCreateAvailable() === true,
+            [s.buttons__create_disable]: checkCreateAvailable() === false
+          })} 
+          onClick={handleButtonClick}
+        >
+          Создать
+        </button>
       </div>
     </div>
   )

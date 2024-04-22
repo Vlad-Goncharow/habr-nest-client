@@ -25,7 +25,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
         <Link to={`/user/${post.author.id}/profile`} className={s.item__authorName}>{post.author.nickname}</Link>
         <div className={s.item__date}>{moment(post.createdAt).locale('ru').format('LLL')}</div>
       </header>
-      <Link to={`/${post.id}`} className={s.item__title}>{post.title}</Link>
+      <Link to={`/${post.type}/${post.id}`} className={s.item__title}>{post.title}</Link>
       <div className={s.item__habs}>
         {
           post.habs.map((hab: IHab) =>

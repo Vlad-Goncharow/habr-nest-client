@@ -3,6 +3,7 @@ import { IHab } from 'shared/types/habs'
 import FirstStep from '../FirstStep'
 import SecondStep from '../SecondStep'
 import s from './CreatePost.module.scss'
+import Sidebar from '../Sidebar'
 
 export interface valuesType {
   title: string
@@ -31,15 +32,17 @@ function CreatePost() {
     <div className="page">
       <div className="container">
         <div className={s.wrapper}>
-          {
-            step === 1 &&
-            <FirstStep setStep={setStep} setValues={setValues} values={values} />
-          }
-          {
-            step === 2 &&
-            <SecondStep setStep={setStep} setValues={setValues} values={values} />
-          }
-          <div className={s.wrapper__left}></div>
+          <div className={s.wrapper__left}>
+            {
+              step === 1 &&
+              <FirstStep setStep={setStep} setValues={setValues} values={values} />
+            }
+            {
+              step === 2 &&
+              <SecondStep setStep={setStep} setValues={setValues} values={values} />
+            }
+          </div>
+          <Sidebar />
         </div>
       </div>
     </div>

@@ -1,7 +1,5 @@
 .wrapper{
   flex: 1 1;
-  max-width: calc(100% - 320px);
-  min-width: calc(100% - 320px);
   position: relative;
 
   &__top{
@@ -52,4 +50,24 @@
 
 .toolbar{
   font-size: 12px;
+}
+
+.next{
+  background-color: #fff;
+  border: 1px solid #c0c0c0;
+  color: #909090;
+  height: 32px;
+  padding: 8px 14px;
+  border-radius: 3px;
+  font-size: .8125rem;
+
+  &_disable{
+    cursor: not-allowed;
+  }
+
+  &_active{
+    cursor: pointer;
+    color:#548eaa;
+    border-color: #548eaa;
+  }
 }
