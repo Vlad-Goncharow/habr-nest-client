@@ -1,12 +1,12 @@
 .wrapper {
   width: 100%;
-  background: #fff;
+  background: var(--romance);
   margin-bottom: 16px;
 }
 
 .title {
   padding: 14px 20px;
-  color: #333;
+  color: var(--mine-shaft);;
   font-size: 1.24375rem;
   font-weight: 700;
   line-height: 1.75rem;
@@ -34,12 +34,12 @@
     border-bottom: 2px solid transparent;
     padding-bottom: 13px;
     text-transform: uppercase;
-    color: #6f7577;
+    color: var(--rolling-stone);
     font-weight: 700;
 
     &_active {
-      border-bottom: 2px solid #4d80aa;
-      color: #4d80aa;
+      border-bottom: 2px solid var(--horizon);
+      color: var(--horizon);
     }
   }
 }
@@ -58,7 +58,7 @@
 
   &__input {
     width: 100%;
-    background: #fff;
+    background: var(--romance);
     border: 1px solid #d5dddf;
     border-radius: 3px;
     box-sizing: border-box;

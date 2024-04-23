@@ -22,7 +22,7 @@
     border-bottom: 2px solid transparent;
     padding-bottom: 13px;
     text-transform: uppercase;
-    color: #6f7577;
+    color: var(--rolling-stone);
     font-weight: 700;
 
     &_active {
@@ -50,7 +50,7 @@
   z-index: 100;
   top: calc(100% + 10px);
   left: 0;
-  background: #fff;
+  background: var(--romance);
   box-shadow: 0 0 15px 3px #ccc;
   border-radius: 5px;
   padding: 5px 0;
@@ -65,7 +65,7 @@
     }
 
     &_active {
-      color: #548EAA;
+      color: var(--horizon);
     }
   }
 }

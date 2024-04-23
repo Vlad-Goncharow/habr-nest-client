@@ -1,6 +1,6 @@
 .sidebar{
   flex:1;
-  background: #fff;
+  background: var(--romance);
   padding: 15px;
 
   @media(max-width:1024px) {
@@ -14,7 +14,7 @@
   line-height: 1.25rem;
   text-transform: uppercase;
   font-weight: 400;
-  color: #6f7577;
+  color: var(--rolling-stone);
   font-family: Fira Sans,
   sans-serif;
   padding-bottom: 10px;
@@ -40,7 +40,7 @@
 
   &__item{
     width: 50%;
-    color: #333;
+    color: var(--mine-shaft);;
     font-size: .8125rem;
     line-height: 1rem;
     &:first-child{

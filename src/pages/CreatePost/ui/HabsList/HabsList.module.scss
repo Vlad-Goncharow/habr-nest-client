@@ -8,7 +8,7 @@
     align-items: center;
     flex-wrap: wrap;
     flex: 1;
-    border: 1px solid #548eaa;
+    border: 1px solid var(--horizon);
     border-radius: 7px;
     overflow: hidden;
 
@@ -20,8 +20,8 @@
   }
 
   &__input {
-    background-color: #fff;
-    color: #333;
+    background-color: var(--romance);
+    color: var(--mine-shaft);;
     display: block;
     margin: 0;
     padding: 0 14px;
@@ -44,7 +44,7 @@
     font-size: 12px;
     line-height: 17px;
     font-weight: 700;
-    color: #fff;
+    color: var(--romance);
     background-color: #8ba9bc;
     border-radius: 2px;
     cursor: pointer;
@@ -70,7 +70,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(45deg);
-      background: #fff;
+      background: var(--romance);
     }
 
     &:before {
@@ -81,7 +81,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) rotate(-45deg);
-      background: #fff;
+      background: var(--romance);
     }
   }
 }
@@ -92,8 +92,8 @@
   left: 0;
   right: 0;
   width: 100%;
-  background: #fff;
-  border: 1px solid #548eaa;
+  background: var(--romance);
+  border: 1px solid var(--horizon);
   list-style: none;
   max-height: 200px;
   overflow-y: scroll;

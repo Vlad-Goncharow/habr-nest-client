@@ -51,7 +51,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.25 4.5H3.75A1.5 1.5 0 0 0 2.25 6v14.887a1.472 1.472 0 0 0 .872 1.36 1.5 1.5 0 0 0 1.594-.206l2.972-2.503L20.25 19.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5Z" />
           </svg>
-          {/* <span>{`${post.comments ? post.comments.length : 0}`}</span> */}
+          <span>{`${post.comments ? post.comments.length : 0}`}</span>
         </div>
         {/* <div onClick={checkClickFavorite} className={classNames(s.item__footerItem, {
           [s.item__footerItem_active]: check

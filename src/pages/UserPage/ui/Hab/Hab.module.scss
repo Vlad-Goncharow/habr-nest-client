@@ -19,7 +19,7 @@
 .title {
   background-color: #e7f3ff;
   border-radius: 3px;
-  color: #548eaa;
+  color: var(--horizon);
   display: inline-flex;
   align-items: center;
   font-size: .8125rem;
@@ -40,7 +40,7 @@
   top: 100%;
   left: 0;
   padding: 15px;
-  background: #fff;
+  background: var(--romance);
   border-radius: 7px;
   min-width: 300px;
   padding-bottom: 0;

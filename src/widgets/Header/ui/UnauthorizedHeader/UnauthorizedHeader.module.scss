@@ -3,9 +3,13 @@
   font-size: .8125rem;
   height: 32px;
   padding: 8px 14px;
-  border-color: var(--horizon, #548eaa);
-  background-color: var(--horizon, #548eaa);
-  color: var(--romance, #fff);
+  border-color: var(--horizon);
+  background-color: var(--horizon);
+  color: var(--romance);
   border:none;
   cursor: pointer;
+
+  &:hover{
+    color: var(--romance);
+  }
 }

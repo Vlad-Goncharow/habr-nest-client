@@ -15,6 +15,7 @@
 }
 
 @import './icons.scss';
+@import './light.scss';
 @import './variables.scss';
 
 
@@ -28,6 +29,10 @@
   sans-serif !important;
   text-decoration: none;
   color:#000;
+}
+
+a:hover{
+  color: var(--horizon);
 }
 
 body{

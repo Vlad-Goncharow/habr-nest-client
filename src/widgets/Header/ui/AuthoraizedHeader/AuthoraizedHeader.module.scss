@@ -15,6 +15,9 @@
     }
 
     svg {
+      g, path{
+        stroke:var(--gull-gray);
+      }   
       width: 25px;
       height: 25px;
     }
@@ -27,7 +30,7 @@
       justify-content: center;
 
       padding: 3px;
-      border: 2px solid #929ca5;
+      border: 2px solid var(--gull-gray);
       border-radius: 4px;
       margin-right: 0;
     }
@@ -39,10 +42,10 @@
     position: absolute;
     right: 24px;
     top: 100%;
-    background: #fff;
+    background: var(--romance);
     border-radius: 4px;
     box-shadow: 0 0 12px rgb(0 0 0 / 16%);
-    color: #333;
+    color: var(--mine-shaft);;
     z-index: 10;
   }
 
@@ -63,7 +66,7 @@
     right: -300px;
     z-index: 1000;
     top: 0;
-    background: #fff;
+    background: var(--romance);
 
     &_open {
       right: 0;

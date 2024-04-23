@@ -11,6 +11,8 @@ export interface IPost {
   type: string;
   author: IUser;
   habs: IHab[];
+  comments: [];
+  difficulty: string;
   userId: number;
   createdAt: Date;
   updatedAt: Date;

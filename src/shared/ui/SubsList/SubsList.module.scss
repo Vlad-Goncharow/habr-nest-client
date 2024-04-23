@@ -1,5 +1,5 @@
 .users{
-  background: #fff;
+  background: var(--romance);
   padding: 15px;
 }
 
@@ -37,7 +37,7 @@
   }
 
   &__nickname {
-    color: #548eaa;
+    color: var(--horizon);
     font-size: .875rem;
     line-height: 1;
   }

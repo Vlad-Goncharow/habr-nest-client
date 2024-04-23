@@ -23,7 +23,7 @@
   box-shadow: 0 0 8px rgba(var(--asphalt-rgb, 0, 0, 0), .2);
   border-radius:3px;
   padding: 8px 0;
-  background: var(--romance, #fff);
+  background: var(--romance);
 }
 
 .button{
@@ -37,8 +37,8 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #333;
-  background: #fff;
+  color: var(--mine-shaft);
+  background: var(--romance);
   transition: all 0.2s ease-in-out;
 
   &:hover{

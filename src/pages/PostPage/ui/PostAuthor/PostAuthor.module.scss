@@ -1,5 +1,5 @@
 .author {
-  background: #fff;
+  background: var(--romance);
   padding: 16px 20px;
   margin-top: 16px;
 
@@ -42,7 +42,7 @@
     }
 
     p {
-      color: #6f7577;
+      color: var(--rolling-stone);
       font-size: .75rem;
       line-height: 1rem;
     }
@@ -72,7 +72,7 @@
 
       &:hover{
         background: red;
-        color:#fff;
+        color:var(--romance);
       }
     }
     
@@ -82,7 +82,7 @@
 
       &:hover {
         background: blue;
-        color: #fff;
+        color: var(--romance);
       }
     }
   }

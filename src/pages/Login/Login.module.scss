@@ -17,7 +17,7 @@
 
 .form {
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
-  background: #fff;
+  background: var(--romance);
   padding: 40px;
   margin-bottom: 15px;
   border-radius: 4px;
@@ -39,7 +39,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 16px;
-    color: #333;
+    color: var(--mine-shaft);;
     font-size: 14px;
     font-family: "-apple-system",
       BlinkMacSystemFont,
@@ -54,13 +54,13 @@
     width: 100%;
     margin-top: 12px;
     height: 40px;
-    background: #fff;
+    background: var(--romance);
     border: 1px solid #dbdbdb;
     padding: 0 14px;
     box-sizing: border-box;
     font-size: 14px;
     font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
-    color: #333;
+    color: var(--mine-shaft);;
   }
 
   &__submit {
@@ -69,15 +69,15 @@
     border: 0;
     height: 40px;
     line-height: 15px;
-    color: #fff;
+    color: var(--romance);
     font-size: 15px;
     font-weight: 500;
     cursor: pointer;
     width: 100%;
-    background-color: #558cb7;
+    background-color: var(--horizon);
 
     &_disabled {
-      background-color: #558cb7;
+      background-color: var(--horizon);
       opacity: .5;
       cursor: not-allowed;
     }
@@ -86,20 +86,19 @@
   &__forgot {
     margin-top: 15px;
     display: inline-block;
-    color: #558cb7;
-
+    color: var(--horizon);
   }
 }
 
 .login {
   padding: 15px 0;
   text-align: center;
-  background: #fff;
+  background: var(--romance);
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
   border-radius: 4px;
 
   a {
     text-decoration: none;
-    color: #558cb7;
+    color: var(--horizon);
   }
 }

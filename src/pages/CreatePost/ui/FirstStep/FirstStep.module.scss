@@ -3,38 +3,40 @@
   position: relative;
 
   &__top{
-    border:1px solid #548EAA;
+    border:1px solid var(--horizon);
     margin-bottom: 15px;
     padding: 15px 10px;
     background: #eaf1f5;
 
     span{
       font-weight: 700;
-      color:#548EAA;
+      color: var(--horizon);
       cursor: pointer;
     }
   }
 
   &__bottom{
     padding: 15px;
-    background: #fff;
+    background: var(--romance);
   }
 }
 
 
 .form{
   width: 100%;
-}
 
-.input{
-  width: 100%;
-  font-size: 28px;
-  font-weight: 700;
-  border: 0;
-  margin-bottom: 25px;
-
-  &::placeholder{
+  input {
+    width: 100%;
     font-size: 28px;
+    font-weight: 700;
+    border: 0;
+    margin-bottom: 25px;
+    color: var(--mine-shaft, #343434);
+
+    &::placeholder {
+      color: var(--mine-shaft, #343434);
+      font-size: 28px;
+    }
   }
 }
 
@@ -53,21 +55,23 @@
 }
 
 .next{
-  background-color: #fff;
+  background-color: var(--romance);
   border: 1px solid #c0c0c0;
-  color: #909090;
+  color: var(----mountain-mist);
   height: 32px;
   padding: 8px 14px;
   border-radius: 3px;
   font-size: .8125rem;
 
-  &_disable{
-    cursor: not-allowed;
+  &_active {
+    background-color: var(--horizon);
+    border-color: var(--horizon);
+    color: var(--romance);
   }
 
-  &_active{
-    cursor: pointer;
-    color:#548eaa;
-    border-color: #548eaa;
+  &_disable {
+    border-color: rgba(var(--gull-gray-rgb), .4);
+    color: var(--rolling-stone);
+    cursor: not-allowed;
   }
 }

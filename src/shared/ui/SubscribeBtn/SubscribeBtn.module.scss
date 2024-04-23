@@ -1,5 +1,5 @@
 .sub {
-  background-color: #fff;
+  background-color: var(--romance);
   border: 1px solid #70b025;
   border-radius: 3px;
   color: #579311;
@@ -19,7 +19,7 @@
     right: 1px;
     bottom: 1px;
     display: flex;
-    background: #fff;
+    background: var(--romance);
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 
@@ -48,12 +48,12 @@
 
   &:hover {
     background-color: #689d28;
-    color: #fff;
+    color: var(--romance);
   }
 
   &__active {
     background-color: #689d28;
-    color: #fff;
+    color: var(--romance);
     padding-right: 38px;
   }
 }

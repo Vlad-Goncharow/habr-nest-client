@@ -254,7 +254,7 @@ const FirstStep: React.FC<FirstStepProps> = ({setValues,setStep,values}) => {
         }
         <div className={s.wrapper__bottom}>
           <form action="" className={s.form}>
-            <input type="text" className={s.input} value={values.title} onChange={changeInputValue} placeholder='Введите название публикации' />
+            <input type="text" value={values.title} onChange={changeInputValue} placeholder='Введите название публикации' />
           </form>
           <div onClick={() => editorRef.current.focus()} className={`${s.content} ${s.text}`}>
             <div className="item__wrapper">

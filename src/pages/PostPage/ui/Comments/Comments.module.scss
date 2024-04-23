@@ -3,11 +3,11 @@
 }
 
 .comments {
-  background: #fff;
+  background: var(--romance);
   margin-top: 16px;
 
   &__title {
-    color: #333;
+    color: var(--mine-shaft);;
     font-size: .875rem;
     font-weight: 700;
     margin-bottom: 26px;
@@ -24,13 +24,13 @@
 }
 
 .auth {
-  background-color: #fff;
+  background-color: var(--romance);
   padding: 32px;
   margin-top: 12px;
   border-left: 16px solid rgb(49, 151, 9);
 
   span {
-    color: #333;
+    color: var(--mine-shaft);;
     font-size: .9375rem;
     line-height: 1.375rem;
   }
@@ -43,13 +43,13 @@
 
 
 .form {
-  background-color: #f7f7f7;
+  background-color: var(--desert-storm);
   padding: 18px 16px 16px;
   position: relative;
   border-top: 1px solid rgba(146, 156, 165, .4);
 
   &__title {
-    color: #333;
+    color: var(--mine-shaft);
     font-size: .8125rem;
     font-weight: 700;
     line-height: 1;
@@ -58,7 +58,7 @@
 
   &__input {
     width: 100%;
-    background: #fff;
+    background: var(--romance);
     border: 1px solid #e0e0e0;
     box-sizing: border-box;
     color: #000;
@@ -108,14 +108,14 @@
     background-color: transparent;
 
     &_active {
-      background-color: #548eaa;
-      border-color: #548eaa;
-      color: #fff;
+      background-color: var(--horizon);
+      border-color: var(--horizon);
+      color: var(--romance);
     }
 
     &_disable {
-      border-color: #d2d2d2;
-      color: #737d81;
+      border-color: rgba(var(--gull-gray-rgb), .4);
+      color: var(--rolling-stone);
       cursor: not-allowed;
     }
   }

@@ -2,9 +2,15 @@
   display: flex;
   align-items: center;
 
-  &__search{
+  &__search {
     margin-right: 12px;
-    svg{
+
+    svg {
+      g,
+      path {
+        stroke: var(--gull-gray);
+      }
+
       width: 22px;
       height: 22px;
     }

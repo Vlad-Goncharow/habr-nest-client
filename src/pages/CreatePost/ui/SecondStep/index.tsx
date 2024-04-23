@@ -33,6 +33,8 @@ interface SecondStepProps {
 }
 
 const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) => {
+  console.log(values);
+  
   const navigate = useNavigate()
   //image file
   const [image, setImage] = React.useState<string | null>(null);
@@ -188,11 +190,11 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
                 <input
                   onChange={handleCheckboxChange}
                   className={s.dificult__input}
-                  id={el.dificultEng}
+                  id={el.dificultRu}
                   type="checkbox"
-                  checked={el.dificultEng === values.difficulty || false}
+                  checked={el.dificultRu === values.difficulty || false}
                 />
-                <label htmlFor={el.dificultEng}>
+                <label htmlFor={el.dificultRu}>
                   <span>{el.dificultRu}</span>
                 </label>
               </div>

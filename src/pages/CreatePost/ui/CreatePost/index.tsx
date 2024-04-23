@@ -25,7 +25,7 @@ function CreatePost() {
     habs: [],
     image: null,
     title: '',
-    difficulty: 'unknown'
+    difficulty: 'Не указано'
   })
 
   return (

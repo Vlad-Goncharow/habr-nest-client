@@ -1,24 +1,43 @@
 import React from 'react'
 import s from './SideNavbar.module.scss'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import { postCategories } from 'shared/global'
+import classNames from 'classnames'
 
 interface SideNavbarProps {
   isShow: boolean
 }
 
 const SideNavbar: React.FC<SideNavbarProps> = ({ isShow }) => {
+  const {category} = useParams()
+  console.log(category);
+  
   return (
     <>
       {
         isShow &&
-        <nav className={s.left} >
-          <Link to='/flows/all/articles/1'>Все потоки</Link>
-          <Link to='/flows/develop/articles/1'>Разработка</Link>
-          <Link to='/flows/admin/articles/1'>Администрирование</Link>
-          <Link to='/flows/design/articles/1'>Дизайн</Link>
-          <Link to='/flows/management/articles/1'>Менеджмент</Link>
-          <Link to='/flows/marketing/articles/1'>Маркетинг</Link>
-          <Link to='/flows/popsci/articles/1'>Научпоп</Link>
+        <nav className={s.nav} >
+            <Link 
+              className={classNames(s.nav__link, {
+                [s.nav__link_active]: !postCategories.some(el => el.categoryEng === category)
+              })} 
+              to='/flows/all/articles/1'
+            >
+              Все потоки
+            </Link>
+          {
+            postCategories.map((el) => 
+              <Link 
+                key={el.categoryEng}
+                className={classNames(s.nav__link, {
+                  [s.nav__link_active]: category === el.categoryEng
+                })} 
+                to={`/flows/${el.categoryEng}/articles/1`}
+              >
+                {el.categoryRu}
+              </Link>
+            )
+          }
         </ nav>
       }
     </>
