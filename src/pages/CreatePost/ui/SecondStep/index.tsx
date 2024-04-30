@@ -102,16 +102,15 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
   //create post
   const createPost = async () => {
     const formData = new FormData();
-    formData.append("image", imageFile);
-    formData.append("title", values.title);
-    formData.append("content", values.content);
-    values.habs.forEach(el => formData.append("habs[]", String(el.id)));
-    formData.append("category", values.category);
-    formData.append("type", values.type);
-    formData.append("difficulty", values.difficulty);
-
+    formData.append("file", imageFile);
+    
     try {
-      axios.post(`/posts`, formData);
+      const { data } = await axios.post(`/files/upload`, formData)
+      axios.post(`/posts`, {
+        ...values,
+        habs:values.habs.map(el => el.id),
+        image: data.filename
+      });
       navigate('/flows/all/all/1')
     } catch (error) {
       console.error(error);

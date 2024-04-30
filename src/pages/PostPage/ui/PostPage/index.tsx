@@ -70,7 +70,7 @@ function PostPage() {
                       </div>
                     </div>
                     <div className={s.post__img}>
-                      <img src={`${process.env.REACT_APP_SERVER_URL}${postData.image}`} alt="" />
+                      <img src={`${process.env.REACT_APP_SERVER_URL}/${postData.image}`} alt="" />
                     </div>
                     <div className={s.post__text}>
                       <Editor editorState={restoredEditorState} blockRenderMap={extendedBlockRenderMap} customStyleMap={styleMap} readOnly />

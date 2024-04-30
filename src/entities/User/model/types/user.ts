@@ -36,6 +36,7 @@ export interface formRegister {
   email:string
   password:string
   nickname:string
+  passwordEqual: string;
 }
 
 export interface formLogin {

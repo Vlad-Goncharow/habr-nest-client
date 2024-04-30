@@ -10,7 +10,6 @@ interface SideNavbarProps {
 
 const SideNavbar: React.FC<SideNavbarProps> = ({ isShow }) => {
   const {category} = useParams()
-  console.log(category);
   
   return (
     <>

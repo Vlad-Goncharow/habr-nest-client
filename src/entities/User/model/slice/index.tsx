@@ -17,7 +17,7 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth',
 export const fetchRegister = createAsyncThunk('auth/fetchRegister',
   async (params: formRegister, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/register', params)
+      const { data } = await axios.post('/auth/registration', params)
       return data
     } catch (err: any) {
       if (!err.response) {

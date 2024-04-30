@@ -13,7 +13,6 @@ function Main() {
   const [postsLength, setPostsLength] = React.useState<number>(0)
   const [posts, setPosts] = React.useState<IPost[] | []>([])
   const { category, type, page } = useParams()
-  console.log(category, type, page);
 
   React.useEffect(() => {
     (async () => {

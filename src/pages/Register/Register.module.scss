@@ -37,7 +37,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 16px;
-    color: var(--mine-shaft);;
+    color: var(--mine-shaft);
+    ;
     font-size: 14px;
     font-family: "-apple-system",
       BlinkMacSystemFont,
@@ -58,7 +59,8 @@
     box-sizing: border-box;
     font-size: 14px;
     font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
-    color: var(--mine-shaft);;
+    color: var(--mine-shaft);
+    ;
   }
 
   &__submit {
@@ -79,12 +81,6 @@
       opacity: .5;
       cursor: not-allowed;
     }
-  }
-
-  &__forgot {
-    margin-top: 15px;
-    display: inline-block;
-    color: var(--horizon);
   }
 }
 

@@ -11,8 +11,8 @@ function Root() {
 
   const auth = async () => {
     const data: any = await dispatch(fetchAuth())
-
-    if ('accessToken' in data.payload) {
+    
+    if (data.payload !== undefined && 'accessToken' in data.payload) {
       window.localStorage.setItem('token', data.payload.accessToken);
     }
   }

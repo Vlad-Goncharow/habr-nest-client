@@ -1,10 +1,10 @@
-import React from 'react'
-import s from './Login.module.scss'
-import { Link, useNavigate } from 'react-router-dom';
+import classNames from 'classnames';
 import { fetchLogin } from 'entities/User';
-import { useAppDispatch } from 'shared/hooks/useAppDispatch';
-import { useForm } from 'react-hook-form';
 import { formLogin } from 'entities/User/model/types/user';
+import { useForm } from 'react-hook-form';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import s from './Login.module.scss';
 
 function Login() {
   // ======== dispatch
@@ -16,7 +16,7 @@ function Login() {
   // ======== navigate
 
   // ======== use form hooks
-  const { register, handleSubmit, watch, setError, formState: { errors } } = useForm<formLogin>({
+  const { register, handleSubmit, setError, formState: { errors } } = useForm<formLogin>({
     defaultValues: {
       email: '',
       password: '',
@@ -25,30 +25,17 @@ function Login() {
   });
   // ======== use form hooks
 
-  // ======== check all inputs and off disable button submit
-  const check = () => {
-    const email = watch('email')
-    const password = watch('password')
-
-    if ((email.length && password.length) > 0) {
-      return true
-    }
-  }
-  // ======== check all inputs and off disable button submit
-
   // ======== login
   const loginSubmit = async (values: formLogin) => {
     try {
       const data: any = await dispatch(fetchLogin(values))
       if (data.type === "auth/fetchLogin/rejected") {
-        return data.payload.forEach((err: any) => {
-          setError(err.param, { type: 'custom', message: err.msg });
-        })
+        setError(data.payload.param, {message:data.payload.message})
       }
 
       if (data.type === "auth/fetchLogin/fulfilled") {
         localStorage.setItem('token', data.payload.accessToken)
-        return navigate('/')
+        return navigate('/flows/all/all/1')
       }
     } catch (e) {
       alert('При авторизации произошла ошибка')
@@ -59,7 +46,7 @@ function Login() {
   return (
     <div className={s.page}>
       <div className={s.wrapper}>
-        <form onSubmit={handleSubmit(loginSubmit)} action="" className={s.form}>
+        <form action="" className={s.form}>
           <h1 className={s.form__title}>Вход</h1>
           <div className={s.form__item}>
             <label htmlFor="" className={s.form__label}>E-mail</label>
@@ -71,7 +58,11 @@ function Login() {
               type="text"
               className={s.form__input}
               {...register('email', {
-                required: 'Укажите вашу почту'
+                required: 'Укажите вашу почту',
+                pattern: {
+                  value: /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                  message: 'Введите корректный email'
+                }
               })}
             />
           </div>
@@ -85,6 +76,14 @@ function Login() {
               type="password"
               className={s.form__input}
               {...register('password', {
+                minLength: {
+                  value: 7,
+                  message: 'Пароль минимум из 7 символов'
+                },
+                maxLength: {
+                  value: 50,
+                  message: 'Пароль максимум из 50 символов'
+                },
                 required: 'Укажите ваш пароль'
               })}
             />
@@ -92,7 +91,9 @@ function Login() {
           </div>
           <button
             onClick={handleSubmit(loginSubmit)}
-            className={check() ? s.form__submit : s.form__submit + ' ' + s.form__submit_disabled}
+            className={classNames(s.form__submit, {
+              [s.form__submit_disabled]: Object.keys(errors).length !== 0
+            })}
           >
             Войти
           </button>
