@@ -24,6 +24,13 @@ const SideBar: React.FC<SideBarProps> = ({userData}) => {
           <div className={s.stats__item}>Зарегистрирован</div>
           <div className={s.stats__item}>{moment(userData.createdAt).locale('ru').format('LLL')}</div>
         </li>
+        {
+          userData.dateOfBirth !== 'Не известно' &&
+          <li className={s.stats__li}>
+            <div className={s.stats__item}>Дата рождения</div>
+            <div className={s.stats__item}>{moment(userData.dateOfBirth).locale('ru').format('LLL')}</div>
+          </li>
+        }
       </ul>
     </aside>
   )

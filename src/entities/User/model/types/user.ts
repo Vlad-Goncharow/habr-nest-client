@@ -19,6 +19,8 @@ export interface IUser {
   posts: IPost[];
   createdAt: Date;
   updatedAt: Date;
+  fullName: String,
+  dateOfBirth: Date | string,
 }
 
 export interface UserRolesSchema {

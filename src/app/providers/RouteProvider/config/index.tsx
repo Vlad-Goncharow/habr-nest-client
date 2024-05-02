@@ -4,6 +4,7 @@ import { HabPage } from 'pages/HabPage';
 import Login from 'pages/Login';
 import Main from 'pages/Main';
 import { PostPage } from 'pages/PostPage';
+import { ProfileSettings } from 'pages/ProfileSettings';
 import Register from 'pages/Register';
 import { UserPage } from 'pages/UserPage';
 import Profile from 'pages/UserPage/ui/Profile';
@@ -17,6 +18,7 @@ export const router = createBrowserRouter(
     <Route path="/" element={<Root />}>
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/profile-settings" element={<ProfileSettings />} />
       <Route path="/flows/:category/:type/:page" element={<Main />} />
       <Route path="/:type/:postId" element={<PostPage />} />
       <Route path="/user/" element={<UserPage />}>

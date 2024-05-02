@@ -14,7 +14,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({userData}) => {
       <div className={s.header__top}>
         <div className={s.header__left}>
           <div className={s.header__image}>
-            <img src={`${process.env.REACT_APP_SERVER_URL}${userData?.avatar}`} alt="" />
+            <img src={`${process.env.REACT_APP_SERVER_URL}/${userData?.avatar}`} alt="" />
           </div>
           <div className={s.stat}>
             <div className={s.stat__item}>
@@ -31,6 +31,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({userData}) => {
       </div>
       <h1 className={s.name}>{`@${userData?.nickname}`}</h1>
       <p className={s.descr}>{userData?.description}</p>
+      <p className={s.descr}>Полное имя - {userData?.fullName}</p>
       <UserNav />
     </header>
   )

@@ -33,8 +33,6 @@ interface SecondStepProps {
 }
 
 const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) => {
-  console.log(values);
-  
   const navigate = useNavigate()
   //image file
   const [image, setImage] = React.useState<string | null>(null);

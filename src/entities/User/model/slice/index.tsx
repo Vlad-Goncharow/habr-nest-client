@@ -56,6 +56,20 @@ export const fetchLogout = createAsyncThunk('auth/fetchLogout',
   }
 )
 
+export const fetchUpdateUser = createAsyncThunk('user/fetchUpdateUser',
+  async (params: any, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.put(`/auth/profile-update`, params)
+      return data
+    } catch (err: any) {
+      if (!err.response) {
+        throw err;
+      }
+      return rejectWithValue(err.response.data.error);
+    }
+  }
+)
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -130,6 +144,19 @@ const userSlice = createSlice({
       if (action.payload.success === true) {
         state.isLoading = false
         state.user = null
+      }
+    })
+    //updata
+    builder.addCase(fetchUpdateUser.fulfilled, (state, action) => {
+      if (action.payload && state.user !== null) {
+        state.user = {
+          ...state.user,
+          description: action.payload.description,
+          fullName: action.payload.fullName,
+          gender: action.payload.gender,
+          dateOfBirth: action.payload.dateOfBirth,
+          country: action.payload.country,
+        }
       }
     })
   },
