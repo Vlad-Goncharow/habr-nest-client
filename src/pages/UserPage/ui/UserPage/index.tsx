@@ -7,10 +7,17 @@ import PageSkeleton from '../PageSkeleton'
 import SideBar from '../SideBar'
 import UserHeader from '../UserHeader'
 import s from './UserPage.module.scss'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 function UserPage() {
+  //dispatch
+  const dispatch = useAppDispatch()
+
+  //params
   const { userId, type } = useParams()
   
+  //user data | loading
   const [userData, setUserData] = React.useState<IUser | null>(null)
   const [loading, setLoading] = React.useState(true)
 
@@ -23,6 +30,7 @@ function UserPage() {
         setLoading(false)
       } catch(e){
         setLoading(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       }
     })()
   },[userId])

@@ -6,6 +6,8 @@ import HabsList from '../HabsList'
 import { valuesType } from '../CreatePost'
 import s from './SecondStep.module.scss'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 const postDifficulty = [
   {
@@ -33,6 +35,10 @@ interface SecondStepProps {
 }
 
 const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) => {
+  //dispatch
+  const dispatch = useAppDispatch()
+
+  //navigate
   const navigate = useNavigate()
   //image file
   const [image, setImage] = React.useState<string | null>(null);
@@ -111,7 +117,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
       });
       navigate('/flows/all/all/1')
     } catch (error) {
-      console.error(error);
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
     }
   }
   

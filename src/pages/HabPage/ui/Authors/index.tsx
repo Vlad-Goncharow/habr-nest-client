@@ -3,8 +3,13 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import SubscribersList from 'shared/ui/SubscribersList'
 import axios from '../../../../axios'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 function Authors() {
+  //dispatch
+  const dispatch = useAppDispatch()
+  
   //params
   const {habId, page} = useParams()
 
@@ -27,6 +32,7 @@ function Authors() {
         setLoading(false)
       } catch(e){
         setLoading(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       }
     })()
   },[habId, page])

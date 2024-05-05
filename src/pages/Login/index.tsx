@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import s from './Login.module.scss';
+import { fetchModalActions } from 'entities/FetchModal';
 
 function Login() {
   // ======== dispatch
@@ -38,7 +39,7 @@ function Login() {
         return navigate('/flows/all/all/1')
       }
     } catch (e) {
-      alert('При авторизации произошла ошибка')
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При авторизации произошла ошибка!' }))
     }
   }
   // ======== login

@@ -1,4 +1,5 @@
 import classNames from 'classnames'
+import { fetchModalActions } from 'entities/FetchModal'
 import { fetchUpdateUser, getUserData } from 'entities/User'
 import { countries, males } from 'pages/ProfileSettings/utils'
 import React, { ChangeEvent } from 'react'
@@ -18,14 +19,16 @@ function ProfileSettings() {
   const {user} = useAppSelector(getUserData)
 
   //update values
-  const [fullName, setFullName] = React.useState(`${user?.fullName}`)
-  const [descr, setDescr] = React.useState(`${user?.description}`)
-  const [gender, setGender] = React.useState({ value: user?.gender, label: user?.gender })
-  const [startDate, setStartDate] = React.useState(user?.dateOfBirth);
-  const [country, setCountry] = React.useState({ value: user?.country, label: user?.country })
+  const [values, setValues] = React.useState<any>(() => ({
+    fullName: user?.fullName,
+    description: user?.description,
+    gender: { value: user?.gender, label: user?.gender },
+    country: { value: user?.country, label: user?.country },
+    dateOfBirth: user?.dateOfBirth,
+  }))
 
   //avatar
-  const [image, setImage] = React.useState<string | null>(`${process.env.REACT_APP_SERVER_URL}/${user?.avatar}`);
+  const [image, setImage] = React.useState<string>();
   const [imageFile, setImageFile] = React.useState<any>(null)
 
   //update button ref
@@ -34,7 +37,7 @@ function ProfileSettings() {
   //gender select
   const GenderComponents = () => {
     const changeGender = (e: any) => {
-      setGender(e)
+      setValues((prev: any) => ({ ...prev, gender: e }))
     }
 
 
@@ -42,18 +45,18 @@ function ProfileSettings() {
       <div className={s.select}>
         <span>Пол</span>
         <Select
-          value={gender}
+          value={values.gender}
           onChange={changeGender}
           options={males}
         />
       </div>
     )
   }
-
+  
   //country select
   const CountyComponents = () => {
     const changeCountry = (e: any) => {
-      setCountry(e)
+      setValues((prev: any) => ({...prev,country: e}))
     }
 
 
@@ -61,7 +64,7 @@ function ProfileSettings() {
       <div className={s.select}>
         <span>Страна</span>
         <Select
-          value={country}
+          value={values.country}
           onChange={changeCountry}
           options={countries}
         />
@@ -85,33 +88,35 @@ function ProfileSettings() {
   //update profile
   const update = async () => {
     try {
-      let imageUrl = user?.avatar
-
+      let url = user?.avatar
       if (imageFile) {
         const formData = new FormData();
         formData.append("file", imageFile);
 
         const { data } = await axios.post('/files/upload', formData)
-        setImage(data.filename)
-        imageUrl = data.filename
+        url = data.filename
       }
-
-      await dispatch(fetchUpdateUser({
-        avatar: imageUrl,
-        country: country.value,
-        description: descr,
-        fullName: fullName,
-        gender: gender.value,
-        dateOfBirth: startDate,
-      }))
       
+      await dispatch(fetchUpdateUser({
+        ...values,
+        avatar: url,
+        gender: values.gender.value,
+        country: values.country.value
+      }))
+      dispatch(fetchModalActions.showModal({ type: 'good', content: 'Профиль успешно обновлен' }))
     } catch (e) {
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
     }
   }
 
   //check is change some values
   const checkUpdate = () => {
-    if (descr !== user?.description || fullName !== user.fullName || user.country !== country.value || user.gender !== gender.value || user.dateOfBirth !== startDate) {
+    if (values.description !== user?.description || 
+      values.fullName !== user?.fullName || 
+      user?.country !== values.country.value || 
+      user?.gender !== values.gender.value || 
+      user?.dateOfBirth !== values.dateOfBirth ||
+      imageFile) {
       return true
     }
 
@@ -136,8 +141,8 @@ function ProfileSettings() {
                 <div className={s.inpitItem}>
                   <label htmlFor="">Настоящее имя</label>
                   <input
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
+                    value={values.fullName}
+                    onChange={(e) => setValues((prev:any) => ({...prev, fullName: e.target.value}))}
                     type="text"
                   />
                   <p>Укажите ваши имя и фамилию, чтобы другие пользователи смогли узнать, как вас зовут</p>
@@ -145,9 +150,9 @@ function ProfileSettings() {
                 <div className={s.inpitItem}>
                   <label htmlFor="">Опишите себя</label>
                   <input
-                    value={descr}
+                    value={values.description}
                     type="text"
-                    onChange={(e) => setDescr(e.target.value)}
+                    onChange={(e) => setValues((prev:any) => ({ ...prev, description: e.target.value }))}
                   />
                   <p>Укажите свою специализацию. Например: Администратор баз данных</p>
                 </div>
@@ -156,12 +161,13 @@ function ProfileSettings() {
                 <h4 className={s.user__title}>Аватар</h4>
                 <div className={s.user__image}>
                   <input type="file" onChange={handleImageUpload} className={s.image__upload} />
-                  {
-                    image &&
-                    <>
-                      <img src={image} alt="" className={s.image__img} />
-                    </>
-                  }
+                  <>
+                    <img 
+                      src={image ? image : `${process.env.REACT_APP_SERVER_URL}/${user?.avatar}`} 
+                      alt="Аватар пользователя" 
+                      className={s.image__img} 
+                    />
+                  </>
                 </div>
                 <p className={s.user__info}>
                   Формат: jpg, gif, png. <br />
@@ -177,7 +183,11 @@ function ProfileSettings() {
             <div className={s.row}>
               <div className={s.select}>
                 <span>Дата рождения</span>
-                <DatePicker wrapperClassName={s.select__date} selected={startDate} onChange={(date: any) => setStartDate(date)} />
+                <DatePicker 
+                  wrapperClassName={s.select__date} 
+                  selected={values.dateOfBirth} 
+                  onChange={(date: any) => setValues((prev:any) => ({ ...prev, dateOfBirth: date }))}  
+                />
               </div>
             </div>
             <button 

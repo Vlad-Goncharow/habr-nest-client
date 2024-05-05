@@ -5,10 +5,19 @@ import axios from '../../../../axios'
 import Hab from '../Hab'
 import ProfileSkeleton from '../ProfileSkeleton'
 import s from './Profile.module.scss'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 const Profile: React.FC = () => {
+  const dispatch = useAppDispatch()
+
+  //params
   const {userId} = useParams()
+
+  //habs array
   const [habs, setHabs] = React.useState<IHab[] | []>([])
+
+  //is loading
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
@@ -20,6 +29,7 @@ const Profile: React.FC = () => {
         setLoading(false)
       } catch(e){
         setLoading(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       }
     })()
   }, [userId])

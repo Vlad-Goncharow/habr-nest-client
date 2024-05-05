@@ -5,6 +5,8 @@ import { IHab } from 'shared/types/habs';
 import axios from '../../../../axios';
 import s from './HabsList.module.scss';
 import { valuesType } from '../CreatePost';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { fetchModalActions } from 'entities/FetchModal';
 
 interface HabsListProps{
   habs:IHab[] | [],
@@ -12,9 +14,16 @@ interface HabsListProps{
 }
 
 const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
+  //dispatch
+  const dispatch = useAppDispatch()
+
+  //habs array
   const [habsList, setHabsList] = React.useState<IHab[] | []>([])
 
+  //habs search input values
   const [inputValue, setInputValue] = React.useState<string>('')
+
+  //is habs list open | popupRef
   const [popupIsOpen, setPopupIsOpen] = React.useState<boolean>(false)
   const popupRef = React.useRef<HTMLFormElement>(null)
   UseClickOutside(popupRef, () => setPopupIsOpen(false))
@@ -26,7 +35,7 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
         const { data } = await axios.get(`/habs/all/list`)
         setHabsList(data)
       } catch (e) {
-
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При загрузки списка хабов произошла ошибка!' }))
       }
     })()
   }, [])

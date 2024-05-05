@@ -4,10 +4,17 @@ import { IPost } from 'shared/types/posts'
 import PostsList from 'shared/ui/PostsList'
 import PostsSceleton from 'shared/ui/PostsSceleton'
 import axios from '../../../../axios'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 const UserPosts: React.FC = () => {
+  //dispatch
+  const dispatch = useAppDispatch()
+
+  //params
   const { userId, type, subType, page } = useParams()
 
+  //posts | posts count | loading
   const [loading, setLoading] = React.useState(true)
   const [postsLength, setPostsLength] = React.useState<number>(0)
   const [posts, setPosts] = React.useState<IPost[] | []>([])
@@ -24,6 +31,7 @@ const UserPosts: React.FC = () => {
         }
       } catch (e) {
         setLoading(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       }
     })()
   }, [userId, type, subType, page])

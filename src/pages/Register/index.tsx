@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import s from './Register.module.scss';
+import { fetchModalActions } from 'entities/FetchModal';
 
 function Register() {
   // ======== dispatch
@@ -32,7 +33,6 @@ function Register() {
     try {
       const data: any = await dispatch(fetchRegister(values))
       if (data.type === "auth/fetchRegister/rejected") {
-        console.log(data.payload);
         data.payload.param.forEach((el:any) => {
           setError(el, {message:data.payload.message})
         })
@@ -43,7 +43,7 @@ function Register() {
         return navigate('/flows/all/all/1')
       }
     } catch (e) {
-      alert('При авторизации произошла ошибка')
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При регистрации произошла ошибка!' }))
     }
   }
   // ======== register

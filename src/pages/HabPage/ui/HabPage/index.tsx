@@ -6,8 +6,13 @@ import Authors from '../Authors'
 import HabHeader from '../HabHeader'
 import HabPosts from '../HabPosts'
 import s from './HabPage.module.scss'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 function HabPage() {
+  //dispatch
+  const dispatch = useAppDispatch()
+  
   //params
   const { habId, type } = useParams()
 
@@ -25,6 +30,7 @@ function HabPage() {
         setLoading(false)
       } catch(e){
         setLoading(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       }
     })()
   },[habId])

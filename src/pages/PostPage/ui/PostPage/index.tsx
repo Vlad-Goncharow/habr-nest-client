@@ -11,9 +11,17 @@ import axios from '../../../../axios'
 import Comments from '../Comments'
 import PostAuthor from '../PostAuthor'
 import s from './PostPage.module.scss'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 function PostPage() {
+  //dispatch
+  const dispatch = useAppDispatch()
+
+  //params
   const { postId, type } = useParams()
+
+  //posts data | loading
   const [postData, setPostData] = React.useState<IPost | null>(null)
   const [loading, setLoading] = React.useState(false)
 
@@ -26,6 +34,7 @@ function PostPage() {
         setLoading(false)
       } catch(e){
         setLoading(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       }
     })()
   },[postId, type])

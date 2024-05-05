@@ -8,6 +8,8 @@ import UsersSkeleton from 'shared/ui/UsersSkeleton'
 import axios from '../../../../axios'
 import Comment from '../Comment'
 import s from './Comments.module.scss'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 export interface CommentsType {
   id: number
@@ -20,6 +22,9 @@ export interface CommentsType {
 }
 
 const Comments: React.FC = () => {
+  //dispatch
+  const dispatch = useAppDispatch()
+  
   //params
   const {postId} = useParams()
 
@@ -42,13 +47,17 @@ const Comments: React.FC = () => {
   const clickSubmit = async (e:any) => {
     e.preventDefault()
     if (inputValue.length > 5) {
-      const {data} = await axios.post(`/comments/create/${postId}`,{
-        content:inputValue
-      })
+      try{
+        const { data } = await axios.post(`/comments/create/${postId}`, {
+          content: inputValue
+        })
 
-      if(data){
-        setComments((prev:any) => [...prev, data])
-        setInputValue('')
+        if (data) {
+          setComments((prev: any) => [...prev, data])
+          setInputValue('')
+        }
+      } catch(e){
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При отправке комментария произошла ошибка!' }))
       }
     }
   }
@@ -63,6 +72,7 @@ const Comments: React.FC = () => {
         setLoding(false)
       } catch(e){
         setLoding(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При загрузки комментариев произошла ошибка!' }))
       }
     })()
   },[postId])

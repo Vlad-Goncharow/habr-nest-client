@@ -4,8 +4,13 @@ import { IPost } from 'shared/types/posts'
 import axios from '../../../../axios'
 import PostsSceleton from 'shared/ui/PostsSceleton'
 import PostsList from 'shared/ui/PostsList'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 function HabPosts() {
+  //dispatch
+  const dispatch = useAppDispatch()
+  
   //params
   const { habId, type, page } = useParams()
 
@@ -28,6 +33,7 @@ function HabPosts() {
         setLoading(false)
       } catch (e) {
         setLoading(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       }
     })()
   }, [habId, page, type])

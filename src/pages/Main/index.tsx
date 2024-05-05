@@ -6,8 +6,12 @@ import PostsSceleton from 'shared/ui/PostsSceleton'
 import { PostsNavigation } from 'widgets/PostsNavigation'
 import axios from '../../axios'
 import s from './Main.module.scss'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 function Main() {
+  const dispatch = useAppDispatch()
+
   const [pageSize, setPageSize] = React.useState<number>(10)
   const [loading, setLoading] = React.useState(true)
   const [postsLength, setPostsLength] = React.useState<number>(0)
@@ -24,6 +28,7 @@ function Main() {
         setLoading(false)
       } catch(e){
         setLoading(false)
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       }
     })()
   },[category,type,page])

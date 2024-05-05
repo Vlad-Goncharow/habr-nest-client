@@ -7,36 +7,54 @@ import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import { getUserData } from 'entities/User'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 interface HabProps{
   habData:IHab
 }
 
 const Hab: React.FC<HabProps> = ({habData}) => {
+  const dispatch = useAppDispatch()
+
+  //current user
   const {user} = useAppSelector(getUserData)
 
+  //is loaded hab info
+  const [loading, setLoading] = React.useState<boolean>(true)
+
+  //loaded hab
   const [habInfo, setHabInfo] = React.useState<IStatHab | null>(null)
   const habRef = React.useRef<HTMLDivElement>(null)
 
+  //menu is open
   const [menuIsAactive, setMenuIsActive] = React.useState<boolean>(false)
-  
-  React.useEffect(() => {
-    const overFunc = async () => {
+
+  const mouseEnter = async () => {
+    try {
+      setLoading(true)
       setMenuIsActive(true)
-      const {data} = await axios.get(`/habs/short/${habData.id}`)
+      const { data } = await axios.get(`/habs/short/${habData.id}`)
       setHabInfo(data)
-    }
-
-    const outFunc = () => {
+      setLoading(false)
+    } catch (e) {
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
       setMenuIsActive(false)
+      setLoading(false)
     }
+  }
 
-    habRef.current?.addEventListener('mouseover', overFunc)
-    habRef.current?.addEventListener('mouseout', outFunc)
-  },[habData.id])
+  const mouseLeave = () => {
+    setMenuIsActive(false)
+  }
 
   return (
-    <div ref={habRef} className={s.hab}>
+    <div 
+      ref={habRef} 
+      onMouseEnter={mouseEnter} 
+      onMouseLeave={mouseLeave} 
+      className={s.hab}
+    >
       <Link 
         to={`/hab/${habData.id}/articles`} 
         className={classNames(s.title,{
@@ -46,7 +64,7 @@ const Hab: React.FC<HabProps> = ({habData}) => {
         {habData.title}
       </Link>
       {
-        menuIsAactive && 
+        menuIsAactive && loading === false &&
         <div className={s.menu}>
           <div className={s.menu__header}>
             <div className={s.image}>

@@ -5,6 +5,7 @@ import classNames from 'classnames'
 import { IUser, getUserData, userActions } from 'entities/User'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { fetchModalActions } from 'entities/FetchModal'
 
 interface SubscribeBtnProps{
   userId:number,
@@ -25,16 +26,24 @@ const SubscribeBtn: React.FC<SubscribeBtnProps> = ({userId}) => {
 
   const subscribe = async () => {
     if (active) {
-      const { data } = await axios.post(`/users/unsubscribe/${userId}`)
-      if (data.success === true) {
-        setActive(false)
-        dispatch(userActions.userUnSubscribe({ id: userId }))
+      try{
+        const { data } = await axios.post(`/users/unsubscribe/${userId}`)
+        if (data.success === true) {
+          setActive(false)
+          dispatch(userActions.userUnSubscribe({ id: userId }))
+        }
+      } catch(e){
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При отписке произошла ошибка!' }))
       }
     } else {
-      const { data } = await axios.post(`/users/subscribe/${userId}`)
-      if (data.success === true) {
-        dispatch(userActions.userSubscribe({ id: userId }))
-        setActive(true)
+      try{
+        const { data } = await axios.post(`/users/subscribe/${userId}`)
+        if (data.success === true) {
+          dispatch(userActions.userSubscribe({ id: userId }))
+          setActive(true)
+        }
+      } catch(e){
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При подписке произошла ошибка!' }))
       }
     }
   }
