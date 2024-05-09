@@ -3,6 +3,8 @@ import s from './PostsNavigation.module.scss'
 import { Link, useParams } from 'react-router-dom'
 import classNames from 'classnames'
 import { postCategories } from 'shared/global'
+import useDebounce from 'shared/hooks/useDebounce'
+import axios from '../../../../axios'
 
 type subCategoriesType = {
   subCategoryRu: string,
@@ -29,7 +31,12 @@ const subCategories: subCategoriesType[] = [
   }
 ]
 
-const PostsNavigation = () => {
+interface PostsNavigationProps{
+  page:number
+  loadHabs:any
+}
+
+const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs }) => {
   // ======== posts params
   const { category, type } = useParams()
   // ======== posts params
@@ -57,6 +64,13 @@ const PostsNavigation = () => {
     setValue(event.target.value)
   }
   // ======== change input
+
+  const debouncedInputValue = useDebounce(value, 700);
+  React.useEffect(() => {
+    if (type === 'habs') {
+      loadHabs(debouncedInputValue.length === 0 ? 'all' : debouncedInputValue)
+    }
+  }, [type, debouncedInputValue, page])
 
   return (
     <div className={s.wrapper}>

@@ -23,6 +23,10 @@
   margin-top: 16px;
   border-bottom: 1px solid #ccc;
 
+  @media(max-width:500px){
+    overflow-x:scroll;
+  }
+
   &__item {
     margin-right: 24px;
 

@@ -10,6 +10,7 @@ export interface IHab {
   posts: IPost[];
   authors: IUser[];
   usersSubscribers: IUser[];
+  usersSubscribersCount: number;
   createdAt: Date;
   updatedAt: Date;
 }

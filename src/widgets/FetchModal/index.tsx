@@ -24,11 +24,8 @@ function FetchModal() {
   React.useEffect(() => {
     let timer:any;
     if(visible){
-      console.log('vis');
-      
       timer = setTimeout(addActive, 100)
     } else {
-      console.log('dis');
       timer = setTimeout(addDisable, 1000)
     }
 

@@ -2,7 +2,7 @@ import Root from 'app/Root';
 import { CreatePost } from 'pages/CreatePost';
 import { HabPage } from 'pages/HabPage';
 import Login from 'pages/Login';
-import Main from 'pages/Main';
+import {Main} from 'pages/Main';
 import { PostPage } from 'pages/PostPage';
 import { ProfileSettings } from 'pages/ProfileSettings';
 import Register from 'pages/Register';
