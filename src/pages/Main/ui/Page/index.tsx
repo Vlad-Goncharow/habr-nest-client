@@ -38,6 +38,19 @@ function Page() {
       dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
     }
   }
+
+  const loadAuthors = async () => {
+    try {
+      setAuthorsLoading(true)
+      const { data } = await axios.get(`/users/authors/${category}/?page=${page}&pageSize=${pageSize}`)
+      setAuthors(data.authors);
+      setAuthorsTotalCount(data.length)
+      setAuthorsLoading(false)
+    } catch (e) {
+      setAuthorsLoading(false)
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+    }
+  }
   
   return (
     <div className={'page'}>
@@ -46,6 +59,7 @@ function Page() {
           <PostsNavigation 
             page={Number(page)}
             loadHabs={loadHabs}
+            loadAuthors={loadAuthors}
           />
           <div className="right"></div>
         </div>
@@ -65,7 +79,12 @@ function Page() {
           }
           {
             type === 'authors' &&
-            <Authors />
+            <Authors 
+              authors={authors}
+              authorsLoading={authorsLoading}
+              authorsTotalCount={authorsTotalCount}
+              pageSize={pageSize}
+            />
           }
         </div>
       </div>

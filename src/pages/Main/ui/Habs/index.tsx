@@ -34,7 +34,7 @@ const Habs: React.FC<HabsProps> = ({habs,habsLoading,habsTotalCount,pageSize}) =
           ?
             <UsersSkeleton />
           :
-            habs.length > 0 
+            habsTotalCount > 0 
             ?
               <>
                 {

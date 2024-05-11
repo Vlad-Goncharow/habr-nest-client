@@ -1,10 +1,9 @@
-import React, { ChangeEvent } from 'react'
-import s from './PostsNavigation.module.scss'
-import { Link, useParams } from 'react-router-dom'
 import classNames from 'classnames'
+import React, { ChangeEvent } from 'react'
+import { Link, useParams } from 'react-router-dom'
 import { postCategories } from 'shared/global'
 import useDebounce from 'shared/hooks/useDebounce'
-import axios from '../../../../axios'
+import s from './PostsNavigation.module.scss'
 
 type subCategoriesType = {
   subCategoryRu: string,
@@ -34,9 +33,10 @@ const subCategories: subCategoriesType[] = [
 interface PostsNavigationProps{
   page:number
   loadHabs:any
+  loadAuthors:any
 }
 
-const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs }) => {
+const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs,loadAuthors }) => {
   // ======== posts params
   const { category, type } = useParams()
   // ======== posts params
@@ -69,6 +69,10 @@ const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs }) => {
   React.useEffect(() => {
     if (type === 'habs') {
       loadHabs(debouncedInputValue.length === 0 ? 'all' : debouncedInputValue)
+    }
+
+    if(type === 'authors'){
+      loadAuthors()
     }
   }, [type, debouncedInputValue, page])
 
