@@ -18,7 +18,7 @@ const PostsList: React.FC<PostsListProps> = ({ posts, length, navigatePath, page
       <>
         {
           posts.map((el: IPost) =>
-            <Post post={el} />
+            <Post key={el.id} post={el} />
           )
         }
         <Pagination length={length} navigatePath={navigatePath} pageSize={pageSize} />

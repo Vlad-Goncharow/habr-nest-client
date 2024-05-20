@@ -34,9 +34,10 @@ interface PostsNavigationProps{
   page:number
   loadHabs:any
   loadAuthors:any
+  sortOptions:any
 }
 
-const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs,loadAuthors }) => {
+const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs,loadAuthors,sortOptions }) => {
   // ======== posts params
   const { category, type } = useParams()
   // ======== posts params
@@ -74,7 +75,7 @@ const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs,loadAut
     if(type === 'authors'){
       loadAuthors()
     }
-  }, [type, debouncedInputValue, page])
+  }, [type, debouncedInputValue, page, sortOptions])
 
   return (
     <div className={s.wrapper}>

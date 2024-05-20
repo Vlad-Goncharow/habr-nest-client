@@ -28,7 +28,7 @@ const Hab: React.FC<HabProps> = ({habData}) => {
   const habRef = React.useRef<HTMLDivElement>(null)
 
   //menu is open
-  const [menuIsAactive, setMenuIsActive] = React.useState<boolean>(false)
+  const [menuIsAactive, setMenuIsActive] = React.useState<boolean>(true)
 
   const mouseEnter = async () => {
     try {
@@ -56,7 +56,7 @@ const Hab: React.FC<HabProps> = ({habData}) => {
       className={s.hab}
     >
       <Link 
-        to={`/hab/${habData.id}/articles`} 
+        to={`/hab/${habData.id}/articles/1`} 
         className={classNames(s.title,{
           [s.title_active]:user?.habSubscribers.find((el) => el.id === habData.id)
         })}
@@ -71,7 +71,7 @@ const Hab: React.FC<HabProps> = ({habData}) => {
               <img src={`${process.env.REACT_APP_SERVER_URL}${habData.image}`} alt={`Картинка хаба ${habData.title}`}/>
             </div>
             <div className={s.rating}>
-              <span>0</span>
+              <span>{habInfo?.hab.rating}</span>
               <span>Рейтинг</span>
             </div>
           </div>

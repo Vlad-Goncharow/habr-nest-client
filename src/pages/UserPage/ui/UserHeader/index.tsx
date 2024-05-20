@@ -18,11 +18,11 @@ const UserHeader: React.FC<UserHeaderProps> = ({userData}) => {
           </div>
           <div className={s.stat}>
             <div className={s.stat__item}>
-              <span>`{`${userData?.karma}`}</span>
+              <span>{userData.karma}</span>
               <p>Карма</p>
             </div>
             <div className={s.stat__item}>
-              <span>`{`${userData?.rating}`}</span>
+              <span>{userData.rating}</span>
               <p>Рейтинг</p>
             </div>
           </div>

@@ -5,18 +5,30 @@ import EmptyPosts from 'shared/ui/EmptyPosts'
 import UsersSkeleton from 'shared/ui/UsersSkeleton'
 import Pagination from 'widgets/Pagination'
 import s from './Habs.module.scss'
+import { ReactComponent as ArrowSvg } from 'shared/images/svg/arrow.svg'
+import classNames from 'classnames'
 
 interface HabsProps{
   habs:IHab[] | []
   habsLoading:boolean,
   habsTotalCount: number;
   pageSize: number;
+  setSortOptions:any
 }
 
-const Habs: React.FC<HabsProps> = ({habs,habsLoading,habsTotalCount,pageSize}) => {
+const Habs: React.FC<HabsProps> = ({ habs, habsLoading, habsTotalCount, pageSize, setSortOptions}) => {
   //params
   const { category, type } = useParams()
 
+
+  const [sortActive, setSortActive] = React.useState('')
+
+  const [ratingActive, setRatingActive] = React.useState(false)
+  const [subsActive, setSubsActive] = React.useState(false)
+
+  const [subsOrder, setSubsOrder] = React.useState('asc')
+  const [ratingOrder, setRatingOrder] = React.useState('asc')
+  
   return (
     <div className={s.wrapper}>
       <div className={s.content}>
@@ -25,8 +37,62 @@ const Habs: React.FC<HabsProps> = ({habs,habsLoading,habsTotalCount,pageSize}) =
             <span>Название</span>
           </div>
           <div className={s.stats}>
-            <div className={s.stats__item}>Рейтинг</div>
-            <div className={s.stats__item}>Подписчики</div>
+            <div 
+              className={classNames(s.stats__item,{
+                [s.stats__item_active]: sortActive === 'rating',
+                [s.stats__item_rotate]: ratingOrder === 'asc'
+              })}
+              onClick={() => {
+                setSortActive('rating')
+                setSortOptions({ sort: 'rating', order: ratingOrder })
+                setSubsActive(false)
+                setRatingActive(true)
+
+                if(ratingActive){
+                  setRatingOrder(prev => {
+                    if (prev === 'asc') {
+                      setSortOptions({ sort: 'rating', order: 'desc' })
+                      return 'desc'
+                    } else {
+                      setSortOptions({ sort: 'rating', order: 'asc' })
+                      return 'asc'
+                    }
+                  })
+                }
+              }}
+            >
+              <span>
+                Рейтинг
+              </span>
+              <ArrowSvg />
+            </div>
+            <div 
+              className={classNames(s.stats__item, {
+                [s.stats__item_active]: sortActive === 'subs',
+                [s.stats__item_rotate]: subsOrder === 'asc'
+              })}
+              onClick={() => {
+                setSortActive('subs')
+                setSortOptions({ sort: 'subs', order: subsOrder })
+                setRatingActive(false)
+                setSubsActive(true)
+
+                if(subsActive){
+                  setSubsOrder(prev => {
+                    if(prev === 'asc'){
+                      setSortOptions({ sort: 'subs', order: 'desc' })
+                      return 'desc'
+                    } else {
+                      setSortOptions({ sort: 'subs', order: 'asc' })
+                      return 'asc'
+                    }
+                  })
+                }
+              }}
+            >
+              <span>Подписчики</span>
+              <ArrowSvg /> 
+            </div>
           </div>
         </div>
         {
@@ -39,7 +105,7 @@ const Habs: React.FC<HabsProps> = ({habs,habsLoading,habsTotalCount,pageSize}) =
               <>
                 {
                   habs.map(el =>
-                    <div className={s.hab}>
+                    <div key={el.id} className={s.hab}>
                       <div className={s.hab__left}>
                         <div className={s.hab__image}>
                           <img src={`${process.env.REACT_APP_SERVER_URL}/${el.image}`} alt="" />

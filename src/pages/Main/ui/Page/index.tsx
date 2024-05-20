@@ -1,16 +1,16 @@
-import { PostsNavigation } from 'widgets/PostsNavigation'
-import s from './Page.module.scss'
+import { fetchModalActions } from 'entities/FetchModal'
+import { IUser } from 'entities/User'
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import { postTypeOne } from 'shared/global'
-import Posts from '../Posts'
-import Habs from '../Habs'
-import Authors from '../Authors'
-import { IHab } from 'shared/types/habs'
-import React from 'react'
-import { IUser } from 'entities/User'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { IHab } from 'shared/types/habs'
+import { PostsNavigation } from 'widgets/PostsNavigation'
 import axios from '../../../../axios'
-import { fetchModalActions } from 'entities/FetchModal'
+import Authors from '../Authors'
+import Habs from '../Habs'
+import Posts from '../Posts'
+import s from './Page.module.scss'
 
 function Page() {
   const dispatch = useAppDispatch()
@@ -22,6 +22,12 @@ function Page() {
   const [habsLoading, setHabsLoading] = React.useState<boolean>(true)
   const [habsTotalCount, setHabsTotalCount] = React.useState<number>(0)
 
+  //sort options
+  const [sortOptions, setSortOptions] = React.useState({
+    sort:'',
+    order:'',
+  })
+  
   const [authors, setAuthors] = React.useState<IUser[] | []>([])
   const [authorsLoading, setAuthorsLoading] = React.useState<boolean>(true)
   const [authorsTotalCount, setAuthorsTotalCount] = React.useState<number>(0)
@@ -29,7 +35,7 @@ function Page() {
   const loadHabs = async (title:string) => {
     try {
       setHabsLoading(true)
-      const { data } = await axios.get(`/habs/search/category/${category}/${title}/?page=${page}&pageSize=${pageSize}`)
+      const { data } = await axios.get(`/habs/search/${category}/${title}?sort=${sortOptions.sort}&order=${sortOptions.order}&page=${page}&pageSize=${pageSize}`)
       setHabs(data.habs);
       setHabsTotalCount(data.length)
       setHabsLoading(false)
@@ -60,6 +66,7 @@ function Page() {
             page={Number(page)}
             loadHabs={loadHabs}
             loadAuthors={loadAuthors}
+            sortOptions={sortOptions}
           />
           <div className="right"></div>
         </div>
@@ -75,6 +82,7 @@ function Page() {
               habsLoading={habsLoading} 
               habsTotalCount={habsTotalCount} 
               pageSize={pageSize}
+              setSortOptions={setSortOptions}
             />
           }
           {

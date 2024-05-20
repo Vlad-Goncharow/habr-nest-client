@@ -185,7 +185,7 @@ function ProfileSettings() {
                 <span>Дата рождения</span>
                 <DatePicker 
                   wrapperClassName={s.select__date} 
-                  selected={values.dateOfBirth} 
+                  selected={values.dateOfBirth === 'Не известно' ? '' : values.dateOfBirth} 
                   onChange={(date: any) => setValues((prev:any) => ({ ...prev, dateOfBirth: date }))}  
                 />
               </div>
