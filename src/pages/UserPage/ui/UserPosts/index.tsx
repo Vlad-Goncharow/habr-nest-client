@@ -1,11 +1,10 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { IPost } from 'shared/types/posts'
-import PostsList from 'shared/ui/PostsList'
-import PostsSceleton from 'shared/ui/PostsSceleton'
 import axios from '../../../../axios'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
+import { PostsList } from 'shared/ui/PostsList'
 
 const UserPosts: React.FC = () => {
   //dispatch
@@ -38,13 +37,7 @@ const UserPosts: React.FC = () => {
 
   return (
     <>
-      {
-        loading 
-        ?
-          <PostsSceleton />
-        :
-          <PostsList posts={posts} length={postsLength} pageSize={10} navigatePath={`/user/${userId}/${type}/${subType}`} />
-      }
+      <PostsList loading={loading} posts={posts} length={postsLength} navigatePath={`/user/${userId}/${type}/${subType}`} />
     </>
   )
 }

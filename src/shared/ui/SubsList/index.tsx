@@ -1,8 +1,8 @@
 import { IUser } from 'entities/User'
 import React from 'react'
-import EmptyPosts from 'shared/ui/EmptyPosts'
-import s from './SubsList.module.scss'
 import { Link } from 'react-router-dom'
+import Empty from '../Empty'
+import s from './SubsList.module.scss'
 
 interface SubsListProps {
   subs: IUser[] | []
@@ -32,7 +32,7 @@ const SubsList: React.FC<SubsListProps> = ({subs}) => {
             </div>
           )
           :
-          <EmptyPosts />
+          <Empty />
       }
     </>
   )

@@ -73,7 +73,7 @@ const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs,loadAut
     }
 
     if(type === 'authors'){
-      loadAuthors()
+      loadAuthors(debouncedInputValue.length === 0 ? 'all' : debouncedInputValue)
     }
   }, [type, debouncedInputValue, page, sortOptions])
 

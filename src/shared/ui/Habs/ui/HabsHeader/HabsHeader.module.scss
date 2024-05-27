@@ -1,0 +1,59 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--mine-shaft);
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 0.8125rem;
+  line-height: 1.5rem;
+}
+
+.sort {
+  display: flex;
+  align-items: center;
+
+  @media(max-width:500px) {
+    width: 50%;
+    justify-content: space-between;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+
+    span {
+      text-align: right;
+      width: var(--user-stats);
+      font-size: 0.8125rem;
+      line-height: 1.5rem;
+    }
+
+    svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    &_rotate {
+      svg {
+        transition: 0.2s;
+        transform: rotate(180deg);
+      }
+    }
+
+    &_active {
+      span {
+        color: var(--horizon)
+      }
+
+      svg {
+        path {
+          stroke: var(--horizon);
+        }
+      }
+    }
+  }
+}

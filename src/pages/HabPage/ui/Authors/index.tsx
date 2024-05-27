@@ -1,10 +1,10 @@
 import { IUser } from 'entities/User'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import SubscribersList from 'shared/ui/SubscribersList'
 import axios from '../../../../axios'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
+import { UsersList } from 'shared/ui/UsersList'
 
 function Authors() {
   //dispatch
@@ -26,7 +26,7 @@ function Authors() {
     (async () => {
       try{
         setLoading(true)
-        const { data } = await axios.get(`/habs/load/${habId}/authors?page=${page}&pageSize=10`)
+        const { data } = await axios.get(`/habs/load/${habId}/authors?page=${page}&pageSize=20`)
         setUsers(data.users)
         setLength(data.length)
         setLoading(false)
@@ -38,7 +38,7 @@ function Authors() {
   },[habId, page])
   
   return (
-    <SubscribersList length={length} loading={loading} users={users} navigatePath={`/hab/${habId}/authors`}  />
+    <UsersList usersTotalCount={length} usersLoading={loading} users={users} navigatePath={`/hab/${habId}/authors`}  />
   )
 }
 

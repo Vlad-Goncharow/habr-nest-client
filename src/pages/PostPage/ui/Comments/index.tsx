@@ -3,13 +3,13 @@ import { IUser, getUserData } from 'entities/User'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
-import EmptyPosts from 'shared/ui/EmptyPosts'
-import UsersSkeleton from 'shared/ui/UsersSkeleton'
+import Empty from 'shared/ui/Empty'
 import axios from '../../../../axios'
 import Comment from '../Comment'
 import s from './Comments.module.scss'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
+import { UsersSkeleton } from 'shared/ui/UsersList'
 
 export interface CommentsType {
   id: number
@@ -117,7 +117,7 @@ const Comments: React.FC = () => {
                       index={index}
                     />
                   )
-                  : <EmptyPosts />
+                  : <Empty />
               }
             </div>
         }

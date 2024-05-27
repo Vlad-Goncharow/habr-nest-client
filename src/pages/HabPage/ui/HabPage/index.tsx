@@ -1,13 +1,13 @@
+import { fetchModalActions } from 'entities/FetchModal'
+import Sidebar from 'pages/CreatePost/ui/Sidebar'
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { IHab } from 'shared/types/habs'
 import axios from '../../../../axios'
 import Authors from '../Authors'
 import HabHeader from '../HabHeader'
 import HabPosts from '../HabPosts'
-import s from './HabPage.module.scss'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { fetchModalActions } from 'entities/FetchModal'
 
 function HabPage() {
   //dispatch
@@ -44,8 +44,8 @@ function HabPage() {
           habData !== null &&
           <div className="page">
             <div className="container">
-              <div className={s.wrapper}>
-                <div className={s.wrapper__left}>
+              <div className={'wrapper'}>
+                <div className={'wrapper__left'}>
                   <HabHeader habData={habData} />
                   {
                     (type === 'articles' || type === 'posts' || type === 'news') &&
@@ -56,7 +56,7 @@ function HabPage() {
                     <Authors />
                   }
                 </div>
-                <div className="sidebar"></div>
+                <Sidebar />
               </div>
             </div>
           </div>

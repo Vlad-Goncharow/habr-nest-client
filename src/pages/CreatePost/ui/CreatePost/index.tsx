@@ -2,7 +2,6 @@ import React from 'react'
 import { IHab } from 'shared/types/habs'
 import FirstStep from '../FirstStep'
 import SecondStep from '../SecondStep'
-import s from './CreatePost.module.scss'
 import Sidebar from '../Sidebar'
 
 export interface valuesType {
@@ -31,8 +30,8 @@ function CreatePost() {
   return (
     <div className="page">
       <div className="container">
-        <div className={s.wrapper}>
-          <div className={s.wrapper__left}>
+        <div className={'wrapper'}>
+          <div className={'wrapper__left'}>
             {
               step === 1 &&
               <FirstStep setStep={setStep} setValues={setValues} values={values} />

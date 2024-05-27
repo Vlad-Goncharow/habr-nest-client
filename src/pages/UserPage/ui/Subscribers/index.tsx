@@ -1,10 +1,10 @@
 import { IUser } from 'entities/User'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import SubscribersList from 'shared/ui/SubscribersList'
 import axios from '../../../../axios'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
+import { UsersList } from 'shared/ui/UsersList'
 
 function Subscribers() {
   //dispatch
@@ -34,7 +34,7 @@ function Subscribers() {
   }, [userId, type, page])
 
   return (
-    <SubscribersList length={length} loading={loading} users={subs} navigatePath={`/user/${userId}/${type}`} />
+    <UsersList users={subs} usersLoading={loading} usersTotalCount={length} navigatePath={`/user/${userId}/${type}`} />
   )
 }
 

@@ -2,10 +2,9 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { IPost } from 'shared/types/posts'
 import axios from '../../../../axios'
-import PostsSceleton from 'shared/ui/PostsSceleton'
-import PostsList from 'shared/ui/PostsList'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
+import { PostsList } from 'shared/ui/PostsList'
 
 function HabPosts() {
   //dispatch
@@ -40,13 +39,7 @@ function HabPosts() {
 
   return (
     <>
-      {
-        loading
-          ?
-          <PostsSceleton />
-          :
-          <PostsList posts={posts} length={postsLength} pageSize={10} navigatePath={`/hab/${habId}/${type}/${type}`} />
-      }
+      <PostsList loading={loading} posts={posts} length={postsLength} navigatePath={`/hab/${habId}/${type}/${type}`} />
     </>
   )
 }

@@ -1,16 +1,28 @@
+.content {
+  padding: 15px;
+  background: var(--romance);
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--mine-shaft);
+  padding-bottom: 5px;
+  margin-bottom: 20px;
+}
+
+.name {
+  font-size: 0.8125rem;
+  line-height: 1.5rem;
+}
+
 .top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--romance);
-  padding: 15px;
   border-bottom: 0.6px solid #ccc;
-}
-
-.name {
-  color: var(--horizon);
-  font-size: .8125rem;
-  line-height: 1.5rem;
 }
 
 .stats {
@@ -28,10 +40,4 @@
       width: 50px;
     }
   }
-}
-
-.list {
-  background: var(--romance);
-  padding: 15px;
-  margin-bottom: 15px;
 }

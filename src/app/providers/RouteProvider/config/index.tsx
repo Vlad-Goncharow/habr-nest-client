@@ -2,10 +2,11 @@ import Root from 'app/Root';
 import { CreatePost } from 'pages/CreatePost';
 import { HabPage } from 'pages/HabPage';
 import Login from 'pages/Login';
-import {Main} from 'pages/Main';
+import Main from 'pages/Main';
 import { PostPage } from 'pages/PostPage';
 import { ProfileSettings } from 'pages/ProfileSettings';
 import Register from 'pages/Register';
+import SearchPage from 'pages/SearchPage';
 import { UserPage } from 'pages/UserPage';
 import Profile from 'pages/UserPage/ui/Profile';
 import Subscribers from 'pages/UserPage/ui/Subscribers';
@@ -28,6 +29,7 @@ export const router = createBrowserRouter(
       </Route>
       <Route path="/hab/:habId/:type/:page" element={<HabPage />} />
       <Route path="/create" element={<CreatePost />}/>
+      <Route path="/search/:type/:page" element={<SearchPage />}/>
     </Route>
   )
 );
