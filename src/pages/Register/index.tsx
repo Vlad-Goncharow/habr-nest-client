@@ -1,11 +1,11 @@
 import classNames from 'classnames';
-import { fetchRegister } from 'entities/User';
-import { formRegister } from 'entities/User/model/types/user';
+import { AuthRegisterError, fetchRegister, FormRegister } from 'entities/User';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import s from './Register.module.scss';
 import { fetchModalActions } from 'entities/FetchModal';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 function Register() {
   // ======== dispatch
@@ -17,7 +17,7 @@ function Register() {
   // ======== navigate
 
   // ======== use form hooks
-  const { register, handleSubmit, watch, setError, formState: { errors } } = useForm<formRegister>({
+  const { register, handleSubmit, watch, setError, formState: { errors } } = useForm<FormRegister>({
     defaultValues: {
       email: '',
       nickname: '',
@@ -29,23 +29,23 @@ function Register() {
   // ======== use form hooks
 
   // ======== register
-  const registerSubmit = async (values: formRegister) => {
-    try {
-      const data: any = await dispatch(fetchRegister(values))
-      if (data.type === "auth/fetchRegister/rejected") {
-        data.payload.param.forEach((el:any) => {
-          setError(el, {message:data.payload.message})
-        })
+  const registerSubmit = async (values: FormRegister) => {
+    try{
+      const resultAction = await dispatch(fetchRegister(values));
+      if (fetchRegister.fulfilled.match(resultAction)) {
+        const data = unwrapResult(resultAction);
+        localStorage.setItem('token', data.accessToken);
+        navigate('/flows/all/articles/1');
+      } else{
+        const error = resultAction.payload as AuthRegisterError;
+        error.param.forEach((el) => {
+          setError(el, { message: error.message });
+        });
       }
-
-      if (data.type === "auth/fetchRegister/fulfilled") {
-        localStorage.setItem('token', data.payload.accessToken)
-        return navigate('/flows/all/all/1')
-      }
-    } catch (e) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При регистрации произошла ошибка!' }))
+    } catch(e){
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При регистрации произошла ошибка!' }));
     }
-  }
+  };
   // ======== register
   
   return (

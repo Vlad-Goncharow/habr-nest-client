@@ -1,5 +1,3 @@
-export type { userStateSchema, IUser, IUserSubsList, IShortUserSubs } from "./model/types/user";
-export { userActions, userReducer } from './model/slice';
-export { fetchAuth, fetchRegister, fetchLogin, fetchLogout, fetchUpdateUser } from './model/slice';
-export { getUserData } from './model/selectors'
-
+export { getUserData } from './model/selectors';
+export { fetchAuth, fetchLogin, fetchLogout, fetchRegister, fetchUpdateUser, userActions, userReducer } from './model/slice';
+export type { IUser, userStateSchema, AuthRegisterError, AuthLoginError, FormRegister, FormLogin } from "./model/types/user";

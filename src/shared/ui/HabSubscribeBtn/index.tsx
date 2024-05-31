@@ -5,6 +5,7 @@ import { useAppSelector } from 'shared/hooks/useAppSelector'
 import axios from '../../../axios'
 import s from './HabSubscribeBtn.module.scss'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { IHab } from 'shared/types/habs'
 
 interface HabSubscribeBtnProps{
   habId:number
@@ -17,7 +18,7 @@ const HabSubscribeBtn: React.FC<HabSubscribeBtnProps> = ({habId}) => {
   const [active, setActive] = React.useState(false)
 
   React.useEffect(() => {
-    if (user && user.habSubscribers.find((el: any) => el.id === habId)) {
+    if (user && user.habSubscribers.find((el: IHab) => el.id === habId)) {
       setActive(true)
     } else {
       setActive(false)

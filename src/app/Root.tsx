@@ -11,7 +11,7 @@ function Root() {
   const navigate = useNavigate()
 
   const auth = async () => {
-    const data: any = await dispatch(fetchAuth())
+    const data = await dispatch(fetchAuth())
     
     if (data.payload !== undefined && 'accessToken' in data.payload) {
       window.localStorage.setItem('token', data.payload.accessToken);

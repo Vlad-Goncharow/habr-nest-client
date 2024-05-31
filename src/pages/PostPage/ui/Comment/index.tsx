@@ -7,7 +7,7 @@ import classNames from 'classnames'
 
 interface CommentProps{
   item: CommentsType
-  deleteComment:any
+  deleteComment: (commentId:number) => void
   user:IUser | null
   length:number
   index:number

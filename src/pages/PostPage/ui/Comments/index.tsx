@@ -44,7 +44,7 @@ const Comments: React.FC = () => {
   const [inputValue, setInputValue] = React.useState('')
 
   //add new comment
-  const clickSubmit = async (e:any) => {
+  const clickSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (inputValue.length > 5) {
       try{
@@ -53,7 +53,7 @@ const Comments: React.FC = () => {
         })
 
         if (data) {
-          setComments((prev: any) => [...prev, data])
+          setComments((prev: CommentsType[]) => [...prev, data])
           setInputValue('')
         }
       } catch(e){
@@ -107,7 +107,7 @@ const Comments: React.FC = () => {
             <div ref={commentsRef} className={s.row}>
               {
                 comments.length > 0 ?
-                  comments.map((item: any, index) =>
+                  comments.map((item: CommentsType, index) =>
                     <Comment 
                       key={`${item.id}`} 
                       deleteComment={deleteComment} 
@@ -128,7 +128,7 @@ const Comments: React.FC = () => {
             <textarea value={inputValue} onChange={(e) => setInputValue(e.target.value)} className={s.form__input} />
             <div className={s.form__bottom}>
               <div className={s.buttons}>
-                <button onClick={clickSubmit} className={classNames(s.buttons__btn, {
+                <button type='submit' className={classNames(s.buttons__btn, {
                   [s.buttons__btn_disable]: inputValue.length < 5,
                   [s.buttons__btn_active]: inputValue.length >= 5
                 })}>Отправить</button>

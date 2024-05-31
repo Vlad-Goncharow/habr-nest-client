@@ -3,25 +3,6 @@
   background: #f0f0f0;
 }
 
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-
-  &__left {
-    flex: 1;
-    margin-right: 16px;
-    max-width: calc(100% - 320px);
-    min-width: calc(100% - 320px);
-
-    @media(max-width:1024px) {
-      max-width: 100%;
-      min-width: 100%;
-      margin-right: 0;
-    }
-  }
-}
-
 .top{
   padding: 15px;
   background: var(--romance);
@@ -57,6 +38,8 @@
     transform: translateY(-50%);
     right: 30px;
     cursor: pointer;
+    background: transparent;
+    border:none;
 
     svg {
       width: 20px;

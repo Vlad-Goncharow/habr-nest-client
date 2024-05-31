@@ -4,7 +4,7 @@ import { UseClickOutside } from 'shared/hooks/UseClickOutside';
 import { IHab } from 'shared/types/habs';
 import axios from '../../../../axios';
 import s from './HabsList.module.scss';
-import { valuesType } from '../CreatePost';
+import { ValuesType } from '../CreatePost';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { fetchModalActions } from 'entities/FetchModal';
 
@@ -49,7 +49,7 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
   }
 
   const addHab = (hab:IHab) => {
-    setValues((prev: valuesType) => {
+    setValues((prev: ValuesType) => {
       return {
         ...prev,
         habs:[...prev.habs, hab]
@@ -67,13 +67,12 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
     if(findHab){
       setHabsList((prev:IHab[]) => [findHab, ...prev])
 
-      setValues((prev:valuesType) => {
+      setValues((prev: ValuesType) => {
         return {
           ...prev,
           habs: prev.habs.filter((el) => el.id !== id)
         }
       })
-      
     }
   }
 
@@ -87,7 +86,7 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
           <div className={s.habs}>
             {
               habs.map((el) =>  
-                <div className={s.habs__item}>
+                <div key={el.id} className={s.habs__item}>
                   {el.title}
                   <span onClick={() => deleteHab(el.id)} className={s.habs__delete}></span>
                 </div>
@@ -105,10 +104,11 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
       </div>
       {
         popupIsOpen && habsList.length > 0 &&
-        <ul  className={s.popup}>
+        <ul className={s.popup}>
           {
             serachHabs().map((el) => 
               <li 
+                key={el.id}
                 onClick={() => addHab(el)} 
                 className={s.popup__li}
               >

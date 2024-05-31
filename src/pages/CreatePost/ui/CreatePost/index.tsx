@@ -4,11 +4,11 @@ import FirstStep from '../FirstStep'
 import SecondStep from '../SecondStep'
 import Sidebar from '../Sidebar'
 
-export interface valuesType {
+export interface ValuesType {
   title: string
   content: string
   habs: IHab[]
-  image: any
+  image: string | null
   category: string
   type: string
   difficulty: string
@@ -17,7 +17,7 @@ export interface valuesType {
 function CreatePost() {
   const [step, setStep] = React.useState<number>(1)
 
-  const [values, setValues] = React.useState<valuesType>({
+  const [values, setValues] = React.useState<ValuesType>({
     category: 'develop',
     type: 'articles',
     content: '',

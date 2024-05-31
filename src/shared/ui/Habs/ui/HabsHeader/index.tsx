@@ -1,10 +1,10 @@
 import classNames from 'classnames'
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { ReactComponent as ArrowSvg } from 'shared/images/svg/arrow.svg'
 import s from './HabsHeader.module.scss'
 
 interface HabsHeaderProps{
-  setSortOptions:any
+  setSortOptions: Dispatch<SetStateAction<{ sort: string; order: string; }>>
 }
 
 const HabsHeader: React.FC<HabsHeaderProps> = ({setSortOptions}) => {

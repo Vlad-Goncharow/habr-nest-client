@@ -3,7 +3,7 @@ import React, { ChangeEvent } from 'react'
 import { postCategories, postTypeOne } from 'shared/global'
 import axios from '../../../../axios'
 import HabsList from '../HabsList'
-import { valuesType } from '../CreatePost'
+import { ValuesType } from '../CreatePost'
 import s from './SecondStep.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
@@ -29,7 +29,7 @@ const postDifficulty = [
 ]
 
 interface SecondStepProps {
-  values: valuesType
+  values: ValuesType
   setValues: (values: any) => void
   setStep: (step: number) => void
 }
@@ -45,7 +45,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
   const [imageFile, setImageFile] = React.useState<any>(null)
 
   const clearImage = () => {
-    setValues((prev: valuesType) => {
+    setValues((prev: ValuesType) => {
       return {
         ...prev,
         image: null
@@ -58,7 +58,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
     const selectedImage = event.target.files?.[0];
     if (selectedImage) {
       setImageFile(selectedImage)
-      setValues((prev:valuesType) => {
+      setValues((prev: ValuesType) => {
         return {
           ...prev,
           image: selectedImage
@@ -74,7 +74,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
 
   //change post category
   const changePostCategory = (category: string) => {
-    setValues((prev: valuesType) => {
+    setValues((prev: ValuesType) => {
       return {
         ...prev,
         category
@@ -84,7 +84,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
 
   //chnage post type
   const changePostType = (type: string) => {
-    setValues((prev: valuesType) => {
+    setValues((prev: ValuesType) => {
       return {
         ...prev,
         type
@@ -95,7 +95,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
   //handle checkbox
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id } = event.target;
-    setValues((prev: valuesType) => {
+    setValues((prev: ValuesType) => {
       return {
         ...prev,
         difficulty: id
@@ -149,6 +149,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
             {
               postCategories.map((el) =>
                 <li
+                  key={el.categoryEng}
                   className={classNames(s.type__li, {
                     [s.type__li_active]: values.category === el.categoryEng
                   })}
@@ -168,6 +169,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
             {
               postTypeOne.map((el) =>
                 <li
+                  key={el.typeEng}
                   className={classNames(s.type__li, {
                     [s.type__li_active]: values.type === el.typeEng
                   })}
@@ -189,7 +191,7 @@ const SecondStep: React.FC<SecondStepProps> = ({ setStep, setValues, values }) =
         <form className={s.dificult}>
           {
             postDifficulty.map((el) =>
-              <div className={s.dificult__item}>
+              <div key={el.dificultEng} className={s.dificult__item}>
                 <input
                   onChange={handleCheckboxChange}
                   className={s.dificult__input}

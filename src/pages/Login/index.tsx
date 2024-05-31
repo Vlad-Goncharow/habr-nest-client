@@ -1,11 +1,11 @@
 import classNames from 'classnames';
-import { fetchLogin } from 'entities/User';
-import { formLogin } from 'entities/User/model/types/user';
+import { AuthLoginError, FormLogin, fetchLogin } from 'entities/User';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import s from './Login.module.scss';
 import { fetchModalActions } from 'entities/FetchModal';
+import { unwrapResult } from '@reduxjs/toolkit';
 
 function Login() {
   // ======== dispatch
@@ -17,7 +17,7 @@ function Login() {
   // ======== navigate
 
   // ======== use form hooks
-  const { register, handleSubmit, setError, formState: { errors } } = useForm<formLogin>({
+  const { register, handleSubmit, setError, formState: { errors } } = useForm<FormLogin>({
     defaultValues: {
       email: '',
       password: '',
@@ -27,21 +27,21 @@ function Login() {
   // ======== use form hooks
 
   // ======== login
-  const loginSubmit = async (values: formLogin) => {
+  const loginSubmit = async (values: FormLogin) => {
     try {
-      const data: any = await dispatch(fetchLogin(values))
-      if (data.type === "auth/fetchLogin/rejected") {
-        setError(data.payload.param, {message:data.payload.message})
-      }
-
-      if (data.type === "auth/fetchLogin/fulfilled") {
-        localStorage.setItem('token', data.payload.accessToken)
-        return navigate('/flows/all/all/1')
+      const resultAction = await dispatch(fetchLogin(values));
+      if (fetchLogin.fulfilled.match(resultAction)) {
+        const data = unwrapResult(resultAction);
+        localStorage.setItem('token', data.accessToken);
+        navigate('/flows/all/articles/1');
+      } else {
+        const error = resultAction.payload as AuthLoginError;
+        setError(error.param, { message: error.message });
       }
     } catch (e) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При авторизации произошла ошибка!' }))
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При авторизации произошла ошибка!' }));
     }
-  }
+  };
   // ======== login
 
   return (

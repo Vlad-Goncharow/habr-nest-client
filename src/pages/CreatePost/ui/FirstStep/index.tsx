@@ -5,7 +5,7 @@ import CustomTitleBlock from '../CustomTitleBlock'
 import CustomTooltip from '../CustomTooltip'
 import EditorControls from '../EditorControls'
 import InlineControls from '../InlineControls'
-import { valuesType } from '../CreatePost'
+import { ValuesType } from '../CreatePost'
 import s from './FirstStep.module.scss'
 import classNames from 'classnames'
 
@@ -17,7 +17,7 @@ export const styleMap = {
 };
 
 interface FirstStepProps{
-  values: valuesType
+  values: ValuesType
   setValues:(values:any) => void
   setStep:(step:number) => void
 }
@@ -116,7 +116,7 @@ const FirstStep: React.FC<FirstStepProps> = ({setValues,setStep,values}) => {
     const contentState = editorState.getCurrentContent();
     const contentStateJSON = convertToRaw(contentState);
     const textToSave = JSON.stringify(contentStateJSON);
-    setValues((prev: valuesType) => {
+    setValues((prev: ValuesType) => {
       return {
         ...prev,
         content: textToSave
@@ -185,7 +185,7 @@ const FirstStep: React.FC<FirstStepProps> = ({setValues,setStep,values}) => {
 
   //change post title
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
-    setValues((prev: valuesType) => {
+    setValues((prev: ValuesType) => {
       localStorage.setItem('postData', JSON.stringify({ ...values, title: e.target.value }));
       return {
         ...prev,

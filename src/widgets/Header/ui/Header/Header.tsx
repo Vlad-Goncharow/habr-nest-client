@@ -23,7 +23,7 @@ function Header() {
   UseClickOutside(sideNavRef, () => setSideNavIsClose(true))
 
   React.useEffect(() => {
-    let timer: any;
+    let timer: NodeJS.Timeout;
 
     if (sideNav && !sideNavIsClose) {
       timer = setTimeout(() => {
@@ -56,7 +56,7 @@ function Header() {
               <span></span>
             </div>
             
-            <Link to='/flows/all/all/1' className={s.logo}>
+            <Link to='/flows/all/articles/1' className={s.logo}>
               Хабр
             </Link>
 

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from '../../../../axios';
-import { formLogin, formRegister, userStateSchema } from "../types/user";
+import { FormLogin, FormRegister, AuthRegisterError, AuthLoginError, AuthResponse, userStateSchema } from "../types/user";
 
 const initialState: userStateSchema = {
   user: null,
@@ -14,31 +14,30 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth',
   }
 )
 
-export const fetchRegister = createAsyncThunk('auth/fetchRegister',
-  async (params: formRegister, { rejectWithValue }) => {
+export const fetchRegister = createAsyncThunk<AuthResponse, FormRegister, { rejectValue: AuthRegisterError }>('auth/fetchRegister',
+  async (params: FormRegister, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/registration', params)
+      const {data} = await axios.post('/auth/registration', params)
       return data
     } catch (err: any) {
       if (!err.response) {
         throw err;
       }
-      
+
       return rejectWithValue(err.response.data);
     }
   }
 )
 
-export const fetchLogin = createAsyncThunk('auth/fetchLogin',
-  async (params: formLogin, { rejectWithValue }) => {
+export const fetchLogin = createAsyncThunk<AuthResponse, FormLogin, { rejectValue: AuthLoginError }>('auth/fetchLogin',
+  async (params: FormLogin, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', params)
       return data
     } catch (err: any) {
       if (!err.response) {
         throw err;
-      }
-
+      }      
       return rejectWithValue(err.response.data);
     }
   }

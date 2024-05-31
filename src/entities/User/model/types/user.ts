@@ -19,7 +19,7 @@ export interface IUser {
   posts: IPost[];
   createdAt: Date;
   updatedAt: Date;
-  fullName: String,
+  fullName: string,
   dateOfBirth: Date | string,
 }
 
@@ -34,26 +34,32 @@ export interface userStateSchema {
   isLoading: boolean
 }
 
-export interface formRegister {
+export interface FormRegister {
   email:string
   password:string
   nickname:string
   passwordEqual: string;
 }
 
-export interface formLogin {
+export interface FormLogin {
   email: string
   password: string
 }
 
-export interface IShortUserSubs {
-  _id: string;
-  nickname: string;
-  avatar: string;
-  description?: string | null;
+export interface AuthResponse {
+  user:IUser
+  accessToken: string;
+  refreshToken: string;
 }
 
-export interface IUserSubsList {
-  length:number,
-  subs: IShortUserSubs[] | []
+export type FormRegisterFields = "email" | "password" | "nickname" | "passwordEqual"
+export type FormLoginFields = "email" | "password"
+
+export interface AuthRegisterError {
+  message: string;
+  param: FormRegisterFields[];
+}
+export interface AuthLoginError {
+  message: string;
+  param: FormLoginFields;
 }

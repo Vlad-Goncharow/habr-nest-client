@@ -13,7 +13,7 @@ const Pagination: React.FC<PaginationProps> = ({ navigatePath, length, pageSize 
   const { page } = useParams()
   const navigate = useNavigate()
 
-  const handlePageClick = (pageNumber: any) => {
+  const handlePageClick = (pageNumber: number) => {
     navigate(`${navigatePath}/${pageNumber}`)
   };
   

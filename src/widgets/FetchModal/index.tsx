@@ -22,7 +22,7 @@ function FetchModal() {
   }
 
   React.useEffect(() => {
-    let timer:any;
+    let timer: NodeJS.Timeout;
     if(visible){
       timer = setTimeout(addActive, 100)
     } else {
@@ -36,7 +36,7 @@ function FetchModal() {
 
   const dispatch = useAppDispatch()
   React.useEffect(() => {
-    let timer:any;
+    let timer: NodeJS.Timeout;
     if(visible){
       timer = setTimeout(() => {
         dispatch(fetchModalActions.hideModal())

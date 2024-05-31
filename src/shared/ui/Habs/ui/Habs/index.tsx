@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Dispatch, SetStateAction } from 'react'
 import { IHab } from 'shared/types/habs'
 import Pagination from 'widgets/Pagination'
 import HabsHeader from '../HabsHeader'
@@ -9,8 +9,8 @@ interface HabsProps {
   habs: IHab[] | []
   habsLoading: boolean,
   habsTotalCount: number;
-  setSortOptions: any
-  navigatePath: any
+  setSortOptions: Dispatch<SetStateAction<{ sort: string; order: string; }>>
+  navigatePath: string
 }
 
 const Habs: React.FC<HabsProps> = ({ habs, habsLoading, habsTotalCount, setSortOptions, navigatePath }) => {

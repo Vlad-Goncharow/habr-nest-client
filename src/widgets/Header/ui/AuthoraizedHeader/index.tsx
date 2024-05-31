@@ -26,7 +26,7 @@ const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({user}) => {
 
 
   React.useEffect(() => {
-    let timer:any;
+    let timer: NodeJS.Timeout;
 
     if (sideAuth && !sideBarIsClose){
       timer = setTimeout(() => {

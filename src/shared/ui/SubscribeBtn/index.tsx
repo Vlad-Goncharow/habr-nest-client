@@ -17,7 +17,7 @@ const SubscribeBtn: React.FC<SubscribeBtnProps> = ({userId}) => {
   const dispatch = useAppDispatch()
 
   React.useEffect(() => {
-    if (user && user.subscriptions.find((el: any) => el.id === userId)) {
+    if (user && user.subscriptions.find((el: IUser) => el.id === userId)) {
       setActive(true)
     } else {
       setActive(false)

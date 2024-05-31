@@ -32,9 +32,12 @@ const subCategories: subCategoriesType[] = [
 
 interface PostsNavigationProps{
   page:number
-  loadHabs:any
-  loadAuthors:any
-  sortOptions:any
+  loadHabs:(title:string) => void
+  loadAuthors: (title: string) => void
+  sortOptions:{
+    sort:string,
+    order:string
+  }
 }
 
 const PostsNavigation: React.FC<PostsNavigationProps> = ({ page,loadHabs,loadAuthors,sortOptions }) => {

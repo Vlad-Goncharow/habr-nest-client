@@ -5,11 +5,24 @@ import { countries, males } from 'pages/ProfileSettings/utils'
 import React, { ChangeEvent } from 'react'
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-import Select from 'react-select'
+import Select, { SingleValue } from 'react-select'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import axios from '../../../../axios'
 import s from './ProfileSettings.module.scss'
+
+interface SelectOption {
+  value: string;
+  label: string;
+}
+
+interface ValuesType {
+  fullName: string;
+  description: string;
+  dateOfBirth: Date | string;
+  gender: SelectOption;
+  country: SelectOption;
+}
 
 function ProfileSettings() {
   //dispatch
@@ -19,25 +32,27 @@ function ProfileSettings() {
   const {user} = useAppSelector(getUserData)
 
   //update values
-  const [values, setValues] = React.useState<any>(() => ({
-    fullName: user?.fullName,
-    description: user?.description,
-    gender: { value: user?.gender, label: user?.gender },
-    country: { value: user?.country, label: user?.country },
-    dateOfBirth: user?.dateOfBirth,
-  }))
+  const [values, setValues] = React.useState<ValuesType>({
+    fullName: user?.fullName || '',
+    description: user?.description || '',
+    gender: { value: user?.gender || '', label: user?.gender || '' },
+    country: { value: user?.country || '', label: user?.country || '' },
+    dateOfBirth: user?.dateOfBirth || '',
+  });
 
   //avatar
   const [image, setImage] = React.useState<string>();
-  const [imageFile, setImageFile] = React.useState<any>(null)
+  const [imageFile, setImageFile] = React.useState<File | null>(null)
 
   //update button ref
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
   //gender select
   const GenderComponents = () => {
-    const changeGender = (e: any) => {
-      setValues((prev: any) => ({ ...prev, gender: e }))
+    const changeGender = (e: SingleValue<SelectOption>) => {
+      if (e) {
+        setValues((prev: ValuesType) => ({ ...prev, gender: e }));
+      }
     }
 
 
@@ -55,8 +70,10 @@ function ProfileSettings() {
   
   //country select
   const CountyComponents = () => {
-    const changeCountry = (e: any) => {
-      setValues((prev: any) => ({...prev,country: e}))
+    const changeCountry = (e: SingleValue<SelectOption>) => {
+      if (e) {
+        setValues((prev: ValuesType) => ({ ...prev, country: e }));
+      }
     }
 
 
@@ -142,7 +159,7 @@ function ProfileSettings() {
                   <label htmlFor="">Настоящее имя</label>
                   <input
                     value={values.fullName}
-                    onChange={(e) => setValues((prev:any) => ({...prev, fullName: e.target.value}))}
+                    onChange={(e) => setValues((prev:ValuesType) => ({...prev, fullName: e.target.value}))}
                     type="text"
                   />
                   <p>Укажите ваши имя и фамилию, чтобы другие пользователи смогли узнать, как вас зовут</p>
@@ -152,7 +169,7 @@ function ProfileSettings() {
                   <input
                     value={values.description}
                     type="text"
-                    onChange={(e) => setValues((prev:any) => ({ ...prev, description: e.target.value }))}
+                    onChange={(e) => setValues((prev:ValuesType) => ({ ...prev, description: e.target.value }))}
                   />
                   <p>Укажите свою специализацию. Например: Администратор баз данных</p>
                 </div>
@@ -186,7 +203,7 @@ function ProfileSettings() {
                 <DatePicker 
                   wrapperClassName={s.select__date} 
                   selected={values.dateOfBirth === 'Не известно' ? '' : values.dateOfBirth} 
-                  onChange={(date: any) => setValues((prev:any) => ({ ...prev, dateOfBirth: date }))}  
+                  onChange={(date: any) => setValues((prev:ValuesType) => ({ ...prev, dateOfBirth: date }))}  
                 />
               </div>
             </div>
