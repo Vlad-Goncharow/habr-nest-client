@@ -1,0 +1,59 @@
+.habs{
+  padding: 15px;
+  background: var(--romance);
+
+  &__list{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.hab{
+  margin-bottom: 23px;
+  
+  &:last-child{
+    margin-bottom: 0;
+  }
+
+  &__row{
+    display: flex;
+    align-items: center;
+  }
+
+  &__image{
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    border-radius: 3px;
+    position: relative;
+    margin-right: 10px;
+
+    img{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+  }
+
+  &__title{
+    font-size: .8125rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+
+  &__stats{
+    margin-right: 10px;
+    color: var(--horizon);
+    text-decoration: none;
+    line-height: 1rem;
+    font-size: .75rem;
+
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}

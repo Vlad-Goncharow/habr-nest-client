@@ -17,7 +17,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
 
   const extendedBlockRenderMap = Draft.DefaultDraftBlockRenderMap.merge(blockRenderMap);
   return (
-    <div className={s.item}>
+    <article className={s.item}>
       <header className={s.item__header}>
         <div className={s.item__authorImg}>
           <img src={`${process.env.REACT_APP_SERVER_URL}/${post.author.avatar}`} alt="" />
@@ -62,7 +62,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
           <span>{`${Number(post.favorites)}`}</span>
         </div> */}
       </footer>
-    </div>
+    </article>
   )
 }
 

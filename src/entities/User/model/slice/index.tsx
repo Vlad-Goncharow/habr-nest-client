@@ -50,7 +50,7 @@ export const fetchLogout = createAsyncThunk('auth/fetchLogout',
       localStorage.removeItem('token')
       return data
     } catch (e) {
-
+      throw e;
     }
   }
 )

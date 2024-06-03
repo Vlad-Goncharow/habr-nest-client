@@ -1,12 +1,12 @@
 import classNames from 'classnames';
-import React, { Dispatch, SetStateAction } from 'react';
+import { fetchModalActions } from 'entities/FetchModal';
+import React from 'react';
 import { UseClickOutside } from 'shared/hooks/UseClickOutside';
+import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { IHab } from 'shared/types/habs';
 import axios from '../../../../axios';
-import s from './HabsList.module.scss';
 import { ValuesType } from '../CreatePost';
-import { useAppDispatch } from 'shared/hooks/useAppDispatch';
-import { fetchModalActions } from 'entities/FetchModal';
+import s from './HabsList.module.scss';
 
 interface HabsListProps{
   habs:IHab[] | [],

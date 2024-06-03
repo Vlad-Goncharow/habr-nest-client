@@ -28,22 +28,18 @@ function CreatePost() {
   })
 
   return (
-    <div className="page">
-      <div className="container">
-        <div className={'wrapper'}>
-          <div className={'wrapper__left'}>
-            {
-              step === 1 &&
-              <FirstStep setStep={setStep} setValues={setValues} values={values} />
-            }
-            {
-              step === 2 &&
-              <SecondStep setStep={setStep} setValues={setValues} values={values} />
-            }
-          </div>
-          <Sidebar />
-        </div>
+    <div className={'wrapper'}>
+      <div className={'wrapper__left'}>
+        {
+          step === 1 &&
+          <FirstStep setStep={setStep} setValues={setValues} values={values} />
+        }
+        {
+          step === 2 &&
+          <SecondStep setStep={setStep} setValues={setValues} values={values} />
+        }
       </div>
+      <Sidebar />
     </div>
   )
 }

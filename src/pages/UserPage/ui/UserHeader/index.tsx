@@ -1,8 +1,8 @@
 import { IUser } from 'entities/User'
 import React from 'react'
-import SubscribeBtn from 'shared/ui/SubscribeBtn'
 import UserNav from '../UserNav'
 import s from './UserHeader.module.scss'
+import { SubscribeUser } from 'features/SubscribeUser'
 
 interface UserHeaderProps{
   userData:IUser
@@ -27,7 +27,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({userData}) => {
             </div>
           </div>
         </div>
-        <SubscribeBtn userId={userData.id} />
+        <SubscribeUser userId={userData.id} />
       </div>
       <h1 className={s.name}>{`@${userData?.nickname}`}</h1>
       <p className={s.descr}>{userData?.description}</p>

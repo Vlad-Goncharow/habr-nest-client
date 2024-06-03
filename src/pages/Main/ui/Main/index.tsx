@@ -1,6 +1,5 @@
 import { fetchModalActions } from 'entities/FetchModal'
 import { IUser } from 'entities/User'
-import Sidebar from 'pages/CreatePost/ui/Sidebar'
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { postTypeOne } from 'shared/global'
@@ -11,7 +10,8 @@ import Habs from 'shared/ui/Habs/ui/Habs'
 import { PostsList } from 'shared/ui/PostsList'
 import { UsersList } from 'shared/ui/UsersList'
 import { PostsNavigation } from 'widgets/PostsNavigation'
-import axios from '../../axios'
+import axios from '../../../../axios'
+import Sidebar from '../SideBar/Main'
 
 function Main() {
   const dispatch = useAppDispatch()
@@ -84,45 +84,41 @@ function Main() {
   }, [type, page, category])
 
   return (
-    <div className={'page'}>
-      <div className="container">
-        <div className={'wrapper'}>
-          <div className="wrapper__left">
-            <PostsNavigation
-              page={Number(page)}
-              loadHabs={loadHabs}
-              loadAuthors={loadAuthors}
-              sortOptions={sortOptions}
-            />
+    <div className={'wrapper'}>
+      <div className="wrapper__left">
+        <PostsNavigation
+          page={Number(page)}
+          loadHabs={loadHabs}
+          loadAuthors={loadAuthors}
+          sortOptions={sortOptions}
+        />
 
 
-            {
-              postTypeOne.find((el) => el.typeEng === type) &&
-              <PostsList loading={postsLoading} posts={posts} length={postsTotalCount} navigatePath={`/flows/${category}/${type}`} />
-            }
-            {
-              type === 'habs' &&
-              <Habs
-                habs={habs}
-                habsLoading={habsLoading}
-                habsTotalCount={habsTotalCount}
-                setSortOptions={setSortOptions}
-                navigatePath={`/flows/${category}/${type}`}
-              />
-            }
-            {
-              type === 'authors' &&
-              <UsersList
-                navigatePath={`/flows/${category}/${type}`}
-                users={authors}
-                usersLoading={authorsLoading}
-                usersTotalCount={authorsTotalCount}
-              />
-            }
-          </div>
-          <Sidebar />
-        </div>
+        {
+          postTypeOne.find((el) => el.typeEng === type) &&
+          <PostsList loading={postsLoading} posts={posts} length={postsTotalCount} navigatePath={`/flows/${category}/${type}`} />
+        }
+        {
+          type === 'habs' &&
+          <Habs
+            habs={habs}
+            habsLoading={habsLoading}
+            habsTotalCount={habsTotalCount}
+            setSortOptions={setSortOptions}
+            navigatePath={`/flows/${category}/${type}`}
+          />
+        }
+        {
+          type === 'authors' &&
+          <UsersList
+            navigatePath={`/flows/${category}/${type}`}
+            users={authors}
+            usersLoading={authorsLoading}
+            usersTotalCount={authorsTotalCount}
+          />
+        }
       </div>
+      <Sidebar />
     </div>
   )
 }

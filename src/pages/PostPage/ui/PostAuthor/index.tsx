@@ -1,7 +1,7 @@
 import { IUser } from 'entities/User'
+import { SubscribeUser } from 'features/SubscribeUser'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import SubscribeBtn from 'shared/ui/SubscribeBtn'
 import s from './PostAuthor.module.scss'
 
 interface PostAuthorProps{
@@ -23,7 +23,7 @@ const PostAuthor: React.FC<PostAuthorProps> = ({author}) => {
           <span>{`${author?.rating}`}</span>
           <p>Рейтинг</p>
         </div>
-        <SubscribeBtn userId={author.id} />
+        <SubscribeUser userId={author.id} />
       </div>
       <Link to={`/user/${author.id}/posts/`} className={s.author__name}>{author?.nickname}</Link>
     </div>

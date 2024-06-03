@@ -1,8 +1,8 @@
+import { SubscribeHab } from 'features/SubscribeHab'
 import React from 'react'
 import { IHab } from 'shared/types/habs'
-import s from './HabHeader.module.scss'
-import HabSubscribeBtn from 'shared/ui/HabSubscribeBtn'
 import HabNav from '../HabNav'
+import s from './HabHeader.module.scss'
 
 interface HabHeaderProps{
   habData: IHab
@@ -23,7 +23,7 @@ const HabHeader: React.FC<HabHeaderProps> = ({habData}) => {
             </div>
           </div>
         </div>
-        <HabSubscribeBtn habId={habData.id}/>
+        <SubscribeHab habId={habData.id}/>
       </div>
       <h1 className={s.name}>{habData?.title}</h1>
       <p className={s.descr}>{habData?.description}</p>

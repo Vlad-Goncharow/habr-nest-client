@@ -20,3 +20,9 @@ export interface IStatHab {
   posts:number,
   subscribers:number
 }
+
+export interface HabsType extends IHab {
+  postsCount: number
+  subscribersCount: number
+  authorsCount: number
+}

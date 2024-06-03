@@ -2,6 +2,7 @@ import { fetchAuth } from 'entities/User';
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import PageWrapper from 'shared/ui/PageWrapper';
 import FetchModal from 'widgets/FetchModal';
 import Header from 'widgets/Header/ui/Header/Header';
 
@@ -27,7 +28,10 @@ function Root() {
     <div className="App">
       <Header />
       <FetchModal />
-      <Outlet />
+      
+      <PageWrapper>
+        <Outlet />
+      </PageWrapper>
     </div>
   );
 }

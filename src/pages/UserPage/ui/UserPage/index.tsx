@@ -38,30 +38,26 @@ function UserPage() {
   const isMobile = UseWindowWidth(1024)
   
   return (
-    <div className="page">
-      <div className="container">
-        <div className={s.wrapper}>
-          {
-            loading 
-            ?
-              <PageSkeleton />
-            : 
-              userData !== null &&
-              <>
-                <div className={s.wrapper__left}>
-                  <UserHeader userData={userData} />
-                  {/* if opened user profile and window < 1024 */}
-                  {isMobile && type === 'profile' && <SideBar userData={userData} />}
+    <div className={'wrapper'}>
+      {
+        loading 
+        ?
+          <PageSkeleton />
+        : 
+          userData !== null &&
+          <>
+            <div className={'wrapper__left'}>
+              <UserHeader userData={userData} />
+              {/* if opened user profile and window < 1024 */}
+              {isMobile && type === 'profile' && <SideBar userData={userData} />}
 
-                  <Outlet />
-                </div>
-                {!isMobile && <SideBar userData={userData} />}
-              </>
-          }
-        </div>
-      </div>
+              <Outlet />
+            </div>
+            {!isMobile && <SideBar userData={userData} />}
+          </>
+      }
     </div>
-)
+  )
 }
 
 export default UserPage

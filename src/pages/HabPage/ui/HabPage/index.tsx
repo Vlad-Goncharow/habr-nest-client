@@ -34,32 +34,27 @@ function HabPage() {
       }
     })()
   },[habId])
+
+  if(loading) <div>loading</div>
   
   return (
     <div>
       {
-        loading ?
-          <div>loading</div>
-          :
-          habData !== null &&
-          <div className="page">
-            <div className="container">
-              <div className={'wrapper'}>
-                <div className={'wrapper__left'}>
-                  <HabHeader habData={habData} />
-                  {
-                    (type === 'articles' || type === 'posts' || type === 'news') &&
-                    <HabPosts />
-                  }
-                  {
-                    type === 'authors' &&
-                    <Authors />
-                  }
-                </div>
-                <Sidebar />
-              </div>
-            </div>
+        habData !== null &&
+        <div className={'wrapper'}>
+          <div className={'wrapper__left'}>
+            <HabHeader habData={habData} />
+            {
+              (type === 'articles' || type === 'posts' || type === 'news') &&
+              <HabPosts />
+            }
+            {
+              type === 'authors' &&
+              <Authors />
+            }
           </div>
+          <Sidebar />
+        </div>
       }
     </div>
   )

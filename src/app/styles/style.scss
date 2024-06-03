@@ -29,11 +29,13 @@
   sans-serif !important;
   text-decoration: none;
   color:#000;
+  transition: opacity .2s ease-in-out, color .2s ease-in-out, text-decoration .2s ease-in-out, background-color .2s ease-in-out, -webkit-text-decoration .2s ease-in-out;
 }
 
 a:hover{
   color: var(--horizon);
 }
+
 
 body{
   overflow-y: scroll;
@@ -69,10 +71,21 @@ body{
 }
 
 .sidebar {
-  margin-left: 15px;
-  flex:340px 0;
-   
-  @media(max-width: 1024px) {
+  flex: 1 1;
+
+  &__header{
+    padding: 10px;
+    border-bottom:1px solid var(--mountain-mist);
+    margin-bottom: 15px;
+  }
+
+  &__title{
+    letter-spacing: .0625rem;
+    font-size: 16px;
+    color:var(--rolling-stone);
+  }
+
+  @media(max-width:1024px) {
     display: none;
   }
 }

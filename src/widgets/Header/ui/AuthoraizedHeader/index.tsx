@@ -59,7 +59,7 @@ const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({user}) => {
   }, [sideAuth, sideBarIsClose])
   
   return (
-    <div className={s.user}>
+    <div className={s.user} ref={dropDownRef}>
       <Link to='/create' className={s.user__icon}>
         <CreateSvg />
       </Link>
@@ -73,7 +73,7 @@ const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({user}) => {
 
       {
         dropDown &&
-        <div className={s.user__dropdown} onClick={() => setDropDown(false)} ref={dropDownRef}>
+        <div className={s.user__dropdown} onClick={() => setDropDown(false)} >
           <UserControls user={user} />
         </div>
       }

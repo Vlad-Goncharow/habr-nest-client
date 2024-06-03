@@ -1,12 +1,12 @@
+import { fetchModalActions } from 'entities/FetchModal'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { IHab } from 'shared/types/habs'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import { HabsType } from 'shared/types/habs'
 import axios from '../../../../axios'
 import Hab from '../Hab'
 import ProfileSkeleton from '../ProfileSkeleton'
 import s from './Profile.module.scss'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { fetchModalActions } from 'entities/FetchModal'
 
 const Profile: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -15,7 +15,7 @@ const Profile: React.FC = () => {
   const {userId} = useParams()
 
   //habs array
-  const [habs, setHabs] = React.useState<IHab[] | []>([])
+  const [habs, setHabs] = React.useState<HabsType[] | []>([])
 
   //is loading
   const [loading, setLoading] = React.useState(true)
@@ -24,7 +24,7 @@ const Profile: React.FC = () => {
     (async () => {
       try {
         setLoading(true)
-        const { data } = await axios.get(`/habs/${userId}/subscribers`)
+        const { data } = await axios.get(`/habs/user/${userId}/subscribed-habs`)
         setHabs(data)
         setLoading(false)
       } catch(e){
