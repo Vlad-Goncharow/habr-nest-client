@@ -1,73 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import axios from '../../../../axios';
-import { FormLogin, FormRegister, AuthRegisterError, AuthLoginError, AuthResponse, userStateSchema } from "../types/user";
+import { createSlice } from "@reduxjs/toolkit";
+import { fetchAuth, fetchLogin, fetchLogout, fetchRegister, fetchUpdateUser } from "../thunks";
+import { userStateSchema } from "../types/user";
 
 const initialState: userStateSchema = {
   user: null,
   isLoading:false
 }
-
-export const fetchAuth = createAsyncThunk('auth/fetchAuth',
-  async () => {
-    const { data } = await axios.post('/auth/refresh')
-    return data
-  }
-)
-
-export const fetchRegister = createAsyncThunk<AuthResponse, FormRegister, { rejectValue: AuthRegisterError }>('auth/fetchRegister',
-  async (params: FormRegister, { rejectWithValue }) => {
-    try {
-      const {data} = await axios.post('/auth/registration', params)
-      return data
-    } catch (err: any) {
-      if (!err.response) {
-        throw err;
-      }
-
-      return rejectWithValue(err.response.data);
-    }
-  }
-)
-
-export const fetchLogin = createAsyncThunk<AuthResponse, FormLogin, { rejectValue: AuthLoginError }>('auth/fetchLogin',
-  async (params: FormLogin, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.post('/auth/login', params)
-      return data
-    } catch (err: any) {
-      if (!err.response) {
-        throw err;
-      }      
-      return rejectWithValue(err.response.data);
-    }
-  }
-)
-
-export const fetchLogout = createAsyncThunk('auth/fetchLogout',
-  async () => {
-    try {
-      const { data } = await axios.post('/auth/logout')
-      localStorage.removeItem('token')
-      return data
-    } catch (e) {
-      throw e;
-    }
-  }
-)
-
-export const fetchUpdateUser = createAsyncThunk('user/fetchUpdateUser',
-  async (params: any, { rejectWithValue }) => {
-    try {
-      const { data } = await axios.put(`/auth/profile-update`, params)
-      return data
-    } catch (err: any) {
-      if (!err.response) {
-        throw err;
-      }
-      return rejectWithValue(err.response.data.error);
-    }
-  }
-)
 
 const userSlice = createSlice({
   name: 'user',
@@ -83,7 +21,6 @@ const userSlice = createSlice({
         state.user.subscriptions = state.user.subscriptions.filter((el) => el.id !== action.payload.id);
       }
     },
-
     userHabSubscribe(state, action) {
       if (state.user) {
         state.user?.habSubscribers.push(action.payload)
