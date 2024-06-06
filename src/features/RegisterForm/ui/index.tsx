@@ -1,20 +1,19 @@
-import { unwrapResult } from '@reduxjs/toolkit';
+import classNames from 'classnames';
 import { fetchModalActions } from 'entities/FetchModal';
-import { AuthRegisterError, FormRegister, fetchRegister } from 'entities/User';
+import { FormRegister } from 'entities/User';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import UseRegister from '../model/lib';
 import s from './RegisterForm.module.scss';
-import { useForm } from 'react-hook-form';
-import classNames from 'classnames';
 
 function RegisterForm() {
   // ======== dispatch
   const dispatch = useAppDispatch()
-  // ======== dispatch
 
   // ======== navigate
   const navigate = useNavigate()
-  // ======== navigate
 
   // ======== use form hooks
   const { register, handleSubmit, watch, setError, formState: { errors } } = useForm<FormRegister>({
@@ -26,27 +25,23 @@ function RegisterForm() {
     },
     mode: 'onTouched'
   });
-  // ======== use form hooks
 
-  // ======== register
-  const registerSubmit = async (values: FormRegister) => {
-    try {
-      const resultAction = await dispatch(fetchRegister(values));
-      if (fetchRegister.fulfilled.match(resultAction)) {
-        const data = unwrapResult(resultAction);
-        localStorage.setItem('token', data.accessToken);
-        navigate('/flows/all/articles/1');
-      } else {
-        const error = resultAction.payload as AuthRegisterError;
-        error.param.forEach((el) => {
-          setError(el, { message: error.message });
-        });
-      }
-    } catch (e) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При регистрации произошла ошибка!' }));
+  const {data, error, isSuccess,registerSubmit } = UseRegister()
+
+  React.useEffect(() => {
+    if (isSuccess) {
+      localStorage.setItem('token', data.accessToken);
+      navigate('/flows/all/articles/1');
     }
-  };
+
+    if (!isSuccess && error) {
+      setError(error.param, { message: error.message });
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При авторизации произошла ошибка!' }));
+      return
+    }
+  }, [data, isSuccess, error])
   // ======== register
+  
   return (
     <form action="" className={s.form}>
       <h1 className={s.form__title}>Регистрация</h1>

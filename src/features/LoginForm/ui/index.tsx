@@ -1,20 +1,19 @@
-import { unwrapResult } from '@reduxjs/toolkit';
+import classNames from 'classnames';
 import { fetchModalActions } from 'entities/FetchModal';
-import { AuthLoginError, FormLogin, fetchLogin } from 'entities/User';
+import { FormLogin } from 'entities/User';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import s from './LoginForm.module.scss';
-import classNames from 'classnames';
+import UseLogin from '../model/lib';
 
 function LoginForm() {
   // ======== dispatch
   const dispatch = useAppDispatch()
-  // ======== dispatch
 
   // ======== navigate
   const navigate = useNavigate()
-  // ======== navigate
 
   // ======== use form hooks
   const { register, handleSubmit, setError, formState: { errors } } = useForm<FormLogin>({
@@ -24,26 +23,22 @@ function LoginForm() {
     },
     mode: 'onTouched'
   });
-  // ======== use form hooks
 
-  // ======== login
-  const loginSubmit = async (values: FormLogin) => {
-    try {
-      const resultAction = await dispatch(fetchLogin(values));
-      if (fetchLogin.fulfilled.match(resultAction)) {
-        const data = unwrapResult(resultAction);
-        localStorage.setItem('token', data.accessToken);
-        navigate('/flows/all/articles/1');
-      } else {
-        const error = resultAction.payload as AuthLoginError;
-        setError(error.param, { message: error.message });
-      }
-    } catch (e) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При авторизации произошла ошибка!' }));
+  const { data, isSuccess,error, loginSubmit } = UseLogin()
+
+  React.useEffect(() => {
+    if(isSuccess){
+      localStorage.setItem('token', data.accessToken);
+      navigate('/flows/all/articles/1');
     }
-  };
-  // ======== login
 
+    if(!isSuccess && error){
+      setError(error.param, { message: error.message });
+      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При авторизации произошла ошибка!' }));
+      return
+    }
+  }, [data, isSuccess, error])
+  
   
   return (
     <form action="" className={s.form}>
