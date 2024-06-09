@@ -1,9 +1,9 @@
 import React from 'react'
 import s from './Comment.module.scss'
 import moment from 'moment'
-import { CommentsType } from '../Comments'
 import { IUser } from 'entities/User'
 import classNames from 'classnames'
+import { CommentsType } from 'shared/types/comments'
 
 interface CommentProps{
   item: CommentsType
@@ -21,7 +21,7 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment, length, in
     <div onMouseLeave={() => setPopupIsVisible(false)} key={`${item.id}`} className={s.comment}>
       <header className={s.comment__header}>
         <div className={s.comment__authorImg}>
-          <img src={`${process.env.REACT_APP_SERVER_URL}${item.author?.avatar}`} alt="" />
+          <img src={`${process.env.REACT_APP_SERVER_URL}/${item.author?.avatar}`} alt="" />
         </div>
         <div className={s.comment__authorName}>{item.author?.nickname}</div>
         <div className={s.comment__date}>{moment(item?.createdAt).locale('ru').format('LLL')}</div>

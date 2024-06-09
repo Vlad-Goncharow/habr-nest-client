@@ -7,18 +7,13 @@ export interface IHab {
   image: string;
   description: string;
   rating: string;
+  category: string;
   posts: IPost[];
   authors: IUser[];
   usersSubscribers: IUser[];
   usersSubscribersCount: number;
   createdAt: Date;
   updatedAt: Date;
-}
-
-export interface IStatHab {
-  hab: IHab,
-  posts:number,
-  subscribers:number
 }
 
 export interface HabsType extends IHab {

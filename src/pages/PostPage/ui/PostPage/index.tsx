@@ -59,7 +59,7 @@ function PostPage() {
             <div className={s.post}>
               <header className={s.post__header}>
                 <div className={s.post__authorImg}>
-                  <img src={`${process.env.REACT_APP_SERVER_URL}${postData.author.avatar}`} alt="" />
+                  <img src={`${process.env.REACT_APP_SERVER_URL}/${postData.author.avatar}`} alt="" />
                 </div>
                 <Link to={`/user/${postData.author.id}/profile`} className={s.post__authorName}>{postData.author.nickname}</Link>
                 <div className={s.post__date}>{moment(postData.createdAt).locale('ru').format('LLL')}</div>

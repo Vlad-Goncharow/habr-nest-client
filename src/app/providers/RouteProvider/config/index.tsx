@@ -7,10 +7,7 @@ import { PostPage } from 'pages/PostPage';
 import { ProfileSettings } from 'pages/ProfileSettings';
 import Register from 'pages/Register';
 import SearchPage from 'pages/SearchPage';
-import { UserPage } from 'pages/UserPage';
-import Profile from 'pages/UserPage/ui/Profile';
-import Subscribers from 'pages/UserPage/ui/Subscribers';
-import UserPosts from 'pages/UserPage/ui/UserPosts';
+import { CommentsList, Profile, Subscribers, UserPage, UserPosts } from 'pages/UserPage';
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
 
@@ -23,6 +20,7 @@ export const router = createBrowserRouter(
       <Route path="/flows/:category/:type/:page" element={<Main />} />
       <Route path="/:type/:postId" element={<PostPage />} />
       <Route path="/user/" element={<UserPage />}>
+        <Route path=':userId/:type/:page' element={<CommentsList />} />
         <Route path=':userId/:type' element={<Profile />} />
         <Route path=':userId/:type/:subType/:page' element={<UserPosts />} />
         <Route path=':userId/:type/:page' element={<Subscribers />} />

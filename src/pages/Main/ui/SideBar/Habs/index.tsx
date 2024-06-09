@@ -28,7 +28,9 @@ function Habs() {
     })()
   }, [category])
 
-  if(loading) <div></div>
+  if(loading) {
+    return (null)
+  }
 
   return (
     <section className={s.habs}>

@@ -10,16 +10,7 @@ import s from './Comments.module.scss'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
 import { UsersSkeleton } from 'shared/ui/UsersList'
-
-export interface CommentsType {
-  id: number
-  content:string
-  userId:number
-  postId:number
-  author:IUser
-  createdAt:string
-  updatedAt:string
-}
+import { CommentsType } from 'shared/types/comments'
 
 const Comments: React.FC = () => {
   //dispatch
