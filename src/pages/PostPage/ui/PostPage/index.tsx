@@ -12,6 +12,7 @@ import axios from '../../../../axios'
 import Comments from '../Comments'
 import PostAuthor from '../PostAuthor'
 import s from './PostPage.module.scss'
+import { SidebarReadWeekly } from 'widgets/SidebarReadWeekly'
 
 function PostPage() {
   //dispatch
@@ -96,7 +97,7 @@ function PostPage() {
             <Comments />
           </div>
           <SidebarWrapper>
-            <div>sidebar</div>
+            <SidebarReadWeekly category={postData.category} />
           </SidebarWrapper>
         </div>
       }

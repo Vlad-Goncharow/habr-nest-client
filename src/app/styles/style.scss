@@ -9,6 +9,14 @@
 @font-face {
   font-family: "TypeMates";
   font-display: swap;
+  src: url("./fonts/TypeMatesCeraRoundProMedium.woff") format("woff"), url("./fonts/TypeMatesCeraRoundProMedium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "TypeMates";
+  font-display: swap;
   src: url("./fonts/TypeMatesCeraRoundProRegular.woff") format("woff"), url("./fonts/TypeMatesCeraRoundProRegular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;

@@ -16,4 +16,5 @@ export interface IPost {
   userId: number;
   createdAt: Date;
   updatedAt: Date;
+  commentsCount:number
 }

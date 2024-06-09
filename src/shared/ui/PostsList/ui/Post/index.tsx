@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom'
 import { IHab } from 'shared/types/habs'
 import { IPost } from 'shared/types/posts'
 import s from './Post.module.scss'
+import { ReactComponent as Views } from 'shared/images/svg/postViews.svg'
+import { ReactComponent as Comments } from 'shared/images/svg/postComments.svg'
 
 interface PostProps{
   post:IPost
@@ -42,16 +44,14 @@ const Post: React.FC<PostProps> = ({post}) =>{
       <Link to={`/post/${post.id}`} className={s.item__link}>Читать далее</Link>
       <footer className={s.item__footer}>
         <div className={s.item__footerItem}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M1.18 12C2.12 6.88 6.609 3 12 3s9.878 3.88 10.819 9c-.94 5.12-5.427 9-10.82 9-5.391 0-9.877-3.88-10.818-9ZM12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0-2a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
-          </svg>
+          <Views />
           <span>{`${post.views}`}</span>
         </div>
         <div className={s.item__footerItem}>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
             <path d="M20.25 4.5H3.75A1.5 1.5 0 0 0 2.25 6v14.887a1.472 1.472 0 0 0 .872 1.36 1.5 1.5 0 0 0 1.594-.206l2.972-2.503L20.25 19.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5Z" />
           </svg>
-          <span>{`${post.comments ? post.comments.length : 0}`}</span>
+          <span>{post.commentsCount}</span>
         </div>
         {/* <div onClick={checkClickFavorite} className={classNames(s.item__footerItem, {
           [s.item__footerItem_active]: check

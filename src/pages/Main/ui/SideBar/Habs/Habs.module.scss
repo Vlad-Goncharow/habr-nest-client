@@ -1,6 +1,7 @@
 .habs{
   padding: 15px;
   background: var(--romance);
+  margin-bottom: 15px;
 
   &__list{
     list-style: none;
@@ -40,9 +41,10 @@
   }
 
   &__title{
-    font-size: .8125rem;
-    font-weight: 700;
-    margin-bottom: 10px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.3125rem;
+    margin-bottom: 6px;
   }
 
   &__stats{
