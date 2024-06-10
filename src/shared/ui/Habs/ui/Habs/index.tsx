@@ -13,7 +13,7 @@ interface HabsProps {
   navigatePath: string
 }
 
-const Habs: React.FC<HabsProps> = ({ habs, habsLoading, habsTotalCount, setSortOptions, navigatePath }) => {
+export const Habs: React.FC<HabsProps> = ({ habs, habsLoading, habsTotalCount, setSortOptions, navigatePath }) => {
   return (
     <>
       <div className={s.content}>
@@ -25,5 +25,3 @@ const Habs: React.FC<HabsProps> = ({ habs, habsLoading, habsTotalCount, setSortO
     </>
   )
 }
-
-export default Habs

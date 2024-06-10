@@ -9,7 +9,7 @@ interface HabItemProps {
 
 const HabItem:React.FC<HabItemProps> = ({hab}) => {
   return (
-    <div key={hab.id} className={s.hab}>
+    <div className={s.hab}>
       <div className={s.hab__left}>
         <div className={s.hab__image}>
         <img src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`} alt="" />

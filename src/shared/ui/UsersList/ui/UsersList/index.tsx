@@ -28,7 +28,7 @@ const UsersList: React.FC<UsersProps> = ({users,usersLoading,usersTotalCount,nav
           usersLoading ? <Skeleton />  :
             usersTotalCount > 0 ?
                 users.map((el: IUser) =>
-                  <UserItem user={el} />
+                  <UserItem key={el.id} user={el} />
                 )
               :
                 <Empty />

@@ -1,5 +1,6 @@
 import { RouteProvider } from 'app/providers/RouteProvider';
 import { StoreProvider } from 'app/providers/StoreProvider';
+import { QueryProvider } from 'app/providers/QueryProvider';
 import ReactDOM from 'react-dom/client';
 import './app/styles/style.scss';
 
@@ -8,7 +9,9 @@ const root = ReactDOM.createRoot(
 );
 
 root.render(
-  <StoreProvider>
-    <RouteProvider />
-  </StoreProvider>
+  <QueryProvider>
+    <StoreProvider>
+      <RouteProvider />
+    </StoreProvider>
+  </QueryProvider>
 );

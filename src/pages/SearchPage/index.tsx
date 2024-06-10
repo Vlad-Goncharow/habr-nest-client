@@ -5,11 +5,11 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { IPost } from 'shared/types/posts'
-import Habs from 'shared/ui/Habs/ui/Habs'
 import { UsersList } from 'shared/ui/UsersList'
 import axios from '../../axios'
 import s from './SearchPage.module.scss'
 import { PostsList } from 'shared/ui/PostsList'
+import { HabsList } from 'shared/ui/Habs'
 
 const navList = [
   {
@@ -145,7 +145,7 @@ function SearchPage() {
 
         {
           type === 'habs' &&
-          <Habs
+          <HabsList
             habs={habs}
             habsLoading={habsLoading}
             habsTotalCount={habsTotalCount}

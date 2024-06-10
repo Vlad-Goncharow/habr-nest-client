@@ -39,7 +39,7 @@ const SidebarReadWeekly: React.FC<SidebarReadWeeklyProps> = ({category}) => {
       <ul className={s.list}>
         {
           posts.map((post: IPost) =>
-            <li className={s.post}>
+            <li key={post.id} className={s.post}>
               <article>
                 <h2 className={s.post__title}>
                   <Link to={`/${post.type}/${post.id}`}>{post.title}</Link>

@@ -9,3 +9,4 @@ declare module "draftjs-to-html";
 declare module 'react-draft-wysiwyg'
 declare module 'draft-js'
 declare module 'react-datepicker'
+declare module '@tanstack/react-query-devtools'

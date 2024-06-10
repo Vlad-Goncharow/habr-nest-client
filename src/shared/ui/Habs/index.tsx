@@ -1,5 +1,5 @@
-import Habs from "./ui/Habs";
+import {Habs as HabsList} from "./ui/Habs";
 
 export {
-  Habs
+  HabsList
 }
