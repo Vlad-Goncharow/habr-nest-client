@@ -43,7 +43,7 @@ function Habs() {
       <ul className={s.habs__list}>
         {
           habs.map((hab: HabsType) => (
-            <li className={s.hab}>
+            <li key={hab.id} className={s.hab}>
               <div className={s.hab__row}>
                 <div className={s.hab__image}>
                   <img src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`} alt={`Картинка хаба ${hab.title}`} />

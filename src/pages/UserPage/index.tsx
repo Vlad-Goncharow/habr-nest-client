@@ -1,13 +1,7 @@
 import UserPage from './ui/UserPage'
-import CommentsList from './ui/CommentsList'
-import Profile from './ui/Profile'
-import Subscribers from './ui/Subscribers'
-import UserPosts from './ui/UserPosts'
+import UserRoute from './ui/UserRoute'
 
 export {
   UserPage,
-  Profile,
-  Subscribers,
-  UserPosts,
-  CommentsList,
+  UserRoute
 }

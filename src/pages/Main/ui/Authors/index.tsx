@@ -1,32 +1,18 @@
-import { useQuery } from '@tanstack/react-query'
-import { fetchModalActions } from 'entities/FetchModal'
-import { loadAuthorsFN } from 'pages/Main/model'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { UsersList } from 'shared/ui/UsersList'
+import { useAuthors } from '../../model'
 
-function Authors(props:any) {
+interface AuthorsProps{
+  title:string
+}
+
+const Authors: React.FC<AuthorsProps> = ({title}) => {
   //params
   const { type, category, page } = useParams()
 
-  //dispatch
-  const dispatch = useAppDispatch()
-
-
-  //query
-  const { data, isLoading, isError, isSuccess, } = useQuery({
-    queryKey: ['authors', category, type, props.title, page],
-    queryFn: () => loadAuthorsFN(category, props.title, page),
-    select: (data) => data.data,
-  })
-
-  //error handler
-  React.useEffect(() => {
-    if (isError) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
-    }
-  }, [isError])
+  //data
+  const {isLoading, isSuccess, length, authors} = useAuthors({type, category, page,title})
 
   return (
     <>
@@ -34,9 +20,9 @@ function Authors(props:any) {
         isSuccess &&
         <UsersList
           navigatePath={`/flows/${category}/${type}`}
-          users={data.authors}
+          users={authors}
           usersLoading={isLoading}
-          usersTotalCount={data.length}
+          usersTotalCount={length}
         />
       }
     </>

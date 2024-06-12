@@ -24,7 +24,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
         <div className={s.item__authorImg}>
           <img src={`${process.env.REACT_APP_SERVER_URL}/${post.author.avatar}`} alt="" />
         </div>
-        <Link to={`/user/${post.author.id}/profile`} className={s.item__authorName}>{post.author.nickname}</Link>
+        <Link to={`/user/${post.author.id}/profile/1`} className={s.item__authorName}>{post.author.nickname}</Link>
         <div className={s.item__date}>{moment(post.createdAt).locale('ru').format('LLL')}</div>
       </header>
       <Link to={`/${post.type}/${post.id}`} className={s.item__title}>{post.title}</Link>

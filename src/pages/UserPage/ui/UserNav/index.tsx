@@ -5,13 +5,13 @@ import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 import s from './UserNav.module.scss'
 
 type categoriesType = {
-  categoryRu: String,
-  categoryEng: String
+  categoryRu: string,
+  categoryEng: string
 }
 
 type subCategoriesType = {
-  subCategoryRu: String,
-  subCategoryEng: String
+  subCategoryRu: string,
+  subCategoryEng: string
 }
 
 const categories: categoriesType[] = [
@@ -66,7 +66,7 @@ const UserNav = () => {
           categories.map((el: categoriesType) =>
             <Link
               key={`${el.categoryEng}`}
-              to={`/user/${userId}/${el.categoryEng === 'publications' ? `${el.categoryEng}/articles` : el.categoryEng}/${el.categoryEng !== 'profile' ? 1 : ''}`}
+              to={`/user/${userId}/${el.categoryEng === 'publications' ? `${el.categoryEng}/articles` : el.categoryEng}/1`}
               className={classNames(s.navigation__item, {
                 [s.navigation__item_active]: el.categoryEng === type
               })}
@@ -88,6 +88,7 @@ const UserNav = () => {
               {
                 subCategories.map((el:subCategoriesType) => 
                   <Link 
+                    key={`${el.subCategoryEng}`}
                     to={`/user/${userId}/${type}/${el.subCategoryEng}/1`}
                     onClick={() => setPopupIsOpen(false)}
                     className={s.popup__item}

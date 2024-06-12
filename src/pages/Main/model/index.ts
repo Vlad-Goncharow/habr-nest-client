@@ -1,9 +1,9 @@
-import axios from '../../../axios'
+import usePosts from "./hooks/usePosts";
+import useAuthors from "./hooks/useAuthors";
+import useHabs from "./hooks/useHabs";
 
-export const loadHabsFN = async (category:any, title: any, sort:any, order:any, page:any) => {
-  return axios.get(`/habs/search/${category}/${title}?sort=${sort}&order=${order}&page=${page}&pageSize=20`)
-}
-
-export const loadAuthorsFN = async (category: any, title: any, page: any) => {
-  return axios.get(`/users/authors/${category}/${title}/?page=${page}&pageSize=20`)
+export {
+  usePosts,
+  useAuthors,
+  useHabs
 }

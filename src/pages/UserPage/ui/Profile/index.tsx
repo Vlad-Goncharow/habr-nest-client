@@ -47,7 +47,7 @@ const Profile: React.FC = () => {
               <div className={s.item__list}>
                 {
                   habs.map(el =>
-                    <Hab habData={el} />
+                    <Hab key={el.id} habData={el} />
                   )
                 }
               </div>

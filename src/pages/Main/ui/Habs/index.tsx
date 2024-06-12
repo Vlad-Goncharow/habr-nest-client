@@ -1,37 +1,23 @@
-import { useQuery } from '@tanstack/react-query'
-import { fetchModalActions } from 'entities/FetchModal'
-import { loadHabsFN } from 'pages/Main/model'
+import { useHabs } from '../../model'
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { HabsList } from 'shared/ui/Habs'
 
-function Habs(props:any) {
+interface HabsProps{
+  title:string
+}
+
+const Habs: React.FC<HabsProps> = ({title}) =>{
   //params
   const { type, category, page } = useParams()
 
-  //dispatch
-  const dispatch = useAppDispatch()
-
-  
   const [sortOptions, setSortOptions] = React.useState({
     sort: 'subs',
     order: 'asc',
   })
 
-  //query
-  const { data, isLoading, isError, isSuccess, } = useQuery({
-    queryKey: ['habs', category, type, props.title, page, sortOptions.sort, sortOptions.order],
-    queryFn: () => loadHabsFN(category, props.title, sortOptions.sort, sortOptions.order, page),
-    select: (data) => data.data,
-  })
-
-  //error handler
-  React.useEffect(() => {
-    if (isError) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
-    }
-  }, [isError])
+  //data
+  const {isLoading, isSuccess, habs, length} = useHabs({type, category, page, sortOptions,title})
 
   return (
     <>
@@ -39,9 +25,9 @@ function Habs(props:any) {
         isSuccess &&
         <>
           <HabsList
-            habs={data.habs}
+            habs={habs}
             habsLoading={isLoading}
-            habsTotalCount={data.length}
+            habsTotalCount={length}
             setSortOptions={setSortOptions}
             navigatePath={`/flows/${category}/${type}`}
           />
