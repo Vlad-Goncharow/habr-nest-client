@@ -57,11 +57,11 @@ const PostsNavigation: React.FC<PostsNavigationProps> = ({ setAuthorsTitle, setH
   //debounce and change query search title
   React.useEffect(() => {
     if (type === 'habs') {
-      setHabsTitle(habsDebounceInput.length === 0 ? 'all' : habsDebounceInput);
+      setHabsTitle(habsDebounceInput.length === 0 ? ' ' : habsDebounceInput);
     }
 
     if (type === 'authors') {
-      setAuthorsTitle(authorsDebounceInput.length === 0 ? 'all' : authorsDebounceInput);
+      setAuthorsTitle(authorsDebounceInput.length === 0 ? ' ' : authorsDebounceInput);
     }
   }, [type, habsDebounceInput, authorsDebounceInput]);
 
@@ -93,7 +93,7 @@ const PostsNavigation: React.FC<PostsNavigationProps> = ({ setAuthorsTitle, setH
         type === 'habs' || type === 'authors'
           ?
           <div className={s.search}>
-            <form action="" className={s.search__form}>
+            <form action="" onSubmit={(e) => e.preventDefault()} className={s.search__form}>
               <input 
                 type="text" 
                 placeholder='Пойск' 

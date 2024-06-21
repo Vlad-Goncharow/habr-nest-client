@@ -30,6 +30,17 @@ const userSlice = createSlice({
       if (state.user) {
         state.user.habSubscribers = state.user.habSubscribers.filter((el) => el.id !== action.payload.id);
       }
+    },
+    addFavoritePost(state,action){
+      if(state.user){
+        state.user.favoritePosts = [...state.user.favoritePosts, action.payload]
+      }
+    },
+    removeFavoritePost(state, action) {
+      if (state.user) {
+        console.log(action.payload);
+        state.user.favoritePosts = state.user.favoritePosts.filter((el) => el.id !== action.payload.id);
+      }
     }
   },
   extraReducers(builder) {

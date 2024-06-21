@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
 import Sidebar from 'pages/CreatePost/ui/Sidebar'
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { IPost } from 'shared/types/posts'
 import { UsersList } from 'shared/ui/UsersList'
@@ -50,10 +50,10 @@ function SearchPage() {
   const [habsLoading, setHabsLoading] = React.useState(false)
   const [habsTotalCount, setHabsTotalCount] = React.useState<number>(0)
   const [habs, setHabs] = React.useState([])
-  const [sortOptions, setSortOptions] = React.useState({
-    sort: '',
-    order: '',
-  })
+  const [searchParams] = useSearchParams()
+
+  const sort = searchParams.get('sort');
+  const order = searchParams.get('order');
 
   const [users, setUsers] = React.useState([])
   const [loadingUsers, setLoadingUsers] = React.useState(false)
@@ -63,7 +63,7 @@ function SearchPage() {
     try {
       if (value.length > 1 && type === 'habs') {
         setHabsLoading(true)
-        const { data } = await axios.get(`/habs/search/${value}?page=${page}&pageSize=20&sort=${sortOptions.sort}&order=${sortOptions.order}`)
+        const { data } = await axios.get(`/habs/search/all/${value}?page=${page}&pageSize=20&sort=${sort}&order=${order}`)
         setHabsLoading(false)
         setHabs(data.habs)
         setHabsTotalCount(data.length)
@@ -108,7 +108,7 @@ function SearchPage() {
 
   React.useEffect(() => {
     loadHabs()
-  }, [page, sortOptions])
+  }, [page, sort, order])
 
   return (
     <div className={'wrapper'}>
@@ -149,7 +149,6 @@ function SearchPage() {
             habs={habs}
             habsLoading={habsLoading}
             habsTotalCount={habsTotalCount}
-            setSortOptions={setSortOptions}
             navigatePath={`/search/habs/1`}
           />
         }

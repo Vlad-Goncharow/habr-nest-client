@@ -14,7 +14,7 @@ const UserItem: React.FC<UserItemProps> = ({user}) => {
         <div className={s.user__image}>
           <img src={`${process.env.REACT_APP_SERVER_URL}/${user.avatar}`} alt={`Картинка юзера ${user.nickname}`} />
         </div>
-        <Link to={`/user/${user.id}/profile`} className={s.user__nickname}>{user.nickname}</Link>
+        <Link to={`/user/${user.id}/profile/1`} className={s.user__nickname}>{user.nickname}</Link>
       </div>
       <div className={s.stats}>
         <div className={s.stats__item}>

@@ -10,8 +10,8 @@ import Sidebar from '../SideBar/Main'
 function Main() {
   const { type } = useParams()
   
-  const [habsTitle, setHabsTitle] = React.useState('all')
-  const [authorsTitle, setAuthorsTitle] = React.useState('all')
+  const [habsTitle, setHabsTitle] = React.useState(' ')
+  const [authorsTitle, setAuthorsTitle] = React.useState(' ')
   return (
     <div className={'wrapper'}>
       <div className="wrapper__left">

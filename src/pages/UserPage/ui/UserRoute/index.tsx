@@ -4,6 +4,7 @@ import UserPosts from '../UserPosts'
 import Profile from '../Profile'
 import CommentsList from '../CommentsList'
 import Subscribers from '../Subscribers'
+import UserFavorites from '../UserFavorites'
 
 function UserRoute() {
   const {type} = useParams()
@@ -13,6 +14,7 @@ function UserRoute() {
       {
         (type === 'profile' && <Profile /> ) ||
         (type === 'publications' && <UserPosts /> ) ||
+        (type === 'favorites' && <UserFavorites /> ) ||
         (type === 'comments' && <CommentsList />) ||
         ((type === 'subscribers' || type === 'subscriptions') && <Subscribers />)
       }             

@@ -1,22 +1,23 @@
 import { useQuery } from '@tanstack/react-query'
-import { fetchModalActions } from 'entities/FetchModal'
 import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { loadCommentsFN } from '../api'
+import { loadFavoritePostsFN } from '../api'
+import { fetchModalActions } from 'entities/FetchModal'
 
-interface useCommentsProps {
+interface useFavoritesPostsProps{
   userId: string | undefined
+  subType: string | undefined
   type: string | undefined
   page: string | undefined
 }
 
-const useComments = (props: useCommentsProps): any => {
-  const { page, type, userId } = props
+const useFavoritesPosts = (props: useFavoritesPostsProps):any => {
+  const { page, type, subType, userId } = props
   const dispatch = useAppDispatch()
 
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryKey: ['user', userId, type, page],
-    queryFn: () => loadCommentsFN(userId, page),
+    queryKey: ['user', userId, type, subType, page],
+    queryFn: () => loadFavoritePostsFN(userId, subType, page),
     select: (data) => data.data,
   })
 
@@ -27,7 +28,7 @@ const useComments = (props: useCommentsProps): any => {
     }
   }, [isError])
 
-  return isSuccess && { comments: data.comments, length: data.length, isLoading, isSuccess }
+  return isSuccess && { posts: data.posts, length: data.length, isLoading, isSuccess }
 }
 
-export default useComments
+export default useFavoritesPosts

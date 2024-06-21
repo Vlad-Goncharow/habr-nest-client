@@ -15,6 +15,7 @@ export interface IUser {
   habSubscribers: IHab[];
   subscribers: IUser[];
   subscriptions: IUser[];
+  favoritePosts: IPost[];
   roles: UserRolesSchema[]
   posts: IPost[];
   createdAt: Date;

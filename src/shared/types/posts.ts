@@ -17,4 +17,5 @@ export interface IPost {
   createdAt: Date;
   updatedAt: Date;
   commentsCount:number
+  favoritesCount:number
 }

@@ -1,0 +1,22 @@
+.item{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  svg{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+  }
+
+  span{
+    color: #bdcdd6;
+    font-size: 0.8125rem;
+  }
+
+  &_active{
+    path{
+      fill:#79bce1;
+    }
+  }
+}

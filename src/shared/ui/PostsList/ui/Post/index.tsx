@@ -8,6 +8,7 @@ import { IPost } from 'shared/types/posts'
 import s from './Post.module.scss'
 import { ReactComponent as Views } from 'shared/images/svg/postViews.svg'
 import { ReactComponent as Comments } from 'shared/images/svg/postComments.svg'
+import { FavoritePostBtn } from 'features/FavoritePostBtn'
 
 interface PostProps{
   post:IPost
@@ -53,6 +54,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
           </svg>
           <span>{post.commentsCount}</span>
         </div>
+        <FavoritePostBtn postId={post.id} count={post.favoritesCount}/>
         {/* <div onClick={checkClickFavorite} className={classNames(s.item__footerItem, {
           [s.item__footerItem_active]: check
         })}>

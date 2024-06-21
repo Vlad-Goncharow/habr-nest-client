@@ -14,7 +14,7 @@ const HabHeader: React.FC<HabHeaderProps> = ({habData}) => {
       <div className={s.header__top}>
         <div className={s.header__left}>
           <div className={s.header__image}>
-            <img src={`${process.env.REACT_APP_SERVER_URL}${habData?.image}`} alt="" />
+            <img src={`${process.env.REACT_APP_SERVER_URL}/${habData?.image}`} alt="" />
           </div>
           <div className={s.stat}>
             <div className={s.stat__item}>

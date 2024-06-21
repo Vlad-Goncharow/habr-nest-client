@@ -4,21 +4,22 @@ import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { loadHabsFN } from '../lib'
 
-interface usePostsProps {
+interface useHabsProps {
   type: string | undefined
   category: string | undefined
   page: string | undefined
+  sort: any
+  order: any
   title: string | undefined
-  sortOptions: any
 }
 
-const useHabs = (props: usePostsProps): any => {
-  const { page, category, type,sortOptions,title } = props
+const useHabs = (props: useHabsProps): any => {
+  const { page, category, type,title,order,sort } = props
   const dispatch = useAppDispatch()
 
   const { data, isLoading, isError, isSuccess, } = useQuery({
-    queryKey: ['habs', category, type, title, page, sortOptions.sort, sortOptions.order],
-    queryFn: () => loadHabsFN(category, title, sortOptions.sort, sortOptions.order, page),
+    queryKey: ['habs', category, type, title, page, `${sort}`, `${order}`],
+    queryFn: () => loadHabsFN(category, title, `${sort}`, `${order}`, page),
     select: (data) => data.data,
   })
 

@@ -22,8 +22,10 @@
   }
 
   &__item {
+    
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     span {
       text-align: right;
