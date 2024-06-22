@@ -1,7 +1,6 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import Publications from './ui/Publications';
-import Comments from './ui/Comments';
+import FavoriteComments from './ui/FavoriteComments';
 
 function UserFavorites() {
   const { subType } = useParams()
@@ -15,7 +14,7 @@ function UserFavorites() {
 
       {
         subType === 'comments' &&
-        <Comments />
+        <FavoriteComments />
       }
     </>
   )

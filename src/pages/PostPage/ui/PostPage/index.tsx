@@ -61,7 +61,7 @@ function PostPage() {
                 <div className={s.post__authorImg}>
                   <img src={`${process.env.REACT_APP_SERVER_URL}/${postData.author.avatar}`} alt="" />
                 </div>
-                <Link to={`/user/${postData.author.id}/profile`} className={s.post__authorName}>{postData.author.nickname}</Link>
+                <Link to={`/user/${postData.author.id}/profile/1`} className={s.post__authorName}>{postData.author.nickname}</Link>
                 <div className={s.post__date}>{moment(postData.createdAt).locale('ru').format('LLL')}</div>
               </header>
               <h2 className={s.post__title}>{postData.title}</h2>
@@ -86,7 +86,7 @@ function PostPage() {
                   {
                     postData.habs.map((el: IHab) =>
                       <li key={`${el}`}>
-                        <Link to={`/hab/${el.id}/posts/1`}>{el.title}</Link>
+                        <Link to={`/hab/${el.id}/articles/1`}>{el.title}</Link>
                       </li>
                     )
                   }

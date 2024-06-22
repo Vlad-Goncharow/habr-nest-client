@@ -10,7 +10,7 @@ import s from './Comments.module.scss'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
 import { UsersSkeleton } from 'shared/ui/UsersList'
-import { CommentsType } from 'shared/types/comments'
+import { IComment } from 'shared/types/comments'
 
 const Comments: React.FC = () => {
   //dispatch
@@ -26,7 +26,7 @@ const Comments: React.FC = () => {
   const [loading, setLoding] = React.useState<boolean>(true)
 
   //comments
-  const [comments, setComments] = React.useState<CommentsType[]>([])
+  const [comments, setComments] = React.useState<IComment[]>([])
 
   //comments row ref
   const commentsRef = React.useRef<HTMLDivElement>(null)
@@ -44,7 +44,7 @@ const Comments: React.FC = () => {
         })
 
         if (data) {
-          setComments((prev: CommentsType[]) => [...prev, data])
+          setComments((prev: IComment[]) => [...prev, data])
           setInputValue('')
         }
       } catch(e){
@@ -81,7 +81,7 @@ const Comments: React.FC = () => {
   const deleteComment = async (commentId:number) => {
     const { data } = await axios.post(`/comments/delete/${commentId}`)
     if(data.success === true){
-      setComments((prev:CommentsType[]) => {
+      setComments((prev:IComment[]) => {
         return prev.filter((el) => el.id !== commentId)
       })
     }
@@ -98,7 +98,7 @@ const Comments: React.FC = () => {
             <div ref={commentsRef} className={s.row}>
               {
                 comments.length > 0 ?
-                  comments.map((item: CommentsType, index) =>
+                  comments.map((item: IComment, index) =>
                     <Comment 
                       key={`${item.id}`} 
                       deleteComment={deleteComment} 

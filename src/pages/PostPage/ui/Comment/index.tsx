@@ -3,10 +3,11 @@ import s from './Comment.module.scss'
 import moment from 'moment'
 import { IUser } from 'entities/User'
 import classNames from 'classnames'
-import { CommentsType } from 'shared/types/comments'
+import { IComment } from 'shared/types/comments'
+import { FavoriteCommentBtn } from 'features/FavoriteCommentBtn'
 
 interface CommentProps{
-  item: CommentsType
+  item: IComment
   deleteComment: (commentId:number) => void
   user:IUser | null
   length:number
@@ -27,7 +28,7 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment, length, in
         <div className={s.comment__date}>{moment(item?.createdAt).locale('ru').format('LLL')}</div>
       </header>
       <main className={s.comment__text}>{item.content}</main>
-      
+      <FavoriteCommentBtn commentId={item.id} />
       {
         user?.id === item.author.id && 
         <div className={s.menu}>

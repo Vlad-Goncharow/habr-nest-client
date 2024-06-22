@@ -1,7 +1,7 @@
 import { IUser } from "entities/User"
 import { IPost } from "./posts"
 
-export interface CommentsType {
+export interface IComment {
   id: number
   content: string
   userId: number
@@ -10,7 +10,7 @@ export interface CommentsType {
   createdAt: string
   updatedAt: string
 }
-export interface CommentsTypeEx extends CommentsType {
+export interface ICommentEx extends IComment {
   post: IPost
   author: IUser
 }

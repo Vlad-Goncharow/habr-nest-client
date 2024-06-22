@@ -40,6 +40,16 @@ const userSlice = createSlice({
       if (state.user) {
         state.user.favoritePosts = state.user.favoritePosts.filter((el) => el.id !== action.payload.id);
       }
+    },
+    addFavoriteComment(state, action) {
+      if (state.user) {
+        state.user.favoriteComments = [...state.user.favoriteComments, action.payload]
+      }
+    },
+    removeFavoriteComment(state, action) {
+      if (state.user) {
+        state.user.favoriteComments = state.user.favoriteComments.filter((el) => el.id !== action.payload.id);
+      }
     }
   },
   extraReducers(builder) {

@@ -25,7 +25,7 @@ const PostAuthor: React.FC<PostAuthorProps> = ({author}) => {
         </div>
         <SubscribeUser userId={author.id} />
       </div>
-      <Link to={`/user/${author.id}/posts/`} className={s.author__name}>{author?.nickname}</Link>
+      <Link to={`/user/${author.id}/profile/1`} className={s.author__name}>{author?.nickname}</Link>
     </div>
   )
 }

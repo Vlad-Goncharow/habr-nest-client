@@ -1,3 +1,4 @@
+import { IComment } from "shared/types/comments";
 import { IHab } from "shared/types/habs";
 import { IPost } from "shared/types/posts";
 
@@ -16,6 +17,7 @@ export interface IUser {
   subscribers: IUser[];
   subscriptions: IUser[];
   favoritePosts: IPost[];
+  favoriteComments: IComment[];
   roles: UserRolesSchema[]
   posts: IPost[];
   createdAt: Date;
