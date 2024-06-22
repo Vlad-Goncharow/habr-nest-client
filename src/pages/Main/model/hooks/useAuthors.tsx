@@ -9,15 +9,17 @@ interface usePostsProps {
   category: string | undefined
   page: string | undefined
   title: string | undefined
+  sort: string | null
+  order: string | null
 }
 
 const useAuthors = (props: usePostsProps): any => {
-  const { page, category, type, title } = props
+  const { page, category, type, title,order,sort } = props
   const dispatch = useAppDispatch()
 
   const { data, isLoading, isError, isSuccess, } = useQuery({
-    queryKey: ['authors', category, type, title, page],
-    queryFn: () => loadAuthorsFN(category, title, page),
+    queryKey: ['authors', category, type, sort, order, title, page],
+    queryFn: () => loadAuthorsFN(category, title,sort, order, page),
     select: (data) => data.data,
   })
 

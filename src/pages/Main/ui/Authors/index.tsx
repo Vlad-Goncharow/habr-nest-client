@@ -1,5 +1,5 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 import { UsersList } from 'shared/ui/UsersList'
 import { useAuthors } from '../../model'
 
@@ -11,8 +11,13 @@ const Authors: React.FC<AuthorsProps> = ({title}) => {
   //params
   const { type, category, page } = useParams()
 
+  const [searchParams] = useSearchParams()
+
+  const sort = searchParams.get('sort');
+  const order = searchParams.get('order');
+
   //data
-  const {isLoading, isSuccess, length, authors} = useAuthors({type, category, page,title})
+  const {isLoading, isSuccess, length, authors} = useAuthors({type, category, sort, order, page,title})
 
   return (
     <>

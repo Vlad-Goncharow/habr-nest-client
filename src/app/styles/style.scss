@@ -51,11 +51,13 @@ body{
 }
 
 .page{
-  min-height: 100vh;
-  margin-top: 15px;
+  @media(min-width:768px) {
+    min-height: calc(100vh);
+  }
 
-  @media(max-width: 768px) {
-    margin-top: 0;
+  @media(min-width:1024px) {
+    min-height: calc(100vh - 120px);
+    margin-top: 15px;
   }
 }
 
@@ -91,10 +93,6 @@ body{
     letter-spacing: .0625rem;
     font-size: 16px;
     color:var(--rolling-stone);
-  }
-
-  @media(max-width:1024px) {
-    display: none;
   }
 }
 

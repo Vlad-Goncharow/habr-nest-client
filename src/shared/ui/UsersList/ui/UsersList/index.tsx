@@ -5,6 +5,7 @@ import Pagination from 'widgets/Pagination'
 import Skeleton from '../UsersSkeleton'
 import UserItem from '../UserItem'
 import s from './UsersList.module.scss'
+import UsersHeader from '../UsersHeader'
 
 interface UsersProps {
   users: IUser[] | []
@@ -17,13 +18,7 @@ const UsersList: React.FC<UsersProps> = ({users,usersLoading,usersTotalCount,nav
   return (
     <div className={s.wrapper}>
       <div className={s.content}>
-        <div className={s.top}>
-          <div className={s.name}>Имя</div>
-          <div className={s.stats}>
-            <div className={s.stats__item}>Рейтинг</div>
-            <div className={s.stats__item}>Карма</div>
-          </div>
-        </div>
+        <UsersHeader />
         {
           usersLoading ? <Skeleton />  :
             usersTotalCount > 0 ?

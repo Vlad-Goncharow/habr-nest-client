@@ -38,7 +38,6 @@ const userSlice = createSlice({
     },
     removeFavoritePost(state, action) {
       if (state.user) {
-        console.log(action.payload);
         state.user.favoritePosts = state.user.favoritePosts.filter((el) => el.id !== action.payload.id);
       }
     }

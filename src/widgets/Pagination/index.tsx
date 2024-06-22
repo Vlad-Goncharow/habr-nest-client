@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import Paginations from "react-js-pagination";
 import s from './Pagination.module.scss'
 
@@ -13,8 +13,13 @@ const Pagination: React.FC<PaginationProps> = ({ navigatePath, length, pageSize 
   const { page } = useParams()
   const navigate = useNavigate()
 
+  const [searchParams] = useSearchParams()
+
+  const sort = searchParams.get('sort');
+  const order = searchParams.get('order');
+
   const handlePageClick = (pageNumber: number) => {
-    navigate(`${navigatePath}/${pageNumber}`)
+    navigate(`${navigatePath}/${pageNumber}/?sort=${sort}&order=${order}`)
   };
   
   return (

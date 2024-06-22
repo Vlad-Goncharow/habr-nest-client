@@ -2,24 +2,23 @@ import { useQuery } from '@tanstack/react-query'
 import { fetchModalActions } from 'entities/FetchModal'
 import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { loadHabsFN } from '../lib'
+import { loadAuthorsFN } from '../lib'
 
-interface useHabsProps {
-  type: string | undefined
-  category: string | undefined
+interface usePostsProps {
+  habId: string | undefined
   page: string | undefined
+  type: string | undefined
   sort: string | null
   order: string | null
-  title: string | undefined
 }
 
-const useHabs = (props: useHabsProps): any => {
-  const { page, category, type,title,order,sort } = props
+const useAuthors = (props: usePostsProps): any => {
+  const { page, type, order, sort, habId } = props
   const dispatch = useAppDispatch()
 
   const { data, isLoading, isError, isSuccess, } = useQuery({
-    queryKey: ['habs', category, type, title, page, `${sort}`, `${order}`],
-    queryFn: () => loadHabsFN(category, title, `${sort}`, `${order}`, page),
+    queryKey: ['hab', habId, type, sort, order, page],
+    queryFn: () => loadAuthorsFN(habId, sort, order, page),
     select: (data) => data.data,
   })
 
@@ -30,7 +29,7 @@ const useHabs = (props: useHabsProps): any => {
     }
   }, [isError])
 
-  return isSuccess && { habs: data.habs, length: data.length, isLoading, isSuccess }
+  return isSuccess && { users: data.users, length: data.length, isLoading, isSuccess }
 }
 
-export default useHabs
+export default useAuthors

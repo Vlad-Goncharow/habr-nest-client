@@ -25,6 +25,10 @@
     color: var(--rolling-stone);
     font-weight: 700;
 
+    &:last-child{
+      margin-right: 0;
+    }
+
     &_active {
       border-bottom: 2px solid #4d80aa;
       color: #4d80aa;

@@ -2,11 +2,13 @@ import { fetchAuth } from 'entities/User';
 import React from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import useSaveUrl from 'shared/hooks/useSaveUrl';
 import PageWrapper from 'shared/ui/PageWrapper';
 import FetchModal from 'widgets/FetchModal';
 import Header from 'widgets/Header/ui/Header/Header';
 
 function Root() {
+  useSaveUrl()
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -21,7 +23,13 @@ function Root() {
 
   React.useEffect(() => {
     auth()
-    navigate('/flows/all/articles/1', { replace: true });
+    
+    const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');
+    if (lastVisitedUrl) {
+      navigate(lastVisitedUrl, { replace: true });
+    } else {
+      navigate('/flows/all/all/articles/1', { replace: true })
+    }
   }, [navigate])
 
   return (

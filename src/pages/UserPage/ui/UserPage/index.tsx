@@ -1,14 +1,14 @@
+import { fetchModalActions } from 'entities/FetchModal'
 import { IUser } from 'entities/User'
 import React from 'react'
 import { Outlet, useParams } from 'react-router-dom'
-import UseWindowWidth from 'shared/hooks/UseWindowWidth'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import SidebarWrapper from 'shared/ui/SidebarWrapper'
 import axios from '../../../../axios'
 import PageSkeleton from '../PageSkeleton'
+import ProfileInfo from '../ProfileInfo'
 import SideBar from '../SideBar'
 import UserHeader from '../UserHeader'
-import s from './UserPage.module.scss'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { fetchModalActions } from 'entities/FetchModal'
 
 function UserPage() {
   //dispatch
@@ -35,7 +35,6 @@ function UserPage() {
     })()
   },[userId])
 
-  const isMobile = UseWindowWidth(1024)
   
   return (
     <div className={'wrapper'}>
@@ -48,12 +47,11 @@ function UserPage() {
           <>
             <div className={'wrapper__left'}>
               <UserHeader userData={userData} />
-              {/* if opened user profile and window < 1024 */}
-              {isMobile && type === 'profile' && <SideBar userData={userData} />}
-
+              {type === 'profile' && <ProfileInfo userData={userData} />}
+              
               <Outlet />
             </div>
-            {!isMobile && <SideBar userData={userData} />}
+            <SidebarWrapper><SideBar userData={userData} /></SidebarWrapper>
           </>
       }
     </div>
