@@ -1,14 +1,16 @@
 import { fetchAuth } from 'entities/User';
 import React from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, ScrollRestoration, useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import useSaveUrl from 'shared/hooks/useSaveUrl';
+import useScrollPosition from 'shared/hooks/useScrollPosition';
 import PageWrapper from 'shared/ui/PageWrapper';
 import FetchModal from 'widgets/FetchModal';
 import Header from 'widgets/Header/ui/Header/Header';
 
 function Root() {
   useSaveUrl()
+  useScrollPosition()
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -32,14 +34,35 @@ function Root() {
     }
   }, [navigate])
 
+  //i dont know how to do it if user have low internet connection
+  const appRef = React.useRef<HTMLDivElement | null>(null)
+  React.useEffect(() => {
+    let timer: any;
+    let scrollData:string | null = localStorage.getItem('scrollPosition')
+
+    if (scrollData && appRef.current){
+      timer = setTimeout(() => {
+        if (appRef.current && window){
+          window.scrollTo(0, Number(scrollData));
+        }
+      }, 100)
+    }
+    
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [])
+
   return (
-    <div className="App">
+    <div ref={appRef} className="App">
       <Header />
       <FetchModal />
       
       <PageWrapper>
         <Outlet />
       </PageWrapper>
+
+      <ScrollRestoration />
     </div>
   );
 }
