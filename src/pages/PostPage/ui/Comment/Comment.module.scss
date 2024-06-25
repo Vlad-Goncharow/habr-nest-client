@@ -45,10 +45,24 @@
   }
 
   &__text {
-    color: var(--mine-shaft);
     font-size: .9375rem;
     line-height: 1.375rem;
+    margin-top: 10px;
+    overflow-x: auto;
+    overflow-y: hidden;
     word-break: break-word;
+    
+    p{
+      color: var(--mine-shaft);
+      font-size: .9375rem;
+      line-height: 1.375rem;
+      word-break: break-word;
+    }
+  }
+
+  &__footer{
+    display: flex;
+    align-items: center;
   }
 
   &:hover {
@@ -65,9 +79,8 @@
 
 .menu {
   position: absolute;
-  top: 50%;
+  top: 0;
   right: 0;
-  transform: translateY(-50%);
   display: none;
 
   &__popup {
@@ -79,18 +92,6 @@
     box-shadow: 0 0 8px rgba(var(--asphalt-rgb, 0, 0, 0), 0.2);
     border-radius: 3px;
     background: var(--romance);
-
-    &_last {
-      top: auto;
-      bottom: 100%;
-    }
-
-    &_first {
-      top: 50%;
-      transform: translateY(-50%);
-      bottom: auto;
-      right: 40px;
-    }
   }
 
   &__btn {

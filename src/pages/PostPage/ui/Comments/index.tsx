@@ -11,6 +11,7 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
 import { UsersSkeleton } from 'shared/ui/UsersList'
 import { IComment } from 'shared/types/comments'
+import CommentEditor from '../CommentEditor'
 
 const Comments: React.FC = () => {
   //dispatch
@@ -79,7 +80,7 @@ const Comments: React.FC = () => {
 
 
   const deleteComment = async (commentId:number) => {
-    const { data } = await axios.post(`/comments/delete/${commentId}`)
+    const { data } = await axios.delete(`/comments/delete/${commentId}`)
     if(data.success === true){
       setComments((prev:IComment[]) => {
         return prev.filter((el) => el.id !== commentId)
@@ -90,7 +91,10 @@ const Comments: React.FC = () => {
   return (
     <div className={s.wrapper}>
       <div className={s.comments}>
-        <h2 className={s.comments__title}>Коментарии</h2>
+        <h2 className={s.comments__title}>
+          Коментарии
+          <span>{comments.length}</span>
+        </h2>
         {
           loading ?
             <UsersSkeleton />
@@ -98,14 +102,12 @@ const Comments: React.FC = () => {
             <div ref={commentsRef} className={s.row}>
               {
                 comments.length > 0 ?
-                  comments.map((item: IComment, index) =>
+                  comments.map((item: IComment) =>
                     <Comment 
                       key={`${item.id}`} 
                       deleteComment={deleteComment} 
                       item={item} 
                       user={user} 
-                      length={comments.length}
-                      index={index}
                     />
                   )
                   : <Empty />
@@ -114,18 +116,7 @@ const Comments: React.FC = () => {
         }
         {
           user !== null &&
-          <form onSubmit={clickSubmit} action="" className={s.form}>
-            <h3 className={s.form__title}>Ваш Коментарий</h3>
-            <textarea value={inputValue} onChange={(e) => setInputValue(e.target.value)} className={s.form__input} />
-            <div className={s.form__bottom}>
-              <div className={s.buttons}>
-                <button type='submit' className={classNames(s.buttons__btn, {
-                  [s.buttons__btn_disable]: inputValue.length < 5,
-                  [s.buttons__btn_active]: inputValue.length >= 5
-                })}>Отправить</button>
-              </div>
-            </div>
-          </form>
+          <CommentEditor setComments={setComments} />
         }
       </div>
       {

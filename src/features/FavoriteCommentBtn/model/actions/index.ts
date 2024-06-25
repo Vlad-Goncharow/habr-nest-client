@@ -23,7 +23,7 @@ export const removeFavoriteComment = createAsyncThunk(
   'user/removeFavoriteComment',
   async (commentId: number, { dispatch }) => {
     try {
-      const { data } = await axios.post(`/users/favorites/comment/delete/${commentId}`)
+      const { data } = await axios.delete(`/users/favorites/comment/delete/${commentId}`)
       if (data.success) {
         dispatch(userActions.removeFavoriteComment({ id: commentId }));
         return true;

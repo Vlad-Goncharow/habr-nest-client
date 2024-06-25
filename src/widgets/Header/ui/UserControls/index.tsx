@@ -27,7 +27,7 @@ const UserControls: React.FC<UserControlsProps> = ({user}) => {
           <Link to={`/user/${user?.id}/comments/1`}>Коментарии</Link>
         </li>
         <li>
-          <Link to={`/user/${user?.id}/favorites/1`}>Закладки</Link>
+          <Link to={`/user/${user?.id}/favorites/articles/1`}>Закладки</Link>
         </li>
         <li>
           <Link to='/hab/create'>Создать Хаб</Link>

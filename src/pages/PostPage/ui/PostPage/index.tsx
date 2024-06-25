@@ -85,7 +85,7 @@ function PostPage() {
                 <ul>
                   {
                     postData.habs.map((el: IHab) =>
-                      <li key={`${el}`}>
+                      <li key={`${el.id}`}>
                         <Link to={`/hab/${el.id}/articles/1`}>{el.title}</Link>
                       </li>
                     )

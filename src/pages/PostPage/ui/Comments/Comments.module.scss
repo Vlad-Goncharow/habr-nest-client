@@ -12,6 +12,11 @@
     font-weight: 700;
     margin-bottom: 26px;
     padding: 16px 20px 0 16px;
+
+    span {
+      margin-left: 5px;
+      color: var(--horizon)
+    }
   }
 }
 
@@ -38,85 +43,5 @@
   a {
     color: #487284;
     font-weight: 700;
-  }
-}
-
-
-.form {
-  background-color: var(--desert-storm);
-  padding: 18px 16px 16px;
-  position: relative;
-  border-top: 1px solid rgba(146, 156, 165, .4);
-
-  &__title {
-    color: var(--mine-shaft);
-    font-size: .8125rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 18px;
-  }
-
-  &__input {
-    width: 100%;
-    background: var(--romance);
-    border: 1px solid #e0e0e0;
-    box-sizing: border-box;
-    color: #000;
-    font-size: .875rem;
-    height: 78px;
-    line-height: 1.6;
-    margin: 0;
-    min-height: 52px;
-    overflow: auto;
-    padding: 10px 10px 0;
-    position: relative;
-    resize: vertical;
-    vertical-align: top;
-    width: 100%;
-  }
-
-  &__bottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 12px;
-  }
-
-  &__checkbox {
-    input {
-      margin-right: 12px;
-    }
-
-    label {
-      cursor: pointer;
-    }
-  }
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-
-  &__btn {
-    border: 1px solid;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: .75rem;
-    line-height: 2rem;
-    height: 32px;
-    padding: 0 12px;
-    background-color: transparent;
-
-    &_active {
-      background-color: var(--horizon);
-      border-color: var(--horizon);
-      color: var(--romance);
-    }
-
-    &_disable {
-      border-color: rgba(var(--gull-gray-rgb), .4);
-      color: var(--rolling-stone);
-      cursor: not-allowed;
-    }
   }
 }

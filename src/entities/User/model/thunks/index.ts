@@ -53,7 +53,7 @@ export const fetchLogout = createAsyncThunk('auth/fetchLogout',
 export const fetchUpdateUser = createAsyncThunk('user/fetchUpdateUser',
   async (params: any, { rejectWithValue }) => {
     try {
-      const { data } = await axios.put(`/auth/profile-update`, params)
+      const { data } = await axios.patch(`/auth/profile-update`, params)
       return data
     } catch (err: any) {
       if (!err.response) {

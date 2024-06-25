@@ -2,6 +2,11 @@
   flex: 1;
   background: var(--romance);
   padding: 15px;
+  display: none;
+
+  @media(max-width: 1024px){
+    display: block;
+  }
 }
 
 .title {

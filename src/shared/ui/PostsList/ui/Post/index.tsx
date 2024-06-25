@@ -26,7 +26,7 @@ const Post: React.FC<PostProps> = ({post}) =>{
           <img src={`${process.env.REACT_APP_SERVER_URL}/${post.author.avatar}`} alt="" />
         </div>
         <Link to={`/user/${post.author.id}/profile/1`} className={s.item__authorName}>{post.author.nickname}</Link>
-        <div className={s.item__date}>{moment(post.createdAt).locale('ru').format('LLL')}</div>
+        <time className={s.item__date}>{moment(post.createdAt).locale('ru').format('LLL')}</time>
       </header>
       <Link to={`/${post.type}/${post.id}`} className={s.item__title}>{post.title}</Link>
       <div className={s.item__habs}>
@@ -49,20 +49,12 @@ const Post: React.FC<PostProps> = ({post}) =>{
           <span>{`${post.views}`}</span>
         </div>
         <div className={s.item__footerItem}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M20.25 4.5H3.75A1.5 1.5 0 0 0 2.25 6v14.887a1.472 1.472 0 0 0 .872 1.36 1.5 1.5 0 0 0 1.594-.206l2.972-2.503L20.25 19.5a1.5 1.5 0 0 0 1.5-1.5V6a1.5 1.5 0 0 0-1.5-1.5Z" />
-          </svg>
+          <Comments />
           <span>{post.commentsCount}</span>
         </div>
-        <FavoritePostBtn postId={post.id} count={post.favoritesCount}/>
-        {/* <div onClick={checkClickFavorite} className={classNames(s.item__footerItem, {
-          [s.item__footerItem_active]: check
-        })}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.25 3H6.75a1.5 1.5 0 0 0-1.5 1.5V21a.76.76 0 0 0 .384.656.712.712 0 0 0 .366.094.74.74 0 0 0 .394-.113L12 18.131l5.597 3.506a.779.779 0 0 0 .769.02.76.76 0 0 0 .384-.657V4.5a1.5 1.5 0 0 0-1.5-1.5Z" />
-          </svg>
-          <span>{`${Number(post.favorites)}`}</span>
-        </div> */}
+        <div className={s.item__footerItem}>
+          <FavoritePostBtn postId={post.id} count={post.favoritesCount} />
+        </div>
       </footer>
     </article>
   )

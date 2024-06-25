@@ -25,10 +25,10 @@ function Root() {
     auth()
     
     const lastVisitedUrl = localStorage.getItem('lastVisitedUrl');
-    if (lastVisitedUrl) {
+    if (lastVisitedUrl && lastVisitedUrl !== '/') {
       navigate(lastVisitedUrl, { replace: true });
     } else {
-      navigate('/flows/all/all/articles/1', { replace: true })
+      navigate('/flows/all/articles/1', { replace: true })
     }
   }, [navigate])
 

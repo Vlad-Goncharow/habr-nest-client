@@ -1,34 +1,60 @@
-import React from 'react'
-import s from './Comment.module.scss'
-import moment from 'moment'
+import { Editor, EditorState, convertFromRaw } from 'draft-js'
 import { IUser } from 'entities/User'
-import classNames from 'classnames'
-import { IComment } from 'shared/types/comments'
 import { FavoriteCommentBtn } from 'features/FavoriteCommentBtn'
+import moment from 'moment'
+import React from 'react'
+import { IComment } from 'shared/types/comments'
+import s from './Comment.module.scss'
+import { Link, useLocation, useParams } from 'react-router-dom'
 
 interface CommentProps{
   item: IComment
   deleteComment: (commentId:number) => void
   user:IUser | null
-  length:number
-  index:number
 }
 
-const Comment: React.FC<CommentProps> = ({ item, user, deleteComment, length, index }) => {
+const Comment: React.FC<CommentProps> = ({ item, user, deleteComment}) => {
   //popup menu| delete button
   const [popupIsVisible, setPopupIsVisible] = React.useState(false)
   
+  //scroll to comment
+  const commentRef = React.useRef<HTMLDivElement>(null);
+  const location = useLocation()
+
+  React.useEffect(() => {
+    const hash = location.hash.substring(1);
+    let timer:NodeJS.Timer;
+
+    if (hash === `comment_${item.id}`) {
+      timer = setTimeout(() => {
+        commentRef.current?.scrollIntoView({ behavior: 'smooth' });
+      }, 20);
+    }
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [item.id, location]);
+
+  //comment content
+  const contentStateFromJSON = convertFromRaw(JSON.parse(item.content));
+  const restoredEditorState = EditorState.createWithContent(contentStateFromJSON);
+
   return (
-    <div onMouseLeave={() => setPopupIsVisible(false)} key={`${item.id}`} className={s.comment}>
-      <header className={s.comment__header}>
+    <div id={`comment_${item.id}`} ref={commentRef} className={s.comment}>
+      <Link to={`/user/${item.author.id}/profile/1`} className={s.comment__header}>
         <div className={s.comment__authorImg}>
           <img src={`${process.env.REACT_APP_SERVER_URL}/${item.author?.avatar}`} alt="" />
         </div>
         <div className={s.comment__authorName}>{item.author?.nickname}</div>
         <div className={s.comment__date}>{moment(item?.createdAt).locale('ru').format('LLL')}</div>
-      </header>
-      <main className={s.comment__text}>{item.content}</main>
-      <FavoriteCommentBtn commentId={item.id} />
+      </Link>
+      <div className={s.comment__text}>
+        <Editor editorState={restoredEditorState} readOnly />
+      </div>
+      <div className={s.comment__footer}>
+        <FavoriteCommentBtn commentId={item.id} />
+      </div>
       {
         user?.id === item.author.id && 
         <div className={s.menu}>
@@ -45,12 +71,9 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment, length, in
           </div>
           {
             popupIsVisible &&
-              <div className={classNames(s.menu__popup, {
-                [s.menu__popup_last]: length === index + 1,
-                [s.menu__popup_first]: length === 1
-              })}>
-              <div className={s.menu__btn} onClick={() => deleteComment(item.id)}>Удалить</div>
-            </div>
+              <div className={s.menu__popup}>
+                <div className={s.menu__btn} onClick={() => deleteComment(item.id)}>Удалить</div>
+              </div>
           }
         </div>
       }

@@ -18,7 +18,7 @@ export const router = createBrowserRouter(
       <Route path="/register" element={<Register />} />
       <Route path="/profile-settings" element={<ProfileSettings />} />
       <Route path="/flows/:category/:type/:page" element={<Main />} />
-      <Route path="/:type/:postId" element={<PostPage />} />
+      <Route path="/:type/:postId/comments?/" element={<PostPage />} />
       <Route path="/user/" element={<UserPage />}>
         <Route path=':userId/:type/:subType?/:page' element={<UserRoute />} />
       </Route>
