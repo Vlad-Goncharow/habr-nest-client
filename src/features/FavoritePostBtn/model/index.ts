@@ -1,5 +1,2 @@
-import useFavorite from "./hooks/useFavorite";
-
-export {
-  useFavorite
-}
+export { selectIsSubscribed } from "./selectors";
+export { addFavoritePost,removeFavoritePost } from "./actions";

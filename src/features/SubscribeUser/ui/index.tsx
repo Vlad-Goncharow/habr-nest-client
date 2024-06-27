@@ -1,11 +1,9 @@
 import classNames from 'classnames'
 import { getUserData } from 'entities/User'
-import { useParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
-import { subscribeUser, unsubscribeUser } from '../model/actions'
-import { selectIsSubscribed } from '../model/selectors'
 import s from './SubscribeUser.module.scss'
+import { selectIsSubscribed, subscribeUser, unsubscribeUser } from '../model'
 
 interface SubscribeUserProps{
   userId:number

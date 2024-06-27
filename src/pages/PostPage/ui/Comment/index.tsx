@@ -1,19 +1,23 @@
 import { Editor, EditorState, convertFromRaw } from 'draft-js'
-import { IUser } from 'entities/User'
+import { IUser, checkRolesAdminModerator } from 'entities/User'
 import { FavoriteCommentBtn } from 'features/FavoriteCommentBtn'
 import moment from 'moment'
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { useAppSelector } from 'shared/hooks/useAppSelector'
 import { IComment } from 'shared/types/comments'
 import s from './Comment.module.scss'
-import { Link, useLocation, useParams } from 'react-router-dom'
 
 interface CommentProps{
   item: IComment
-  deleteComment: (commentId:number) => void
+  deleteComment: (commentId: number) => void
   user:IUser | null
 }
 
 const Comment: React.FC<CommentProps> = ({ item, user, deleteComment}) => {
+  //is user have admin or moderator role
+  const checkUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
+  
   //popup menu| delete button
   const [popupIsVisible, setPopupIsVisible] = React.useState(false)
   
@@ -56,7 +60,8 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment}) => {
         <FavoriteCommentBtn commentId={item.id} />
       </div>
       {
-        user?.id === item.author.id && 
+        ((user?.id === item.author.id) ||
+        (checkUserAdminOrModerator)) &&
         <div className={s.menu}>
           <div onClick={() => setPopupIsVisible(prev => !prev)} className={s.icon}>
             <svg

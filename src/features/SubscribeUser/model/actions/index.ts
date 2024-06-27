@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from '../../../axios';
+import axios from '../../../../axios';
 import { userActions } from 'entities/User';
 import { fetchModalActions } from 'entities/FetchModal';
 

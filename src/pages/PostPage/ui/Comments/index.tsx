@@ -1,17 +1,16 @@
-import classNames from 'classnames'
-import { IUser, getUserData } from 'entities/User'
+import { fetchModalActions } from 'entities/FetchModal'
+import { getUserData } from 'entities/User'
 import React from 'react'
 import { Link, useParams } from 'react-router-dom'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
+import { IComment } from 'shared/types/comments'
 import Empty from 'shared/ui/Empty'
+import { UsersSkeleton } from 'shared/ui/UsersList'
 import axios from '../../../../axios'
 import Comment from '../Comment'
-import s from './Comments.module.scss'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import { fetchModalActions } from 'entities/FetchModal'
-import { UsersSkeleton } from 'shared/ui/UsersList'
-import { IComment } from 'shared/types/comments'
 import CommentEditor from '../CommentEditor'
+import s from './Comments.module.scss'
 
 const Comments: React.FC = () => {
   //dispatch
@@ -31,28 +30,6 @@ const Comments: React.FC = () => {
 
   //comments row ref
   const commentsRef = React.useRef<HTMLDivElement>(null)
-
-  //input values
-  const [inputValue, setInputValue] = React.useState('')
-
-  //add new comment
-  const clickSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    if (inputValue.length > 5) {
-      try{
-        const { data } = await axios.post(`/comments/create/${postId}`, {
-          content: inputValue
-        })
-
-        if (data) {
-          setComments((prev: IComment[]) => [...prev, data])
-          setInputValue('')
-        }
-      } catch(e){
-        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При отправке комментария произошла ошибка!' }))
-      }
-    }
-  }
 
   //load comments
   React.useEffect(() => {

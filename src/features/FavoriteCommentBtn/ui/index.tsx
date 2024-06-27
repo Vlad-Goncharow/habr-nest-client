@@ -3,9 +3,9 @@ import { ReactComponent as FavoriteSvg } from 'shared/images/svg/favorite.svg'
 import s from './FavoriteCommentBtn.module.scss'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch';
 import { useAppSelector } from 'shared/hooks/useAppSelector';
-import { selectIsAuth, selectIsSubscribed } from '../model/selectors';
-import { addFavoriteComment, removeFavoriteComment } from '../model/actions';
 import classNames from 'classnames';
+import { selectIsAuth } from 'entities/User';
+import { addFavoriteComment, removeFavoriteComment, selectIsSubscribed } from '../model';
 
 interface FavoriteCommentBtnProps{
   commentId:number

@@ -3,9 +3,8 @@ import { getUserData } from 'entities/User'
 import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
-import { subscribeToHab, unsubscribeFromHab } from '../model/actiosn'
-import { selectIsSubscribed } from '../model/selectors'
 import s from './SubscribeHab.module.scss'
+import { selectIsSubscribed, subscribeToHab, unsubscribeFromHab } from '../model'
 
 interface HabSubscribeBtnProps{
   habId:number

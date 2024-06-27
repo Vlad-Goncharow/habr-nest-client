@@ -3,9 +3,9 @@ import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import { ReactComponent as FavoriteSvg } from 'shared/images/svg/favorite.svg'
-import { addFavoritePost, removeFavoritePost } from '../model/actions'
-import { selectIsAuth, selectIsSubscribed } from '../model/selectors'
 import s from './FavoritePostBtn.module.scss'
+import { selectIsAuth } from 'entities/User'
+import { addFavoritePost, removeFavoritePost, selectIsSubscribed } from '../model'
 
 interface FavoritePostBtnProps{
   postId:number

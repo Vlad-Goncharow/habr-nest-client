@@ -13,7 +13,7 @@ interface UserControlsProps{
 const UserControls: React.FC<UserControlsProps> = ({user}) => {
   return (
     <>
-      <Link to={`/user/${user?.id}/profile`} className={s.header}>
+      <Link to={`/user/${user?.id}/profile/1`} className={s.header}>
         <div className={s.icon}>
           <UserSvg />
         </div>
