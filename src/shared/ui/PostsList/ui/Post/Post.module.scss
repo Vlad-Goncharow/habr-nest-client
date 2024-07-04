@@ -129,12 +129,6 @@
     }
   }
 
-  &__footer {
-    display: flex;
-    align-items: center;
-    margin-top: 20px;
-  }
-
   &__footerItem {
     display: flex;
     align-items: center;
@@ -154,6 +148,83 @@
     &_active {
       svg {
         fill: #fe7d7d;
+      }
+    }
+  }
+}
+
+.footer{
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-between;
+
+  &__left{
+    display: flex;
+    align-items: center;
+  }
+
+  &__right{
+    position: relative;
+  }
+}
+
+.controls{
+  position: relative;
+
+  &__icon{
+    cursor: pointer;
+
+    svg{
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+
+.popup{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  box-shadow: 0 0 2px #ccc;
+  background: var(--romance);
+
+  ul{
+    display: flex;
+    flex-direction: column;
+
+    li{
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      position: relative;
+      cursor: pointer;
+
+      svg{
+        position: absolute;
+        top: 50%;
+        left: 15px;
+        transform: translateY(-50%);
+        width: 17px;
+        height: 17px;
+      }
+
+      span{
+        margin-left: 25px;
+        color: var(--mine-shaft);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        line-height: 0.9375rem;
+      }
+
+      &:hover{
+        transition: all, 0.3s;
+        background: #f1f1f1;
+        
+        svg{
+          transition: all, 0.3s;
+          transform: translateY(-50%) scale(1.1);
+        }
       }
     }
   }

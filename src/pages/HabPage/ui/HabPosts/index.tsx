@@ -13,7 +13,13 @@ function HabPosts() {
     <>
       {
         isSuccess &&
-        <PostsList loading={isLoading} posts={posts} length={length} navigatePath={`/hab/${habId}/${type}/${type}`} />
+        <PostsList 
+          loading={isLoading} 
+          posts={posts} 
+          length={length} 
+          navigatePath={`/hab/${habId}/${type}/${type}`}
+          query={['hab', habId, type, page]} 
+        />
       }
     </>
   )

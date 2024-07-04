@@ -14,7 +14,13 @@ function Publications() {
     <>
       {
         isSuccess &&
-        <PostsList loading={isLoading} posts={posts} length={length} navigatePath={`/user/${userId}/${type}/${subType}`} />
+        <PostsList 
+          loading={isLoading} 
+          posts={posts} 
+          length={length} 
+          navigatePath={`/user/${userId}/${type}/${subType}`} 
+          query={['user', userId, type, subType, page]}
+        />
       }
     </>
   )

@@ -140,6 +140,7 @@ function SearchPage() {
               length={articlesLength} 
               posts={articles} 
               navigatePath={`/search/articles/1`} 
+              query={[]}
             />
         }
 

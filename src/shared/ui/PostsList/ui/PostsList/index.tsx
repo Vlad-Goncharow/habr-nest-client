@@ -10,9 +10,10 @@ interface PostsListProps{
   length:number,
   navigatePath:string
   loading:boolean,
+  query: any
 }
 
-const PostsList: React.FC<PostsListProps> = ({ loading, posts, length, navigatePath, }) => {
+const PostsList: React.FC<PostsListProps> = ({ loading, posts, length, navigatePath, query }) => {
   return (
     loading 
     ?
@@ -23,7 +24,7 @@ const PostsList: React.FC<PostsListProps> = ({ loading, posts, length, navigateP
           <div>
             {
               posts.map((el: IPost) =>
-                <Post key={el.id} post={el} />
+                <Post key={el.id} post={el} query={query} />
               )
             }
           </div>

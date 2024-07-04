@@ -13,7 +13,13 @@ function Posts() {
     <>
       {
         isSuccess &&
-        <PostsList loading={isLoading} posts={posts} length={length} navigatePath={`/flows/${category}/${type}`} />
+        <PostsList 
+          loading={isLoading} 
+          posts={posts} 
+          length={length} 
+          navigatePath={`/flows/${category}/${type}`} 
+          query={['posts', category, type, page]} 
+        />
       }
     </>
   )
