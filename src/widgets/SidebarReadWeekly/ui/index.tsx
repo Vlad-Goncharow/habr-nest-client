@@ -27,39 +27,42 @@ const SidebarReadWeekly: React.FC<SidebarReadWeeklyProps> = ({category}) => {
     })()
   },[category])
 
-  if(loading) <div></div>
-  
   return (
-    <section className={s.sidebar}>
-      <header className="sidebar__header">
-        <h2 className="sidebar__title">
-          Лучшее за неделю
-        </h2>
-      </header>
-      <ul className={s.list}>
-        {
-          posts.map((post: IPost) =>
-            <li key={post.id} className={s.post}>
-              <article>
-                <h2 className={s.post__title}>
-                  <Link to={`/${post.type}/${post.id}`}>{post.title}</Link>
-                </h2>
-                <div className={s.post__stats}>
-                  <span>
-                    <Views />
-                    <span>{post.views}</span>
-                  </span>
-                  <span>
-                    <Comments />
-                    <span>{post.commentsCount}</span>
-                  </span>
-                </div>
-              </article>
-            </li>
-          )
-        }
-      </ul> 
-    </section>
+    <>
+      {
+        !loading &&
+        <section className={s.sidebar}>
+          <header className="sidebar__header">
+            <h2 className="sidebar__title">
+              Лучшее за неделю
+            </h2>
+          </header>
+          <ul className={s.list}>
+            {
+              posts.map((post: IPost) =>
+                <li key={post.id} className={s.post}>
+                  <article>
+                    <h2 className={s.post__title}>
+                      <Link to={`/${post.type}/${post.id}`}>{post.title}</Link>
+                    </h2>
+                    <div className={s.post__stats}>
+                      <span>
+                        <Views />
+                        <span>{post.views}</span>
+                      </span>
+                      <span>
+                        <Comments />
+                        <span>{post.commentsCount}</span>
+                      </span>
+                    </div>
+                  </article>
+                </li>
+              )
+            }
+          </ul>
+        </section>
+      }
+    </>
   )
 }
 

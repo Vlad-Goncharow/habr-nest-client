@@ -28,49 +28,50 @@ function Habs() {
     })()
   }, [category])
 
-  if(loading) {
-    return (null)
-  }
-
   return (
-    <section className={s.habs}>
-      <header className="sidebar__header">
-        <h2 className="sidebar__title">
-          Хабы
-        </h2>
-      </header>
+    <>
+      {
+        !loading &&
+        <section className={s.habs}>
+          <header className="sidebar__header">
+            <h2 className="sidebar__title">
+              Хабы
+            </h2>
+          </header>
 
-      <ul className={s.habs__list}>
-        {
-          habs.map((hab: HabsType) => (
-            <li key={hab.id} className={s.hab}>
-              <div className={s.hab__row}>
-                <div className={s.hab__image}>
-                  <img src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`} alt={`Картинка хаба ${hab.title}`} />
-                </div>
-                <div className={s.hab__info}>
-                  <Link to={`/hab/${hab.id}/articles/1`} className={s.hab__title}>{hab.title}</Link>
+          <ul className={s.habs__list}>
+            {
+              habs.map((hab: HabsType) => (
+                <li key={hab.id} className={s.hab}>
                   <div className={s.hab__row}>
-                    <Link
-                      className={s.hab__stats}
-                      to={`/hab/${hab.id}/authors/1`}
-                    >
-                      Авторы {hab.authorsCount}
-                    </Link>
-                    <Link
-                      className={s.hab__stats}
-                      to={`/hab/${hab.id}/articles/1`}
-                    >
-                      Публицкаий {hab.postsCount}
-                    </Link>
+                    <div className={s.hab__image}>
+                      <img src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`} alt={`Картинка хаба ${hab.title}`} />
+                    </div>
+                    <div className={s.hab__info}>
+                      <Link to={`/hab/${hab.id}/articles/1`} className={s.hab__title}>{hab.title}</Link>
+                      <div className={s.hab__row}>
+                        <Link
+                          className={s.hab__stats}
+                          to={`/hab/${hab.id}/authors/1`}
+                        >
+                          Авторы {hab.authorsCount}
+                        </Link>
+                        <Link
+                          className={s.hab__stats}
+                          to={`/hab/${hab.id}/articles/1`}
+                        >
+                          Публицкаий {hab.postsCount}
+                        </Link>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+      }
+    </>
   )
 }
 

@@ -1,18 +1,20 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useOutletContext, useParams } from 'react-router-dom'
 import UserPosts from '../UserPosts'
-import Profile from '../Profile'
 import CommentsList from '../CommentsList'
 import Subscribers from '../Subscribers'
 import UserFavorites from '../UserFavorites'
+import { Profile } from '../Profile'
+import { IUser } from 'entities/User'
 
 function UserRoute() {
   const {type} = useParams()
+  const userData:IUser = useOutletContext();
   
   return (
     <>
       {
-        (type === 'profile' && <Profile /> ) ||
+        (type === 'profile' && <Profile userData={userData} /> ) ||
         (type === 'publications' && <UserPosts /> ) ||
         (type === 'favorites' && <UserFavorites /> ) ||
         (type === 'comments' && <CommentsList />) ||

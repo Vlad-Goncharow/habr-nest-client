@@ -1,11 +1,11 @@
-.info {
+.sidebar {
   flex: 1;
   background: var(--romance);
   padding: 15px;
-  display: none;
-
-  @media(max-width: 1024px){
-    display: block;
+  margin-bottom: 15px;
+  
+  @media(max-width:1024px) {
+    display: none;
   }
 }
 

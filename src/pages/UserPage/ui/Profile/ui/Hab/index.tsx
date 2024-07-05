@@ -40,7 +40,7 @@ const Hab: React.FC<HabProps> = ({habData}) => {
         <div className={s.menu}>
           <div className={s.menu__header}>
             <div className={s.image}>
-              <img src={`${process.env.REACT_APP_SERVER_URL}${habData.image}`} alt={`Картинка хаба ${habData.title}`}/>
+              <img src={`${process.env.REACT_APP_SERVER_URL}/${habData.image}`} alt={`Картинка хаба ${habData.title}`}/>
             </div>
             <div className={s.rating}>
               <span>{habData.rating}</span>

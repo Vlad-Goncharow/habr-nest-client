@@ -1,15 +1,15 @@
-import React from 'react'
-import s from './ProfileInfo.module.scss'
 import { IUser } from 'entities/User'
 import moment from 'moment'
+import React from 'react'
+import s from './UserInfo.module.scss'
 
-interface ProfileInfoProps{
-  userData:IUser
+interface UserInfoProps {
+  userData: IUser
 }
 
-const ProfileInfo: React.FC<ProfileInfoProps> = ({userData}) => {
+const UserInfo: React.FC<UserInfoProps> = ({ userData }) => {
   return (
-    <div className={s.info}>
+    <aside className={s.sidebar}>
       <div className={s.title}>Информация</div>
       <ul className={s.stats}>
         <li className={s.stats__li}>
@@ -32,8 +32,8 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({userData}) => {
           </li>
         }
       </ul>
-    </div>
+    </aside>
   )
 }
 
-export default ProfileInfo
+export default UserInfo

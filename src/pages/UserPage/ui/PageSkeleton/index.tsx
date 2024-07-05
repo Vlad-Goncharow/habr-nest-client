@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader'
 import useElementWidth from 'shared/hooks/UseElementWidth'
-import ProfileSkeleton from '../ProfileSkeleton'
+import ProfileSkeleton from '../Profile/ui/ProfileSkeleton'
 import s from './PageSkeleton.module.scss'
 
 function PageSkeleton() {

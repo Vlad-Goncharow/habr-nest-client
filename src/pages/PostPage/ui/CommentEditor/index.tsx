@@ -78,7 +78,7 @@ const CommentEditor: React.FC<CommentEditorProps> = ({setComments}) => {
   return (
     <div className={s.form}>
       <h3 className={s.form__title}>Ваш Коментарий</h3>
-      <div className={s.editor}>
+      <div onClick={() => editorRef.current.focus()} className={s.editor}>
         <Editor
           editorState={editorState}
           onChange={setEditorState}
