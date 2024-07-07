@@ -1,4 +1,5 @@
 import Root from 'app/Root';
+import { CreateHab } from 'pages/CreateHab';
 import { CreatePost } from 'pages/CreatePost';
 import { HabPage } from 'pages/HabPage';
 import Login from 'pages/Login';
@@ -24,6 +25,7 @@ export const router = createBrowserRouter(
       </Route>
       <Route path="/hab/:habId/:type/:page" element={<HabPage />} />
       <Route path="/create" element={<CreatePost />}/>
+      <Route path="/create-hab" element={<CreateHab />}/>
       <Route path="/search/:type/:page" element={<SearchPage />}/>
     </Route>
   )

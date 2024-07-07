@@ -34,7 +34,7 @@ const UserControls: React.FC<UserControlsProps> = ({user}) => {
         {
           checkRoles &&
           <li>
-            <Link to='/hab/create'>Создать Хаб</Link>
+            <Link to='/create-hab'>Создать Хаб</Link>
           </li>
         }
       </ul>
