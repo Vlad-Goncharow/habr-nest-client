@@ -2,33 +2,26 @@ import React from 'react'
 import { IHab } from 'shared/types/habs'
 import Empty from 'shared/ui/Empty'
 import HabItem from '../HabItem'
-import HabsSkeleton from '../HabsSkeleton'
-
 interface HabsListProps{
-  habsLoading:boolean
   habsTotalCount:number
   habs:IHab[] | []
 }
 
-const HabsList: React.FC<HabsListProps> = ({habsLoading, habsTotalCount, habs}) => {
+const HabsList: React.FC<HabsListProps> = ({habsTotalCount, habs}) => {
   return (
     <>
       {
-        habsLoading
+        habsTotalCount > 0
           ?
-            <HabsSkeleton />
+          <>
+            {
+              habs.map(el =>
+                <HabItem key={el.id} hab={el} />
+              )
+            }
+          </>
           :
-          habsTotalCount > 0
-            ?
-            <>
-              {
-                habs.map(el =>
-                  <HabItem key={el.id} hab={el} />
-                )
-              }
-            </>
-            :
-            <Empty />
+          <Empty />
       }
     </>
   )

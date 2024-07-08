@@ -5,7 +5,8 @@ function useSaveUrl() {
   let location = useLocation();
   
   React.useEffect(() => {
-    localStorage.setItem('lastVisitedUrl', location.pathname)
+    const url = `${location.pathname}${location.search || location.hash || ''}`;
+    localStorage.setItem('lastVisitedUrl', url);
   }, [location]);
 }
 

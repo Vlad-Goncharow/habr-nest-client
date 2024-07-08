@@ -17,9 +17,11 @@ const Pagination: React.FC<PaginationProps> = ({ navigatePath, length, pageSize 
 
   const sort = searchParams.get('sort');
   const order = searchParams.get('order');
+  const query = searchParams.get('q');
+  const queryString = query ? `&q=${query}` : '';
 
   const handlePageClick = (pageNumber: number) => {
-    navigate(`${navigatePath}/${pageNumber}/?sort=${sort}&order=${order}`)
+    navigate(`${navigatePath}/${pageNumber}/?sort=${sort}&order=${order}${queryString}`)
   };
   
   return (

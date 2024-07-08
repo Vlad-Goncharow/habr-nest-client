@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { PostsList } from 'shared/ui/PostsList'
+import { PostsList, PostsSceleton } from 'shared/ui/PostsList'
 import { usePosts } from '../../model'
 
 function Posts() {
@@ -7,19 +7,20 @@ function Posts() {
   const {type, category, page} = useParams()
 
   //data
-  const {isSuccess, posts, length, isLoading} = usePosts({type, category,page})
+  const {isSuccess, data, isLoading} = usePosts({type, category,page})
   
   return (
     <>
       {
-        isSuccess &&
-        <PostsList 
-          loading={isLoading} 
-          posts={posts} 
-          length={length} 
-          navigatePath={`/flows/${category}/${type}`} 
-          query={['posts', category, type, page]} 
-        />
+        !isLoading && isSuccess ?
+          <PostsList 
+            posts={data.posts} 
+            length={data.length} 
+            navigatePath={`/flows/${category}/${type}`} 
+            query={['posts', category, type, page]} 
+          />
+        : 
+          <PostsSceleton />
       }
     </>
   )

@@ -13,7 +13,7 @@ interface ControlsProps{
 const Controls: React.FC<ControlsProps> = ({user}) => {
   return (
     <div className={s.right}>
-      <Link to='/search/articles/1' className={s.right__search}>
+      <Link to='/search' className={s.right__search}>
         <SearchSvg />
       </Link>
       {

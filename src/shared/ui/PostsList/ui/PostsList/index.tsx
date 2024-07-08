@@ -3,22 +3,16 @@ import { IPost } from 'shared/types/posts'
 import Pagination from 'widgets/Pagination'
 import Empty from '../../../Empty'
 import Post from '../Post'
-import PostsSceleton from '../PostsSceleton'
 
 interface PostsListProps{
   posts:IPost[] | []
   length:number,
   navigatePath:string
-  loading:boolean,
   query: any
 }
 
-const PostsList: React.FC<PostsListProps> = ({ loading, posts, length, navigatePath, query }) => {
+const PostsList: React.FC<PostsListProps> = ({ posts, length, navigatePath, query }) => {
   return (
-    loading 
-    ?
-      <PostsSceleton />
-    :
       posts.length > 0 ?
         <>
           <div>

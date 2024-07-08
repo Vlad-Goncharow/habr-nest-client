@@ -3,7 +3,7 @@ import s from './HabsSkeleton.module.scss'
 
 function HabsSkeleton() {
   return (
-    <>
+    <div className={s.wrapper}>
       {
         Array.from({ length: 8 }, (_, index) => 
           <div key={index} className={s.item}>
@@ -21,7 +21,7 @@ function HabsSkeleton() {
           </div>
         )
       }
-    </>
+    </div>
   )
 }
 

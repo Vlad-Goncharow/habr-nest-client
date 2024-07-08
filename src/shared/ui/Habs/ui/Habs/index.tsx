@@ -7,17 +7,16 @@ import s from './Habs.module.scss'
 
 interface HabsProps {
   habs: IHab[] | []
-  habsLoading: boolean,
   habsTotalCount: number;
   navigatePath: string
 }
 
-export const Habs: React.FC<HabsProps> = ({ habs, habsLoading, habsTotalCount, navigatePath, }) => {
+export const Habs: React.FC<HabsProps> = ({ habs,  habsTotalCount, navigatePath, }) => {
   return (
     <>
       <div className={s.content}>
         <HabsHeader />
-        <HabsList habs={habs} habsLoading={habsLoading} habsTotalCount={habsTotalCount} />
+        <HabsList habs={habs} habsTotalCount={habsTotalCount} />
       </div>
 
       <Pagination length={habsTotalCount} pageSize={20} navigatePath={navigatePath} />

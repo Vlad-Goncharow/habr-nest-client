@@ -10,12 +10,10 @@ import Sidebar from '../SideBar/Main'
 function Main() {
   const { type } = useParams()
   
-  const [habsTitle, setHabsTitle] = React.useState(' ')
-  const [authorsTitle, setAuthorsTitle] = React.useState(' ')
   return (
     <div className={'wrapper'}>
       <div className="wrapper__left">
-        <PostsNavigation setAuthorsTitle={setAuthorsTitle} setHabsTitle={setHabsTitle} />
+        <PostsNavigation />
 
         {
           postTypeOne.find((el) => el.typeEng === type) &&
@@ -23,11 +21,11 @@ function Main() {
         }
         {
           type === 'habs' &&
-          <Habs title={habsTitle} />
+          <Habs />
         }
         {
           type === 'authors' &&
-          <Authors title={authorsTitle} />
+          <Authors />
         }  
       </div>
       <Sidebar />

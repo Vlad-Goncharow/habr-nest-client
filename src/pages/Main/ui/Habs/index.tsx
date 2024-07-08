@@ -1,13 +1,10 @@
 import { useHabs } from '../../model'
 import React from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
-import { HabsList } from 'shared/ui/Habs'
+import { HabsList, HabsSkeleton } from 'shared/ui/Habs'
 
-interface HabsProps{
-  title:string
-}
 
-const Habs: React.FC<HabsProps> = ({title}) =>{
+const Habs: React.FC = () =>{
   //params
   const { type, category, page } = useParams()
 
@@ -15,22 +12,21 @@ const Habs: React.FC<HabsProps> = ({title}) =>{
 
   const sort = searchParams.get('sort');
   const order = searchParams.get('order');
+  const query = searchParams.get('q');
   
-  //data
-  const {isLoading, isSuccess, habs, length} = useHabs({type, category, page, sort, order ,title})
+  const { isLoading, isSuccess, data } = useHabs({ type, category, page, sort, order, title:query })
 
   return (
     <>
       {
-        isSuccess &&
-        <>
+        !isLoading && isSuccess ?
           <HabsList
-            habs={habs}
-            habsLoading={isLoading}
-            habsTotalCount={length}
+            habs={data.habs}
+            habsTotalCount={data.length}
             navigatePath={`/flows/${category}/${type}`}
           />
-        </>
+        :
+          <HabsSkeleton />
       }
     </>
   )

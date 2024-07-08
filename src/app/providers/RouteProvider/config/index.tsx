@@ -7,7 +7,7 @@ import { Main } from 'pages/Main';
 import { PostPage } from 'pages/PostPage';
 import { ProfileSettings } from 'pages/ProfileSettings';
 import Register from 'pages/Register';
-import SearchPage from 'pages/SearchPage';
+import { SearchRoute, SearchPage } from 'pages/SearchPage';
 import { UserPage, UserRoute } from 'pages/UserPage';
 import { Route, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
 
@@ -26,7 +26,9 @@ export const router = createBrowserRouter(
       <Route path="/hab/:habId/:type/:page" element={<HabPage />} />
       <Route path="/create" element={<CreatePost />}/>
       <Route path="/create-hab" element={<CreateHab />}/>
-      <Route path="/search/:type/:page" element={<SearchPage />}/>
+      <Route path="/search/" element={<SearchPage />}>
+        <Route path=':type/:page' element={<SearchRoute />} />
+      </Route>
     </Route>
   )
 );

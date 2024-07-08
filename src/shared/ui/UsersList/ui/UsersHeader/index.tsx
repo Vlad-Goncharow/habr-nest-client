@@ -9,13 +9,15 @@ function UsersHeader() {
 
   const sort = searchParams.get('sort');
   const order = searchParams.get('order');
+  const query = searchParams.get('q');
+  const queryString = query ? `&q=${query}` : '';
   
   return (
     <div className={s.row}>
       <div className={s.name}>Имя</div>
       <div className={s.sort}>
         <Link 
-          to={`./?sort=rating&order=${order === 'desc' ? 'asc' : 'desc'}`} 
+          to={`./?sort=rating&order=${order === 'desc' ? 'asc' : 'desc'}${queryString}`} 
           className={classNames(s.sort__item, {
             [s.sort__item_active]: sort === 'rating',
             [s.sort__item_rotate]: order === 'asc' && sort === 'rating'
@@ -25,7 +27,7 @@ function UsersHeader() {
           <ArrowSvg />
         </Link>
         <Link 
-          to={`./?sort=karma&order=${order === 'desc' ? 'asc' : 'desc'}`} 
+          to={`./?sort=karma&order=${order === 'desc' ? 'asc' : 'desc'}${queryString}`} 
           className={classNames(s.sort__item, {
             [s.sort__item_active]: sort === 'karma',
             [s.sort__item_rotate]: order === 'asc' && sort === 'karma'

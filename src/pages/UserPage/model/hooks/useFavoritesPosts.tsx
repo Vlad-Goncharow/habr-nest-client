@@ -28,7 +28,7 @@ const useFavoritesPosts = (props: useFavoritesPostsProps):any => {
     }
   }, [isError])
 
-  return isSuccess && { posts: data.posts, length: data.length, isLoading, isSuccess }
+  return { data, isLoading, isSuccess }
 }
 
 export default useFavoritesPosts

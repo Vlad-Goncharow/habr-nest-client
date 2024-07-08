@@ -3,11 +3,7 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import { UsersList } from 'shared/ui/UsersList'
 import { useAuthors } from '../../model'
 
-interface AuthorsProps{
-  title:string
-}
-
-const Authors: React.FC<AuthorsProps> = ({title}) => {
+const Authors: React.FC = () => {
   //params
   const { type, category, page } = useParams()
 
@@ -15,9 +11,10 @@ const Authors: React.FC<AuthorsProps> = ({title}) => {
 
   const sort = searchParams.get('sort');
   const order = searchParams.get('order');
+  const query = searchParams.get('q');
 
   //data
-  const {isLoading, isSuccess, length, authors} = useAuthors({type, category, sort, order, page,title})
+  const { isLoading, isSuccess, length, authors } = useAuthors({ type, category, sort, order, page, title: query })
 
   return (
     <>

@@ -10,16 +10,18 @@ interface useHabsProps {
   page: string | undefined
   sort: string | null
   order: string | null
-  title: string | undefined
+  title: string | null
 }
 
 const useHabs = (props: useHabsProps): any => {
   const { page, category, type,title,order,sort } = props
   const dispatch = useAppDispatch()
 
+  const queryTitle = title ? title : ' '
+
   const { data, isLoading, isError, isSuccess, } = useQuery({
-    queryKey: ['habs', category, type, title, page, `${sort}`, `${order}`],
-    queryFn: () => loadHabsFN(category, title, `${sort}`, `${order}`, page),
+    queryKey: ['habs', category, type, queryTitle, page, `${sort}`, `${order}`],
+    queryFn: () => loadHabsFN(category, queryTitle, `${sort}`, `${order}`, page),
     select: (data) => data.data,
   })
 
@@ -30,7 +32,7 @@ const useHabs = (props: useHabsProps): any => {
     }
   }, [isError])
 
-  return isSuccess && { habs: data.habs, length: data.length, isLoading, isSuccess }
+  return { data, isLoading, isSuccess }
 }
 
 export default useHabs

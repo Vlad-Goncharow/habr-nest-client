@@ -28,7 +28,7 @@ const usePosts = (props: usePostsProps):any => {
     }
   }, [isError])
   
-  return isSuccess && {posts:data.posts, length:data.length, isLoading, isSuccess}
+  return { data, isLoading, isSuccess }
 }
 
 export default usePosts

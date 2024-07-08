@@ -1,6 +1,6 @@
 import classNames from 'classnames'
-import React, { ChangeEvent } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React from 'react'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { postCategories } from 'shared/global'
 import useDebounce from 'shared/hooks/useDebounce'
 import s from './PostsNavigation.module.scss'
@@ -30,42 +30,20 @@ const subCategories: subCategoriesType[] = [
   }
 ]
 
-interface PostsNavigationProps{
-  setAuthorsTitle: any
-  setHabsTitle: any
-}
-
-const PostsNavigation: React.FC<PostsNavigationProps> = ({ setAuthorsTitle, setHabsTitle }) => {
+const PostsNavigation: React.FC = () => {
   // ======== posts params
   const { category, type } = useParams()
-
-  //input values
-  const [inputValue, setInputValue] = React.useState('')
-  const [authorsValue, setAuthorsValue] = React.useState('')
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    if(type === 'habs'){
-      setInputValue(event.target.value)
-    }
-
-    if(type === 'authors'){
-      setAuthorsValue(event.target.value)
-    }
-  }
-  const habsDebounceInput = useDebounce(inputValue, 700);
-  const authorsDebounceInput = useDebounce(authorsValue, 700);
-
-  //debounce and change query search title
-  React.useEffect(() => {
-    if (type === 'habs') {
-      setHabsTitle(habsDebounceInput.length === 0 ? ' ' : habsDebounceInput);
-    }
-
-    if (type === 'authors') {
-      setAuthorsTitle(authorsDebounceInput.length === 0 ? ' ' : authorsDebounceInput);
-    }
-  }, [type, habsDebounceInput, authorsDebounceInput]);
-
   const currentCategory = postCategories.find(el => el.categoryEng === category);
+
+  const [newInputValue, setNewInputValue] = React.useState('')
+  const newInputValueDebounceInput = useDebounce(newInputValue, 700);
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  React.useEffect(() => {
+    navigate(`${location.pathname}?q=${newInputValueDebounceInput}`)
+  }, [newInputValueDebounceInput])
+
 
   return (
     <div className={s.wrapper}>
@@ -97,8 +75,8 @@ const PostsNavigation: React.FC<PostsNavigationProps> = ({ setAuthorsTitle, setH
               <input 
                 type="text" 
                 placeholder='Пойск' 
-                value={type === 'habs' ? inputValue : authorsValue} 
-                onChange={handleChange} 
+                value={newInputValue} 
+                onChange={(e) => setNewInputValue(e.target.value)} 
                 className={s.search__input} 
               />
               <button className={s.search__btn}>

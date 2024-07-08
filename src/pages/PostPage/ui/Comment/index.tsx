@@ -5,6 +5,10 @@ import moment from 'moment'
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
+import { UseClickOutside } from 'shared/hooks/UseClickOutside'
+import { ReactComponent as Delete } from 'shared/images/svg/delete.svg'
+import { ReactComponent as Dots } from 'shared/images/svg/dots.svg'
+import { ReactComponent as Share } from 'shared/images/svg/share.svg'
 import { IComment } from 'shared/types/comments'
 import s from './Comment.module.scss'
 
@@ -19,15 +23,26 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment}) => {
   const checkUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
   
   //popup menu| delete button
-  const [popupIsVisible, setPopupIsVisible] = React.useState(false)
+  const [popupIsOpen, setPopupIsOpen] = React.useState(false)
+  const popupRef = React.useRef<HTMLDivElement | null>(null)
+  UseClickOutside(popupRef, () => setPopupIsOpen(false))
   
   //scroll to comment
   const commentRef = React.useRef<HTMLDivElement>(null);
   const location = useLocation()
 
+  //comment content
+  const contentStateFromJSON = convertFromRaw(JSON.parse(item.content));
+  const restoredEditorState = EditorState.createWithContent(contentStateFromJSON);
+
+  function copyToClipboard(value: string) {
+    navigator.clipboard.writeText(value);
+    setPopupIsOpen(false)
+  }
+
   React.useEffect(() => {
     const hash = location.hash.substring(1);
-    let timer:NodeJS.Timer;
+    let timer: NodeJS.Timer;
 
     if (hash === `comment_${item.id}`) {
       timer = setTimeout(() => {
@@ -39,10 +54,6 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment}) => {
       clearTimeout(timer);
     };
   }, [item.id, location]);
-
-  //comment content
-  const contentStateFromJSON = convertFromRaw(JSON.parse(item.content));
-  const restoredEditorState = EditorState.createWithContent(contentStateFromJSON);
 
   return (
     <div id={`comment_${item.id}`} ref={commentRef} className={s.comment}>
@@ -58,30 +69,32 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment}) => {
       </div>
       <div className={s.comment__footer}>
         <FavoriteCommentBtn commentId={item.id} />
-      </div>
-      {
-        ((user?.id === item.author.id) ||
-        (checkUserAdminOrModerator)) &&
-        <div className={s.menu}>
-          <div onClick={() => setPopupIsVisible(prev => !prev)} className={s.icon}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-            >
-              <g fill="#000">
-                <path d="M4 9.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM12 9.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM22.5 12a2.5 2.5 0 1 0-5 0 2.5 2.5 0 0 0 5 0Z" />
-              </g>
-            </svg>
+        <div ref={popupRef} className={s.controls}>
+          <div onClick={() => setPopupIsOpen(prev => !prev)} className={s.controls__icon}>
+            <Dots />
           </div>
           {
-            popupIsVisible &&
-              <div className={s.menu__popup}>
-                <div className={s.menu__btn} onClick={() => deleteComment(item.id)}>Удалить</div>
-              </div>
+            popupIsOpen &&
+            <div className={s.popup}>
+              <ul>
+                {
+                  ((user?.id === item.author.id) || (checkUserAdminOrModerator)) &&
+                  <li onClick={() => deleteComment(item.id)}>
+                    <Delete />
+                    <span>Удалить</span>
+                  </li>
+                }
+                <li 
+                  onClick={() => copyToClipboard(`${process.env.REACT_APP_CLIENT_URL}/articles/${item.postId}/#comment_${item.id}`)}
+                >
+                  <Share />
+                  <span>Поделиться</span>
+                </li>
+              </ul>
+            </div>
           }
         </div>
-      }
+      </div>
     </div>
   )
 }
