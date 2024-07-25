@@ -1,16 +1,20 @@
 import React from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { ReactComponent as Comments } from 'shared/images/svg/postComments.svg'
 import { ReactComponent as Views } from 'shared/images/svg/postViews.svg'
 import { IPost } from 'shared/types/posts'
 import axios from '../../../axios'
 import s from './SidebarReadWeekly.module.scss'
+import { fetchModalActions } from 'entities/FetchModal'
 
 interface SidebarReadWeeklyProps{
   category:string
 }
 
 const SidebarReadWeekly: React.FC<SidebarReadWeeklyProps> = ({category}) => {
+  const dispatch = useAppDispatch()
+
   const [loading, setLoading] = React.useState<boolean>(true)
   const [posts, setPosts] = React.useState<IPost[] | []>([])
 
@@ -22,6 +26,7 @@ const SidebarReadWeekly: React.FC<SidebarReadWeeklyProps> = ({category}) => {
         setPosts(data)
         setLoading(false)
       } catch(e){
+        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
         setLoading(false)
       }
     })()

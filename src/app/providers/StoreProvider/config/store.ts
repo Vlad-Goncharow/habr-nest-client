@@ -7,6 +7,7 @@ const store = configureStore({
     user: userReducer,
     fetchModal: fetchModalReducer
   },
+  devTools:false
 });
 
 export default store;

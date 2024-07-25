@@ -6,7 +6,7 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import axios from '../../../../axios'
 import PageSkeleton from '../PageSkeleton'
 import SideBar from '../SideBar'
-import UserHeader from '../UserHeader'
+import {UserHeader} from '../UserHeader'
 
 function UserPage() {
   //dispatch

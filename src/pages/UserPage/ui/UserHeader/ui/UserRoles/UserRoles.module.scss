@@ -1,0 +1,45 @@
+.menu{
+  &__icon{
+    margin-left: 25px;
+    cursor: pointer;
+    
+    svg{
+      width: 25px;
+      height: 25px;
+    }
+  }
+}
+
+.popup{
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--romance);
+  box-shadow: 0 0 12px rgba(0, 0, 0, .16);
+  padding: 15px;
+  border-radius:4px;
+  min-width: 180px;
+
+  &__title{
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}
+
+.button{
+  width: 100%;
+  padding: 10px;
+  border:none;
+  cursor: pointer;
+  
+  &_active {
+    background-color: var(--horizon);
+    border-color: var(--horizon);
+    color: var(--romance);
+  }
+
+  &_disable {
+    background: #e37272;
+    color: var(--romance);
+  }
+}

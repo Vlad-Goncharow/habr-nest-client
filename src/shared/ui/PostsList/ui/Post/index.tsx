@@ -42,6 +42,7 @@ const Post: React.FC<PostProps> = ({post,query}) =>{
 
   function copyToClipboard(value:string) {
     navigator.clipboard.writeText(value);
+    setPopupIsOpen(false)
   }
 
   return (
