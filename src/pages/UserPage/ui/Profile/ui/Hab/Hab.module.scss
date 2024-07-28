@@ -22,16 +22,16 @@
   color: var(--horizon);
   display: inline-flex;
   align-items: center;
-  font-size: .8125rem;
+  font-size: 0.8125rem;
   line-height: 1.125rem;
   padding: 0 13px;
   min-height: 28px;
   text-decoration: none;
   vertical-align: middle;
 
-  &_active{
+  &_active {
     background-color: #d2ec93;
-    color:#000;
+    color: #000;
   }
 }
 
@@ -56,7 +56,7 @@
   position: relative;
   margin-right: 15px;
   margin-bottom: 5px;
-  border-radius:7px;
+  border-radius: 7px;
   overflow: hidden;
 
   img {

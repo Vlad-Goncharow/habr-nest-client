@@ -21,7 +21,7 @@ const Habs = () => {
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
         setLoading(true)
         const { data } = await axios.get(`/habs/user/${userId}/subscribed-habs`)
@@ -29,33 +29,34 @@ const Habs = () => {
         setLoading(false)
       } catch (e) {
         setLoading(false)
-        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'bad',
+            content: 'Ошибка, попробуйте еще раз!',
+          })
+        )
       }
     })()
   }, [userId])
 
   return (
     <>
-      {
-        loading ?
-          <ProfileSkeleton />
-        :
-          habs.length > 0 ?
-            <div className={s.item}>
-              <h2 className={s.item__title}>Состоит в хабах</h2>
-              <div className={s.item__list}>
-                {
-                  habs.map(el =>
-                    <Hab key={el.id} habData={el} />
-                  )
-                }
-              </div>
-            </div>
-            :
-            <div className={s.item}>
-              <h2 className={s.item__title}>Пользователь не состоит в хабах</h2>
-            </div>
-      }
+      {loading ? (
+        <ProfileSkeleton />
+      ) : habs.length > 0 ? (
+        <div className={s.item}>
+          <h2 className={s.item__title}>Состоит в хабах</h2>
+          <div className={s.item__list}>
+            {habs.map((el) => (
+              <Hab key={el.id} habData={el} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className={s.item}>
+          <h2 className={s.item__title}>Пользователь не состоит в хабах</h2>
+        </div>
+      )}
     </>
   )
 }

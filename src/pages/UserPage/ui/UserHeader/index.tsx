@@ -1,5 +1,3 @@
-import UserHeader from "./ui/UserHeader";
+import UserHeader from './ui/UserHeader'
 
-export {
-  UserHeader
-}
+export { UserHeader }

@@ -1,7 +1,4 @@
-import {Habs as HabsList} from "./ui/Habs";
-import HabsSkeleton from "./ui/HabsSkeleton";
+import { Habs as HabsList } from './ui/Habs'
+import HabsSkeleton from './ui/HabsSkeleton'
 
-export {
-  HabsList,
-  HabsSkeleton
-}
+export { HabsList, HabsSkeleton }

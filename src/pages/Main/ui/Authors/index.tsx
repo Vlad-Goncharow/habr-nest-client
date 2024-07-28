@@ -9,24 +9,30 @@ const Authors: React.FC = () => {
 
   const [searchParams] = useSearchParams()
 
-  const sort = searchParams.get('sort');
-  const order = searchParams.get('order');
-  const query = searchParams.get('q');
+  const sort = searchParams.get('sort')
+  const order = searchParams.get('order')
+  const query = searchParams.get('q')
 
   //data
-  const { isLoading, isSuccess, length, authors } = useAuthors({ type, category, sort, order, page, title: query })
+  const { isLoading, isSuccess, length, authors } = useAuthors({
+    type,
+    category,
+    sort,
+    order,
+    page,
+    title: query,
+  })
 
   return (
     <>
-      {
-        isSuccess &&
+      {isSuccess && (
         <UsersList
           navigatePath={`/flows/${category}/${type}`}
           users={authors}
           usersLoading={isLoading}
           usersTotalCount={length}
         />
-      }
+      )}
     </>
   )
 }

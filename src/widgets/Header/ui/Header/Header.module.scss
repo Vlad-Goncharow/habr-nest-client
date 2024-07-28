@@ -1,14 +1,14 @@
 .header {
-  background:var(--romance);
-  border-bottom:1px solid #ccc;
-  
+  background: var(--romance);
+  border-bottom: 1px solid #ccc;
+
   &__top {
     background-color: #303b44;
   }
 
   &__overlay {
     position: fixed;
-    background: rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, 0.2);
     top: 0;
     left: 0;
     right: 0;
@@ -35,7 +35,7 @@
       transition: all 0.3s;
     }
 
-    @media(max-height:380px) {
+    @media (max-height: 380px) {
       overflow-y: scroll;
     }
   }
@@ -47,7 +47,7 @@
   font-size: 26px;
   line-height: 48px;
 
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     margin-right: auto;
     margin-left: 10px;
   }
@@ -78,7 +78,7 @@
   align-items: center;
   justify-content: space-between;
 
-  @media(max-width: 768px) {
+  @media (max-width: 768px) {
     padding: 0 15px;
   }
 }
@@ -119,7 +119,7 @@
     }
   }
 
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     display: block;
   }
 }

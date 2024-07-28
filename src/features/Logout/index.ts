@@ -1,5 +1,3 @@
-import Logout from "./ui";
+import Logout from './ui'
 
-export {
-  Logout
-}
+export { Logout }

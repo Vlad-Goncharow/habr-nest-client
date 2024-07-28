@@ -8,40 +8,62 @@ import { fetchModalActions } from 'entities/FetchModal'
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 import classNames from 'classnames'
 
-interface UserRolesProps{
-  userData:IUser
+interface UserRolesProps {
+  userData: IUser
 }
 
-const UserRoles: React.FC<UserRolesProps> = ({userData}) => {
+const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
   const dispatch = useAppDispatch()
 
   const [isOpen, setIsOpen] = React.useState(false)
   const menuRef = React.useRef<HTMLDivElement>(null)
   UseClickOutside(menuRef, () => setIsOpen(false))
 
-  const [isUserModer, setIsUserModer] = React.useState<boolean>(() => userData.roles.find((el) => el.id === 3) ? true : false)
+  const [isUserModer, setIsUserModer] = React.useState<boolean>(() =>
+    userData.roles.find((el) => el.id === 3) ? true : false
+  )
 
   const addUserRole = async () => {
     try {
       const { data } = await axios.post(`/users/${userData.id}/role/3/add`)
       if (data.success === true) {
         setIsUserModer(true)
-        dispatch(fetchModalActions.showModal({ type: 'good', content: 'Роль успешно выдана!' }))
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'good',
+            content: 'Роль успешно выдана!',
+          })
+        )
       }
     } catch (e) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При добовлении роли произошла ошибка!' }))
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'При добовлении роли произошла ошибка!',
+        })
+      )
     }
   }
 
   const removeUserRole = async () => {
-    try{
+    try {
       const { data } = await axios.post(`/users/${userData.id}/role/3/remove`)
       if (data.success === true) {
         setIsUserModer(false)
-        dispatch(fetchModalActions.showModal({ type: 'good', content: 'Роль успешно забрана!' }))
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'good',
+            content: 'Роль успешно забрана!',
+          })
+        )
       }
-    } catch(e){
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При удалении роли произошла ошибка!' }))
+    } catch (e) {
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'При удалении роли произошла ошибка!',
+        })
+      )
     }
   }
 
@@ -52,17 +74,18 @@ const UserRoles: React.FC<UserRolesProps> = ({userData}) => {
       removeUserRole()
     }
   }
-  
+
   return (
     <>
-      {
-        !userData.roles.find(el => el.id === 1) &&
+      {!userData.roles.find((el) => el.id === 1) && (
         <div ref={menuRef} className={s.menu}>
-          <div onClick={() => setIsOpen(prev => !prev)} className={s.menu__icon}>
+          <div
+            onClick={() => setIsOpen((prev) => !prev)}
+            className={s.menu__icon}
+          >
             <Dotst />
           </div>
-          {
-            isOpen &&
+          {isOpen && (
             <div className={s.popup}>
               <h2 className={s.popup__title}>Роль Модератора</h2>
               <button
@@ -72,17 +95,12 @@ const UserRoles: React.FC<UserRolesProps> = ({userData}) => {
                   [s.button_disable]: isUserModer === true,
                 })}
               >
-                {
-                  isUserModer ?
-                    'Забрать'
-                    :
-                    'Выдать'
-                }
+                {isUserModer ? 'Забрать' : 'Выдать'}
               </button>
             </div>
-          }
+          )}
         </div>
-      }
+      )}
     </>
   )
 }

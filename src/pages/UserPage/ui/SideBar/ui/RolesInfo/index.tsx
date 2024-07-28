@@ -11,14 +11,12 @@ const RolesInfo: React.FC<RolesInfoProps> = ({ userData }) => {
     <div className={s.sidebar}>
       <div className={s.title}>Роли</div>
       <ul className={s.stats}>
-        {
-          userData.roles.map((el) => 
-            <li className={s.stats__li}>
-              <div className={s.stats__item}>{el.value}</div>
-              <div className={s.stats__item}>{el.description.toLowerCase()}</div>
-            </li>
-          )
-        }
+        {userData.roles.map((el) => (
+          <li className={s.stats__li}>
+            <div className={s.stats__item}>{el.value}</div>
+            <div className={s.stats__item}>{el.description.toLowerCase()}</div>
+          </li>
+        ))}
       </ul>
     </div>
   )

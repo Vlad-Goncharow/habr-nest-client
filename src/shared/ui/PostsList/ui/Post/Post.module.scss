@@ -29,9 +29,9 @@
 
   &__authorName {
     color: var(--mine-shaft);
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     font-weight: 700;
-    line-height: .9375rem;
+    line-height: 0.9375rem;
     text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -41,9 +41,9 @@
   &__date {
     color: #777;
     display: inline-block;
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     font-weight: 500;
-    line-height: .9375rem;
+    line-height: 0.9375rem;
   }
 
   &__title {
@@ -70,11 +70,11 @@
     a {
       color: var(--rolling-stone);
       margin-right: 10px;
-      font-size: .8125rem;
+      font-size: 0.8125rem;
       font-weight: 500;
       line-height: 1.5rem;
 
-      &:hover{
+      &:hover {
         color: var(--horizon);
       }
     }
@@ -95,7 +95,7 @@
       left: 0;
     }
 
-    @media(max-width:550px) {
+    @media (max-width: 550px) {
       height: 250px;
     }
   }
@@ -115,7 +115,7 @@
     color: var(--horizon);
     cursor: pointer;
     display: inline-block;
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     height: 36px;
     line-height: 2.25rem;
     margin-top: 18px;
@@ -142,7 +142,7 @@
 
     span {
       color: #bdcdd6;
-      font-size: .8125rem;
+      font-size: 0.8125rem;
     }
 
     &_active {
@@ -153,54 +153,54 @@
   }
 }
 
-.footer{
+.footer {
   display: flex;
   align-items: center;
   margin-top: 20px;
   justify-content: space-between;
 
-  &__left{
+  &__left {
     display: flex;
     align-items: center;
   }
 
-  &__right{
+  &__right {
     position: relative;
   }
 }
 
-.controls{
+.controls {
   position: relative;
 
-  &__icon{
+  &__icon {
     cursor: pointer;
 
-    svg{
+    svg {
       width: 30px;
       height: 30px;
     }
   }
 }
 
-.popup{
+.popup {
   position: absolute;
   top: 100%;
   right: 0;
   box-shadow: 0 0 2px #ccc;
   background: var(--romance);
 
-  ul{
+  ul {
     display: flex;
     flex-direction: column;
 
-    li{
+    li {
       display: flex;
       align-items: center;
       padding: 10px 15px;
       position: relative;
       cursor: pointer;
 
-      svg{
+      svg {
         position: absolute;
         top: 50%;
         left: 15px;
@@ -209,7 +209,7 @@
         height: 17px;
       }
 
-      span{
+      span {
         margin-left: 25px;
         color: var(--mine-shaft);
         font-size: 0.8125rem;
@@ -217,11 +217,11 @@
         line-height: 0.9375rem;
       }
 
-      &:hover{
+      &:hover {
         transition: all, 0.3s;
         background: #f1f1f1;
-        
-        svg{
+
+        svg {
           transition: all, 0.3s;
           transform: translateY(-50%) scale(1.1);
         }

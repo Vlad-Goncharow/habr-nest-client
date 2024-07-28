@@ -1,15 +1,15 @@
-.top{
+.top {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: var(--romance);
   padding: 15px;
-  border-bottom:0.6px solid #ccc;
+  border-bottom: 0.6px solid #ccc;
 }
 
-.name{
+.name {
   color: var(--horizon);
-  font-size: .8125rem;
+  font-size: 0.8125rem;
   line-height: 1.5rem;
 }
 
@@ -21,12 +21,12 @@
   &__item {
     text-align: right;
     width: var(--user-stats);
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     line-height: 1.5rem;
   }
 }
 
-.list{
+.list {
   background: var(--romance);
   padding: 15px;
   margin-bottom: 15px;

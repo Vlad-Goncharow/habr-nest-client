@@ -28,11 +28,12 @@
     }
   }
 
-  .info {}
+  .info {
+  }
 
   &__title {
     color: var(--mine-shaft);
-    font-size: .9375rem;
+    font-size: 0.9375rem;
     font-weight: 500;
     line-height: 1rem;
     font-weight: 700;
@@ -40,7 +41,7 @@
 
   &__descr {
     color: var(--mine-shaft);
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     line-height: 1rem;
     margin-top: 8px;
   }
@@ -57,7 +58,7 @@
     line-height: 1.5rem;
   }
 
-  @media(max-width:500px) {
+  @media (max-width: 500px) {
     width: 50%;
     justify-content: space-between;
   }

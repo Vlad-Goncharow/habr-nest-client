@@ -4,16 +4,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import s from './PostAuthor.module.scss'
 
-interface PostAuthorProps{
+interface PostAuthorProps {
   author: IUser
 }
 
-const PostAuthor: React.FC<PostAuthorProps> = ({author}) => {
+const PostAuthor: React.FC<PostAuthorProps> = ({ author }) => {
   return (
     <div className={s.author}>
       <div className={s.author__top}>
         <div className={s.author__img}>
-          <img src={`${process.env.REACT_APP_SERVER_URL}/${author?.avatar}`} alt="" />
+          <img
+            src={`${process.env.REACT_APP_SERVER_URL}/${author?.avatar}`}
+            alt=''
+          />
         </div>
         <div className={s.author__item}>
           <span>{`${author?.karma}`}</span>
@@ -25,7 +28,9 @@ const PostAuthor: React.FC<PostAuthorProps> = ({author}) => {
         </div>
         <SubscribeUser userId={author.id} />
       </div>
-      <Link to={`/user/${author.id}/profile/1`} className={s.author__name}>{author?.nickname}</Link>
+      <Link to={`/user/${author.id}/profile/1`} className={s.author__name}>
+        {author?.nickname}
+      </Link>
     </div>
   )
 }

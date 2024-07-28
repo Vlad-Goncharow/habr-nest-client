@@ -1,2 +1,2 @@
-export {subscribeToHab, unsubscribeFromHab} from './actions'
-export {selectIsSubscribed} from './selectors'
+export { subscribeToHab, unsubscribeFromHab } from './actions'
+export { selectIsSubscribed } from './selectors'

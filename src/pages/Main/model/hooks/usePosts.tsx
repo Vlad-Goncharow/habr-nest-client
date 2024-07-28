@@ -11,7 +11,7 @@ interface usePostsProps {
 }
 
 const usePosts = (props: usePostsProps): any => {
-  const { page, category, type} = props
+  const { page, category, type } = props
   const dispatch = useAppDispatch()
 
   const { data, isLoading, isError, isSuccess } = useQuery({
@@ -23,7 +23,12 @@ const usePosts = (props: usePostsProps): any => {
   //error handled
   React.useEffect(() => {
     if (isError) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'Ошибка, попробуйте еще раз!',
+        })
+      )
     }
   }, [isError])
 

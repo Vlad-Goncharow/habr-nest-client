@@ -4,16 +4,14 @@ import Habs from '../Habs'
 import Authors from '../Authors'
 
 function SearchRoute() {
-  const {type} = useParams()
-  console.log(type);
-  
+  const { type } = useParams()
+  console.log(type)
+
   return (
     <>
-      {
-        (type === 'articles' && <Articles />) ||
+      {(type === 'articles' && <Articles />) ||
         (type === 'habs' && <Habs />) ||
-        (type === 'authors' && <Authors />)
-      }
+        (type === 'authors' && <Authors />)}
     </>
   )
 }

@@ -32,12 +32,12 @@
     padding: 0 14px;
     cursor: pointer;
 
-    &_disable{
+    &_disable {
       opacity: 0.7;
       cursor: not-allowed;
     }
 
-    &_active{
+    &_active {
       opacity: 1;
     }
   }
@@ -51,7 +51,7 @@
   &__inputs {
     width: 50%;
 
-    @media(max-width:1024px) {
+    @media (max-width: 1024px) {
       width: 100%;
       order: 1;
     }
@@ -102,7 +102,7 @@
   width: 50%;
   padding-left: 15px;
 
-  @media(max-width:1024px) {
+  @media (max-width: 1024px) {
     padding-left: 0;
     margin-bottom: 15px;
     width: 100%;
@@ -169,7 +169,7 @@
   display: flex;
   align-items: flex-end;
 
-  @media(max-width:1024px) {
+  @media (max-width: 1024px) {
     flex-wrap: wrap;
   }
 }
@@ -179,12 +179,11 @@
   margin-right: 15px;
   margin-bottom: 40px;
 
-  @media(max-width:1024px) {
+  @media (max-width: 1024px) {
     width: 100%;
     margin-right: 0;
     margin-bottom: 15px;
   }
-
 
   &:last-child {
     margin-right: 0;
@@ -198,10 +197,10 @@
     line-height: 16px;
   }
 
-  &__date{
+  &__date {
     width: 100%;
 
-    input{
+    input {
       width: 100%;
       display: block;
       font-size: 14px;

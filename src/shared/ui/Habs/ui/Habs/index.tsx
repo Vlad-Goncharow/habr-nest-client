@@ -7,11 +7,15 @@ import s from './Habs.module.scss'
 
 interface HabsProps {
   habs: IHab[] | []
-  habsTotalCount: number;
+  habsTotalCount: number
   navigatePath: string
 }
 
-export const Habs: React.FC<HabsProps> = ({ habs,  habsTotalCount, navigatePath, }) => {
+export const Habs: React.FC<HabsProps> = ({
+  habs,
+  habsTotalCount,
+  navigatePath,
+}) => {
   return (
     <>
       <div className={s.content}>
@@ -19,7 +23,11 @@ export const Habs: React.FC<HabsProps> = ({ habs,  habsTotalCount, navigatePath,
         <HabsList habs={habs} habsTotalCount={habsTotalCount} />
       </div>
 
-      <Pagination length={habsTotalCount} pageSize={20} navigatePath={navigatePath} />
+      <Pagination
+        length={habsTotalCount}
+        pageSize={20}
+        navigatePath={navigatePath}
+      />
     </>
   )
 }

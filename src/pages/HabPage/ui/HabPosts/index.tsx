@@ -5,23 +5,22 @@ import { usePosts } from '../../model'
 function HabPosts() {
   //params
   const { habId, type, page } = useParams()
- 
+
   //data
   const { isLoading, isSuccess, data } = usePosts({ habId, page, type })
 
   return (
     <>
-      {
-        !isLoading && isSuccess ?
-          <PostsList 
-            posts={data.posts} 
-            length={data.length} 
-            navigatePath={`/hab/${habId}/${type}/${type}`}
-            query={['hab', habId, type, page]} 
-          />
-        : 
-          <PostsSceleton />
-      }
+      {!isLoading && isSuccess ? (
+        <PostsList
+          posts={data.posts}
+          length={data.length}
+          navigatePath={`/hab/${habId}/${type}/${type}`}
+          query={['hab', habId, type, page]}
+        />
+      ) : (
+        <PostsSceleton />
+      )}
     </>
   )
 }

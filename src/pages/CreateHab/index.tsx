@@ -1,5 +1,3 @@
-import CreateHab from "./ui/CreateHab";
+import CreateHab from './ui/CreateHab'
 
-export {
-  CreateHab
-}
+export { CreateHab }

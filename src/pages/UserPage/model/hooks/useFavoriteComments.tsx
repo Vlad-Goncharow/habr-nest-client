@@ -24,11 +24,23 @@ const useFavoritesComments = (props: useFavoritesPostsProps): any => {
   //error handled
   React.useEffect(() => {
     if (isError) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'Ошибка, попробуйте еще раз!',
+        })
+      )
     }
   }, [isError])
 
-  return isSuccess && { comments: data.comments, length: data.length, isLoading, isSuccess }
+  return (
+    isSuccess && {
+      comments: data.comments,
+      length: data.length,
+      isLoading,
+      isSuccess,
+    }
+  )
 }
 
 export default useFavoritesComments

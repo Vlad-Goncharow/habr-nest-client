@@ -7,14 +7,23 @@ function FavoriteComments() {
   const { userId, type, subType, page } = useParams()
 
   //data
-  const { comments, length, isLoading, isSuccess } = useFavoritesComments({ userId, type, subType, page })
+  const { comments, length, isLoading, isSuccess } = useFavoritesComments({
+    userId,
+    type,
+    subType,
+    page,
+  })
 
   return (
     <>
-      {
-        isSuccess &&
-        <Comments comments={comments} length={length} loading={isLoading} navigatePath={`/user/${userId}/${type}/${subType}`} />
-      }
+      {isSuccess && (
+        <Comments
+          comments={comments}
+          length={length}
+          loading={isLoading}
+          navigatePath={`/user/${userId}/${type}/${subType}`}
+        />
+      )}
     </>
   )
 }

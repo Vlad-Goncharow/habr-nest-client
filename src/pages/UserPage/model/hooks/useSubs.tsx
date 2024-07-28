@@ -4,13 +4,13 @@ import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { loadSubsFN } from '../api'
 
-interface useSubsProps{
+interface useSubsProps {
   userId: string | undefined
   type: string | undefined
   page: string | undefined
 }
 
-const useSubs = (props: useSubsProps):any => {
+const useSubs = (props: useSubsProps): any => {
   const { page, type, userId } = props
   const dispatch = useAppDispatch()
 
@@ -23,11 +23,16 @@ const useSubs = (props: useSubsProps):any => {
   //error handled
   React.useEffect(() => {
     if (isError) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'Ошибка, попробуйте еще раз!',
+        })
+      )
     }
   }, [isError])
-  
-  return isSuccess && {data, length: data.length, isLoading, isSuccess }
+
+  return isSuccess && { data, length: data.length, isLoading, isSuccess }
 }
 
 export default useSubs

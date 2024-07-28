@@ -1,45 +1,45 @@
-.sidebar{
+.sidebar {
   background: var(--romance);
   padding: 15px;
   margin-bottom: 15px;
 
-  @media(max-width:1024px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 }
 
-.list{
+.list {
   list-style: none;
 }
 
-.post{
-  &:not(:first-child){
+.post {
+  &:not(:first-child) {
     margin-top: 18px;
     padding: 18px 0 0;
-    border-top: 1px solid rgba(var(--gull-gray-rgb), .4);
+    border-top: 1px solid rgba(var(--gull-gray-rgb), 0.4);
   }
 
-  &__title{
-    font-size: .875rem;
+  &__title {
+    font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.3125rem;
     margin-bottom: 6px;
   }
 
-  &__stats{
+  &__stats {
     display: flex;
     align-items: center;
 
-    span{
+    span {
       display: flex;
       align-items: center;
       margin-right: 15px;
       color: var(--gull-gray);
-      font-size: .8125rem;
+      font-size: 0.8125rem;
       font-weight: 700;
       line-height: 1;
 
-      svg{
+      svg {
         margin-right: 4px;
         fill: var(--gull-gray);
         width: 24px;

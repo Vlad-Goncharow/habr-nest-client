@@ -13,7 +13,7 @@ import HabPosts from '../HabPosts'
 function HabPage() {
   //dispatch
   const dispatch = useAppDispatch()
-  
+
   //params
   const { habId, type } = useParams()
 
@@ -22,37 +22,37 @@ function HabPage() {
 
   //load hab data
   React.useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
-        const {data} = await axios.get(`/habs/${habId}`)
+        const { data } = await axios.get(`/habs/${habId}`)
         setHabData(data)
-      } catch(e){
-        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+      } catch (e) {
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'bad',
+            content: 'Ошибка, попробуйте еще раз!',
+          })
+        )
       }
     })()
-  },[habId])
-  
+  }, [habId])
+
   return (
     <div>
-      {
-        habData !== null &&
+      {habData !== null && (
         <div className={'wrapper'}>
           <div className={'wrapper__left'}>
             <HabHeader habData={habData} />
-            {
-              (type === 'articles' || type === 'posts' || type === 'news') &&
+            {(type === 'articles' || type === 'posts' || type === 'news') && (
               <HabPosts />
-            }
-            {
-              type === 'authors' &&
-              <Authors />
-            }
+            )}
+            {type === 'authors' && <Authors />}
           </div>
           <SidebarWrapper>
             <SidebarReadWeekly category={habData.category} />
           </SidebarWrapper>
         </div>
-      }
+      )}
     </div>
   )
 }

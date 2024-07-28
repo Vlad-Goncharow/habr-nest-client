@@ -6,7 +6,7 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import axios from '../../../../axios'
 import PageSkeleton from '../PageSkeleton'
 import SideBar from '../SideBar'
-import {UserHeader} from '../UserHeader'
+import { UserHeader } from '../UserHeader'
 
 function UserPage() {
   //dispatch
@@ -14,33 +14,36 @@ function UserPage() {
 
   //params
   const { userId } = useParams()
-  
+
   //user data | loading
   const [userData, setUserData] = React.useState<IUser | null>(null)
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
         setLoading(true)
-        const {data} = await axios.get(`/users/${userId}`)
+        const { data } = await axios.get(`/users/${userId}`)
         setUserData(data)
         setLoading(false)
-      } catch(e){
+      } catch (e) {
         setLoading(false)
-        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'bad',
+            content: 'Ошибка, попробуйте еще раз!',
+          })
+        )
       }
     })()
-  },[userId])
-  
+  }, [userId])
+
   return (
     <div className={'wrapper'}>
-      {
-        loading 
-        ?
-          <PageSkeleton />
-        : 
-          userData !== null &&
+      {loading ? (
+        <PageSkeleton />
+      ) : (
+        userData !== null && (
           <>
             <div className={'wrapper__left'}>
               <UserHeader userData={userData} />
@@ -48,7 +51,8 @@ function UserPage() {
             </div>
             <SideBar userData={userData} />
           </>
-      }
+        )
+      )}
     </div>
   )
 }

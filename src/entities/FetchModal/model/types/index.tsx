@@ -1,5 +1,5 @@
-export interface modalInitialState{
-  visible:boolean
+export interface modalInitialState {
+  visible: boolean
   type: 'bad' | 'good' | null
-  content:string
+  content: string
 }

@@ -6,19 +6,22 @@ import UserNav from '../../../UserNav'
 import UserRoles from '../UserRoles'
 import s from './UserHeader.module.scss'
 
-interface UserHeaderProps{
-  userData:IUser
+interface UserHeaderProps {
+  userData: IUser
 }
 
-const UserHeader: React.FC<UserHeaderProps> = ({userData}) => {
+const UserHeader: React.FC<UserHeaderProps> = ({ userData }) => {
   const isUserAdmin = useAppSelector(checkRolesAdmin)
-  
+
   return (
     <header className={s.header}>
       <div className={s.header__top}>
         <div className={s.header__left}>
           <div className={s.header__image}>
-            <img src={`${process.env.REACT_APP_SERVER_URL}/${userData?.avatar}`} alt="" />
+            <img
+              src={`${process.env.REACT_APP_SERVER_URL}/${userData?.avatar}`}
+              alt=''
+            />
           </div>
           <div className={s.stat}>
             <div className={s.stat__item}>
@@ -32,10 +35,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({userData}) => {
           </div>
         </div>
         <SubscribeUser userId={userData.id} />
-        {
-          isUserAdmin &&
-          <UserRoles userData={userData} />
-        }
+        {isUserAdmin && <UserRoles userData={userData} />}
       </div>
       <h1 className={s.name}>{`@${userData?.nickname}`}</h1>
       <p className={s.descr}>{userData?.description}</p>

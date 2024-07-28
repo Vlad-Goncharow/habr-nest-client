@@ -1,5 +1,3 @@
-import ProfileSettings from "./ui/ProfileSettings";
+import ProfileSettings from './ui/ProfileSettings'
 
-export{
-  ProfileSettings
-}
+export { ProfileSettings }

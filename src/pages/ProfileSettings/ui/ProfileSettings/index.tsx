@@ -2,8 +2,8 @@ import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
 import { fetchUpdateUser, getUserData } from 'entities/User'
 import React, { ChangeEvent } from 'react'
-import DatePicker from "react-datepicker"
-import "react-datepicker/dist/react-datepicker.css"
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
 import { uploadImage } from 'shared/api/images'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
@@ -12,13 +12,12 @@ import CountrySelect from '../CountrySelect'
 import GenderSelect from '../GenderSelect'
 import s from './ProfileSettings.module.scss'
 
-
 function ProfileSettings() {
   //dispatch
   const dispatch = useAppDispatch()
 
   //current user
-  const {user} = useAppSelector(getUserData)
+  const { user } = useAppSelector(getUserData)
 
   //update values
   const [values, setValues] = React.useState<ValuesType>({
@@ -27,26 +26,25 @@ function ProfileSettings() {
     gender: { value: user?.gender || '', label: user?.gender || '' },
     country: { value: user?.country || '', label: user?.country || '' },
     dateOfBirth: user?.dateOfBirth || '',
-  });
+  })
 
   //avatar
-  const [image, setImage] = React.useState<string>();
+  const [image, setImage] = React.useState<string>()
   const [imageFile, setImageFile] = React.useState<File | null>(null)
 
   //update button ref
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
-
-  //handle image 
+  //handle image
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedImage = event.target.files?.[0];
+    const selectedImage = event.target.files?.[0]
     if (selectedImage) {
       setImageFile(selectedImage)
-      const reader = new FileReader();
+      const reader = new FileReader()
       reader.onload = () => {
-        setImage(reader.result as string);
-      };
-      reader.readAsDataURL(selectedImage);
+        setImage(reader.result as string)
+      }
+      reader.readAsDataURL(selectedImage)
     }
   }
 
@@ -58,74 +56,114 @@ function ProfileSettings() {
         const data = await uploadImage(imageFile)
         url = data
       }
-      
-      await dispatch(fetchUpdateUser({
-        ...values,
-        avatar: url,
-        gender: values.gender.value,
-        country: values.country.value
-      }))
-      dispatch(fetchModalActions.showModal({ type: 'good', content: 'Профиль успешно обновлен' }))
+
+      await dispatch(
+        fetchUpdateUser({
+          ...values,
+          avatar: url,
+          gender: values.gender.value,
+          country: values.country.value,
+        })
+      )
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'good',
+          content: 'Профиль успешно обновлен',
+        })
+      )
     } catch (e) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'Ошибка, попробуйте еще раз!',
+        })
+      )
     }
   }
 
   //check is change some values
   const checkUpdate = () => {
-    if (values.description !== user?.description || 
-      values.fullName !== user?.fullName || 
-      user?.country !== values.country.value || 
-      user?.gender !== values.gender.value || 
+    if (
+      values.description !== user?.description ||
+      values.fullName !== user?.fullName ||
+      user?.country !== values.country.value ||
+      user?.gender !== values.gender.value ||
       user?.dateOfBirth !== values.dateOfBirth ||
-      imageFile) {
+      imageFile
+    ) {
       return true
     }
 
     return false
   }
-  
+
   //check if btn style active update profile
   const myHandleClick = () => {
-    if(buttonRef.current !== null && buttonRef.current.classList.contains(s.form__submit_active)){
+    if (
+      buttonRef.current !== null &&
+      buttonRef.current.classList.contains(s.form__submit_active)
+    ) {
       update()
     }
   }
-  
+
   return (
     <div className={s.wrapper}>
       <h1 className={s.header}>Настройки профиля</h1>
-      <form action="" className={s.form}>
+      <form action='' className={s.form}>
         <div className={s.top}>
           <div className={s.top__inputs}>
             <div className={s.inpitItem}>
-              <label htmlFor="">Настоящее имя</label>
+              <label htmlFor=''>Настоящее имя</label>
               <input
                 value={values.fullName}
-                onChange={(e) => setValues((prev:ValuesType) => ({...prev, fullName: e.target.value}))}
-                type="text"
+                onChange={(e) =>
+                  setValues((prev: ValuesType) => ({
+                    ...prev,
+                    fullName: e.target.value,
+                  }))
+                }
+                type='text'
               />
-              <p>Укажите ваши имя и фамилию, чтобы другие пользователи смогли узнать, как вас зовут</p>
+              <p>
+                Укажите ваши имя и фамилию, чтобы другие пользователи смогли
+                узнать, как вас зовут
+              </p>
             </div>
             <div className={s.inpitItem}>
-              <label htmlFor="">Опишите себя</label>
+              <label htmlFor=''>Опишите себя</label>
               <input
                 value={values.description}
-                type="text"
-                onChange={(e) => setValues((prev:ValuesType) => ({ ...prev, description: e.target.value }))}
+                type='text'
+                onChange={(e) =>
+                  setValues((prev: ValuesType) => ({
+                    ...prev,
+                    description: e.target.value,
+                  }))
+                }
               />
-              <p>Укажите свою специализацию. Например: Администратор баз данных</p>
+              <p>
+                Укажите свою специализацию. Например: Администратор баз данных
+              </p>
             </div>
           </div>
           <div className={s.user}>
             <h4 className={s.user__title}>Аватар</h4>
             <div className={s.user__image}>
-              <input type="file" onChange={handleImageUpload} className={s.image__upload} />
+              <input
+                type='file'
+                onChange={handleImageUpload}
+                className={s.image__upload}
+              />
               <>
-                <img 
-                  src={image ? image : `${process.env.REACT_APP_SERVER_URL}/${user?.avatar}`} 
-                  alt="Аватар пользователя" 
-                  className={s.image__img} 
+                <img
+                  src={
+                    image
+                      ? image
+                      : `${process.env.REACT_APP_SERVER_URL}/${user?.avatar}`
+                  }
+                  alt='Аватар пользователя'
+                  className={s.image__img}
                 />
               </>
             </div>
@@ -137,26 +175,41 @@ function ProfileSettings() {
           </div>
         </div>
         <div className={s.row}>
-          <GenderSelect className={s.select} setValues={setValues} values={values} />
-          <CountrySelect className={s.select} setValues={setValues} values={values} />
+          <GenderSelect
+            className={s.select}
+            setValues={setValues}
+            values={values}
+          />
+          <CountrySelect
+            className={s.select}
+            setValues={setValues}
+            values={values}
+          />
         </div>
         <div className={s.row}>
           <div className={s.select}>
             <span>Дата рождения</span>
-            <DatePicker 
-              wrapperClassName={s.select__date} 
-              selected={values.dateOfBirth === 'Не известно' ? '' : values.dateOfBirth} 
-              onChange={(date: any) => setValues((prev:ValuesType) => ({ ...prev, dateOfBirth: date }))}  
+            <DatePicker
+              wrapperClassName={s.select__date}
+              selected={
+                values.dateOfBirth === 'Не известно' ? '' : values.dateOfBirth
+              }
+              onChange={(date: any) =>
+                setValues((prev: ValuesType) => ({
+                  ...prev,
+                  dateOfBirth: date,
+                }))
+              }
             />
           </div>
         </div>
-        <button 
+        <button
           type='button'
-          onClick={myHandleClick} 
+          onClick={myHandleClick}
           ref={buttonRef}
           className={classNames(s.form__submit, {
             [s.form__submit_disable]: checkUpdate() === false,
-            [s.form__submit_active]: checkUpdate() === true
+            [s.form__submit_active]: checkUpdate() === true,
           })}
         >
           Сохранить изменения

@@ -11,25 +11,32 @@ interface UsersProps {
   users: IUser[] | []
   usersLoading: boolean
   usersTotalCount: number
-  navigatePath:string
+  navigatePath: string
 }
 
-const UsersList: React.FC<UsersProps> = ({users,usersLoading,usersTotalCount,navigatePath}) => {
+const UsersList: React.FC<UsersProps> = ({
+  users,
+  usersLoading,
+  usersTotalCount,
+  navigatePath,
+}) => {
   return (
     <div className={s.wrapper}>
       <div className={s.content}>
         <UsersHeader />
-        {
-          usersLoading ? <Skeleton />  :
-            usersTotalCount > 0 ?
-                users.map((el: IUser) =>
-                  <UserItem key={el.id} user={el} />
-                )
-              :
-                <Empty />
-        }
+        {usersLoading ? (
+          <Skeleton />
+        ) : usersTotalCount > 0 ? (
+          users.map((el: IUser) => <UserItem key={el.id} user={el} />)
+        ) : (
+          <Empty />
+        )}
       </div>
-      <Pagination length={usersTotalCount} pageSize={20} navigatePath={navigatePath} />
+      <Pagination
+        length={usersTotalCount}
+        pageSize={20}
+        navigatePath={navigatePath}
+      />
     </div>
   )
 }

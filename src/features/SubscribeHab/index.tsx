@@ -1,5 +1,3 @@
-import SubscribeHab from "./ui";
+import SubscribeHab from './ui'
 
-export {
-  SubscribeHab
-}
+export { SubscribeHab }

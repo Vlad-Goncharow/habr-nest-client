@@ -30,7 +30,7 @@
 
   &__input {
     background-color: var(--romance);
-    color: var(--mine-shaft);;
+    color: var(--mine-shaft);
     border-radius: 3px;
     display: block;
     margin: 0;
@@ -105,9 +105,9 @@
     left: 0;
     opacity: 0;
 
-    &:not(:checked)+label:before,
-    &:checked+label:before {
-      content: "";
+    &:not(:checked) + label:before,
+    &:checked + label:before {
+      content: '';
       position: absolute;
       left: 0;
       top: 0;
@@ -118,9 +118,9 @@
       background: var(--romance);
     }
 
-    &:not(:checked)+label:after,
-    &:checked+label:after {
-      content: "";
+    &:not(:checked) + label:after,
+    &:checked + label:after {
+      content: '';
       width: 10px;
       height: 10px;
       background: var(--horizon, #4d80aa);
@@ -128,16 +128,16 @@
       top: 4px;
       left: 4px;
       border-radius: 100%;
-      -webkit-transition: all .2s ease;
-      transition: all .2s ease;
+      -webkit-transition: all 0.2s ease;
+      transition: all 0.2s ease;
     }
 
-    &:not(:checked)+label:after {
+    &:not(:checked) + label:after {
       opacity: 0;
       transform: scale(0);
     }
 
-    &:checked+label:after {
+    &:checked + label:after {
       opacity: 1;
       transform: scale(1);
     }
@@ -210,37 +210,37 @@
   align-items: center;
   justify-content: space-between;
 
-  &__btn{
+  &__btn {
     cursor: pointer;
     height: 32px;
     padding: 8px 14px;
     border-radius: 3px;
-    font-size: .8125rem;
-    border:none;
+    font-size: 0.8125rem;
+    border: none;
     color: var(----mountain-mist);
   }
 
-  &__prev{
+  &__prev {
     background: #db4b4b;
     color: var(--romance);
   }
 
-  &__create{
+  &__create {
     background-color: var(--romance);
     border: 1px solid #c0c0c0;
 
-    &_active{
-      color:var(--horizon);;
+    &_active {
+      color: var(--horizon);
       background: transparent;
-      border: 1px solid var(--horizon);;
+      border: 1px solid var(--horizon);
 
       &:hover {
-        background: var(--horizon);;
+        background: var(--horizon);
         color: var(--romance);
       }
     }
 
-    &_disable{
+    &_disable {
       cursor: not-allowed;
     }
   }

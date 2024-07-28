@@ -1,5 +1,3 @@
-import { QueryProvider } from "./ui";
+import { QueryProvider } from './ui'
 
-export {
-  QueryProvider
-}
+export { QueryProvider }

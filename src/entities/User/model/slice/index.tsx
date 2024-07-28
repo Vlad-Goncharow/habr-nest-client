@@ -1,24 +1,32 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { fetchAuth, fetchLogin, fetchLogout, fetchRegister, fetchUpdateUser } from "../thunks";
-import { userStateSchema } from "../types/user";
+import { createSlice } from '@reduxjs/toolkit'
+import {
+  fetchAuth,
+  fetchLogin,
+  fetchLogout,
+  fetchRegister,
+  fetchUpdateUser,
+} from '../thunks'
+import { userStateSchema } from '../types/user'
 
 const initialState: userStateSchema = {
   user: null,
-  isLoading:false
+  isLoading: false,
 }
 
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    userSubscribe(state, action){
-      if(state.user){
+    userSubscribe(state, action) {
+      if (state.user) {
         state.user?.subscriptions.push(action.payload)
       }
     },
     userUnSubscribe(state, action) {
-      if(state.user){
-        state.user.subscriptions = state.user.subscriptions.filter((el) => el.id !== action.payload.id);
+      if (state.user) {
+        state.user.subscriptions = state.user.subscriptions.filter(
+          (el) => el.id !== action.payload.id
+        )
       }
     },
     userHabSubscribe(state, action) {
@@ -28,29 +36,38 @@ const userSlice = createSlice({
     },
     userHabUnSubscribe(state, action) {
       if (state.user) {
-        state.user.habSubscribers = state.user.habSubscribers.filter((el) => el.id !== action.payload.id);
+        state.user.habSubscribers = state.user.habSubscribers.filter(
+          (el) => el.id !== action.payload.id
+        )
       }
     },
-    addFavoritePost(state,action){
-      if(state.user){
+    addFavoritePost(state, action) {
+      if (state.user) {
         state.user.favoritePosts = [...state.user.favoritePosts, action.payload]
       }
     },
     removeFavoritePost(state, action) {
       if (state.user) {
-        state.user.favoritePosts = state.user.favoritePosts.filter((el) => el.id !== action.payload.id);
+        state.user.favoritePosts = state.user.favoritePosts.filter(
+          (el) => el.id !== action.payload.id
+        )
       }
     },
     addFavoriteComment(state, action) {
       if (state.user) {
-        state.user.favoriteComments = [...state.user.favoriteComments, action.payload]
+        state.user.favoriteComments = [
+          ...state.user.favoriteComments,
+          action.payload,
+        ]
       }
     },
     removeFavoriteComment(state, action) {
       if (state.user) {
-        state.user.favoriteComments = state.user.favoriteComments.filter((el) => el.id !== action.payload.id);
+        state.user.favoriteComments = state.user.favoriteComments.filter(
+          (el) => el.id !== action.payload.id
+        )
       }
-    }
+    },
   },
   extraReducers(builder) {
     //refresh
@@ -68,11 +85,11 @@ const userSlice = createSlice({
       state.user = null
     })
     //register
-    builder.addCase(fetchRegister.pending,(state) => {
+    builder.addCase(fetchRegister.pending, (state) => {
       state.isLoading = true
     })
     builder.addCase(fetchRegister.fulfilled, (state, action) => {
-      if (action.payload){
+      if (action.payload) {
         state.user = action.payload.user
         state.isLoading = false
       }
@@ -118,5 +135,5 @@ const userSlice = createSlice({
   },
 })
 
-export const { actions: userActions } = userSlice;
-export const { reducer: userReducer } = userSlice;
+export const { actions: userActions } = userSlice
+export const { reducer: userReducer } = userSlice

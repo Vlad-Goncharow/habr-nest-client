@@ -1,28 +1,33 @@
 export type categoriesType = {
-  categoryRu: String,
+  categoryRu: String
   categoryEng: String
 }
 
 export const postCategories = [
   {
     categoryRu: 'Разработка',
-    categoryEng: 'develop'
-  }, {
+    categoryEng: 'develop',
+  },
+  {
     categoryRu: 'Администрирование',
-    categoryEng: 'admin'
-  }, {
+    categoryEng: 'admin',
+  },
+  {
     categoryRu: 'Дизайн',
-    categoryEng: 'design'
-  }, {
+    categoryEng: 'design',
+  },
+  {
     categoryRu: 'Менеджмент',
-    categoryEng: 'management'
-  }, {
+    categoryEng: 'management',
+  },
+  {
     categoryRu: 'Маркетинг',
-    categoryEng: 'marketing'
-  }, {
+    categoryEng: 'marketing',
+  },
+  {
     categoryRu: 'Научпоп',
-    categoryEng: 'popsci'
-  }
+    categoryEng: 'popsci',
+  },
 ]
 
 export const postTypeOne = [

@@ -1,5 +1,5 @@
-import { IUser } from "entities/User"
-import { IPost } from "./posts"
+import { IUser } from 'entities/User'
+import { IPost } from './posts'
 
 export interface IComment {
   id: number

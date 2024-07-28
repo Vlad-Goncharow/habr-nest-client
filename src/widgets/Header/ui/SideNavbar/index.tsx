@@ -9,36 +9,35 @@ interface SideNavbarProps {
 }
 
 const SideNavbar: React.FC<SideNavbarProps> = ({ isShow }) => {
-  const {category} = useParams()
-  
+  const { category } = useParams()
+
   return (
     <>
-      {
-        isShow &&
-        <nav className={s.nav} >
-            <Link 
+      {isShow && (
+        <nav className={s.nav}>
+          <Link
+            className={classNames(s.nav__link, {
+              [s.nav__link_active]: !postCategories.some(
+                (el) => el.categoryEng === category
+              ),
+            })}
+            to='/flows/all/articles/1'
+          >
+            Все потоки
+          </Link>
+          {postCategories.map((el) => (
+            <Link
+              key={el.categoryEng}
               className={classNames(s.nav__link, {
-                [s.nav__link_active]: !postCategories.some(el => el.categoryEng === category)
-              })} 
-              to='/flows/all/articles/1'
+                [s.nav__link_active]: category === el.categoryEng,
+              })}
+              to={`/flows/${el.categoryEng}/articles/1`}
             >
-              Все потоки
+              {el.categoryRu}
             </Link>
-          {
-            postCategories.map((el) => 
-              <Link 
-                key={el.categoryEng}
-                className={classNames(s.nav__link, {
-                  [s.nav__link_active]: category === el.categoryEng
-                })} 
-                to={`/flows/${el.categoryEng}/articles/1`}
-              >
-                {el.categoryRu}
-              </Link>
-            )
-          }
-        </ nav>
-      }
+          ))}
+        </nav>
+      )}
     </>
   )
 }

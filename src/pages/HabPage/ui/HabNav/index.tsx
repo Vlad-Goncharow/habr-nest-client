@@ -3,24 +3,27 @@ import { Link, useParams } from 'react-router-dom'
 import s from './HabNav.module.scss'
 
 type categoriesType = {
-  categoryRu: String,
+  categoryRu: String
   categoryEng: String
 }
 
 const categories: categoriesType[] = [
   {
     categoryRu: 'Статьи',
-    categoryEng: 'articles'
-  }, {
+    categoryEng: 'articles',
+  },
+  {
     categoryRu: 'Посты',
-    categoryEng: 'posts'
-  }, {
+    categoryEng: 'posts',
+  },
+  {
     categoryRu: 'Новости',
-    categoryEng: 'news'
-  }, {
+    categoryEng: 'news',
+  },
+  {
     categoryRu: 'Авторы',
-    categoryEng: 'authors'
-  }
+    categoryEng: 'authors',
+  },
 ]
 
 function HabNav() {
@@ -29,19 +32,17 @@ function HabNav() {
   return (
     <div className={s.navigation}>
       <div className={s.navigation__top}>
-        {
-          categories.map((el: categoriesType) =>
-            <Link
-              key={`${el.categoryEng}`}
-              to={`/hab/${habId}/${el.categoryEng}/1`}
-              className={classNames(s.navigation__item, {
-                [s.navigation__item_active]: el.categoryEng === type
-              })}
-            >
-              {el.categoryRu}
-            </Link>
-          )
-        }
+        {categories.map((el: categoriesType) => (
+          <Link
+            key={`${el.categoryEng}`}
+            to={`/hab/${habId}/${el.categoryEng}/1`}
+            className={classNames(s.navigation__item, {
+              [s.navigation__item_active]: el.categoryEng === type,
+            })}
+          >
+            {el.categoryRu}
+          </Link>
+        ))}
       </div>
     </div>
   )

@@ -23,7 +23,7 @@ function Header() {
   UseClickOutside(sideNavRef, () => setSideNavIsClose(true))
 
   React.useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: NodeJS.Timeout
 
     if (sideNav && !sideNavIsClose) {
       timer = setTimeout(() => {
@@ -35,13 +35,13 @@ function Header() {
     if (sideNavIsClose) {
       sideNavRef.current?.classList.remove(s.header__sideNav_open)
       sideNavRef.current?.classList.add(s.header__sideNav_close)
-      
+
       timer = setTimeout(() => {
         setSideNav(false)
         setSideNavIsClose(false)
       }, 200)
     }
-   
+
     return () => {
       clearTimeout(timer)
     }
@@ -55,37 +55,34 @@ function Header() {
             <div onClick={() => setSideNav(true)} className={s.burger}>
               <span></span>
             </div>
-            
+
             <Link to='/flows/all/articles/1' className={s.logo}>
               Хабр
             </Link>
 
-            {
-              isChangeControlsPos &&
-              <Controls user={user} />
-            }
+            {isChangeControlsPos && <Controls user={user} />}
           </div>
         </div>
       </div>
       <div className={'container'}>
         <div className={s.row}>
           <SideNavbar isShow={!sideNavShow} />
-          {
-            !isChangeControlsPos &&
-            <Controls user={user} />
-          }
+          {!isChangeControlsPos && <Controls user={user} />}
         </div>
       </div>
 
-      {
-        sideNavShow && sideNav &&
+      {sideNavShow && sideNav && (
         <div className={s.header__overlay}>
-          <div ref={sideNavRef} onClick={() => setSideNavIsClose(true)} className={s.header__sideNav}>
+          <div
+            ref={sideNavRef}
+            onClick={() => setSideNavIsClose(true)}
+            className={s.header__sideNav}
+          >
             <SideNavbar isShow={true} />
           </div>
         </div>
-      }
-    </header >
+      )}
+    </header>
   )
 }
 

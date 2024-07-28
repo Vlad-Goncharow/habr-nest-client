@@ -5,20 +5,17 @@ import { useAppSelector } from 'shared/hooks/useAppSelector'
 import RolesInfo from '../RolesInfo'
 import UserInfo from '../UserInfo'
 
-interface SideBarProps{
-  userData:IUser
+interface SideBarProps {
+  userData: IUser
 }
 
-const SideBar: React.FC<SideBarProps> = ({userData}) => {
+const SideBar: React.FC<SideBarProps> = ({ userData }) => {
   const isUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
-  
+
   return (
     <SidebarWrapper>
       <>
-        {
-          isUserAdminOrModerator &&
-          <RolesInfo userData={userData} />
-        }
+        {isUserAdminOrModerator && <RolesInfo userData={userData} />}
         <UserInfo userData={userData} />
       </>
     </SidebarWrapper>

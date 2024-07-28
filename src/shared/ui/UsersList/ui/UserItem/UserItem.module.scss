@@ -32,7 +32,7 @@
 
   &__nickname {
     color: var(--horizon);
-    font-size: .875rem;
+    font-size: 0.875rem;
     line-height: 1;
   }
 }
@@ -46,7 +46,7 @@
     text-align: right;
     width: var(--user-stats);
 
-    @media(max-width:500px) {
+    @media (max-width: 500px) {
       width: 50px;
     }
   }

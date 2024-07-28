@@ -1,5 +1,3 @@
-import SidebarReadWeekly from "./ui";
+import SidebarReadWeekly from './ui'
 
-export {
-  SidebarReadWeekly
-}
+export { SidebarReadWeekly }

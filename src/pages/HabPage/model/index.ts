@@ -1,7 +1,4 @@
-import usePosts from "./hooks/usePosts";
-import useAuthors from "./hooks/useAuthors";
+import usePosts from './hooks/usePosts'
+import useAuthors from './hooks/useAuthors'
 
-export {
-  usePosts,
-  useAuthors,
-}
+export { usePosts, useAuthors }

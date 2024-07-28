@@ -1,21 +1,24 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import Select, { SingleValue } from 'react-select'
-import { SelectOption, ValuesType } from '../../types';
-import { countries } from '../../utils';
+import { SelectOption, ValuesType } from '../../types'
+import { countries } from '../../utils'
 
-interface CountrySelectProps{
+interface CountrySelectProps {
   values: ValuesType
   setValues: Dispatch<SetStateAction<ValuesType>>
   className: string
 }
 
-const CountrySelect: React.FC<CountrySelectProps> = ({className,setValues,values}) => {
+const CountrySelect: React.FC<CountrySelectProps> = ({
+  className,
+  setValues,
+  values,
+}) => {
   const changeCountry = (e: SingleValue<SelectOption>) => {
     if (e) {
-      setValues((prev: ValuesType) => ({ ...prev, country: e }));
+      setValues((prev: ValuesType) => ({ ...prev, country: e }))
     }
   }
-
 
   return (
     <div className={className}>

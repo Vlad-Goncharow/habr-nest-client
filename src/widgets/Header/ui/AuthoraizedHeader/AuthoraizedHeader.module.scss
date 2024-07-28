@@ -1,10 +1,7 @@
-
 .user {
   display: flex;
   align-items: center;
   position: relative;
-
-  
 
   &__icon {
     margin-right: 12px;
@@ -15,9 +12,10 @@
     }
 
     svg {
-      g, path{
-        stroke:var(--gull-gray);
-      }   
+      g,
+      path {
+        stroke: var(--gull-gray);
+      }
       width: 25px;
       height: 25px;
     }
@@ -45,13 +43,13 @@
     background: var(--romance);
     border-radius: 4px;
     box-shadow: 0 0 12px rgb(0 0 0 / 16%);
-    color: var(--mine-shaft);;
+    color: var(--mine-shaft);
     z-index: 10;
   }
 
   &__overlay {
     position: fixed;
-    background: rgba(0, 0, 0, .2);
+    background: rgba(0, 0, 0, 0.2);
     top: 0;
     left: 0;
     right: 0;
@@ -78,7 +76,7 @@
       transition: all 0.3s;
     }
 
-    @media(max-height:380px) {
+    @media (max-height: 380px) {
       overflow-y: scroll;
     }
   }

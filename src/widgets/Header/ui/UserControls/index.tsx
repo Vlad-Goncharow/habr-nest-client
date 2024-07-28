@@ -7,11 +7,11 @@ import { ReactComponent as UserSvg } from 'shared/images/svg/user.svg'
 import s from './UserControls.module.scss'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 
-interface UserControlsProps{
-  user:IUser
+interface UserControlsProps {
+  user: IUser
 }
 
-const UserControls: React.FC<UserControlsProps> = ({user}) => {
+const UserControls: React.FC<UserControlsProps> = ({ user }) => {
   const checkRoles = useAppSelector(checkRolesAdmin)
   return (
     <>
@@ -19,7 +19,7 @@ const UserControls: React.FC<UserControlsProps> = ({user}) => {
         <div className={s.icon}>
           <UserSvg />
         </div>
-        <span >{user?.nickname}</span>
+        <span>{user?.nickname}</span>
       </Link>
       <ul className={s.list}>
         <li>
@@ -31,20 +31,17 @@ const UserControls: React.FC<UserControlsProps> = ({user}) => {
         <li>
           <Link to={`/user/${user?.id}/favorites/articles/1`}>Закладки</Link>
         </li>
-        {
-          checkRoles &&
+        {checkRoles && (
           <li>
             <Link to='/create-hab'>Создать Хаб</Link>
           </li>
-        }
+        )}
       </ul>
       <ul className={s.list}>
         <li>
           <Link to='/profile-settings'>
             <ProfileSettings />
-            <span>
-              Настройка профиля
-            </span>
+            <span>Настройка профиля</span>
           </Link>
         </li>
         <Logout />

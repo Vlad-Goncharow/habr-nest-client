@@ -43,7 +43,7 @@
 
     p {
       color: var(--rolling-stone);
-      font-size: .75rem;
+      font-size: 0.75rem;
       line-height: 1rem;
     }
   }
@@ -54,7 +54,7 @@
     font-weight: 700;
   }
 
-  &__subscribe{
+  &__subscribe {
     padding: 7px 12px;
     font-size: 12px;
     text-align: center;
@@ -66,19 +66,19 @@
     cursor: pointer;
     margin-left: auto;
 
-    &_active{
-      color:red;
-      border-color:red;
+    &_active {
+      color: red;
+      border-color: red;
 
-      &:hover{
+      &:hover {
         background: red;
-        color:var(--romance);
+        color: var(--romance);
       }
     }
-    
-    &_disable{
-      color:blue;
-      border-color:blue;
+
+    &_disable {
+      color: blue;
+      border-color: blue;
 
       &:hover {
         background: blue;

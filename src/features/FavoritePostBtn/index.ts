@@ -1,5 +1,3 @@
-import FavoritePostBtn from "./ui";
+import FavoritePostBtn from './ui'
 
-export {
-  FavoritePostBtn
-}
+export { FavoritePostBtn }

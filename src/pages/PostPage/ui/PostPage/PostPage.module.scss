@@ -24,7 +24,7 @@
   max-width: 780px;
   margin-right: 16px;
 
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     margin-right: 0;
   }
 }
@@ -32,7 +32,6 @@
 .posts {
   margin-top: 16px;
 }
-
 
 .post {
   padding: 16px 20px;
@@ -64,9 +63,9 @@
 
   &__authorName {
     color: #414b50;
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     font-weight: 700;
-    line-height: .9375rem;
+    line-height: 0.9375rem;
     text-decoration: none;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -76,9 +75,9 @@
   &__date {
     color: #777;
     display: inline-block;
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     font-weight: 500;
-    line-height: .9375rem;
+    line-height: 0.9375rem;
   }
 
   &__title {
@@ -119,7 +118,7 @@
     margin-bottom: 15px;
     display: flex;
     align-items: center;
-    
+
     &:last-child {
       margin-bottom: 25px;
     }
@@ -166,7 +165,7 @@
 
     span {
       color: #bdcdd6;
-      font-size: .8125rem;
+      font-size: 0.8125rem;
     }
 
     &_active {
@@ -177,21 +176,21 @@
   }
 }
 
-.stats{
+.stats {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
 
-  &__item{
+  &__item {
     margin-right: 15px;
     display: flex;
     align-items: center;
-    
-    span{
+
+    span {
       color: var(--gull-gray);
     }
 
-    svg{
+    svg {
       fill: var(--gull-gray);
       margin-right: 10px;
     }

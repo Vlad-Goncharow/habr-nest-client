@@ -8,16 +8,16 @@
     border-bottom: 1px solid #ccc;
     overflow: hidden;
 
-    @media(max-width:1024px) {
+    @media (max-width: 1024px) {
       overflow-x: scroll;
     }
   }
 
   &__item {
     margin-right: 24px;
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: .05rem;
+    letter-spacing: 0.05rem;
     line-height: 1rem;
     cursor: pointer;
     border-bottom: 2px solid transparent;
@@ -26,7 +26,7 @@
     color: var(--rolling-stone);
     font-weight: 700;
 
-    &:last-child{
+    &:last-child {
       margin-right: 0;
     }
 
@@ -35,7 +35,7 @@
       color: #4d80aa;
     }
 
-    @media(max-width:768px) {
+    @media (max-width: 768px) {
       margin-top: 15px;
     }
   }
@@ -62,11 +62,11 @@
 
   &__item {
     padding: 12px 20px;
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     display: block;
 
     &:hover {
-      background: #EFF6FA;
+      background: #eff6fa;
     }
 
     &_active {

@@ -1,5 +1,3 @@
-import RegisterForm from "./ui";
+import RegisterForm from './ui'
 
-export {
-  RegisterForm
-}
+export { RegisterForm }

@@ -1,5 +1,3 @@
-import LoginForm from "./ui";
+import LoginForm from './ui'
 
-export {
-  LoginForm
-}
+export { LoginForm }

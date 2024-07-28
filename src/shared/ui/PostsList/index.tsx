@@ -1,7 +1,4 @@
-import PostsList from "./ui/PostsList";
-import PostsSceleton from "./ui/PostsSceleton";
+import PostsList from './ui/PostsList'
+import PostsSceleton from './ui/PostsSceleton'
 
-export {
-  PostsList,
-  PostsSceleton
-}
+export { PostsList, PostsSceleton }

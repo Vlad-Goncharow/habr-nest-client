@@ -6,11 +6,11 @@ import classNames from 'classnames'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
 function FetchModal() {
-  const {type, visible, content} = useAppSelector(getFetchModalData)
+  const { type, visible, content } = useAppSelector(getFetchModalData)
   const modalRef = React.useRef<HTMLDivElement>(null)
 
   const addActive = () => {
-    if(modalRef.current !== null){
+    if (modalRef.current !== null) {
       modalRef.current.classList.add(s.modal_active)
     }
   }
@@ -22,8 +22,8 @@ function FetchModal() {
   }
 
   React.useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if(visible){
+    let timer: NodeJS.Timeout
+    if (visible) {
       timer = setTimeout(addActive, 100)
     } else {
       timer = setTimeout(addDisable, 1000)
@@ -32,28 +32,28 @@ function FetchModal() {
     return () => {
       clearTimeout(timer)
     }
-  },[type, content, visible])
+  }, [type, content, visible])
 
   const dispatch = useAppDispatch()
   React.useEffect(() => {
-    let timer: NodeJS.Timeout;
-    if(visible){
+    let timer: NodeJS.Timeout
+    if (visible) {
       timer = setTimeout(() => {
         dispatch(fetchModalActions.hideModal())
-      },3000)
+      }, 3000)
     }
 
     return () => {
       clearTimeout(timer)
     }
-  },[visible])
+  }, [visible])
 
   return (
-    <div 
-      ref={modalRef} 
-      className={classNames(s.modal,{
-        [s.modal_good]:type === 'good',
-        [s.modal_bad]:type === 'bad',
+    <div
+      ref={modalRef}
+      className={classNames(s.modal, {
+        [s.modal_good]: type === 'good',
+        [s.modal_bad]: type === 'bad',
       })}
     >
       {content}

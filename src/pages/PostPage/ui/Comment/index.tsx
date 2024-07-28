@@ -12,57 +12,66 @@ import { ReactComponent as Share } from 'shared/images/svg/share.svg'
 import { IComment } from 'shared/types/comments'
 import s from './Comment.module.scss'
 
-interface CommentProps{
+interface CommentProps {
   item: IComment
   deleteComment: (commentId: number) => void
-  user:IUser | null
+  user: IUser | null
 }
 
-const Comment: React.FC<CommentProps> = ({ item, user, deleteComment}) => {
+const Comment: React.FC<CommentProps> = ({ item, user, deleteComment }) => {
   //is user have admin or moderator role
   const checkUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
-  
+
   //popup menu| delete button
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
   const popupRef = React.useRef<HTMLDivElement | null>(null)
   UseClickOutside(popupRef, () => setPopupIsOpen(false))
-  
+
   //scroll to comment
-  const commentRef = React.useRef<HTMLDivElement>(null);
+  const commentRef = React.useRef<HTMLDivElement>(null)
   const location = useLocation()
 
   //comment content
-  const contentStateFromJSON = convertFromRaw(JSON.parse(item.content));
-  const restoredEditorState = EditorState.createWithContent(contentStateFromJSON);
+  const contentStateFromJSON = convertFromRaw(JSON.parse(item.content))
+  const restoredEditorState =
+    EditorState.createWithContent(contentStateFromJSON)
 
   function copyToClipboard(value: string) {
-    navigator.clipboard.writeText(value);
+    navigator.clipboard.writeText(value)
     setPopupIsOpen(false)
   }
 
   React.useEffect(() => {
-    const hash = location.hash.substring(1);
-    let timer: NodeJS.Timer;
+    const hash = location.hash.substring(1)
+    let timer: NodeJS.Timer
 
     if (hash === `comment_${item.id}`) {
       timer = setTimeout(() => {
-        commentRef.current?.scrollIntoView({ behavior: 'smooth' });
-      }, 20);
+        commentRef.current?.scrollIntoView({ behavior: 'smooth' })
+      }, 20)
     }
 
     return () => {
-      clearTimeout(timer);
-    };
-  }, [item.id, location]);
+      clearTimeout(timer)
+    }
+  }, [item.id, location])
 
   return (
     <div id={`comment_${item.id}`} ref={commentRef} className={s.comment}>
-      <Link to={`/user/${item.author.id}/profile/1`} className={s.comment__header}>
+      <Link
+        to={`/user/${item.author.id}/profile/1`}
+        className={s.comment__header}
+      >
         <div className={s.comment__authorImg}>
-          <img src={`${process.env.REACT_APP_SERVER_URL}/${item.author?.avatar}`} alt="" />
+          <img
+            src={`${process.env.REACT_APP_SERVER_URL}/${item.author?.avatar}`}
+            alt=''
+          />
         </div>
         <div className={s.comment__authorName}>{item.author?.nickname}</div>
-        <div className={s.comment__date}>{moment(item?.createdAt).locale('ru').format('LLL')}</div>
+        <div className={s.comment__date}>
+          {moment(item?.createdAt).locale('ru').format('LLL')}
+        </div>
       </Link>
       <div className={s.comment__text}>
         <Editor editorState={restoredEditorState} readOnly />
@@ -70,29 +79,34 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment}) => {
       <div className={s.comment__footer}>
         <FavoriteCommentBtn commentId={item.id} />
         <div ref={popupRef} className={s.controls}>
-          <div onClick={() => setPopupIsOpen(prev => !prev)} className={s.controls__icon}>
+          <div
+            onClick={() => setPopupIsOpen((prev) => !prev)}
+            className={s.controls__icon}
+          >
             <Dots />
           </div>
-          {
-            popupIsOpen &&
+          {popupIsOpen && (
             <div className={s.popup}>
               <ul>
-                {
-                  ((user?.id === item.author.id) || (checkUserAdminOrModerator)) &&
+                {(user?.id === item.author.id || checkUserAdminOrModerator) && (
                   <li onClick={() => deleteComment(item.id)}>
                     <Delete />
                     <span>Удалить</span>
                   </li>
-                }
-                <li 
-                  onClick={() => copyToClipboard(`${process.env.REACT_APP_CLIENT_URL}/articles/${item.postId}/#comment_${item.id}`)}
+                )}
+                <li
+                  onClick={() =>
+                    copyToClipboard(
+                      `${process.env.REACT_APP_CLIENT_URL}/articles/${item.postId}/#comment_${item.id}`
+                    )
+                  }
                 >
                   <Share />
                   <span>Поделиться</span>
                 </li>
               </ul>
             </div>
-          }
+          )}
         </div>
       </div>
     </div>

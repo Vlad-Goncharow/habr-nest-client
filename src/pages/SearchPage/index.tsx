@@ -1,7 +1,4 @@
-import SearchRoute from "./ui/SearchRoute";
-import SearchPage from "./ui/SearchPage";
+import SearchRoute from './ui/SearchRoute'
+import SearchPage from './ui/SearchPage'
 
-export {
-  SearchPage,
-  SearchRoute
-}
+export { SearchPage, SearchRoute }

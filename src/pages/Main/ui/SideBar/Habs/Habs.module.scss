@@ -1,32 +1,32 @@
-.habs{
+.habs {
   padding: 15px;
   background: var(--romance);
   margin-bottom: 15px;
 
-  @media(max-width:1024px) {
+  @media (max-width: 1024px) {
     display: none;
   }
 
-  &__list{
+  &__list {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 }
 
-.hab{
+.hab {
   margin-bottom: 23px;
-  
-  &:last-child{
+
+  &:last-child {
     margin-bottom: 0;
   }
 
-  &__row{
+  &__row {
     display: flex;
     align-items: center;
   }
 
-  &__image{
+  &__image {
     width: 36px;
     height: 36px;
     overflow: hidden;
@@ -34,7 +34,7 @@
     position: relative;
     margin-right: 10px;
 
-    img{
+    img {
       position: absolute;
       width: 100%;
       height: 100%;
@@ -44,21 +44,21 @@
     }
   }
 
-  &__title{
+  &__title {
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.3125rem;
     margin-bottom: 6px;
   }
 
-  &__stats{
+  &__stats {
     margin-right: 10px;
     color: var(--horizon);
     text-decoration: none;
     line-height: 1rem;
-    font-size: .75rem;
+    font-size: 0.75rem;
 
-    &:last-child{
+    &:last-child {
       margin-right: 0;
     }
   }

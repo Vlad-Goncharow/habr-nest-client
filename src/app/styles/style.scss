@@ -1,23 +1,29 @@
 @font-face {
-  font-family: "TypeMates";
+  font-family: 'TypeMates';
   font-display: swap;
-  src: url("./fonts/TypeMatesCeraRoundProBold.woff") format("woff"), url("./fonts/TypeMatesCeraRoundProBold.woff2") format("woff2");
+  src:
+    url('./fonts/TypeMatesCeraRoundProBold.woff') format('woff'),
+    url('./fonts/TypeMatesCeraRoundProBold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "TypeMates";
+  font-family: 'TypeMates';
   font-display: swap;
-  src: url("./fonts/TypeMatesCeraRoundProMedium.woff") format("woff"), url("./fonts/TypeMatesCeraRoundProMedium.woff2") format("woff2");
+  src:
+    url('./fonts/TypeMatesCeraRoundProMedium.woff') format('woff'),
+    url('./fonts/TypeMatesCeraRoundProMedium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "TypeMates";
+  font-family: 'TypeMates';
   font-display: swap;
-  src: url("./fonts/TypeMatesCeraRoundProRegular.woff") format("woff"), url("./fonts/TypeMatesCeraRoundProRegular.woff2") format("woff2");
+  src:
+    url('./fonts/TypeMatesCeraRoundProRegular.woff') format('woff'),
+    url('./fonts/TypeMatesCeraRoundProRegular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
@@ -26,37 +32,39 @@
 @import './light.scss';
 @import './variables.scss';
 
-
 * {
   padding: 0;
   margin: 0;
-  box-sizing:border-box;
+  box-sizing: border-box;
   outline: none;
   text-decoration: none;
-  font-family: TypeMates,
-  sans-serif !important;
+  font-family: TypeMates, sans-serif !important;
   text-decoration: none;
-  color:#000;
-  transition: opacity .2s ease-in-out, color .2s ease-in-out, text-decoration .2s ease-in-out, background-color .2s ease-in-out, -webkit-text-decoration .2s ease-in-out;
+  color: #000;
+  transition:
+    opacity 0.2s ease-in-out,
+    color 0.2s ease-in-out,
+    text-decoration 0.2s ease-in-out,
+    background-color 0.2s ease-in-out,
+    -webkit-text-decoration 0.2s ease-in-out;
   list-style: none;
 }
 
-a:hover{
+a:hover {
   color: var(--horizon);
 }
 
-
-body{
+body {
   overflow-y: scroll;
-  background:#f0f0f0;
+  background: #f0f0f0;
 }
 
-.page{
-  @media(min-width:768px) {
+.page {
+  @media (min-width: 768px) {
     min-height: calc(100vh);
   }
 
-  @media(min-width:1024px) {
+  @media (min-width: 1024px) {
     min-height: calc(100vh - 120px);
     margin-top: 15px;
   }
@@ -71,29 +79,29 @@ body{
   flex-direction: column;
   min-height: inherit;
 
-  @media(max-width: 1024px) {
+  @media (max-width: 1024px) {
     max-width: 768px;
   }
 
-  @media(max-width: 768px) {
-    max-width: 100%; 
-    padding: 0; 
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 0;
   }
 }
 
 .sidebar {
   flex: 1 1;
 
-  &__header{
+  &__header {
     padding: 10px;
-    border-bottom:1px solid var(--mountain-mist);
+    border-bottom: 1px solid var(--mountain-mist);
     margin-bottom: 15px;
   }
 
-  &__title{
-    letter-spacing: .0625rem;
+  &__title {
+    letter-spacing: 0.0625rem;
     font-size: 16px;
-    color:var(--rolling-stone);
+    color: var(--rolling-stone);
   }
 }
 
@@ -109,7 +117,7 @@ body{
     max-width: calc(100% - 320px);
     min-width: calc(100% - 320px);
 
-    @media(max-width:1024px) {
+    @media (max-width: 1024px) {
       max-width: 100%;
       min-width: 100%;
       margin-right: 0;

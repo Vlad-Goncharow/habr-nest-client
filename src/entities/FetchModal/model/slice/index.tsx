@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit"
-import { modalInitialState } from "../types"
+import { createSlice } from '@reduxjs/toolkit'
+import { modalInitialState } from '../types'
 
 const initialState: modalInitialState = {
-  type:null,
-  visible:false,
-  content:''
+  type: null,
+  visible: false,
+  content: '',
 }
 
 const fetchModalSlice = createSlice({
@@ -20,9 +20,9 @@ const fetchModalSlice = createSlice({
       state.visible = false
       state.type = null
       state.content = ''
-    }
-  }
+    },
+  },
 })
 
-export const { actions: fetchModalActions } = fetchModalSlice;
-export const { reducer: fetchModalReducer } = fetchModalSlice;
+export const { actions: fetchModalActions } = fetchModalSlice
+export const { reducer: fetchModalReducer } = fetchModalSlice

@@ -17,13 +17,13 @@ import { IHab } from 'shared/types/habs'
 import { IPost } from 'shared/types/posts'
 import s from './Post.module.scss'
 
-interface PostProps{
-  post:IPost,
+interface PostProps {
+  post: IPost
   query: any
 }
 
-const Post: React.FC<PostProps> = ({post,query}) =>{
-  const {user} = useAppSelector(getUserData)
+const Post: React.FC<PostProps> = ({ post, query }) => {
+  const { user } = useAppSelector(getUserData)
 
   //delete post
   const deletePost = useDeletePost({ query })
@@ -31,17 +31,19 @@ const Post: React.FC<PostProps> = ({post,query}) =>{
   //is user have admin or moderator role
   const checkUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
 
-  const contentStateFromJSON = convertFromRaw(JSON.parse(post.content));
-  const restoredEditorState = EditorState.createWithContent(contentStateFromJSON);
+  const contentStateFromJSON = convertFromRaw(JSON.parse(post.content))
+  const restoredEditorState =
+    EditorState.createWithContent(contentStateFromJSON)
 
-  const extendedBlockRenderMap = Draft.DefaultDraftBlockRenderMap.merge(blockRenderMap);
+  const extendedBlockRenderMap =
+    Draft.DefaultDraftBlockRenderMap.merge(blockRenderMap)
 
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
   const popupRef = React.useRef<HTMLDivElement | null>(null)
   UseClickOutside(popupRef, () => setPopupIsOpen(false))
 
-  function copyToClipboard(value:string) {
-    navigator.clipboard.writeText(value);
+  function copyToClipboard(value: string) {
+    navigator.clipboard.writeText(value)
     setPopupIsOpen(false)
   }
 
@@ -49,26 +51,45 @@ const Post: React.FC<PostProps> = ({post,query}) =>{
     <article className={s.item}>
       <header className={s.item__header}>
         <div className={s.item__authorImg}>
-          <img src={`${process.env.REACT_APP_SERVER_URL}/${post.author.avatar}`} alt="" />
+          <img
+            src={`${process.env.REACT_APP_SERVER_URL}/${post.author.avatar}`}
+            alt=''
+          />
         </div>
-        <Link to={`/user/${post.author.id}/profile/1`} className={s.item__authorName}>{post.author.nickname}</Link>
-        <time className={s.item__date}>{moment(post.createdAt).locale('ru').format('LLL')}</time>
+        <Link
+          to={`/user/${post.author.id}/profile/1`}
+          className={s.item__authorName}
+        >
+          {post.author.nickname}
+        </Link>
+        <time className={s.item__date}>
+          {moment(post.createdAt).locale('ru').format('LLL')}
+        </time>
       </header>
-      <Link to={`/${post.type}/${post.id}`} className={s.item__title}>{post.title}</Link>
+      <Link to={`/${post.type}/${post.id}`} className={s.item__title}>
+        {post.title}
+      </Link>
       <div className={s.item__habs}>
-        {
-          post.habs.map((hab: IHab) =>
-            <Link to={`/hab/${hab.id}/articles/1`} key={hab.id}>{hab.title}</Link>
-          )
-        }
+        {post.habs.map((hab: IHab) => (
+          <Link to={`/hab/${hab.id}/articles/1`} key={hab.id}>
+            {hab.title}
+          </Link>
+        ))}
       </div>
       <div className={s.item__img}>
-        <img src={`${process.env.REACT_APP_SERVER_URL}/${post.image}`} alt="" />
+        <img src={`${process.env.REACT_APP_SERVER_URL}/${post.image}`} alt='' />
       </div>
       <div className={s.item__text}>
-        <Editor editorState={restoredEditorState} blockRenderMap={extendedBlockRenderMap} customStyleMap={styleMap} readOnly />
+        <Editor
+          editorState={restoredEditorState}
+          blockRenderMap={extendedBlockRenderMap}
+          customStyleMap={styleMap}
+          readOnly
+        />
       </div>
-      <Link to={`/post/${post.id}`} className={s.item__link}>Читать далее</Link>
+      <Link to={`/post/${post.id}`} className={s.item__link}>
+        Читать далее
+      </Link>
       <footer className={s.footer}>
         <div className={s.footer__left}>
           <div className={s.item__footerItem}>
@@ -85,27 +106,36 @@ const Post: React.FC<PostProps> = ({post,query}) =>{
         </div>
         <div className={s.footer__right}>
           <div ref={popupRef} className={s.controls}>
-            <div onClick={() => setPopupIsOpen(prev => !prev)} className={s.controls__icon}>
+            <div
+              onClick={() => setPopupIsOpen((prev) => !prev)}
+              className={s.controls__icon}
+            >
               <Dots />
             </div>
-            {
-              popupIsOpen &&
+            {popupIsOpen && (
               <div className={s.popup}>
                 <ul>
-                  {
-                    user !== null && (post.author.id === user.id || checkUserAdminOrModerator) &&
-                    <li onClick={() => deletePost(post.id)}>
-                      <Delete />
-                      <span>Удалить</span>
-                    </li>
-                  }
-                    <li onClick={() => copyToClipboard(`${process.env.REACT_APP_CLIENT_URL}/articles/${post.id}`)}>
+                  {user !== null &&
+                    (post.author.id === user.id ||
+                      checkUserAdminOrModerator) && (
+                      <li onClick={() => deletePost(post.id)}>
+                        <Delete />
+                        <span>Удалить</span>
+                      </li>
+                    )}
+                  <li
+                    onClick={() =>
+                      copyToClipboard(
+                        `${process.env.REACT_APP_CLIENT_URL}/articles/${post.id}`
+                      )
+                    }
+                  >
                     <Share />
                     <span>Поделиться</span>
                   </li>
                 </ul>
               </div>
-            }
+            )}
           </div>
         </div>
       </footer>

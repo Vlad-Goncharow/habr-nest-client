@@ -4,18 +4,23 @@ import { IHab } from 'shared/types/habs'
 import { Link } from 'react-router-dom'
 
 interface HabItemProps {
-  hab:IHab
+  hab: IHab
 }
 
-const HabItem:React.FC<HabItemProps> = ({hab}) => {
+const HabItem: React.FC<HabItemProps> = ({ hab }) => {
   return (
     <div className={s.hab}>
       <div className={s.hab__left}>
         <div className={s.hab__image}>
-        <img src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`} alt="" />
+          <img
+            src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`}
+            alt=''
+          />
         </div>
         <div>
-          <Link to={`/hab/${hab.id}/articles/1`} className={s.hab__title}>{hab.title}</Link>
+          <Link to={`/hab/${hab.id}/articles/1`} className={s.hab__title}>
+            {hab.title}
+          </Link>
           <p className={s.hab__descr}>{hab.description}</p>
         </div>
       </div>

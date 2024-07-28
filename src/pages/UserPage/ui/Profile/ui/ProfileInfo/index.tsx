@@ -3,11 +3,11 @@ import s from './ProfileInfo.module.scss'
 import { IUser } from 'entities/User'
 import moment from 'moment'
 
-interface ProfileInfoProps{
-  userData:IUser
+interface ProfileInfoProps {
+  userData: IUser
 }
 
-const ProfileInfo: React.FC<ProfileInfoProps> = ({userData}) => {
+const ProfileInfo: React.FC<ProfileInfoProps> = ({ userData }) => {
   return (
     <div className={s.info}>
       <ul className={s.stats}>
@@ -21,15 +21,18 @@ const ProfileInfo: React.FC<ProfileInfoProps> = ({userData}) => {
         </li>
         <li>
           <div className={s.stats__name}>Зарегистрирован</div>
-          <div className={s.stats__info}>{moment(userData.createdAt).locale('ru').format('LLL')}</div>
+          <div className={s.stats__info}>
+            {moment(userData.createdAt).locale('ru').format('LLL')}
+          </div>
         </li>
-        {
-          userData.dateOfBirth !== 'Не известно' &&
+        {userData.dateOfBirth !== 'Не известно' && (
           <li>
             <div className={s.stats__name}>Дата рождения</div>
-            <div className={s.stats__info}>{moment(userData.dateOfBirth).locale('ru').format('LLL')}</div>
+            <div className={s.stats__info}>
+              {moment(userData.dateOfBirth).locale('ru').format('LLL')}
+            </div>
           </li>
-        }
+        )}
       </ul>
     </div>
   )

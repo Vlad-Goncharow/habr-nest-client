@@ -14,21 +14,27 @@ interface useHabsProps {
 }
 
 const useHabs = (props: useHabsProps): any => {
-  const { page, category, type,title,order,sort } = props
+  const { page, category, type, title, order, sort } = props
   const dispatch = useAppDispatch()
 
   const queryTitle = title ? title : ' '
 
-  const { data, isLoading, isError, isSuccess, } = useQuery({
+  const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ['habs', category, type, queryTitle, page, `${sort}`, `${order}`],
-    queryFn: () => loadHabsFN(category, queryTitle, `${sort}`, `${order}`, page),
+    queryFn: () =>
+      loadHabsFN(category, queryTitle, `${sort}`, `${order}`, page),
     select: (data) => data.data,
   })
 
   //error handled
   React.useEffect(() => {
     if (isError) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'Ошибка, попробуйте еще раз!',
+        })
+      )
     }
   }, [isError])
 

@@ -8,21 +8,25 @@ function Publications() {
   const { userId, type, subType, page } = useParams()
 
   //data
-  const { data, isLoading, isSuccess } = useFavoritesPosts({ userId, type, subType, page })
+  const { data, isLoading, isSuccess } = useFavoritesPosts({
+    userId,
+    type,
+    subType,
+    page,
+  })
 
   return (
     <>
-      {
-        !isLoading && isSuccess ?
-          <PostsList 
-            posts={data.posts} 
-            length={data.length} 
-            navigatePath={`/user/${userId}/${type}/${subType}`} 
-            query={['user', userId, type, subType, page]}
-          />
-        :
-          <PostsSceleton />
-      }
+      {!isLoading && isSuccess ? (
+        <PostsList
+          posts={data.posts}
+          length={data.length}
+          navigatePath={`/user/${userId}/${type}/${subType}`}
+          query={['user', userId, type, subType, page]}
+        />
+      ) : (
+        <PostsSceleton />
+      )}
     </>
   )
 }

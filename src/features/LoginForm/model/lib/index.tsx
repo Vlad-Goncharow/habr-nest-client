@@ -1,7 +1,7 @@
-import { unwrapResult } from '@reduxjs/toolkit';
-import { AuthLoginError, FormLogin, fetchLogin } from 'entities/User';
-import React from 'react';
-import { useAppDispatch } from 'shared/hooks/useAppDispatch';
+import { unwrapResult } from '@reduxjs/toolkit'
+import { AuthLoginError, FormLogin, fetchLogin } from 'entities/User'
+import React from 'react'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 
 const UseLogin = () => {
   const dispatch = useAppDispatch()
@@ -12,22 +12,22 @@ const UseLogin = () => {
 
   const loginSubmit = async (data: FormLogin) => {
     try {
-      const resultAction = await dispatch(fetchLogin(data));
+      const resultAction = await dispatch(fetchLogin(data))
       if (fetchLogin.fulfilled.match(resultAction)) {
-        const data = unwrapResult(resultAction);
+        const data = unwrapResult(resultAction)
         setIsSuccess(true)
         setData(data)
       } else {
-        const myError = resultAction.payload as AuthLoginError;
-        setError({ param:myError.param, message: myError.message });
+        const myError = resultAction.payload as AuthLoginError
+        setError({ param: myError.param, message: myError.message })
         setIsSuccess(false)
       }
     } catch (e) {
       setIsSuccess(false)
     }
-  };
+  }
 
-  return { loginSubmit, error, isSuccess,data }
+  return { loginSubmit, error, isSuccess, data }
 }
 
 export default UseLogin

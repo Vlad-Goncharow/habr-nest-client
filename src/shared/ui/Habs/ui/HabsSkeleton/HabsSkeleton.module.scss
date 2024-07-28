@@ -1,12 +1,12 @@
-.wrapper{
+.wrapper {
   background: var(--romance);
   padding: 15px;
 }
 
-.item{
+.item {
   margin-bottom: 15px;
 
-  &:last-child{
+  &:last-child {
     margin-bottom: 0;
   }
 }

@@ -1,5 +1,3 @@
 import PostPage from './ui/PostPage'
 
-export {
-  PostPage
-}
+export { PostPage }

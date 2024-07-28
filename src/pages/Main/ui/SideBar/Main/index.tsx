@@ -4,18 +4,12 @@ import { useParams } from 'react-router-dom'
 import { SidebarReadWeekly } from 'widgets/SidebarReadWeekly'
 
 function Sidebar() {
-  const {category} = useParams()
+  const { category } = useParams()
   return (
     <SidebarWrapper>
       <>
-        {
-          category !== 'all' &&
-          <Habs />
-        }
-        {
-          category &&
-          <SidebarReadWeekly category={category} />
-        }
+        {category !== 'all' && <Habs />}
+        {category && <SidebarReadWeekly category={category} />}
       </>
     </SidebarWrapper>
   )

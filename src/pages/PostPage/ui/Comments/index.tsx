@@ -15,12 +15,12 @@ import s from './Comments.module.scss'
 const Comments: React.FC = () => {
   //dispatch
   const dispatch = useAppDispatch()
-  
+
   //params
-  const {postId} = useParams()
+  const { postId } = useParams()
 
   //current user
-  const {user} = useAppSelector(getUserData)
+  const { user } = useAppSelector(getUserData)
 
   //loading comments
   const [loading, setLoding] = React.useState<boolean>(true)
@@ -33,37 +33,41 @@ const Comments: React.FC = () => {
 
   //load comments
   React.useEffect(() => {
-    (async () => {
-      try{
+    ;(async () => {
+      try {
         setLoding(true)
-        const {data} = await axios.get(`/comments/load/${postId}`)
+        const { data } = await axios.get(`/comments/load/${postId}`)
         setComments(data)
         setLoding(false)
-      } catch(e){
+      } catch (e) {
         setLoding(false)
-        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При загрузки комментариев произошла ошибка!' }))
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'bad',
+            content: 'При загрузки комментариев произошла ошибка!',
+          })
+        )
       }
     })()
-  },[postId])
+  }, [postId])
 
   //scroll to bottom when comments loaded
   React.useEffect(() => {
-    if(!loading){
+    if (!loading) {
       if (commentsRef.current) {
-        commentsRef.current.scrollTop = commentsRef.current.scrollHeight;
+        commentsRef.current.scrollTop = commentsRef.current.scrollHeight
       }
     }
-  },[loading, comments])
+  }, [loading, comments])
 
-
-  const deleteComment = async (commentId:number) => {
+  const deleteComment = async (commentId: number) => {
     const { data } = await axios.delete(`/comments/delete/${commentId}`)
-    if(data.success === true){
-      setComments((prev:IComment[]) => {
+    if (data.success === true) {
+      setComments((prev: IComment[]) => {
         return prev.filter((el) => el.id !== commentId)
       })
     }
-  }  
+  }
 
   return (
     <div className={s.wrapper}>
@@ -72,36 +76,34 @@ const Comments: React.FC = () => {
           Коментарии
           <span>{comments.length}</span>
         </h2>
-        {
-          loading ?
-            <UsersSkeleton />
-          :
-            <div ref={commentsRef} className={s.row}>
-              {
-                comments.length > 0 ?
-                  comments.map((item: IComment) =>
-                    <Comment 
-                      key={`${item.id}`} 
-                      deleteComment={deleteComment} 
-                      item={item} 
-                      user={user} 
-                    />
-                  )
-                  : <Empty />
-              }
-            </div>
-        }
-        {
-          user !== null &&
-          <CommentEditor setComments={setComments} />
-        }
+        {loading ? (
+          <UsersSkeleton />
+        ) : (
+          <div ref={commentsRef} className={s.row}>
+            {comments.length > 0 ? (
+              comments.map((item: IComment) => (
+                <Comment
+                  key={`${item.id}`}
+                  deleteComment={deleteComment}
+                  item={item}
+                  user={user}
+                />
+              ))
+            ) : (
+              <Empty />
+            )}
+          </div>
+        )}
+        {user !== null && <CommentEditor setComments={setComments} />}
       </div>
-      {
-        user === null &&
+      {user === null && (
         <div className={s.auth}>
-          <span>Только полноправные пользователи могут оставлять комментарии. <Link to='/login'>Войдите</Link>, пожалуйста.</span>
+          <span>
+            Только полноправные пользователи могут оставлять комментарии.{' '}
+            <Link to='/login'>Войдите</Link>, пожалуйста.
+          </span>
         </div>
-      }
+      )}
     </div>
   )
 }

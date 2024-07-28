@@ -14,25 +14,37 @@ interface usePostsProps {
 }
 
 const useAuthors = (props: usePostsProps): any => {
-  const { page, category, type, title,order,sort } = props
+  const { page, category, type, title, order, sort } = props
   const dispatch = useAppDispatch()
 
   const queryTitle = title ? title : ' '
 
-  const { data, isLoading, isError, isSuccess, } = useQuery({
+  const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ['authors', category, type, sort, order, queryTitle, page],
-    queryFn: () => loadAuthorsFN(category, queryTitle,sort, order, page),
+    queryFn: () => loadAuthorsFN(category, queryTitle, sort, order, page),
     select: (data) => data.data,
   })
 
   //error handled
   React.useEffect(() => {
     if (isError) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'Ошибка, попробуйте еще раз!',
+        })
+      )
     }
   }, [isError])
 
-  return isSuccess && { authors: data.authors, length: data.length, isLoading, isSuccess }
+  return (
+    isSuccess && {
+      authors: data.authors,
+      length: data.length,
+      isLoading,
+      isSuccess,
+    }
+  )
 }
 
 export default useAuthors

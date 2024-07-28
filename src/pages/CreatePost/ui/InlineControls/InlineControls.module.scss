@@ -1,4 +1,4 @@
-.inlines{
+.inlines {
   display: flex;
   align-items: center;
   position: absolute;
@@ -8,5 +8,5 @@
   border-radius: 3px;
   background: var(--romance);
   z-index: 10;
-  box-shadow: 0 0 8px rgba(var(--asphalt-rgb, 0, 0, 0), .2);
+  box-shadow: 0 0 8px rgba(var(--asphalt-rgb, 0, 0, 0), 0.2);
 }

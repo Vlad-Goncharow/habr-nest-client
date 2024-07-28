@@ -4,44 +4,46 @@ import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import s from './SubscribeHab.module.scss'
-import { selectIsSubscribed, subscribeToHab, unsubscribeFromHab } from '../model'
+import {
+  selectIsSubscribed,
+  subscribeToHab,
+  unsubscribeFromHab,
+} from '../model'
 
-interface HabSubscribeBtnProps{
-  habId:number
+interface HabSubscribeBtnProps {
+  habId: number
 }
 
-const SubscribeHab: React.FC<HabSubscribeBtnProps> = ({habId}) => {
-  const {user} = useAppSelector(getUserData)
-  const dispatch = useAppDispatch();
-  const isSubscribed = useAppSelector((state) => selectIsSubscribed(state, habId));
+const SubscribeHab: React.FC<HabSubscribeBtnProps> = ({ habId }) => {
+  const { user } = useAppSelector(getUserData)
+  const dispatch = useAppDispatch()
+  const isSubscribed = useAppSelector((state) =>
+    selectIsSubscribed(state, habId)
+  )
 
   const handleSubscribe = async () => {
-    dispatch(subscribeToHab(Number(habId)));
-  };
+    dispatch(subscribeToHab(Number(habId)))
+  }
 
   const handleUnsubscribe = async () => {
-    dispatch(unsubscribeFromHab(Number(habId)));
-  };
+    dispatch(unsubscribeFromHab(Number(habId)))
+  }
 
   return (
     <>
-      {
-        user !== null &&
+      {user !== null && (
         <button
           className={classNames(s.sub, {
-            [s.sub__active]: isSubscribed
+            [s.sub__active]: isSubscribed,
           })}
-            onClick={() => {
-              isSubscribed ? handleUnsubscribe() : handleSubscribe()
-            }}
+          onClick={() => {
+            isSubscribed ? handleUnsubscribe() : handleSubscribe()
+          }}
         >
           {isSubscribed ? 'Отписаться' : 'Подписаться'}
-          {
-            isSubscribed &&
-            <span></span>
-          }
+          {isSubscribed && <span></span>}
         </button>
-      }
+      )}
     </>
   )
 }

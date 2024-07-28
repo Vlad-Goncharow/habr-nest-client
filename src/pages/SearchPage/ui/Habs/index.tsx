@@ -15,36 +15,42 @@ function Habs() {
   const [habs, setHabs] = React.useState([])
   const [searchParams] = useSearchParams()
 
-  const sort = searchParams.get('sort');
-  const order = searchParams.get('order');
-  const q = searchParams.get('q');
+  const sort = searchParams.get('sort')
+  const order = searchParams.get('order')
+  const q = searchParams.get('q')
 
   React.useEffect(() => {
-    (async () => {
+    ;(async () => {
       try {
         setHabsLoading(true)
-        const { data } = await axios.get(`/habs/search/all/${q ? q : ' '}?page=${page}&pageSize=20&sort=${sort}&order=${order}`)
+        const { data } = await axios.get(
+          `/habs/search/all/${q ? q : ' '}?page=${page}&pageSize=20&sort=${sort}&order=${order}`
+        )
         setHabsLoading(false)
         setHabs(data.habs)
         setHabsTotalCount(data.length)
       } catch (e) {
-        dispatch(fetchModalActions.showModal({ type: 'bad', content: 'Ошибка, попробуйте еще раз!' }))
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'bad',
+            content: 'Ошибка, попробуйте еще раз!',
+          })
+        )
       }
     })()
   }, [order, page, q, sort])
 
   return (
     <>
-      {
-        !habsLoading ?
-          <HabsList
-            habs={habs}
-            habsTotalCount={habsTotalCount}
-            navigatePath={`/search/habs`}
-          />
-        :
-          <HabsSkeleton />
-      }
+      {!habsLoading ? (
+        <HabsList
+          habs={habs}
+          habsTotalCount={habsTotalCount}
+          navigatePath={`/search/habs`}
+        />
+      ) : (
+        <HabsSkeleton />
+      )}
     </>
   )
 }

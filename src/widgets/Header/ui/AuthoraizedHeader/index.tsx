@@ -12,7 +12,7 @@ interface AuthoraizedHeaderProps {
   user: IUser
 }
 
-const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({user}) => {
+const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({ user }) => {
   const isMobile = UseWindowWidth(1024)
 
   const dropDownRef = React.useRef<HTMLDivElement>(null)
@@ -24,21 +24,20 @@ const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({user}) => {
   const sideAuthRef = React.useRef<HTMLDivElement>(null)
   UseClickOutside(sideAuthRef, () => setSideBarIsClose(true))
 
-
   React.useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: NodeJS.Timeout
 
-    if (sideAuth && !sideBarIsClose){
+    if (sideAuth && !sideBarIsClose) {
       timer = setTimeout(() => {
         sideAuthRef.current?.classList.remove(s.user__sidebar_close)
         sideAuthRef.current?.classList.add(s.user__sidebar_open)
-      },200)
+      }, 200)
     }
 
-    if (sideBarIsClose){
+    if (sideBarIsClose) {
       sideAuthRef.current?.classList.remove(s.user__sidebar_open)
       sideAuthRef.current?.classList.add(s.user__sidebar_close)
-      
+
       timer = setTimeout(() => {
         setSideAuth(false)
         setSideBarIsClose(false)
@@ -57,36 +56,38 @@ const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({user}) => {
       clearTimeout(timer)
     }
   }, [sideAuth, sideBarIsClose])
-  
+
   return (
     <div className={s.user} ref={dropDownRef}>
       <Link to='/create' className={s.user__icon}>
         <CreateSvg />
       </Link>
-      <div 
-        onClick={() => isMobile ? setSideAuth(prev => !prev) : setDropDown(prev => !prev)} 
+      <div
+        onClick={() =>
+          isMobile ? setSideAuth((prev) => !prev) : setDropDown((prev) => !prev)
+        }
         className={s.user__icon + ' ' + s.user__icon_user}
       >
         <UserSvg />
       </div>
-      
 
-      {
-        dropDown &&
-        <div className={s.user__dropdown} onClick={() => setDropDown(false)} >
+      {dropDown && (
+        <div className={s.user__dropdown} onClick={() => setDropDown(false)}>
           <UserControls user={user} />
         </div>
-      }
+      )}
 
-
-      {
-        isMobile && sideAuth &&
+      {isMobile && sideAuth && (
         <div className={s.user__overlay}>
-          <div ref={sideAuthRef} onClick={() => setSideBarIsClose(true)} className={s.user__sidebar}>
+          <div
+            ref={sideAuthRef}
+            onClick={() => setSideBarIsClose(true)}
+            className={s.user__sidebar}
+          >
             <UserControls user={user} />
           </div>
         </div>
-      }
+      )}
     </div>
   )
 }

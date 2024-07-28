@@ -10,21 +10,23 @@ import { fetchModalActions } from 'entities/FetchModal'
 import { convertToRaw } from 'draft-js'
 
 interface CommentEditorProps {
-  setComments: React.Dispatch<React.SetStateAction<IComment[]>>;
+  setComments: React.Dispatch<React.SetStateAction<IComment[]>>
 }
 
-const CommentEditor: React.FC<CommentEditorProps> = ({setComments}) => {
+const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
   //dispatch
   const dispatch = useAppDispatch()
 
   //params
-  const {postId} = useParams()
+  const { postId } = useParams()
 
   //editor ref
   const editorRef = React.useRef<any>(null)
 
   //editor state
-  const [editorState, setEditorState] = React.useState(EditorState.createEmpty())
+  const [editorState, setEditorState] = React.useState(
+    EditorState.createEmpty()
+  )
 
   //comment value
   const [value, setValue] = React.useState<any>()
@@ -36,7 +38,7 @@ const CommentEditor: React.FC<CommentEditorProps> = ({setComments}) => {
   const clickSubmit = async () => {
     try {
       const { data } = await axios.post(`/comments/create/${postId}`, {
-        content: value
+        content: value,
       })
 
       if (data) {
@@ -44,36 +46,44 @@ const CommentEditor: React.FC<CommentEditorProps> = ({setComments}) => {
         setEditorState(EditorState.createEmpty())
       }
     } catch (e) {
-      dispatch(fetchModalActions.showModal({ type: 'bad', content: 'При отправке комментария произошла ошибка!' }))
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'При отправке комментария произошла ошибка!',
+        })
+      )
     }
   }
-  
+
   //nest button ref for active or disable
   const handleButtonClick = () => {
-    if (submitComment.current && submitComment.current.classList.contains(s.buttons__btn_active)) {
+    if (
+      submitComment.current &&
+      submitComment.current.classList.contains(s.buttons__btn_active)
+    ) {
       clickSubmit()
     }
-  };
+  }
 
   //update value | check length
   React.useEffect(() => {
-    const contentState = editorState.getCurrentContent();
-    const contentStateJSON = convertToRaw(contentState);
-    const textToSave = JSON.stringify(contentStateJSON);
-    setValue(textToSave);
+    const contentState = editorState.getCurrentContent()
+    const contentStateJSON = convertToRaw(contentState)
+    const textToSave = JSON.stringify(contentStateJSON)
+    setValue(textToSave)
 
-    const textLength = contentState.getPlainText().length;
+    const textLength = contentState.getPlainText().length
 
     if (submitComment.current) {
       if (textLength >= 10) {
-        submitComment.current.classList.remove(s.buttons__btn_disable);
-        submitComment.current.classList.add(s.buttons__btn_active);
+        submitComment.current.classList.remove(s.buttons__btn_disable)
+        submitComment.current.classList.add(s.buttons__btn_active)
       } else {
-        submitComment.current.classList.remove(s.buttons__btn_active);
-        submitComment.current.classList.add(s.buttons__btn_disable);
+        submitComment.current.classList.remove(s.buttons__btn_active)
+        submitComment.current.classList.add(s.buttons__btn_disable)
       }
     }
-  }, [editorState]);
+  }, [editorState])
 
   return (
     <div className={s.form}>
@@ -87,11 +97,7 @@ const CommentEditor: React.FC<CommentEditorProps> = ({setComments}) => {
       </div>
       <div className={s.form__bottom}>
         <div onClick={handleButtonClick} className={s.buttons}>
-          <button 
-            ref={submitComment} 
-            type='button' 
-            className={s.buttons__btn}
-          >
+          <button ref={submitComment} type='button' className={s.buttons__btn}>
             Отправить
           </button>
         </div>

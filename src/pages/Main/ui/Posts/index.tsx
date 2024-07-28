@@ -4,24 +4,23 @@ import { usePosts } from '../../model'
 
 function Posts() {
   //params
-  const {type, category, page} = useParams()
+  const { type, category, page } = useParams()
 
   //data
-  const {isSuccess, data, isLoading} = usePosts({type, category,page})
-  
+  const { isSuccess, data, isLoading } = usePosts({ type, category, page })
+
   return (
     <>
-      {
-        !isLoading && isSuccess ?
-          <PostsList 
-            posts={data.posts} 
-            length={data.length} 
-            navigatePath={`/flows/${category}/${type}`} 
-            query={['posts', category, type, page]} 
-          />
-        : 
-          <PostsSceleton />
-      }
+      {!isLoading && isSuccess ? (
+        <PostsList
+          posts={data.posts}
+          length={data.length}
+          navigatePath={`/flows/${category}/${type}`}
+          query={['posts', category, type, page]}
+        />
+      ) : (
+        <PostsSceleton />
+      )}
     </>
   )
 }

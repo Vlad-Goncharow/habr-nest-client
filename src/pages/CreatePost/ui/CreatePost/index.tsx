@@ -24,20 +24,18 @@ function CreatePost() {
     habs: [],
     image: null,
     title: '',
-    difficulty: 'Не указано'
+    difficulty: 'Не указано',
   })
 
   return (
     <div className={'wrapper'}>
       <div className={'wrapper__left'}>
-        {
-          step === 1 &&
+        {step === 1 && (
           <FirstStep setStep={setStep} setValues={setValues} values={values} />
-        }
-        {
-          step === 2 &&
+        )}
+        {step === 2 && (
           <SecondStep setStep={setStep} setValues={setValues} values={values} />
-        }
+        )}
       </div>
       <Sidebar />
     </div>

@@ -1,16 +1,16 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { fetchModalReducer } from 'entities/FetchModal';
-import { userReducer } from 'entities/User';
+import { configureStore } from '@reduxjs/toolkit'
+import { fetchModalReducer } from 'entities/FetchModal'
+import { userReducer } from 'entities/User'
 
 const store = configureStore({
   reducer: {
     user: userReducer,
-    fetchModal: fetchModalReducer
+    fetchModal: fetchModalReducer,
   },
-  devTools:false
-});
+  devTools: false,
+})
 
-export default store;
+export default store
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch

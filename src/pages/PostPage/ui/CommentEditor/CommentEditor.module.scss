@@ -2,11 +2,11 @@
   background-color: var(--desert-storm);
   padding: 18px 16px 16px;
   position: relative;
-  border-top: 1px solid rgba(146, 156, 165, .4);
+  border-top: 1px solid rgba(146, 156, 165, 0.4);
 
   &__title {
     color: var(--mine-shaft);
-    font-size: .8125rem;
+    font-size: 0.8125rem;
     font-weight: 700;
     line-height: 1;
     margin-bottom: 18px;
@@ -30,13 +30,13 @@
   }
 }
 
-.editor{
+.editor {
   width: 100%;
   background: var(--romance);
   border: 1px solid #e0e0e0;
   box-sizing: border-box;
   color: #000;
-  font-size: .875rem;
+  font-size: 0.875rem;
   height: 78px;
   line-height: 1.6;
   margin: 0;
@@ -59,7 +59,7 @@
     border: 1px solid;
     border-radius: 3px;
     cursor: pointer;
-    font-size: .75rem;
+    font-size: 0.75rem;
     line-height: 2rem;
     height: 32px;
     padding: 0 12px;
@@ -72,7 +72,7 @@
     }
 
     &_disable {
-      border-color: rgba(var(--gull-gray-rgb), .4);
+      border-color: rgba(var(--gull-gray-rgb), 0.4);
       color: var(--rolling-stone);
       cursor: not-allowed;
     }

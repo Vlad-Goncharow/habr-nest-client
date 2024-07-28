@@ -1,6 +1,6 @@
 import React from 'react'
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import Paginations from "react-js-pagination";
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import Paginations from 'react-js-pagination'
 import s from './Pagination.module.scss'
 
 interface PaginationProps {
@@ -9,21 +9,27 @@ interface PaginationProps {
   pageSize: number
 }
 
-const Pagination: React.FC<PaginationProps> = ({ navigatePath, length, pageSize }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  navigatePath,
+  length,
+  pageSize,
+}) => {
   const { page } = useParams()
   const navigate = useNavigate()
 
   const [searchParams] = useSearchParams()
 
-  const sort = searchParams.get('sort');
-  const order = searchParams.get('order');
-  const query = searchParams.get('q');
-  const queryString = query ? `&q=${query}` : '';
+  const sort = searchParams.get('sort')
+  const order = searchParams.get('order')
+  const query = searchParams.get('q')
+  const queryString = query ? `&q=${query}` : ''
 
   const handlePageClick = (pageNumber: number) => {
-    navigate(`${navigatePath}/${pageNumber}/?sort=${sort}&order=${order}${queryString}`)
-  };
-  
+    navigate(
+      `${navigatePath}/${pageNumber}/?sort=${sort}&order=${order}${queryString}`
+    )
+  }
+
   return (
     <Paginations
       activePage={Number(page)}
@@ -31,8 +37,8 @@ const Pagination: React.FC<PaginationProps> = ({ navigatePath, length, pageSize 
       totalItemsCount={Number(length)}
       pageRangeDisplayed={3}
       onChange={handlePageClick}
-      prevPageText="< Сюда"
-      nextPageText="Туда >"
+      prevPageText='< Сюда'
+      nextPageText='Туда >'
       hideFirstLastPages={true}
       innerClass={s.pagination}
       linkClass={s.pagination__item}

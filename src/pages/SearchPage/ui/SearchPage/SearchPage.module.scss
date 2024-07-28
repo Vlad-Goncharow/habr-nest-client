@@ -3,7 +3,7 @@
   background: #f0f0f0;
 }
 
-.top{
+.top {
   padding: 15px;
   background: var(--romance);
   margin-bottom: 15px;
@@ -19,14 +19,15 @@
     box-sizing: border-box;
     color: #333;
     display: block;
-    font-size: .875rem;
+    font-size: 0.875rem;
     line-height: 1.5;
     margin: 0;
     min-height: 40px;
     outline: 0;
     padding: 0 14px;
-    transition: border-color .2s linear,
-      box-shadow .2s linear;
+    transition:
+      border-color 0.2s linear,
+      box-shadow 0.2s linear;
     width: 100%;
     min-height: 36px;
     padding-right: 36px;
@@ -39,7 +40,7 @@
     right: 30px;
     cursor: pointer;
     background: transparent;
-    border:none;
+    border: none;
 
     svg {
       width: 20px;
@@ -49,15 +50,15 @@
   }
 }
 
-.nav{
+.nav {
   padding-top: 15px;
-  
+
   &__item {
     margin-right: 24px;
 
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: .05rem;
+    letter-spacing: 0.05rem;
     line-height: 1rem;
     cursor: pointer;
     border-bottom: 2px solid transparent;

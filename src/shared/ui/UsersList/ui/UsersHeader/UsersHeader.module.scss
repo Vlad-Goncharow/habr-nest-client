@@ -16,7 +16,7 @@
   display: flex;
   align-items: center;
 
-  @media(max-width:500px) {
+  @media (max-width: 500px) {
     width: 50%;
     justify-content: space-between;
   }
@@ -47,7 +47,7 @@
 
     &_active {
       span {
-        color: var(--horizon)
+        color: var(--horizon);
       }
 
       svg {

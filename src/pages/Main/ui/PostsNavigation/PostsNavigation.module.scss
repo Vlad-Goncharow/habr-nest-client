@@ -6,7 +6,7 @@
 
 .title {
   padding: 14px 20px;
-  color: var(--mine-shaft);;
+  color: var(--mine-shaft);
   font-size: 1.24375rem;
   font-weight: 700;
   line-height: 1.75rem;
@@ -23,16 +23,16 @@
   margin-top: 16px;
   border-bottom: 1px solid #ccc;
 
-  @media(max-width:500px){
-    overflow-x:scroll;
+  @media (max-width: 500px) {
+    overflow-x: scroll;
   }
 
   &__item {
     margin-right: 24px;
 
-    font-size: .875rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: .05rem;
+    letter-spacing: 0.05rem;
     line-height: 1rem;
     cursor: pointer;
     border-bottom: 2px solid transparent;

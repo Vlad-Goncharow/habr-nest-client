@@ -23,12 +23,8 @@
     -moz-osx-font-smoothing: grayscale;
     line-height: 16px;
     color: var(--mine-shaft);
-    ;
     font-size: 14px;
-    font-family: "-apple-system",
-      BlinkMacSystemFont,
-      Arial,
-      sans-serif;
+    font-family: '-apple-system', BlinkMacSystemFont, Arial, sans-serif;
     font-weight: 700;
     display: inline-block;
     vertical-align: baseline;
@@ -43,9 +39,8 @@
     padding: 0 14px;
     box-sizing: border-box;
     font-size: 14px;
-    font-family: "-apple-system", BlinkMacSystemFont, Arial, sans-serif;
+    font-family: '-apple-system', BlinkMacSystemFont, Arial, sans-serif;
     color: var(--mine-shaft);
-    ;
   }
 
   &__submit {
@@ -63,7 +58,7 @@
 
     &_disabled {
       background-color: var(--horizon);
-      opacity: .5;
+      opacity: 0.5;
       cursor: not-allowed;
     }
   }

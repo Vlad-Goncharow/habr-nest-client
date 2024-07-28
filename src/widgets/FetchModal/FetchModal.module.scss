@@ -1,4 +1,4 @@
-.modal{
+.modal {
   position: fixed;
   bottom: 50px;
   right: -500px;
@@ -9,17 +9,17 @@
   font-size: 13px;
   z-index: 1000;
 
-  &_good{
+  &_good {
     background: #72df0d;
-    color:#000000;
+    color: #000000;
   }
 
-  &_bad{
-    color:#fff;
+  &_bad {
+    color: #fff;
     background: #e67777;
   }
 
-  &_active{
+  &_active {
     right: 50px;
     transition: right 0.3s;
   }

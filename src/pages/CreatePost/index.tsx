@@ -1,5 +1,3 @@
-import CreatePost from "./ui/CreatePost";
+import CreatePost from './ui/CreatePost'
 
-export {
-  CreatePost
-}
+export { CreatePost }

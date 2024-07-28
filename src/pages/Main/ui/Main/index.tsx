@@ -9,29 +9,19 @@ import Sidebar from '../SideBar/Main'
 
 function Main() {
   const { type } = useParams()
-  
+
   return (
     <div className={'wrapper'}>
-      <div className="wrapper__left">
+      <div className='wrapper__left'>
         <PostsNavigation />
 
-        {
-          postTypeOne.find((el) => el.typeEng === type) &&
-          <Posts />
-        }
-        {
-          type === 'habs' &&
-          <Habs />
-        }
-        {
-          type === 'authors' &&
-          <Authors />
-        }  
+        {postTypeOne.find((el) => el.typeEng === type) && <Posts />}
+        {type === 'habs' && <Habs />}
+        {type === 'authors' && <Authors />}
       </div>
       <Sidebar />
     </div>
   )
 }
-
 
 export default Main

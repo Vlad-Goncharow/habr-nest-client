@@ -7,15 +7,15 @@
   margin-top: 16px;
 
   &__title {
-    color: var(--mine-shaft);;
-    font-size: .875rem;
+    color: var(--mine-shaft);
+    font-size: 0.875rem;
     font-weight: 700;
     margin-bottom: 26px;
     padding: 16px 20px 0 16px;
 
     span {
       margin-left: 5px;
-      color: var(--horizon)
+      color: var(--horizon);
     }
   }
 }
@@ -33,8 +33,8 @@
   border-left: 16px solid rgb(49, 151, 9);
 
   span {
-    color: var(--mine-shaft);;
-    font-size: .9375rem;
+    color: var(--mine-shaft);
+    font-size: 0.9375rem;
     line-height: 1.375rem;
   }
 
