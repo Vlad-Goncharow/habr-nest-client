@@ -13,6 +13,7 @@
     margin: 0 0 12px;
     line-height: 16px;
     font-weight: 700;
+    color: var(--mine-shaft);
 
     &_big {
       font-size: 22px;
@@ -27,6 +28,7 @@
   border-radius: 3px;
   margin-top: 10px;
   cursor: pointer;
+  color: var(--mine-shaft);
 
   &__input {
     background-color: var(--romance);
@@ -53,7 +55,8 @@
     list-style: none;
     display: flex;
     align-items: center;
-    border: 1px solid var(--loblolly, #d5dddf);
+
+    flex-wrap: wrap;
   }
 
   &__li {
@@ -62,12 +65,15 @@
     justify-content: center;
     padding: 0 18px;
     height: 40px;
-    border: 2px solid transparent;
+    border: 2px solid var(--loblolly, #d5dddf);
+    margin: 0 4px 4px 0;
     border-radius: 3px;
-    color: var(--rolling-stone, #6c797f);
-    font-size: 13px;
     cursor: pointer;
-    margin: -1px;
+
+    span {
+      color: var(--rolling-stone, #6c797f);
+      font-size: 13px;
+    }
 
     &_active {
       border-color: var(--horizon, #77a8d0);
@@ -97,6 +103,30 @@
         margin-left: 8px;
       }
     }
+
+    &_unknown {
+      span {
+        color: var(--mine-shaft);
+      }
+    }
+
+    &_easy {
+      span {
+        color: #84f359;
+      }
+    }
+
+    &_normal {
+      span {
+        color: #6b59f3;
+      }
+    }
+
+    &_hard {
+      span {
+        color: #f35959;
+      }
+    }
   }
 
   &__input {
@@ -105,8 +135,8 @@
     left: 0;
     opacity: 0;
 
-    &:not(:checked) + label:before,
-    &:checked + label:before {
+    &:not(:checked)+label:before,
+    &:checked+label:before {
       content: '';
       position: absolute;
       left: 0;
@@ -118,8 +148,8 @@
       background: var(--romance);
     }
 
-    &:not(:checked) + label:after,
-    &:checked + label:after {
+    &:not(:checked)+label:after,
+    &:checked+label:after {
       content: '';
       width: 10px;
       height: 10px;
@@ -132,12 +162,12 @@
       transition: all 0.2s ease;
     }
 
-    &:not(:checked) + label:after {
+    &:not(:checked)+label:after {
       opacity: 0;
       transform: scale(0);
     }
 
-    &:checked + label:after {
+    &:checked+label:after {
       opacity: 1;
       transform: scale(1);
     }
@@ -191,11 +221,13 @@
     font-weight: 700;
     margin-bottom: 9px;
     font-size: 16px;
+    color: var(--mine-shaft);
   }
 
   &__subtitle {
     font-size: 14px;
     margin-bottom: 10px;
+    color: var(--mine-shaft);
   }
 
   &__btn {
@@ -217,7 +249,7 @@
     border-radius: 3px;
     font-size: 0.8125rem;
     border: none;
-    color: var(----mountain-mist);
+    color: var(--mountain-mist);
   }
 
   &__prev {

@@ -106,9 +106,10 @@
     padding-left: 15px;
     display: flex;
     align-content: inherit;
+    color:var(--mine-shaft);
 
     &:hover {
-      background: #eff6fa;
+      background: rgba(var(--gull-gray-rgb, 146, 156, 165), .4)
     }
   }
 }

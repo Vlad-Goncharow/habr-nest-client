@@ -45,6 +45,7 @@
   position: relative;
 
   &__item {
+    color:var(--mine-shaft);
     padding: 10px 15px 15px 15px;
     cursor: pointer;
   }
@@ -56,7 +57,7 @@
   top: calc(100% + 10px);
   left: 0;
   background: var(--romance);
-  box-shadow: 0 0 15px 3px #ccc;
+  box-shadow: 0 0 12px rgba(var(--asphalt-rgb), 0.16);
   border-radius: 5px;
   padding: 5px 0;
 
@@ -64,6 +65,7 @@
     padding: 12px 20px;
     font-size: 0.8125rem;
     display: block;
+    color:var(--mine-shaft);
 
     &:hover {
       background: #eff6fa;

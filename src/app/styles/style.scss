@@ -30,6 +30,7 @@
 
 @import './icons.scss';
 @import './light.scss';
+@import './dark.scss';
 @import './variables.scss';
 
 * {
@@ -56,7 +57,23 @@ a:hover {
 
 body {
   overflow-y: scroll;
-  background: #f0f0f0;
+  background: var(--seashell);
+}
+
+
+[data-theme='dark'] {
+  --romance: var(--bunker);
+  --seashell: var(--cod-gray);
+  --mine-shaft: var(--alto);
+  --limed-spruce: var(--woodsmoke);
+  --horizon: var(--deepsky-blue);
+  --rolling-stone: var(--shady-lady);
+  --mountain-mist: var(--shady-lady);
+  --asphalt-rgb: var(--romance-dark-rgb);
+  --solitude: var(--elephant);
+  --gossip: var(--waiouru);
+  --aqua-haze: var(--firefly);
+  --gull-gray-rgb: var(--ironside-gray-rgb);
 }
 
 .page {
@@ -123,4 +140,17 @@ body {
       margin-right: 0;
     }
   }
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: rgba(0,0,0, .2);
+  transition: transform .3s,
+  opacity .3s;
+  display: flex;
 }

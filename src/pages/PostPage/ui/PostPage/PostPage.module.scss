@@ -62,7 +62,7 @@
   }
 
   &__authorName {
-    color: #414b50;
+    color: var(--mine-shaft);
     font-size: 0.8125rem;
     font-weight: 700;
     line-height: 0.9375rem;
@@ -73,7 +73,7 @@
   }
 
   &__date {
-    color: #777;
+    color: var(--mountain-mist);
     display: inline-block;
     font-size: 0.8125rem;
     font-weight: 500;
@@ -112,6 +112,9 @@
     line-height: 1.5rem;
     margin-bottom: 25px;
     word-break: break-all;
+    * {
+      color: var(--mine-shaft) !important;
+    }
   }
 
   &__info {
@@ -126,6 +129,7 @@
     span {
       font-weight: 700;
       margin-right: 12px;
+      color: var(--mine-shaft) !important;
     }
 
     ul {
@@ -185,14 +189,42 @@
     margin-right: 15px;
     display: flex;
     align-items: center;
+    color:var(--mine-shaft);
+    font-weight: 500;
 
     span {
+      margin-left: 5px;
       color: var(--gull-gray);
+      font-weight: 500;
     }
 
     svg {
       fill: var(--gull-gray);
-      margin-right: 10px;
     }
+
+    &_unknown {
+      span {
+        color: var(--mine-shaft);
+      }
+    }
+    
+    &_easy {
+      span {
+        color: #84f359;
+      }
+    }
+
+    &_normal {
+      span {
+        color: #6b59f3;
+      }
+    }
+
+    &_hard {
+      span {
+        color: #f35959;
+      }
+    }
+    
   }
 }

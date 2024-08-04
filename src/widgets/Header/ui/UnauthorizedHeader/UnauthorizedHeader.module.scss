@@ -13,3 +13,14 @@
     color: var(--romance);
   }
 }
+
+.settings{
+  margin-right: 12px;
+
+  svg {
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    stroke: var(--gull-gray);
+  }
+}

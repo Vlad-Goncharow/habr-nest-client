@@ -1,20 +1,20 @@
 import React from 'react'
 
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
-import CodeIcon from '../../../../shared/images/svg/code.svg'
-import TitleIcon from '../../../../shared/images/svg/format-heading.svg'
-import OlIcon from '../../../../shared/images/svg/list-ol.svg'
-import UlIcon from '../../../../shared/images/svg/list-ul.svg'
+import {ReactComponent as CodeIcon} from '../../../../shared/images/svg/code.svg'
+import {ReactComponent as TitleIcon} from '../../../../shared/images/svg/format-heading.svg'
+import {ReactComponent as OlIcon} from '../../../../shared/images/svg/list-ol.svg'
+import {ReactComponent as UlIcon} from '../../../../shared/images/svg/list-ul.svg'
 import s from './EditorControls.module.scss'
 import { ReactComponent as PlusSvg } from 'shared/images/svg/plusEditor.svg'
 
 const BLOCK_TYPES = [
-  { label: 'Загаловок 1', style: 'custom-title-one', icon: TitleIcon },
-  { label: 'Загаловок 2', style: 'custom-title-two', icon: TitleIcon },
-  { label: 'Загаловок 3', style: 'custom-title-three', icon: TitleIcon },
-  { label: 'Список', style: 'unordered-list-item', icon: UlIcon },
-  { label: 'Нумерованый список', style: 'ordered-list-item', icon: OlIcon },
-  { label: 'Код', style: 'code-block', icon: CodeIcon },
+  { label: 'Загаловок 1', style: 'custom-title-one', Icon: TitleIcon },
+  { label: 'Загаловок 2', style: 'custom-title-two', Icon: TitleIcon },
+  { label: 'Загаловок 3', style: 'custom-title-three', Icon: TitleIcon },
+  { label: 'Список', style: 'unordered-list-item', Icon: UlIcon },
+  { label: 'Нумерованый список', style: 'ordered-list-item', Icon: OlIcon },
+  { label: 'Код', style: 'code-block', Icon: CodeIcon },
 ]
 
 type EditorControlsProps = {
@@ -93,14 +93,14 @@ const EditorControls: React.FC<EditorControlsProps> = React.memo(
           >
             {open ? (
               <div ref={controllsMenuRef} className={s.buttons__row}>
-                {BLOCK_TYPES.map((type: any) => (
+                {BLOCK_TYPES.map(({label,style,Icon}) => (
                   <div
                     className={s.item}
-                    key={type.label}
-                    onMouseDown={() => customClick(type.style)}
+                    key={label}
+                    onMouseDown={() => customClick(style)}
                   >
-                    <img src={type.icon} alt='' />
-                    <span>{type.label}</span>
+                    <Icon />
+                    <span>{label}</span>
                   </div>
                 ))}
               </div>

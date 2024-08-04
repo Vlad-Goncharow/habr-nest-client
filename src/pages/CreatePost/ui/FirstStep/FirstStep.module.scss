@@ -6,12 +6,18 @@
     border: 1px solid var(--horizon);
     margin-bottom: 15px;
     padding: 15px 10px;
-    background: #eaf1f5;
+    background: linear-gradient(0deg, rgba(var(--horizon-rgb), .12) 0, rgba(var(--horizon-rgb), .12) 100%),
+    var(--romance);
+  }
 
-    span {
-      font-weight: 700;
+  &__saved{
+    font-weight: 700;
+    color: var(--mine-shaft);
+    cursor: pointer;
+
+    span{
       color: var(--horizon);
-      cursor: pointer;
+      text-decoration: none;
     }
   }
 
@@ -31,6 +37,7 @@
     border: 0;
     margin-bottom: 25px;
     color: var(--mine-shaft, #343434);
+    background: transparent;
 
     &::placeholder {
       color: var(--mine-shaft, #343434);
@@ -45,6 +52,12 @@
   padding-left: 20px;
 }
 
+.editor{
+  *{
+    color:var(--mine-shaft);
+  }
+}
+
 .buttons {
   display: flex;
 }
@@ -56,7 +69,7 @@
 .next {
   background-color: var(--romance);
   border: 1px solid #c0c0c0;
-  color: var(----mountain-mist);
+  color: var(--mountain-mist);
   height: 32px;
   padding: 8px 14px;
   border-radius: 3px;

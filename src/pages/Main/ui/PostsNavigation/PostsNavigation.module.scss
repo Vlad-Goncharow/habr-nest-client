@@ -51,6 +51,7 @@
 .filter {
   padding: 14px 20px;
   font-size: 16px;
+  color: var(--mine-shaft);
 }
 
 .search {
@@ -71,6 +72,7 @@
     margin: 0;
     min-height: 40px;
     padding: 0 14px;
+    color:var(--mine-shaft);
   }
 
   &__btn {

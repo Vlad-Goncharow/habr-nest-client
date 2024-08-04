@@ -306,7 +306,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
       <div className={s.wrapper}>
         {isShowStorage && (
           <div className={s.wrapper__top}>
-            <div className={s.saved}>
+            <div className={s.wrapper__saved}>
               У вас есть резервное сохранение{' '}
               <span onClick={loadEditorStateFromLocalStorage}>
                 Восстановить
@@ -327,7 +327,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             onClick={() => editorRef.current.focus()}
             className={`${s.content} ${s.text}`}
           >
-            <div className='item__wrapper'>
+            <div className={s.editor}>
               <Editor
                 editorState={editorState}
                 onChange={setEditorState}
@@ -357,7 +357,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             ref={nextButtonRef}
             className={classNames(s.next, {
               [s.next_active]: values.title.length > 5 && lengthBlocks > 5,
-              [s.next_disable]: values.title.length < 5 && lengthBlocks < 5,
+              [s.next_disable]: values.title.length < 5 || lengthBlocks < 5,
             })}
             onClick={handleButtonClick}
           >

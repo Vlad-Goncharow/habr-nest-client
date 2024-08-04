@@ -52,38 +52,6 @@
     font-size: 1rem;
     line-height: 1.25rem;
     font-weight: 700;
-  }
-
-  &__subscribe {
-    padding: 7px 12px;
-    font-size: 12px;
-    text-align: center;
-    background-color: inherit;
-    border: 1px solid #7aa600;
-    border-radius: 3px;
-    box-sizing: border-box;
-    color: #7aa600;
-    cursor: pointer;
-    margin-left: auto;
-
-    &_active {
-      color: red;
-      border-color: red;
-
-      &:hover {
-        background: red;
-        color: var(--romance);
-      }
-    }
-
-    &_disable {
-      color: blue;
-      border-color: blue;
-
-      &:hover {
-        background: blue;
-        color: var(--romance);
-      }
-    }
+    color: var(--mine-shaft) !important;
   }
 }

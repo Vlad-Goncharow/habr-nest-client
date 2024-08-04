@@ -39,12 +39,10 @@ const SecondStep: React.FC<SecondStepProps> = ({
   setValues,
   values,
 }) => {
-  //dispatch
   const dispatch = useAppDispatch()
 
-  //navigate
   const navigate = useNavigate()
-  //image file
+
   const [image, setImage] = React.useState<string | null>(null)
   const [imageFile, setImageFile] = React.useState<any>(null)
 
@@ -76,7 +74,6 @@ const SecondStep: React.FC<SecondStepProps> = ({
     }
   }
 
-  //change post category
   const changePostCategory = (category: string) => {
     setValues((prev: ValuesType) => {
       return {
@@ -86,7 +83,6 @@ const SecondStep: React.FC<SecondStepProps> = ({
     })
   }
 
-  //chnage post type
   const changePostType = (type: string) => {
     setValues((prev: ValuesType) => {
       return {
@@ -96,7 +92,6 @@ const SecondStep: React.FC<SecondStepProps> = ({
     })
   }
 
-  //handle checkbox
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { id } = event.target
     setValues((prev: ValuesType) => {
@@ -107,7 +102,6 @@ const SecondStep: React.FC<SecondStepProps> = ({
     })
   }
 
-  //create post
   const createPost = async () => {
     const formData = new FormData()
     formData.append('file', imageFile)
@@ -130,7 +124,6 @@ const SecondStep: React.FC<SecondStepProps> = ({
     }
   }
 
-  //check create post btn is available
   const checkCreateAvailable = () => {
     if (values.habs.length < 1 || values.image === null) {
       return false
@@ -139,10 +132,8 @@ const SecondStep: React.FC<SecondStepProps> = ({
     }
   }
 
-  //create button ref for disable or active click
   const createButtonRef = React.useRef<HTMLButtonElement>(null)
 
-  //handle button click
   const handleButtonClick = () => {
     if (
       createButtonRef.current &&
@@ -197,7 +188,12 @@ const SecondStep: React.FC<SecondStepProps> = ({
         <div className={s.item__title}>Укажите сложность публикации</div>
         <form className={s.dificult}>
           {postDifficulty.map((el) => (
-            <div key={el.dificultEng} className={s.dificult__item}>
+            <div key={el.dificultEng} className={classNames(s.dificult__item,{
+              [s.dificult__item_unknown]:el.dificultRu === 'Не указано',
+              [s.dificult__item_easy]:el.dificultRu === 'Легко',
+              [s.dificult__item_normal]:el.dificultRu === 'Сложно',
+              [s.dificult__item_hard]:el.dificultRu === 'Тяжело',
+            })}>
               <input
                 onChange={handleCheckboxChange}
                 className={s.dificult__input}

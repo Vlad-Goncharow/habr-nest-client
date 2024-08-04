@@ -12,6 +12,10 @@
   svg {
     width: 100%;
     height: 100%;
+
+    path{
+      fill:var(--mine-shaft);
+    }
   }
 }
 
@@ -20,7 +24,7 @@
   right: 0;
   top: 100%;
   width: 220px;
-  box-shadow: 0 0 8px rgba(var(--asphalt-rgb, 0, 0, 0), 0.2);
+  box-shadow: 0 0 12px rgba(var(--asphalt-rgb), 0.16);
   border-radius: 3px;
   padding: 8px 0;
   background: var(--romance);
@@ -42,6 +46,6 @@
   transition: all 0.2s ease-in-out;
 
   &:hover {
-    background: var(--desert-storm, #eee);
+    background: var(--aqua-haze, #eff6fa);
   }
 }

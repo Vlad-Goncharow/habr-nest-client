@@ -106,6 +106,9 @@
     max-height: 150px;
     overflow: hidden;
     word-break: break-all;
+    *{
+      color: var(--mine-shaft) !important;
+    }
   }
 
   &__link {

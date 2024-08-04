@@ -1,5 +1,5 @@
 import { getUserData } from 'entities/User'
-import React from 'react'
+import React, { createContext } from 'react'
 import { Link } from 'react-router-dom'
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 import UseWindowWidth from 'shared/hooks/UseWindowWidth'
@@ -7,11 +7,23 @@ import { useAppSelector } from 'shared/hooks/useAppSelector'
 import Controls from '../Controls'
 import SideNavbar from '../SideNavbar'
 import s from './Header.module.scss'
+import { Menu } from '../SettingsMenu'
+import { createPortal } from 'react-dom'
+
+interface IHeaderContext {
+  settingIsOpen?:boolean
+  setSettingsIsOpen?:(bool: boolean) => void
+}
+
+export const HeaderContext = createContext<IHeaderContext>({})
 
 function Header() {
   // ======== current user
   const { user } = useAppSelector(getUserData)
-  // ======== current user
+
+  //const setting page menu is open
+  const [settingIsOpen, setSettingsIsOpen] = React.useState<boolean>(false)  
+  
 
   const isChangeControlsPos = UseWindowWidth(1024)
   const sideNavShow = UseWindowWidth(768)
@@ -48,41 +60,48 @@ function Header() {
   }, [sideNav, sideNavIsClose, isChangeControlsPos])
 
   return (
-    <header className={s.header}>
-      <div className={s.header__top}>
+    <HeaderContext.Provider value={{settingIsOpen, setSettingsIsOpen}}>
+      <header className={s.header}>
+        <div className={s.header__top}>
+          <div className={'container'}>
+            <div className={s.row}>
+              <div onClick={() => setSideNav(true)} className={s.burger}>
+                <span></span>
+              </div>
+
+              <Link to='/flows/all/articles/1' className={s.logo}>
+                Хабр
+              </Link>
+
+              {isChangeControlsPos && <Controls user={user} />}
+            </div>
+          </div>
+        </div>
         <div className={'container'}>
           <div className={s.row}>
-            <div onClick={() => setSideNav(true)} className={s.burger}>
-              <span></span>
+            <SideNavbar isShow={!sideNavShow} />
+            {!isChangeControlsPos && <Controls user={user} />}
+          </div>
+        </div>
+
+        {sideNavShow && sideNav && (
+          <div className={s.header__overlay}>
+            <div
+              ref={sideNavRef}
+              onClick={() => setSideNavIsClose(true)}
+              className={s.header__sideNav}
+            >
+              <SideNavbar isShow={true} />
             </div>
-
-            <Link to='/flows/all/articles/1' className={s.logo}>
-              Хабр
-            </Link>
-
-            {isChangeControlsPos && <Controls user={user} />}
           </div>
-        </div>
-      </div>
-      <div className={'container'}>
-        <div className={s.row}>
-          <SideNavbar isShow={!sideNavShow} />
-          {!isChangeControlsPos && <Controls user={user} />}
-        </div>
-      </div>
+        )}
+      </header>
 
-      {sideNavShow && sideNav && (
-        <div className={s.header__overlay}>
-          <div
-            ref={sideNavRef}
-            onClick={() => setSideNavIsClose(true)}
-            className={s.header__sideNav}
-          >
-            <SideNavbar isShow={true} />
-          </div>
-        </div>
+      {settingIsOpen && createPortal(
+        <Menu onClose={() => setSettingsIsOpen(false)} />,
+        document.body
       )}
-    </header>
+    </HeaderContext.Provider>
   )
 }
 

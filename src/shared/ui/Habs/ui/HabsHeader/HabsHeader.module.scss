@@ -8,8 +8,11 @@
 }
 
 .name {
-  font-size: 0.8125rem;
-  line-height: 1.5rem;
+  span{
+    font-size: 0.8125rem;
+    line-height: 1.5rem;
+    color:var(--mine-shaft);
+  }
 }
 
 .sort {
@@ -31,11 +34,15 @@
       width: var(--user-stats);
       font-size: 0.8125rem;
       line-height: 1.5rem;
+      color:var(--mine-shaft);
     }
 
     svg {
       width: 15px;
       height: 15px;
+      path{
+        stroke:var(--mine-shaft);
+      }
     }
 
     &_rotate {

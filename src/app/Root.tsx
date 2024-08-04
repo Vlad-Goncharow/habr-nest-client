@@ -2,6 +2,7 @@ import { fetchAuth } from 'entities/User'
 import React from 'react'
 import { Outlet, ScrollRestoration, useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import useLoadLocalTheme from 'shared/hooks/useLoadLocalTheme'
 import useSaveUrl from 'shared/hooks/useSaveUrl'
 import useScrollPosition from 'shared/hooks/useScrollPosition'
 import PageWrapper from 'shared/ui/PageWrapper'
@@ -11,6 +12,7 @@ import Header from 'widgets/Header/ui/Header/Header'
 function Root() {
   useSaveUrl()
   useScrollPosition()
+  useLoadLocalTheme()
 
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
@@ -52,7 +54,7 @@ function Root() {
       clearTimeout(timer)
     }
   }, [])
-
+ 
   return (
     <div ref={appRef} className='App'>
       <Header />

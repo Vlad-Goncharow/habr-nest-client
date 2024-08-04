@@ -1,11 +1,13 @@
 import { IUser, checkRolesAdmin } from 'entities/User'
 import { Logout } from 'features/Logout'
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { ReactComponent as ProfileSettings } from 'shared/images/svg/profileSettings.svg'
-import { ReactComponent as UserSvg } from 'shared/images/svg/user.svg'
-import s from './UserControls.module.scss'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
+import { ReactComponent as ProfileSettings } from 'shared/images/svg/profileSettings.svg'
+import { ReactComponent as Settings } from 'shared/images/svg/settingPage.svg'
+import { ReactComponent as UserSvg } from 'shared/images/svg/user.svg'
+import { HeaderContext } from '../Header/Header'
+import s from './UserControls.module.scss'
 
 interface UserControlsProps {
   user: IUser
@@ -13,6 +15,15 @@ interface UserControlsProps {
 
 const UserControls: React.FC<UserControlsProps> = ({ user }) => {
   const checkRoles = useAppSelector(checkRolesAdmin)
+
+  const {setSettingsIsOpen} = useContext(HeaderContext)
+  
+  const openSettingMenu = () => {
+    if(setSettingsIsOpen){
+      setSettingsIsOpen(true)
+    }
+  }
+  
   return (
     <>
       <Link to={`/user/${user?.id}/profile/1`} className={s.header}>
@@ -41,8 +52,14 @@ const UserControls: React.FC<UserControlsProps> = ({ user }) => {
         <li>
           <Link to='/profile-settings'>
             <ProfileSettings />
-            <span>Настройка профиля</span>
+            Настройка профиля
           </Link>
+        </li>
+        <li>
+          <div onClick={openSettingMenu} className={s.list__settings}>
+            <Settings />
+            Язык, лента, тема
+          </div>
         </li>
         <Logout />
       </ul>

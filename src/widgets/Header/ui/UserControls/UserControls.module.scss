@@ -49,6 +49,22 @@
   list-style: none;
 
   li {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+      width: 25px;
+      height: 25px;
+      margin-right: 12px;
+    }
+
+    &:hover {
+      background: var(--aqua-haze);
+      opacity: 1;
+      color: var(--horizon);
+    }
+
     a {
       color: var(--mine-shaft);
       display: flex;
@@ -62,21 +78,18 @@
       width: 100%;
       box-sizing: border-box;
       position: relative;
-
-      &:hover {
-        background: #edf5f9;
-        opacity: 1;
-        color: #487284;
-      }
-
-      display: flex;
       align-items: center;
-
-      svg {
-        width: 25px;
-        height: 25px;
-        margin-right: 12px;
-      }
     }
+  }
+
+  &__settings{
+    height: 48px;
+    line-height: 3rem;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    color: var(--mine-shaft);
+    font-size: 1rem;
+    font-weight: 500;
   }
 }

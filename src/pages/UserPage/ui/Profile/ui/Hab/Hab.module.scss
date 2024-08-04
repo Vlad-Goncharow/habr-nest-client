@@ -8,16 +8,18 @@
     margin-bottom: 10px;
     font-weight: 700;
     font-size: 20px;
+    color: var(--mine-shaft);
   }
 
   &__descr {
     margin-bottom: 10px;
     display: block;
+    color: var(--mine-shaft);
   }
 }
 
 .title {
-  background-color: #e7f3ff;
+  background-color: var(--solitude);
   border-radius: 3px;
   color: var(--horizon);
   display: inline-flex;
@@ -30,8 +32,8 @@
   vertical-align: middle;
 
   &_active {
-    background-color: #d2ec93;
-    color: #000;
+    background-color: var(--gossip);
+    color: var(--rolling-stone);
   }
 }
 
@@ -75,6 +77,7 @@
   flex-direction: column;
 
   span {
+    color: var(--mine-shaft);
     &:first-child {
       font-size: 16px;
       color: #f667f6;
@@ -97,6 +100,7 @@
   margin-top: 15px;
 
   &__item {
+    color: var(--mine-shaft);
     font-size: 14px;
   }
 }

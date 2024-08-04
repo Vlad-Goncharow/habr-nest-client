@@ -51,8 +51,7 @@
     overflow-x: auto;
     overflow-y: hidden;
     word-break: break-word;
-
-    p {
+    * {
       color: var(--mine-shaft);
       font-size: 0.9375rem;
       line-height: 1.375rem;
@@ -84,6 +83,9 @@
     svg {
       width: 30px;
       height: 30px;
+      path{
+        stroke: var(--mine-shaft);
+      }
     }
   }
 }
@@ -93,8 +95,8 @@
   position: absolute;
   top: 100%;
   left: 0;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.16);
   background: var(--romance);
+  box-shadow: 0 0 12px rgba(var(--asphalt-rgb), .16);
 
   ul {
     display: flex;
@@ -114,6 +116,10 @@
         transform: translateY(-50%);
         width: 17px;
         height: 17px;
+
+        path {
+          stroke: var(--mine-shaft);
+        }
       }
 
       span {
@@ -126,7 +132,6 @@
 
       &:hover {
         transition: all, 0.3s;
-        background: #f1f1f1;
 
         svg {
           transition: all, 0.3s;

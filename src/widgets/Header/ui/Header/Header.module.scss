@@ -3,7 +3,7 @@
   border-bottom: 1px solid #ccc;
 
   &__top {
-    background-color: #303b44;
+    background: var(--limed-spruce);
   }
 
   &__overlay {
@@ -42,7 +42,7 @@
 }
 
 .logo {
-  color: var(--romance);
+  color: #fff;
   font-weight: 700;
   font-size: 26px;
   line-height: 48px;

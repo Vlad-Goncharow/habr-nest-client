@@ -5,7 +5,12 @@
   margin: 0 5px;
 
   svg {
+    
     width: 100% !important;
     height: 100% !important;
+
+    path{
+      stroke: var(--mine-shaft);
+    }
   }
 }

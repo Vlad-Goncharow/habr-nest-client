@@ -24,7 +24,7 @@ function Logout() {
     <li onClick={logout}>
       <Link to='/flows/all/articles/1'>
         <LogoutSvg />
-        <span>Выход</span>
+        Выход
       </Link>
     </li>
   )
