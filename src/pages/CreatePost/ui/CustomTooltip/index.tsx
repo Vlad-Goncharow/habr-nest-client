@@ -5,20 +5,15 @@ import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 const CustomTooltip = (props: any) => {
   const { editorState, removeBlock } = props
 
-  //delete button menu ref
   const menuRef = React.useRef(null)
   UseClickOutside(menuRef, () => setOpen(false))
 
-  //is visible or not
   const [visible, setVisible] = React.useState<boolean>()
 
-  //absolute top value
   const [absolutetop, setAbsoluteTop] = React.useState<number>(0)
 
-  //open controlls menu or not
   const [open, setOpen] = React.useState(false)
 
-  //calc absolute value
   React.useEffect(() => {
     const contentState = editorState.getCurrentContent()
     const selection = editorState.getSelection()
@@ -35,14 +30,12 @@ const CustomTooltip = (props: any) => {
     }
   }, [editorState])
 
-  //delete block
   const deleteBlock = () => {
     removeBlock()
     setOpen(false)
     setVisible(false)
   }
 
-  //check if is first block hide all
   const isFirstBlock = () => {
     const selection = editorState.getSelection()
     const contentState = editorState.getCurrentContent()

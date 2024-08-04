@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import { HeaderContext } from '../Header/Header'
 
 function UnauthorizedHeader() {
-  const {setSettingsIsOpen} = useContext(HeaderContext)
-  
+  const { setSettingsIsOpen } = useContext(HeaderContext)
+
   const openSettingMenu = () => {
-    if(setSettingsIsOpen){
+    if (setSettingsIsOpen) {
       setSettingsIsOpen(true)
     }
   }

@@ -25,10 +25,8 @@ interface PostProps {
 const Post: React.FC<PostProps> = ({ post, query }) => {
   const { user } = useAppSelector(getUserData)
 
-  //delete post
   const deletePost = useDeletePost({ query })
 
-  //is user have admin or moderator role
   const checkUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
 
   const contentStateFromJSON = convertFromRaw(JSON.parse(post.content))

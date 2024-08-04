@@ -45,7 +45,7 @@
   &__item {
     text-align: right;
     width: var(--user-stats);
-    color:var(--mine-shaft);
+    color: var(--mine-shaft);
 
     @media (max-width: 500px) {
       width: 50px;

@@ -13,7 +13,7 @@ const useElementWidth = (className: string): number | null => {
       }
     }
 
-    handleResize() // Вызываем при монтировании, чтобы установить начальное значение
+    handleResize()
 
     window.addEventListener('resize', handleResize)
 

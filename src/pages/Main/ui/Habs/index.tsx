@@ -4,7 +4,6 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import { HabsList, HabsSkeleton } from 'shared/ui/Habs'
 
 const Habs: React.FC = () => {
-  //params
   const { type, category, page } = useParams()
 
   const [searchParams] = useSearchParams()

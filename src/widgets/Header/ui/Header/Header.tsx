@@ -11,24 +11,20 @@ import { Menu } from '../SettingsMenu'
 import { createPortal } from 'react-dom'
 
 interface IHeaderContext {
-  settingIsOpen?:boolean
-  setSettingsIsOpen?:(bool: boolean) => void
+  settingIsOpen?: boolean
+  setSettingsIsOpen?: (bool: boolean) => void
 }
 
 export const HeaderContext = createContext<IHeaderContext>({})
 
 function Header() {
-  // ======== current user
   const { user } = useAppSelector(getUserData)
 
-  //const setting page menu is open
-  const [settingIsOpen, setSettingsIsOpen] = React.useState<boolean>(false)  
-  
+  const [settingIsOpen, setSettingsIsOpen] = React.useState<boolean>(false)
 
   const isChangeControlsPos = UseWindowWidth(1024)
   const sideNavShow = UseWindowWidth(768)
 
-  // ======== side nav menu is open
   const [sideNav, setSideNav] = React.useState<Boolean>(false)
   const [sideNavIsClose, setSideNavIsClose] = React.useState(false)
   const sideNavRef = React.useRef<HTMLDivElement>(null)
@@ -60,7 +56,7 @@ function Header() {
   }, [sideNav, sideNavIsClose, isChangeControlsPos])
 
   return (
-    <HeaderContext.Provider value={{settingIsOpen, setSettingsIsOpen}}>
+    <HeaderContext.Provider value={{ settingIsOpen, setSettingsIsOpen }}>
       <header className={s.header}>
         <div className={s.header__top}>
           <div className={'container'}>
@@ -97,10 +93,11 @@ function Header() {
         )}
       </header>
 
-      {settingIsOpen && createPortal(
-        <Menu onClose={() => setSettingsIsOpen(false)} />,
-        document.body
-      )}
+      {settingIsOpen &&
+        createPortal(
+          <Menu onClose={() => setSettingsIsOpen(false)} />,
+          document.body
+        )}
     </HeaderContext.Provider>
   )
 }

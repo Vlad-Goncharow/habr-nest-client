@@ -13,25 +13,18 @@ import CommentEditor from '../CommentEditor'
 import s from './Comments.module.scss'
 
 const Comments: React.FC = () => {
-  //dispatch
   const dispatch = useAppDispatch()
 
-  //params
   const { postId } = useParams()
 
-  //current user
   const { user } = useAppSelector(getUserData)
 
-  //loading comments
   const [loading, setLoding] = React.useState<boolean>(true)
 
-  //comments
   const [comments, setComments] = React.useState<IComment[]>([])
 
-  //comments row ref
   const commentsRef = React.useRef<HTMLDivElement>(null)
 
-  //load comments
   React.useEffect(() => {
     ;(async () => {
       try {
@@ -51,7 +44,6 @@ const Comments: React.FC = () => {
     })()
   }, [postId])
 
-  //scroll to bottom when comments loaded
   React.useEffect(() => {
     if (!loading) {
       if (commentsRef.current) {

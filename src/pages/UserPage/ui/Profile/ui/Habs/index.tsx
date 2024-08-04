@@ -11,13 +11,10 @@ import s from './Habs.module.scss'
 const Habs = () => {
   const dispatch = useAppDispatch()
 
-  //params
   const { userId } = useParams()
 
-  //habs array
   const [habs, setHabs] = React.useState<HabsType[] | []>([])
 
-  //is loading
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {

@@ -3,10 +3,8 @@ import { useComments } from '../../model'
 import Comments from '../Comments'
 
 function CommentsList() {
-  //params
   const { userId, page, type } = useParams()
 
-  //data
   const { comments, length, isLoading, isSuccess } = useComments({
     userId,
     page,

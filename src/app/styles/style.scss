@@ -60,7 +60,6 @@ body {
   background: var(--seashell);
 }
 
-
 [data-theme='dark'] {
   --romance: var(--bunker);
   --seashell: var(--cod-gray);
@@ -142,15 +141,16 @@ body {
   }
 }
 
-.overlay{
+.overlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   z-index: 100;
-  background: rgba(0,0,0, .2);
-  transition: transform .3s,
-  opacity .3s;
+  background: rgba(0, 0, 0, 0.2);
+  transition:
+    transform 0.3s,
+    opacity 0.3s;
   display: flex;
 }

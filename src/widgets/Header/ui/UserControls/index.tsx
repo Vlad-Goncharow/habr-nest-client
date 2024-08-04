@@ -16,14 +16,14 @@ interface UserControlsProps {
 const UserControls: React.FC<UserControlsProps> = ({ user }) => {
   const checkRoles = useAppSelector(checkRolesAdmin)
 
-  const {setSettingsIsOpen} = useContext(HeaderContext)
-  
+  const { setSettingsIsOpen } = useContext(HeaderContext)
+
   const openSettingMenu = () => {
-    if(setSettingsIsOpen){
+    if (setSettingsIsOpen) {
       setSettingsIsOpen(true)
     }
   }
-  
+
   return (
     <>
       <Link to={`/user/${user?.id}/profile/1`} className={s.header}>

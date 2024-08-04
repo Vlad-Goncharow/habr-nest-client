@@ -18,7 +18,6 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (response: any) => response,
-  //arror
   async (error: { config: any; response: { status: number } }) => {
     const originalRequest = error.config
 

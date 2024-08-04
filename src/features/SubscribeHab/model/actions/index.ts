@@ -7,7 +7,7 @@ import { RootState } from 'app/providers/StoreProvider'
 export const subscribeToHab = createAsyncThunk(
   'user/subscribeToHab',
   async (habId: number, { getState, dispatch }) => {
-    const state = getState() as RootState // Явно указываем тип состояния
+    const state = getState() as RootState
     const { user } = state.user
     try {
       const { data } = await axios.post('/habs/subscribe', {
@@ -33,7 +33,7 @@ export const subscribeToHab = createAsyncThunk(
 export const unsubscribeFromHab = createAsyncThunk(
   'user/unsubscribeFromHab',
   async (habId: number, { getState, dispatch }) => {
-    const state = getState() as RootState // Явно указываем тип состояния
+    const state = getState() as RootState
     const { user } = state.user
     try {
       const { data } = await axios.post('/habs/unsubscribe', {

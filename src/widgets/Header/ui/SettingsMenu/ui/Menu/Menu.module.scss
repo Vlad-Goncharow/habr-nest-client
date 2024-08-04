@@ -1,24 +1,24 @@
-.wrapper{
+.wrapper {
   background: var(--romance);
   flex: 0 320px;
   margin: auto;
   position: relative;
 }
 
-.header{
+.header {
   color: var(--mine-shaft);
-  font-size: .9375rem;
+  font-size: 0.9375rem;
   font-weight: 500;
   line-height: 3.5rem;
   padding: 0 16px;
 }
 
-.form{
-  &__item{
+.form {
+  &__item {
     margin: 0 0 24px;
   }
 
-  &__title{
+  &__title {
     background: var(--aqua-haze);
     color: var(--rolling-stone);
     display: block;
@@ -27,48 +27,48 @@
   }
 }
 
-.container{
+.container {
   padding: 0 16px;
   padding-top: 19px;
 }
 
-.checkbox{
+.checkbox {
   margin-bottom: 15px;
 
-  &:last-child{
+  &:last-child {
     margin-bottom: 0;
   }
 
-  label{
+  label {
     color: var(--mine-shaft);
     display: flex;
     align-items: center;
-    font-size: .875rem;
+    font-size: 0.875rem;
     line-height: 1rem;
     cursor: pointer;
   }
 
-  &__ui{
+  &__ui {
     margin-right: 8px;
     position: relative;
   }
 
-  &__radio{
-    &_real{
+  &__radio {
+    &_real {
       cursor: pointer;
       display: block;
       height: 16px;
       opacity: 0;
       width: 16px;
 
-      &:checked + .checkbox__radio_fake{
+      &:checked + .checkbox__radio_fake {
         border: 5px solid var(--horizon);
       }
     }
 
-    &_fake{
+    &_fake {
       background: var(--romance);
-      border: 1px solid rgba(var(--gull-gray-rgb), .4);
+      border: 1px solid rgba(var(--gull-gray-rgb), 0.4);
       border-radius: 50%;
       box-sizing: border-box;
       display: block;
@@ -82,7 +82,7 @@
   }
 }
 
-.close{
+.close {
   position: absolute;
   right: 15px;
   top: 15px;
@@ -90,24 +90,24 @@
   width: 20px;
   height: 20px;
   background: transparent;
-  border:none;
+  border: none;
 
-  &:after{
+  &:after {
     width: 100%;
     height: 2px;
     background: var(--mine-shaft);
-    content:'';
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-45deg);
   }
 
-  &:before{
+  &:before {
     width: 100%;
     height: 2px;
     background: var(--mine-shaft);
-    content:'';
+    content: '';
     position: absolute;
     top: 50%;
     left: 50%;

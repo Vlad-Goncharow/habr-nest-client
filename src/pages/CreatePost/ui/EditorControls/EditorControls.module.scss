@@ -11,8 +11,8 @@
     svg {
       width: 100%;
       height: 100%;
-      *{
-        stroke:var(--mine-shaft) !important;
+      * {
+        stroke: var(--mine-shaft) !important;
       }
     }
   }
@@ -29,20 +29,20 @@
   display: flex;
   align-items: center;
   padding: 12px 10px;
-  
-  span{
+
+  span {
     font-size: 12px;
     font-size: 13px;
-    color:var(--mine-shaft);
+    color: var(--mine-shaft);
   }
 
-  svg{
+  svg {
     width: 20px;
     height: 20px;
-    fill:var(--mine-shaft);
+    fill: var(--mine-shaft);
   }
 
   &:hover {
-    background: rgba(var(--gull-gray-rgb, 146, 156, 165), .4)
+    background: rgba(var(--gull-gray-rgb, 146, 156, 165), 0.4);
   }
 }

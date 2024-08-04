@@ -19,19 +19,15 @@ const InlineControls: React.FC<InlineControlsProps> = ({
   toggleBlockStyle,
   editorState,
 }) => {
-  //controls menu ref
   const controlsRef = React.useRef(null)
+  UseClickOutside(controlsRef, () => setIsShow(false))
 
-  //show menu
   const [isShow, setIsShow] = React.useState(false)
 
-  //absolute top value
   const [absoluteTop, setAbsoluteTop] = React.useState(0)
 
-  //selection state
   const selectionState = editorState.getSelection()
 
-  //calc absolute top value | show or now menu
   React.useEffect(() => {
     const anchorKey = selectionState.getAnchorKey()
     const currentContent = editorState.getCurrentContent()
@@ -52,9 +48,6 @@ const InlineControls: React.FC<InlineControlsProps> = ({
       }
     }
   }, [editorState, selectionState])
-
-  //if click outside menu, hide menu
-  UseClickOutside(controlsRef, () => setIsShow(false))
 
   return (
     <>

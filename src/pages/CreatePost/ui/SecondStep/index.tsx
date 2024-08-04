@@ -188,12 +188,15 @@ const SecondStep: React.FC<SecondStepProps> = ({
         <div className={s.item__title}>Укажите сложность публикации</div>
         <form className={s.dificult}>
           {postDifficulty.map((el) => (
-            <div key={el.dificultEng} className={classNames(s.dificult__item,{
-              [s.dificult__item_unknown]:el.dificultRu === 'Не указано',
-              [s.dificult__item_easy]:el.dificultRu === 'Легко',
-              [s.dificult__item_normal]:el.dificultRu === 'Сложно',
-              [s.dificult__item_hard]:el.dificultRu === 'Тяжело',
-            })}>
+            <div
+              key={el.dificultEng}
+              className={classNames(s.dificult__item, {
+                [s.dificult__item_unknown]: el.dificultRu === 'Не указано',
+                [s.dificult__item_easy]: el.dificultRu === 'Легко',
+                [s.dificult__item_normal]: el.dificultRu === 'Сложно',
+                [s.dificult__item_hard]: el.dificultRu === 'Тяжело',
+              })}
+            >
               <input
                 onChange={handleCheckboxChange}
                 className={s.dificult__input}

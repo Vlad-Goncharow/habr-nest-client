@@ -9,13 +9,10 @@ import SideBar from '../SideBar'
 import { UserHeader } from '../UserHeader'
 
 function UserPage() {
-  //dispatch
   const dispatch = useAppDispatch()
 
-  //params
   const { userId } = useParams()
 
-  //user data | loading
   const [userData, setUserData] = React.useState<IUser | null>(null)
   const [loading, setLoading] = React.useState(true)
 

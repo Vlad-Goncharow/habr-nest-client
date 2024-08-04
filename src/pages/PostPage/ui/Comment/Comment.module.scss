@@ -83,7 +83,7 @@
     svg {
       width: 30px;
       height: 30px;
-      path{
+      path {
         stroke: var(--mine-shaft);
       }
     }
@@ -96,7 +96,7 @@
   top: 100%;
   left: 0;
   background: var(--romance);
-  box-shadow: 0 0 12px rgba(var(--asphalt-rgb), .16);
+  box-shadow: 0 0 12px rgba(var(--asphalt-rgb), 0.16);
 
   ul {
     display: flex;

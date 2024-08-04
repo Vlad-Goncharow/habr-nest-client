@@ -3,7 +3,6 @@ import { UsersList } from 'shared/ui/UsersList'
 import { useAuthors } from '../../model'
 
 function Authors() {
-  //params
   const { habId, type, page } = useParams()
 
   const [searchParams] = useSearchParams()
@@ -11,7 +10,6 @@ function Authors() {
   const sort = searchParams.get('sort')
   const order = searchParams.get('order')
 
-  //data
   const { isLoading, isSuccess, length, users } = useAuthors({
     habId,
     type,

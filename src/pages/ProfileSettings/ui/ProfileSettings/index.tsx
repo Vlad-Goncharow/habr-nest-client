@@ -13,13 +13,10 @@ import GenderSelect from '../GenderSelect'
 import s from './ProfileSettings.module.scss'
 
 function ProfileSettings() {
-  //dispatch
   const dispatch = useAppDispatch()
 
-  //current user
   const { user } = useAppSelector(getUserData)
 
-  //update values
   const [values, setValues] = React.useState<ValuesType>({
     fullName: user?.fullName || '',
     description: user?.description || '',
@@ -28,14 +25,11 @@ function ProfileSettings() {
     dateOfBirth: user?.dateOfBirth || '',
   })
 
-  //avatar
   const [image, setImage] = React.useState<string>()
   const [imageFile, setImageFile] = React.useState<File | null>(null)
 
-  //update button ref
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
-  //handle image
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
     const selectedImage = event.target.files?.[0]
     if (selectedImage) {
@@ -48,7 +42,6 @@ function ProfileSettings() {
     }
   }
 
-  //update profile
   const update = async () => {
     try {
       let url: string = user !== null ? user.avatar : ''
@@ -81,7 +74,6 @@ function ProfileSettings() {
     }
   }
 
-  //check is change some values
   const checkUpdate = () => {
     if (
       values.description !== user?.description ||
@@ -97,7 +89,6 @@ function ProfileSettings() {
     return false
   }
 
-  //check if btn style active update profile
   const myHandleClick = () => {
     if (
       buttonRef.current !== null &&

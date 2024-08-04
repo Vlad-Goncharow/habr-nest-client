@@ -34,7 +34,6 @@ const subCategories: subCategoriesType[] = [
 ]
 
 const PostsNavigation: React.FC = () => {
-  // ======== posts params
   const { category, type } = useParams()
   const currentCategory = postCategories.find(
     (el) => el.categoryEng === category

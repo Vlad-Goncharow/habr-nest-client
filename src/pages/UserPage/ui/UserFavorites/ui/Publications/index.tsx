@@ -4,10 +4,8 @@ import { useParams } from 'react-router-dom'
 import { PostsList, PostsSceleton } from 'shared/ui/PostsList'
 
 function Publications() {
-  //params
   const { userId, type, subType, page } = useParams()
 
-  //data
   const { data, isLoading, isSuccess } = useFavoritesPosts({
     userId,
     type,

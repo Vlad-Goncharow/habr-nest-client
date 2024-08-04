@@ -57,7 +57,10 @@ function PostPage() {
             <div className={s.post}>
               <header className={s.post__header}>
                 <div className={s.post__authorImg}>
-                  <img src={`${process.env.REACT_APP_SERVER_URL}/${postData.author.avatar}`} alt='' />
+                  <img
+                    src={`${process.env.REACT_APP_SERVER_URL}/${postData.author.avatar}`}
+                    alt=''
+                  />
                 </div>
                 <Link
                   to={`/user/${postData.author.id}/profile/1`}
@@ -71,12 +74,15 @@ function PostPage() {
               </header>
               <h1 className={s.post__title}>{postData.title}</h1>
               <div className={s.stats}>
-                <div className={classNames(s.stats__item,{
-                  [s.stats__item_unknown]:postData.difficulty === 'Не указано',
-                  [s.stats__item_easy]:postData.difficulty === 'Легко',
-                  [s.stats__item_normal]:postData.difficulty === 'Сложно',
-                  [s.stats__item_hard]:postData.difficulty === 'Тяжело',
-                })}>
+                <div
+                  className={classNames(s.stats__item, {
+                    [s.stats__item_unknown]:
+                      postData.difficulty === 'Не указано',
+                    [s.stats__item_easy]: postData.difficulty === 'Легко',
+                    [s.stats__item_normal]: postData.difficulty === 'Сложно',
+                    [s.stats__item_hard]: postData.difficulty === 'Тяжело',
+                  })}
+                >
                   Сложность:<span>{postData.difficulty}</span>
                 </div>
                 <div className={s.stats__item}>
@@ -108,7 +114,6 @@ function PostPage() {
                   readOnly
                 />
               </div>
-              
             </div>
             <PostAuthor author={postData.author} />
             <Comments />

@@ -12,12 +12,10 @@ interface HabProps {
 }
 
 const Hab: React.FC<HabProps> = ({ habData }) => {
-  //current user
   const { user } = useAppSelector(getUserData)
 
   const habRef = React.useRef<HTMLDivElement>(null)
 
-  //menu is open
   const [habFullInfoIsOpen, setHabInfoIsOpen] = React.useState<boolean>(false)
 
   return (

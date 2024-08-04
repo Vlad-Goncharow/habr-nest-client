@@ -54,7 +54,7 @@ function Root() {
       clearTimeout(timer)
     }
   }, [])
- 
+
   return (
     <div ref={appRef} className='App'>
       <Header />

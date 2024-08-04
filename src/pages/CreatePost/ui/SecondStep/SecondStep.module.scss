@@ -135,8 +135,8 @@
     left: 0;
     opacity: 0;
 
-    &:not(:checked)+label:before,
-    &:checked+label:before {
+    &:not(:checked) + label:before,
+    &:checked + label:before {
       content: '';
       position: absolute;
       left: 0;
@@ -148,8 +148,8 @@
       background: var(--romance);
     }
 
-    &:not(:checked)+label:after,
-    &:checked+label:after {
+    &:not(:checked) + label:after,
+    &:checked + label:after {
       content: '';
       width: 10px;
       height: 10px;
@@ -162,12 +162,12 @@
       transition: all 0.2s ease;
     }
 
-    &:not(:checked)+label:after {
+    &:not(:checked) + label:after {
       opacity: 0;
       transform: scale(0);
     }
 
-    &:checked+label:after {
+    &:checked + label:after {
       opacity: 1;
       transform: scale(1);
     }

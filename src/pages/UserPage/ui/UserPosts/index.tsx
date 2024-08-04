@@ -3,10 +3,8 @@ import { useParams } from 'react-router-dom'
 import { PostsList, PostsSceleton } from 'shared/ui/PostsList'
 
 const UserPosts = () => {
-  //params
   const { userId, type, subType, page } = useParams()
 
-  //data
   const { data, isLoading, isSuccess } = usePosts({
     userId,
     type,

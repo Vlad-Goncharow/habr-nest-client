@@ -4,7 +4,6 @@ import { UsersList } from 'shared/ui/UsersList'
 import { useAuthors } from '../../model'
 
 const Authors: React.FC = () => {
-  //params
   const { type, category, page } = useParams()
 
   const [searchParams] = useSearchParams()
@@ -13,7 +12,6 @@ const Authors: React.FC = () => {
   const order = searchParams.get('order')
   const query = searchParams.get('q')
 
-  //data
   const { isLoading, isSuccess, length, authors } = useAuthors({
     type,
     category,

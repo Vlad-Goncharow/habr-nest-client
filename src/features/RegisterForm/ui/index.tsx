@@ -9,13 +9,10 @@ import UseRegister from '../model/lib'
 import s from './RegisterForm.module.scss'
 
 function RegisterForm() {
-  // ======== dispatch
   const dispatch = useAppDispatch()
 
-  // ======== navigate
   const navigate = useNavigate()
 
-  // ======== use form hooks
   const {
     register,
     handleSubmit,
@@ -51,7 +48,6 @@ function RegisterForm() {
       return
     }
   }, [data, isSuccess, error])
-  // ======== register
 
   return (
     <form action='' className={s.form}>

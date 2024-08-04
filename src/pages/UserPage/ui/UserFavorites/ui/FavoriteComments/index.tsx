@@ -3,10 +3,8 @@ import { useParams } from 'react-router-dom'
 import Comments from '../../../Comments'
 
 function FavoriteComments() {
-  //params
   const { userId, type, subType, page } = useParams()
 
-  //data
   const { comments, length, isLoading, isSuccess } = useFavoritesComments({
     userId,
     type,

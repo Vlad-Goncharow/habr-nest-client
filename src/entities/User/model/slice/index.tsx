@@ -70,7 +70,6 @@ const userSlice = createSlice({
     },
   },
   extraReducers(builder) {
-    //refresh
     builder.addCase(fetchAuth.pending, (state) => {
       state.isLoading = true
     })
@@ -84,7 +83,6 @@ const userSlice = createSlice({
       state.isLoading = false
       state.user = null
     })
-    //register
     builder.addCase(fetchRegister.pending, (state) => {
       state.isLoading = true
     })
@@ -98,7 +96,6 @@ const userSlice = createSlice({
       state.user = null
       state.isLoading = false
     })
-    //login
     builder.addCase(fetchLogin.pending, (state) => {
       state.isLoading = true
     })
@@ -112,14 +109,12 @@ const userSlice = createSlice({
       state.user = null
       state.isLoading = false
     })
-    //logout
     builder.addCase(fetchLogout.fulfilled, (state, action) => {
       if (action.payload.success === true) {
         state.isLoading = false
         state.user = null
       }
     })
-    //updata
     builder.addCase(fetchUpdateUser.fulfilled, (state, action) => {
       if (action.payload && state.user !== null) {
         state.user = {

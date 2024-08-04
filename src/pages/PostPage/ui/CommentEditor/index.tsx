@@ -14,27 +14,20 @@ interface CommentEditorProps {
 }
 
 const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
-  //dispatch
   const dispatch = useAppDispatch()
 
-  //params
   const { postId } = useParams()
 
-  //editor ref
   const editorRef = React.useRef<any>(null)
 
-  //editor state
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   )
 
-  //comment value
   const [value, setValue] = React.useState<any>()
 
-  //submit btn
   const submitComment = React.useRef<HTMLButtonElement>(null)
 
-  //submit fn
   const clickSubmit = async () => {
     try {
       const { data } = await axios.post(`/comments/create/${postId}`, {
@@ -55,7 +48,6 @@ const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
     }
   }
 
-  //nest button ref for active or disable
   const handleButtonClick = () => {
     if (
       submitComment.current &&
@@ -65,7 +57,6 @@ const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
     }
   }
 
-  //update value | check length
   React.useEffect(() => {
     const contentState = editorState.getCurrentContent()
     const contentStateJSON = convertToRaw(contentState)

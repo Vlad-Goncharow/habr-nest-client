@@ -3,10 +3,8 @@ import { useParams } from 'react-router-dom'
 import { UsersList } from 'shared/ui/UsersList'
 
 function Subscribers() {
-  //params
   const { userId, type, page } = useParams()
 
-  //data
   const { isSuccess, isLoading, data, length } = useSubs({ userId, type, page })
 
   return (

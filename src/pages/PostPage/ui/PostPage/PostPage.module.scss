@@ -189,7 +189,7 @@
     margin-right: 15px;
     display: flex;
     align-items: center;
-    color:var(--mine-shaft);
+    color: var(--mine-shaft);
     font-weight: 500;
 
     span {
@@ -207,7 +207,7 @@
         color: var(--mine-shaft);
       }
     }
-    
+
     &_easy {
       span {
         color: #84f359;
@@ -225,6 +225,5 @@
         color: #f35959;
       }
     }
-    
   }
 }

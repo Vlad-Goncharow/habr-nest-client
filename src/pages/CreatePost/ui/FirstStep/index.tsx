@@ -47,15 +47,12 @@ const FirstStep: React.FC<FirstStepProps> = ({
   setStep,
   values,
 }) => {
-  //editor ref
   const editorRef = React.useRef<any>(null)
 
-  //editor state
   const [editorState, setEditorState] = React.useState(
     EditorState.createEmpty()
   )
 
-  //check values state from local storage
   const [isShowStorage, setIsShowStorage] = React.useState<boolean>(false)
   React.useEffect(() => {
     const valuesLocalStorage = localStorage.getItem('postData')
@@ -71,7 +68,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }, [])
 
-  //load values from local storage when click button
   const loadEditorStateFromLocalStorage = () => {
     const valuesLocalStorage = localStorage.getItem('postData')
 
@@ -84,23 +80,19 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }
 
-  //change editor state
   const changeEditorState = (editorStateParam: any): void => {
     setEditorState(editorStateParam)
   }
 
-  //toggle block type
   const toggleBlockType = (blockType: any) => {
     changeEditorState(RichUtils.toggleBlockType(editorState, blockType))
     editorRef.current.focus()
   }
 
-  //toggle block style | bold | italic...
   const toggleBlockStyle = (style: string) => {
     changeEditorState(RichUtils.toggleInlineStyle(editorState, style))
   }
 
-  //remove block
   const removeBlock = () => {
     const selection = editorState.getSelection()
     const contentState = editorState.getCurrentContent()
@@ -125,7 +117,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
     )
   }
 
-  //update text to save post
   React.useEffect(() => {
     const contentState = editorState.getCurrentContent()
     const contentStateJSON = convertToRaw(contentState)
@@ -138,7 +129,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
     })
   }, [editorState, setValues])
 
-  //check if when user open first step editor state dont rewrite localStorage
   const isFirstBlock = () => {
     const selection = editorState.getSelection()
     const contentState = editorState.getCurrentContent()
@@ -155,7 +145,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }, [values])
 
-  //handleKeyCommand || keyBindingFn
   const handleKeyCommand = (command: any, editorState: any) => {
     if (command === 'enter') {
       const contentState = editorState.getCurrentContent()
@@ -166,7 +155,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
         newContentState,
         'split-block'
       )
-      const newBlockType = 'unstiled' // или другой тип заголовка
+      const newBlockType = 'unstiled'
       const newContentStateWithHeader = Modifier.setBlockType(
         newContentState,
         newEditorState.getSelection(),
@@ -218,16 +207,13 @@ const FirstStep: React.FC<FirstStepProps> = ({
   }
   const keyBindingFn = (e: any) => {
     if (e.keyCode === 13 && e.shiftKey) {
-      // Enter key
       return 'newline-block'
     } else if (e.keyCode === 13) {
-      // Enter key
       return 'enter'
     }
     return getDefaultKeyBinding(e)
   }
 
-  //change post title
   const changeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setValues((prev: ValuesType) => {
       localStorage.setItem(
@@ -241,7 +227,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
     })
   }
 
-  //custom blocks map
   const blockRenderMapp = Map({
     'custom-title-one': {
       wrapper: (
@@ -277,14 +262,12 @@ const FirstStep: React.FC<FirstStepProps> = ({
       editable: true,
     },
   })
-  // extendet default block types
+
   const extendedBlockRenderMap =
     Draft.DefaultDraftBlockRenderMap.merge(blockRenderMapp)
 
-  //nest button ref for active or disable
   const nextButtonRef = React.useRef<HTMLButtonElement>(null)
 
-  //handle click
   const handleButtonClick = () => {
     if (
       nextButtonRef.current &&
@@ -294,7 +277,6 @@ const FirstStep: React.FC<FirstStepProps> = ({
     }
   }
 
-  //length editor state block for active or disable nest step
   const lengthBlocks = values.content
     ? JSON.parse(values.content)
       ? JSON.parse(values.content).blocks.length

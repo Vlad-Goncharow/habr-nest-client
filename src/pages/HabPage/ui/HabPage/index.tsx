@@ -11,16 +11,12 @@ import HabHeader from '../HabHeader'
 import HabPosts from '../HabPosts'
 
 function HabPage() {
-  //dispatch
   const dispatch = useAppDispatch()
 
-  //params
   const { habId, type } = useParams()
 
-  //loading | hab data
   const [habData, setHabData] = React.useState<IHab | null>(null)
 
-  //load hab data
   React.useEffect(() => {
     ;(async () => {
       try {

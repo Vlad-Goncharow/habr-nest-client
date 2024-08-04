@@ -3,10 +3,8 @@ import { PostsList, PostsSceleton } from 'shared/ui/PostsList'
 import { usePosts } from '../../model'
 
 function HabPosts() {
-  //params
   const { habId, type, page } = useParams()
 
-  //data
   const { isLoading, isSuccess, data } = usePosts({ habId, page, type })
 
   return (

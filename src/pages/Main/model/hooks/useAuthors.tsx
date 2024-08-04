@@ -25,7 +25,6 @@ const useAuthors = (props: usePostsProps): any => {
     select: (data) => data.data,
   })
 
-  //error handled
   React.useEffect(() => {
     if (isError) {
       dispatch(

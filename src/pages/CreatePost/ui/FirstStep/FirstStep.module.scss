@@ -6,16 +6,20 @@
     border: 1px solid var(--horizon);
     margin-bottom: 15px;
     padding: 15px 10px;
-    background: linear-gradient(0deg, rgba(var(--horizon-rgb), .12) 0, rgba(var(--horizon-rgb), .12) 100%),
-    var(--romance);
+    background: linear-gradient(
+        0deg,
+        rgba(var(--horizon-rgb), 0.12) 0,
+        rgba(var(--horizon-rgb), 0.12) 100%
+      ),
+      var(--romance);
   }
 
-  &__saved{
+  &__saved {
     font-weight: 700;
     color: var(--mine-shaft);
     cursor: pointer;
 
-    span{
+    span {
       color: var(--horizon);
       text-decoration: none;
     }
@@ -52,9 +56,9 @@
   padding-left: 20px;
 }
 
-.editor{
-  *{
-    color:var(--mine-shaft);
+.editor {
+  * {
+    color: var(--mine-shaft);
   }
 }
 

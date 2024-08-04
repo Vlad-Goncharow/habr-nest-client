@@ -9,13 +9,10 @@ import s from './LoginForm.module.scss'
 import UseLogin from '../model/lib'
 
 function LoginForm() {
-  // ======== dispatch
   const dispatch = useAppDispatch()
 
-  // ======== navigate
   const navigate = useNavigate()
 
-  // ======== use form hooks
   const {
     register,
     handleSubmit,

@@ -19,19 +19,15 @@ interface CommentProps {
 }
 
 const Comment: React.FC<CommentProps> = ({ item, user, deleteComment }) => {
-  //is user have admin or moderator role
   const checkUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
 
-  //popup menu| delete button
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
   const popupRef = React.useRef<HTMLDivElement | null>(null)
   UseClickOutside(popupRef, () => setPopupIsOpen(false))
 
-  //scroll to comment
   const commentRef = React.useRef<HTMLDivElement>(null)
   const location = useLocation()
 
-  //comment content
   const contentStateFromJSON = convertFromRaw(JSON.parse(item.content))
   const restoredEditorState =
     EditorState.createWithContent(contentStateFromJSON)

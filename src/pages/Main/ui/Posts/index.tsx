@@ -3,10 +3,8 @@ import { PostsList, PostsSceleton } from 'shared/ui/PostsList'
 import { usePosts } from '../../model'
 
 function Posts() {
-  //params
   const { type, category, page } = useParams()
 
-  //data
   const { isSuccess, data, isLoading } = usePosts({ type, category, page })
 
   return (

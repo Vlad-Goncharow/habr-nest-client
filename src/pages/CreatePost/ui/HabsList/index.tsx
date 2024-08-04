@@ -14,16 +14,12 @@ interface HabsListProps {
 }
 
 const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
-  //dispatch
   const dispatch = useAppDispatch()
 
-  //habs array
   const [habsList, setHabsList] = React.useState<IHab[] | []>([])
 
-  //habs search input values
   const [inputValue, setInputValue] = React.useState<string>('')
 
-  //is habs list open | popupRef
   const [popupIsOpen, setPopupIsOpen] = React.useState<boolean>(false)
   const popupRef = React.useRef<HTMLFormElement>(null)
   UseClickOutside(popupRef, () => setPopupIsOpen(false))

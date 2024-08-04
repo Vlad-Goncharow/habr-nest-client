@@ -1,10 +1,10 @@
 import React from 'react'
 
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
-import {ReactComponent as CodeIcon} from '../../../../shared/images/svg/code.svg'
-import {ReactComponent as TitleIcon} from '../../../../shared/images/svg/format-heading.svg'
-import {ReactComponent as OlIcon} from '../../../../shared/images/svg/list-ol.svg'
-import {ReactComponent as UlIcon} from '../../../../shared/images/svg/list-ul.svg'
+import { ReactComponent as CodeIcon } from '../../../../shared/images/svg/code.svg'
+import { ReactComponent as TitleIcon } from '../../../../shared/images/svg/format-heading.svg'
+import { ReactComponent as OlIcon } from '../../../../shared/images/svg/list-ol.svg'
+import { ReactComponent as UlIcon } from '../../../../shared/images/svg/list-ul.svg'
 import s from './EditorControls.module.scss'
 import { ReactComponent as PlusSvg } from 'shared/images/svg/plusEditor.svg'
 
@@ -25,20 +25,15 @@ type EditorControlsProps = {
 
 const EditorControls: React.FC<EditorControlsProps> = React.memo(
   ({ toggleBlockType, editorRef, editorState }) => {
-    //visible controlls or not
     const [visible, setVisible] = React.useState<boolean>()
 
-    //absolute top value
     const [absolutetop, setAbsoluteTop] = React.useState<number>(0)
 
-    //open controlls menu or not
     const [open, setOpen] = React.useState(false)
 
-    //controlls ref
     const controllsMenuRef = React.useRef<any>()
     UseClickOutside(controllsMenuRef, () => setOpen(false))
 
-    //togle block type
     const customClick = (type: string) => {
       toggleBlockType(type)
       editorRef.current.focus()
@@ -46,7 +41,6 @@ const EditorControls: React.FC<EditorControlsProps> = React.memo(
       setOpen(false)
     }
 
-    //check if text is typed in block, check if block type is LISTS and there is no text, do not show menu
     React.useEffect(() => {
       const contentState = editorState.getCurrentContent()
       const selection = editorState.getSelection()
@@ -93,7 +87,7 @@ const EditorControls: React.FC<EditorControlsProps> = React.memo(
           >
             {open ? (
               <div ref={controllsMenuRef} className={s.buttons__row}>
-                {BLOCK_TYPES.map(({label,style,Icon}) => (
+                {BLOCK_TYPES.map(({ label, style, Icon }) => (
                   <div
                     className={s.item}
                     key={label}

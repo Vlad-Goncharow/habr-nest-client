@@ -21,7 +21,6 @@ const useFavoritesPosts = (props: useFavoritesPostsProps): any => {
     select: (data) => data.data,
   })
 
-  //error handled
   React.useEffect(() => {
     if (isError) {
       dispatch(

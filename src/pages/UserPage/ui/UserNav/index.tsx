@@ -76,10 +76,8 @@ const subCategoriesFavorites: subCategoriesType[] = [
 ]
 
 const UserNav = () => {
-  //params
   const { type, subType, userId } = useParams()
 
-  //popup
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
   const popupRef = React.useRef<HTMLDivElement>(null)
   UseClickOutside(popupRef, () => setPopupIsOpen(false))
