@@ -66,13 +66,20 @@
     font-size: 0.8125rem;
     display: block;
     color: var(--mine-shaft);
+    font-weight: 500;
 
     &:hover {
-      background: #eff6fa;
+      background-color: var(--aqua-haze);
+      color: var(--mine-shaft);
     }
 
     &_active {
       color: var(--horizon);
+      
+      &:hover{
+        background-color: var(--aqua-haze);
+        color: var(--horizon);
+      }
     }
   }
 }

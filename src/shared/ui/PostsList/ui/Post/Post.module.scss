@@ -181,6 +181,10 @@
     svg {
       width: 30px;
       height: 30px;
+
+      path{
+        stroke:var(--mine-shaft)
+      }
     }
   }
 }
@@ -189,7 +193,7 @@
   position: absolute;
   top: 100%;
   right: 0;
-  box-shadow: 0 0 2px #ccc;
+  box-shadow: 0 0 12px rgba(var(--asphalt-rgb), 0.16);
   background: var(--romance);
 
   ul {
@@ -210,6 +214,10 @@
         transform: translateY(-50%);
         width: 17px;
         height: 17px;
+
+        path {
+          stroke: var(--mine-shaft)
+        }
       }
 
       span {
@@ -221,8 +229,8 @@
       }
 
       &:hover {
-        transition: all, 0.3s;
-        background: #f1f1f1;
+        background: rgba(var(--gull-gray-rgb, 146, 156, 165), 0.4);
+        color: var(--horizon);
 
         svg {
           transition: all, 0.3s;

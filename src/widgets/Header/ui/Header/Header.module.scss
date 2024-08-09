@@ -5,38 +5,30 @@
   &__top {
     background: var(--limed-spruce);
   }
+}
 
-  &__overlay {
-    position: fixed;
-    background: rgba(0, 0, 0, 0.2);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10;
+.media{
+  &__nav{
+    display: block;
+    
+    @media(max-width:768px){
+      display: none;
+    }
   }
 
-  &__sideNav {
-    position: fixed;
-    height: 100vh;
-    width: 300px;
-    left: -300px;
-    z-index: 1000;
-    top: 0;
-    background: var(--romance);
+  &__controls-top {
+    display: none;
 
-    &_open {
-      left: 0;
-      transition: all 0.3s;
+    @media(max-width:1024px) {
+      display: block;
     }
+  }
 
-    &_close {
-      left: -300px;
-      transition: all 0.3s;
-    }
-
-    @media (max-height: 380px) {
-      overflow-y: scroll;
+  &__controls-bottom {
+    display: block;
+    
+    @media(max-width:1024px) {
+      display: none;
     }
   }
 }
@@ -93,7 +85,7 @@
     position: absolute;
     width: 100%;
     height: 2px;
-    background: var(--romance);
+    background: var(--mine-shaft);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -103,7 +95,7 @@
       position: absolute;
       width: 100%;
       height: 2px;
-      background: var(--romance);
+      background: var(--mine-shaft);
       top: 5px;
       left: 0;
     }
@@ -113,7 +105,7 @@
       position: absolute;
       width: 100%;
       height: 2px;
-      background: var(--romance);
+      background: var(--mine-shaft);
       bottom: 5px;
       left: 0;
     }

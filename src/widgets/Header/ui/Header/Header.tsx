@@ -1,14 +1,13 @@
 import { getUserData } from 'entities/User'
 import React, { createContext } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
-import { UseClickOutside } from 'shared/hooks/UseClickOutside'
-import UseWindowWidth from 'shared/hooks/UseWindowWidth'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import Controls from '../Controls'
-import SideNavbar from '../SideNavbar'
+import Navbar from '../Navbar'
+import SettingsMenu from '../SettingsMenu'
+import SidebarNavbar from '../SidebarNavbar'
 import s from './Header.module.scss'
-import { Menu } from '../SettingsMenu'
-import { createPortal } from 'react-dom'
 
 interface IHeaderContext {
   settingIsOpen?: boolean
@@ -21,40 +20,8 @@ function Header() {
   const { user } = useAppSelector(getUserData)
 
   const [settingIsOpen, setSettingsIsOpen] = React.useState<boolean>(false)
-
-  const isChangeControlsPos = UseWindowWidth(1024)
-  const sideNavShow = UseWindowWidth(768)
-
   const [sideNav, setSideNav] = React.useState<Boolean>(false)
-  const [sideNavIsClose, setSideNavIsClose] = React.useState(false)
-  const sideNavRef = React.useRef<HTMLDivElement>(null)
-  UseClickOutside(sideNavRef, () => setSideNavIsClose(true))
-
-  React.useEffect(() => {
-    let timer: NodeJS.Timeout
-
-    if (sideNav && !sideNavIsClose) {
-      timer = setTimeout(() => {
-        sideNavRef.current?.classList.remove(s.header__sideNav_close)
-        sideNavRef.current?.classList.add(s.header__sideNav_open)
-      }, 200)
-    }
-
-    if (sideNavIsClose) {
-      sideNavRef.current?.classList.remove(s.header__sideNav_open)
-      sideNavRef.current?.classList.add(s.header__sideNav_close)
-
-      timer = setTimeout(() => {
-        setSideNav(false)
-        setSideNavIsClose(false)
-      }, 200)
-    }
-
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [sideNav, sideNavIsClose, isChangeControlsPos])
-
+  
   return (
     <HeaderContext.Provider value={{ settingIsOpen, setSettingsIsOpen }}>
       <header className={s.header}>
@@ -66,36 +33,37 @@ function Header() {
               </div>
 
               <Link to='/flows/all/articles/1' className={s.logo}>
-                Хабр
+                Не Хабр!
               </Link>
-
-              {isChangeControlsPos && <Controls user={user} />}
+              
+              <div className={s['media__controls-top']}>
+                <Controls user={user} />
+              </div>
             </div>
           </div>
         </div>
         <div className={'container'}>
           <div className={s.row}>
-            <SideNavbar isShow={!sideNavShow} />
-            {!isChangeControlsPos && <Controls user={user} />}
-          </div>
-        </div>
-
-        {sideNavShow && sideNav && (
-          <div className={s.header__overlay}>
-            <div
-              ref={sideNavRef}
-              onClick={() => setSideNavIsClose(true)}
-              className={s.header__sideNav}
-            >
-              <SideNavbar isShow={true} />
+            <div className={s.media__nav}>
+              <Navbar />
+            </div>
+            <div className={s['media__controls-bottom']}>
+              <Controls user={user} />
             </div>
           </div>
-        )}
+        </div>
       </header>
+
+      {sideNav && 
+        createPortal(
+          <SidebarNavbar setSideNav={setSideNav} />,
+          document.body
+        )
+      }
 
       {settingIsOpen &&
         createPortal(
-          <Menu onClose={() => setSettingsIsOpen(false)} />,
+          <SettingsMenu onClose={() => setSettingsIsOpen(false)} />,
           document.body
         )}
     </HeaderContext.Provider>

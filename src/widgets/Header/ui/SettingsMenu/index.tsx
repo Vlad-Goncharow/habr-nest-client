@@ -1,8 +1,8 @@
 import { Theme, useTheme } from 'entities/Theme'
 import React from 'react'
-import s from './Menu.module.scss'
+import s from './SettingsMenu.module.scss'
 
-interface MenuProps {
+interface SettingsMenuProps {
   onClose: any
 }
 
@@ -16,7 +16,7 @@ const themes = [
   { theme: 'Светлая', id: 'light' },
 ]
 
-const Menu: React.FC<MenuProps> = ({ onClose }) => {
+const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
   const { theme, toggleTheme } = useTheme()
 
   React.useEffect(() => {
@@ -91,4 +91,4 @@ const Menu: React.FC<MenuProps> = ({ onClose }) => {
   )
 }
 
-export default Menu
+export default SettingsMenu
