@@ -297,3 +297,58 @@ export const countries = [
   { value: 'Йемен', label: 'Йемен' },
   { value: 'Замбия', label: 'Замбия' },
 ]
+
+export const lightThemeStyles = {
+  control: (provided: any) => ({
+    ...provided,
+    backgroundColor: '#fff',
+    color: '#000',
+    borderColor: '#ccc',
+  }),
+  indicatorSeparator: (provided: any) => ({
+    ...provided,
+    backgroundColor: '#d5dddf;',
+  }),
+  menu: (provided: any) => ({
+    ...provided,
+    backgroundColor: '#fff',
+    color: '#000',
+  }),
+  option: (provided: any, state: { isSelected: any }) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? '#f0f0f0' : '#fff',
+    color: '#000',
+  }),
+  singleValue: (provided: any) => ({
+    ...provided,
+    color: '#000',
+  }),
+};
+
+export const darkThemeStyles = {
+  control: (provided: any) => ({
+    ...provided,
+    backgroundColor: '#171717',
+    color: '#fff',
+    borderColor: '#444',
+  }),
+  indicatorSeparator: (provided: any) => ({
+    ...provided,
+    backgroundColor: '#fff',
+  }),
+  menu: (provided: any) => ({
+    ...provided,
+    backgroundColor: '#171717',
+    boxShadow: "0 0 12px rgba(var(--asphalt-rgb), 0.16)",
+    color: '#fff',
+  }),
+  option: (provided: any, state: { isSelected: any }) => ({
+    ...provided,
+    backgroundColor: state.isSelected ? '#555' : '#171717',
+    color: '#fff',
+  }),
+  singleValue: (provided: any) => ({
+    ...provided,
+    color: '#fff',
+  }),
+};

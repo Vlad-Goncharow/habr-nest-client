@@ -1,12 +1,13 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import Select, { SingleValue } from 'react-select'
 import { SelectOption, ValuesType } from '../../types'
-import { countries } from '../../utils'
+import { countries, darkThemeStyles, lightThemeStyles } from '../../utils'
+import { useTheme } from 'entities/Theme'
 
 interface CountrySelectProps {
   values: ValuesType
   setValues: Dispatch<SetStateAction<ValuesType>>
-  className: string
+  className: {select:string, label:string}
 }
 
 const CountrySelect: React.FC<CountrySelectProps> = ({
@@ -20,13 +21,17 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
     }
   }
 
+  const {theme} = useTheme()
+  const styles = theme === 'dark' ? darkThemeStyles : lightThemeStyles;
+
   return (
-    <div className={className}>
-      <span>Страна</span>
+   <div className={className.select}>
+      <span className={className.label}>Страна</span>
       <Select
         value={values.country}
         onChange={changeCountry}
         options={countries}
+        styles={styles}
       />
     </div>
   )

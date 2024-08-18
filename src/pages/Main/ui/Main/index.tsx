@@ -1,6 +1,6 @@
-import React from 'react'
+import { Helmet } from "react-helmet"
 import { useParams } from 'react-router-dom'
-import { postTypeOne } from 'shared/global'
+import { postCategories, subCategories } from 'shared/global'
 import Authors from '../Authors'
 import Habs from '../Habs'
 import Posts from '../Posts'
@@ -8,19 +8,28 @@ import PostsNavigation from '../PostsNavigation'
 import Sidebar from '../SideBar/Main'
 
 function Main() {
-  const { type } = useParams()
+  const { type, category } = useParams()
 
+  const categoryRu = postCategories.find((el) => el.categoryEng === category)?.categoryRu;
+  const typeRu = subCategories.find((el) => el.subCategoryEng === type)?.subCategoryRu;
   return (
-    <div className={'wrapper'}>
-      <div className='wrapper__left'>
-        <PostsNavigation />
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{categoryRu && typeRu ? `${categoryRu} / ${typeRu} / Не Хабр!` : `${typeRu} / Не Хабр!`}</title>
+        <meta name="description" content="Лучшие статьи за последние 24 часа на Не Хабре"></meta>
+      </Helmet>
+      <div className={'wrapper'}>
+        <div className='wrapper__left'>
+          <PostsNavigation />
 
-        {postTypeOne.find((el) => el.typeEng === type) && <Posts />}
-        {type === 'habs' && <Habs />}
-        {type === 'authors' && <Authors />}
+          {(type === 'articles' || type === 'posts' || type === 'news') && <Posts />}
+          {type === 'habs' && <Habs />}
+          {type === 'authors' && <Authors />}
+        </div>
+        <Sidebar />
       </div>
-      <Sidebar />
-    </div>
+    </>
   )
 }
 

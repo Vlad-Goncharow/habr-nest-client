@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
 import { checkRolesAdmin } from 'entities/User'
 import React from 'react'
+import { Helmet } from "react-helmet"
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { postCategories } from 'shared/global'
@@ -60,106 +61,113 @@ function CreateHab() {
   }
 
   return (
-    <div className={s.wrapper}>
-      <header>
-        <h1 className={s.wrapper__title}>Создание Хаба</h1>
-      </header>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={s.item}>
-          <div className={s.item__title}>Картинка Хаба</div>
-          <ImageComp setImageFile={setImageFile} />
-        </div>
-        <div className={s.item}>
-          <div className={s.item__header}>
-            <label htmlFor='title' className={s.item__title}>
-              Категория Хаба
-            </label>
-            {errors?.category && (
-              <span className={s.item__error}>{errors?.category.message}</span>
-            )}
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Создание хаба / Не Хабр</title>
+        <meta name="description" content={`Создание хаба / Не Хабр`}></meta>
+      </Helmet>
+      <div className={s.wrapper}>
+        <header>
+          <h1 className={s.wrapper__title}>Создание Хаба</h1>
+        </header>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className={s.item}>
+            <div className={s.item__title}>Картинка Хаба</div>
+            <ImageComp setImageFile={setImageFile} />
           </div>
-          <ul className={s.types}>
-            <Controller
-              name='category'
-              control={control}
-              rules={{ required: 'Пожалуйста, выберите категорию' }}
-              render={({ field }): any =>
-                postCategories.map((el) => (
-                  <li
-                    key={el.categoryEng}
-                    className={classNames(s.types__li, {
-                      [s.types__li_active]: field.value === el.categoryEng,
-                    })}
-                    onClick={() => field.onChange(el.categoryEng)}
-                  >
-                    <span>{el.categoryRu}</span>
-                  </li>
-                ))
-              }
+          <div className={s.item}>
+            <div className={s.item__header}>
+              <label htmlFor='title' className={s.item__title}>
+                Категория Хаба
+              </label>
+              {errors?.category && (
+                <span className={s.item__error}>{errors?.category.message}</span>
+              )}
+            </div>
+            <ul className={s.types}>
+              <Controller
+                name='category'
+                control={control}
+                rules={{ required: 'Пожалуйста, выберите категорию' }}
+                render={({ field }): any =>
+                  postCategories.map((el) => (
+                    <li
+                      key={el.categoryEng}
+                      className={classNames(s.types__li, {
+                        [s.types__li_active]: field.value === el.categoryEng,
+                      })}
+                      onClick={() => field.onChange(el.categoryEng)}
+                    >
+                      <span>{el.categoryRu}</span>
+                    </li>
+                  ))
+                }
+              />
+            </ul>
+          </div>
+          <div className={s.item}>
+            <div className={s.item__header}>
+              <label htmlFor='title' className={s.item__title}>
+                Название Хаба
+              </label>
+              {errors?.title && (
+                <span className={s.item__error}>{errors?.title.message}</span>
+              )}
+            </div>
+            <input
+              id='title'
+              type='text'
+              placeholder='Введите название Хаба'
+              className={s.item__input}
+              {...register('title', {
+                minLength: {
+                  value: 5,
+                  message: 'Название минимум 5 символов',
+                },
+                maxLength: {
+                  value: 100,
+                  message: 'Название максимум из 100 символов',
+                },
+                required: 'Напишите Название',
+              })}
             />
-          </ul>
-        </div>
-        <div className={s.item}>
-          <div className={s.item__header}>
-            <label htmlFor='title' className={s.item__title}>
-              Название Хаба
-            </label>
-            {errors?.title && (
-              <span className={s.item__error}>{errors?.title.message}</span>
-            )}
           </div>
-          <input
-            id='title'
-            type='text'
-            placeholder='Введите название Хаба'
-            className={s.item__input}
-            {...register('title', {
-              minLength: {
-                value: 5,
-                message: 'Название минимум 5 символов',
-              },
-              maxLength: {
-                value: 100,
-                message: 'Название максимум из 100 символов',
-              },
-              required: 'Напишите Название',
-            })}
-          />
-        </div>
-        <div className={s.item}>
-          <div className={s.item__header}>
-            <label htmlFor='descr' className={s.item__title}>
-              Описание Хаба
-            </label>
-            {errors?.description && (
-              <span className={s.item__error}>
-                {errors?.description.message}
-              </span>
-            )}
+          <div className={s.item}>
+            <div className={s.item__header}>
+              <label htmlFor='descr' className={s.item__title}>
+                Описание Хаба
+              </label>
+              {errors?.description && (
+                <span className={s.item__error}>
+                  {errors?.description.message}
+                </span>
+              )}
+            </div>
+            <input
+              id='descr'
+              type='text'
+              placeholder='Введите описание Хаба'
+              className={s.item__input}
+              {...register('description', {
+                minLength: {
+                  value: 10,
+                  message: 'Описание минимум 10 символов',
+                },
+                maxLength: {
+                  value: 100,
+                  message: 'Описание максимум из 100 символов',
+                },
+                required: 'Напишите описание',
+              })}
+            />
           </div>
-          <input
-            id='descr'
-            type='text'
-            placeholder='Введите описание Хаба'
-            className={s.item__input}
-            {...register('description', {
-              minLength: {
-                value: 10,
-                message: 'Описание минимум 10 символов',
-              },
-              maxLength: {
-                value: 100,
-                message: 'Описание максимум из 100 символов',
-              },
-              required: 'Напишите описание',
-            })}
-          />
-        </div>
-        <button type='submit' className={s.create}>
-          Создать
-        </button>
-      </form>
-    </div>
+          <button type='submit' className={s.create}>
+            Создать
+          </button>
+        </form>
+      </div>
+    </>
   )
 }
 

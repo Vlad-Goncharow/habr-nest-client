@@ -4,6 +4,7 @@ import { fetchModalActions } from 'entities/FetchModal'
 import moment from 'moment'
 import { blockRenderMap, styleMap } from 'pages/CreatePost/ui/FirstStep'
 import React from 'react'
+import { Helmet } from "react-helmet"
 import { Link, useParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { ReactComponent as Views } from 'shared/images/svg/postViews.svg'
@@ -51,6 +52,11 @@ function PostPage() {
 
   return (
     <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{postData ? postData?.title : 'Страница публикации'} / Не Хабр</title>
+        <meta name="description" content={`Страница профилья`}></meta>
+      </Helmet>
       {postData !== null && (
         <div className={'wrapper'}>
           <div className={'wrapper__left'}>

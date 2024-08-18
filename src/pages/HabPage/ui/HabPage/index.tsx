@@ -1,5 +1,6 @@
 import { fetchModalActions } from 'entities/FetchModal'
 import React from 'react'
+import { Helmet } from "react-helmet"
 import { useParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { IHab } from 'shared/types/habs'
@@ -35,6 +36,11 @@ function HabPage() {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{habData ? habData?.title : 'Страница хаба'} / Не Хабр</title>
+        <meta name="description" content={`Страница хаба - ${habData?.title}`}></meta>
+      </Helmet>
       {habData !== null && (
         <div className={'wrapper'}>
           <div className={'wrapper__left'}>

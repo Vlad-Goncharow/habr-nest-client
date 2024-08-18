@@ -96,9 +96,6 @@ function LoginForm() {
       >
         Войти
       </button>
-      <Link to='/reminder' className={s.form__forgot}>
-        Забыли пароль?
-      </Link>
     </form>
   )
 }

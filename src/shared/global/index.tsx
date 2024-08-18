@@ -44,3 +44,32 @@ export const postTypeOne = [
     typeRu: 'Новость',
   },
 ]
+
+
+export type subCategoriesType = {
+  subCategoryRu: string
+  subCategoryEng: string
+}
+
+export const subCategories: subCategoriesType[] = [
+  {
+    subCategoryRu: 'Статьи',
+    subCategoryEng: 'articles',
+  },
+  {
+    subCategoryRu: 'Посты',
+    subCategoryEng: 'posts',
+  },
+  {
+    subCategoryRu: 'Новости',
+    subCategoryEng: 'news',
+  },
+  {
+    subCategoryRu: 'Хабы',
+    subCategoryEng: 'habs',
+  },
+  {
+    subCategoryRu: 'Авторы',
+    subCategoryEng: 'authors',
+  },
+]

@@ -1,12 +1,13 @@
 import React, { Dispatch, SetStateAction } from 'react'
 import Select, { SingleValue } from 'react-select'
 import { SelectOption, ValuesType } from '../../types'
-import { males } from '../../utils'
+import { darkThemeStyles, lightThemeStyles, males } from '../../utils'
+import { useTheme } from 'entities/Theme'
 
 interface GenderSelectProps {
   values: ValuesType
   setValues: Dispatch<SetStateAction<ValuesType>>
-  className: string
+  className: {select:string, label:string}
 }
 
 const GenderSelect: React.FC<GenderSelectProps> = ({
@@ -20,10 +21,18 @@ const GenderSelect: React.FC<GenderSelectProps> = ({
     }
   }
 
+  const {theme} = useTheme()
+  const styles = theme === 'dark' ? darkThemeStyles : lightThemeStyles;
+
   return (
-    <div className={className}>
-      <span>Пол</span>
-      <Select value={values.gender} onChange={changeGender} options={males} />
+    <div className={className.select}>
+      <span className={className.label}>Пол</span>
+      <Select 
+        value={values.gender} 
+        onChange={changeGender} 
+        options={males} 
+        styles={styles}
+      />
     </div>
   )
 }

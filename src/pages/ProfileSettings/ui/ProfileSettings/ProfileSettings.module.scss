@@ -6,11 +6,11 @@
 
 .wrapper {
   padding: 15px;
-  background: #fff;
+  background: var(--romance);
 }
 
 .header {
-  color: #333;
+  color: var(--mine-shaft);
   font-size: 1.24375rem;
   font-weight: 700;
   line-height: 1.75rem;
@@ -60,7 +60,7 @@
 
 .inpitItem {
   label {
-    color: #444;
+    color: var(--mine-shaft);
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -72,6 +72,7 @@
   }
 
   input {
+    background: transparent;
     border-radius: 3px;
     display: block;
     margin: 0;
@@ -81,7 +82,7 @@
     border: 1px solid #d5dddf;
     font-size: 14px;
     line-height: 1.5;
-    color: #333;
+    color: var(--mine-shaft);
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     outline: none;
@@ -92,7 +93,7 @@
     line-height: 18px;
     margin: 9px 0 0;
     padding: 0;
-    color: #777;
+    color: var(--mountain-mist, #777);
   }
 
   margin-bottom: 40px;
@@ -179,6 +180,10 @@
   margin-right: 15px;
   margin-bottom: 40px;
 
+  .css-b62m3t-container {
+    background: #000;
+  }
+
   @media (max-width: 1024px) {
     width: 100%;
     margin-right: 0;
@@ -189,12 +194,13 @@
     margin-right: 0;
   }
 
-  span {
+  &__label {
     display: block;
     font-size: 14px;
     font-weight: 600;
     margin: 0 0 12px;
     line-height: 16px;
+    color: var(--mine-shaft);
   }
 
   &__date {

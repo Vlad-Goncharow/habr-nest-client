@@ -1,37 +1,9 @@
 import classNames from 'classnames'
 import React from 'react'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { postCategories } from 'shared/global'
+import { postCategories, subCategories, subCategoriesType } from 'shared/global'
 import useDebounce from 'shared/hooks/useDebounce'
 import s from './PostsNavigation.module.scss'
-
-type subCategoriesType = {
-  subCategoryRu: string
-  subCategoryEng: string
-}
-
-const subCategories: subCategoriesType[] = [
-  {
-    subCategoryRu: 'Статьи',
-    subCategoryEng: 'articles',
-  },
-  {
-    subCategoryRu: 'Посты',
-    subCategoryEng: 'posts',
-  },
-  {
-    subCategoryRu: 'Новости',
-    subCategoryEng: 'news',
-  },
-  {
-    subCategoryRu: 'Хабы',
-    subCategoryEng: 'habs',
-  },
-  {
-    subCategoryRu: 'Авторы',
-    subCategoryEng: 'authors',
-  },
-]
 
 const PostsNavigation: React.FC = () => {
   const { category, type } = useParams()

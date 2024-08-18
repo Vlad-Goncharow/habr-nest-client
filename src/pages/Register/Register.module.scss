@@ -9,12 +9,16 @@
   }
 }
 
-.login {
+.register {
   padding: 15px 0;
   text-align: center;
   background: var(--romance);
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 10%);
   border-radius: 4px;
+
+  span {
+    color: var(--mine-shaft);
+  }
 
   a {
     text-decoration: none;
