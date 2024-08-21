@@ -8,7 +8,7 @@
 
   &__overlay {
     position: fixed;
-    background: rgba(var(--asphalt-rgb), .2);
+    background: rgba(var(--asphalt-rgb), 0.2);
     top: 0;
     left: 0;
     right: 0;
@@ -36,7 +36,7 @@
     transition: all 0.3s;
   }
 
-  @media(max-height:360px){
+  @media (max-height: 360px) {
     overflow: scroll;
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { IHab } from 'shared/types/habs'
 import FirstStep from '../FirstStep'
 import SecondStep from '../SecondStep'
@@ -31,17 +31,28 @@ function CreatePost() {
   return (
     <>
       <Helmet>
-        <meta charSet="utf-8" />
+        <meta charSet='utf-8' />
         <title>Создание публикации / Не Хабр</title>
-        <meta name="description" content={`Создание публикации / Не Хабр`}></meta>
+        <meta
+          name='description'
+          content={`Создание публикации / Не Хабр`}
+        ></meta>
       </Helmet>
       <div className={'wrapper'}>
         <div className={'wrapper__left'}>
           {step === 1 && (
-            <FirstStep setStep={setStep} setValues={setValues} values={values} />
+            <FirstStep
+              setStep={setStep}
+              setValues={setValues}
+              values={values}
+            />
           )}
           {step === 2 && (
-            <SecondStep setStep={setStep} setValues={setValues} values={values} />
+            <SecondStep
+              setStep={setStep}
+              setValues={setValues}
+              values={values}
+            />
           )}
         </div>
         <Sidebar />

@@ -309,6 +309,12 @@ export const lightThemeStyles = {
     ...provided,
     backgroundColor: '#d5dddf;',
   }),
+  dropdownIndicator: (provided: any) => ({
+    ...provided,
+    svg: {
+      fill: '#000',
+    },
+  }),
   menu: (provided: any) => ({
     ...provided,
     backgroundColor: '#fff',
@@ -323,7 +329,7 @@ export const lightThemeStyles = {
     ...provided,
     color: '#000',
   }),
-};
+}
 
 export const darkThemeStyles = {
   control: (provided: any) => ({
@@ -336,10 +342,16 @@ export const darkThemeStyles = {
     ...provided,
     backgroundColor: '#fff',
   }),
+  dropdownIndicator: (provided: any) => ({
+    ...provided,
+    svg: {
+      fill: '#fff',
+    },
+  }),
   menu: (provided: any) => ({
     ...provided,
     backgroundColor: '#171717',
-    boxShadow: "0 0 12px rgba(var(--asphalt-rgb), 0.16)",
+    boxShadow: '0 0 12px rgba(var(--asphalt-rgb), 0.16)',
     color: '#fff',
   }),
   option: (provided: any, state: { isSelected: any }) => ({
@@ -351,4 +363,4 @@ export const darkThemeStyles = {
     ...provided,
     color: '#fff',
   }),
-};
+}

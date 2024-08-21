@@ -21,7 +21,7 @@ function Header() {
 
   const [settingIsOpen, setSettingsIsOpen] = React.useState<boolean>(false)
   const [sideNav, setSideNav] = React.useState<Boolean>(false)
-  
+
   return (
     <HeaderContext.Provider value={{ settingIsOpen, setSettingsIsOpen }}>
       <header className={s.header}>
@@ -35,7 +35,7 @@ function Header() {
               <Link to='/flows/all/articles/1' className={s.logo}>
                 Не Хабр!
               </Link>
-              
+
               <div className={s['media__controls-top']}>
                 <Controls user={user} />
               </div>
@@ -54,12 +54,8 @@ function Header() {
         </div>
       </header>
 
-      {sideNav && 
-        createPortal(
-          <SidebarNavbar setSideNav={setSideNav} />,
-          document.body
-        )
-      }
+      {sideNav &&
+        createPortal(<SidebarNavbar setSideNav={setSideNav} />, document.body)}
 
       {settingIsOpen &&
         createPortal(

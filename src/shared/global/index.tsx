@@ -45,7 +45,6 @@ export const postTypeOne = [
   },
 ]
 
-
 export type subCategoriesType = {
   subCategoryRu: string
   subCategoryEng: string

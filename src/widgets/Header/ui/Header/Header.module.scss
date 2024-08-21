@@ -7,11 +7,11 @@
   }
 }
 
-.media{
-  &__nav{
+.media {
+  &__nav {
     display: block;
-    
-    @media(max-width:768px){
+
+    @media (max-width: 768px) {
       display: none;
     }
   }
@@ -19,15 +19,15 @@
   &__controls-top {
     display: none;
 
-    @media(max-width:1024px) {
+    @media (max-width: 1024px) {
       display: block;
     }
   }
 
   &__controls-bottom {
     display: block;
-    
-    @media(max-width:1024px) {
+
+    @media (max-width: 1024px) {
       display: none;
     }
   }

@@ -115,8 +115,8 @@ const UserNav = () => {
                   key={`${el.subCategoryEng}`}
                   to={`/user/${userId}/${type}/${el.subCategoryEng}/1`}
                   onClick={() => setPopupIsOpen(false)}
-                  className={classNames(s.popup__item,{
-                    [s.popup__item_active]:el.subCategoryEng === subType
+                  className={classNames(s.popup__item, {
+                    [s.popup__item_active]: el.subCategoryEng === subType,
                   })}
                 >
                   {el.subCategoryRu}

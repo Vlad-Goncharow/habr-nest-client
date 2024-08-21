@@ -1,16 +1,17 @@
 import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
 import { fetchUpdateUser, getUserData } from 'entities/User'
-import React, { ChangeEvent } from 'react'
+import React from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { uploadImage } from 'shared/api/images'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import { ValuesType } from '../../types'
 import CountrySelect from '../CountrySelect'
 import GenderSelect from '../GenderSelect'
+import ImageUpload from '../ImageUpload'
 import s from './ProfileSettings.module.scss'
 
 function ProfileSettings() {
@@ -18,30 +19,28 @@ function ProfileSettings() {
 
   const { user } = useAppSelector(getUserData)
 
-  const [values, setValues] = React.useState<ValuesType>({
-    fullName: user?.fullName || '',
-    description: user?.description || '',
-    gender: { value: user?.gender || '', label: user?.gender || '' },
-    country: { value: user?.country || '', label: user?.country || '' },
-    dateOfBirth: user?.dateOfBirth || '',
-  })
-
-  const [image, setImage] = React.useState<string>()
   const [imageFile, setImageFile] = React.useState<File | null>(null)
-
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
-  const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
-    const selectedImage = event.target.files?.[0]
-    if (selectedImage) {
-      setImageFile(selectedImage)
-      const reader = new FileReader()
-      reader.onload = () => {
-        setImage(reader.result as string)
-      }
-      reader.readAsDataURL(selectedImage)
+  const [values, setValues] = React.useState<ValuesType>({
+    fullName: '',
+    description: '',
+    gender: { value: '', label: '' },
+    country: { value: '', label: '' },
+    dateOfBirth: '',
+  })
+
+  React.useEffect(() => {
+    if (user) {
+      setValues({
+        fullName: user.fullName,
+        description: user.description,
+        gender: { value: user.gender, label: user.gender },
+        country: { value: user.country, label: user.country },
+        dateOfBirth: user?.dateOfBirth,
+      })
     }
-  }
+  }, [user])
 
   const update = async () => {
     try {
@@ -102,9 +101,9 @@ function ProfileSettings() {
   return (
     <>
       <Helmet>
-        <meta charSet="utf-8" />
+        <meta charSet='utf-8' />
         <title>Профиль / Не Хабр</title>
-        <meta name="description" content={`Страница профилья`}></meta>
+        <meta name='description' content={`Страница профилья`}></meta>
       </Helmet>
       <div className={s.wrapper}>
         <h1 className={s.header}>Настройки профиля</h1>
@@ -112,8 +111,9 @@ function ProfileSettings() {
           <div className={s.top}>
             <div className={s.top__inputs}>
               <div className={s.inpitItem}>
-                <label htmlFor=''>Настоящее имя</label>
+                <label htmlFor='name'>Настоящее имя</label>
                 <input
+                  id='name'
                   value={values.fullName}
                   onChange={(e) =>
                     setValues((prev: ValuesType) => ({
@@ -129,8 +129,9 @@ function ProfileSettings() {
                 </p>
               </div>
               <div className={s.inpitItem}>
-                <label htmlFor=''>Опишите себя</label>
+                <label htmlFor='descr'>Опишите себя</label>
                 <input
+                  id='desc'
                   value={values.description}
                   type='text'
                   onChange={(e) =>
@@ -145,47 +146,21 @@ function ProfileSettings() {
                 </p>
               </div>
             </div>
-            <div className={s.user}>
-              <h4 className={s.user__title}>Аватар</h4>
-              <div className={s.user__image}>
-                <input
-                  type='file'
-                  onChange={handleImageUpload}
-                  className={s.image__upload}
-                  accept="image/*"
-                />
-                <>
-                  <img
-                    src={
-                      image
-                        ? image
-                        : `${process.env.REACT_APP_SERVER_URL}/${user?.avatar}`
-                    }
-                    alt='Аватар пользователя'
-                    className={s.image__img}
-                  />
-                </>
-              </div>
-              <p className={s.user__info}>
-                Формат: jpg, gif, png. <br />
-                Максимальный размер файла: 1Mb. <br />
-                Разрешение: до 96x96px.
-              </p>
-            </div>
+            <ImageUpload setImageFile={setImageFile} user={user} />
           </div>
           <div className={s.row}>
             <GenderSelect
               className={{
-                select:s.select,
-                label:s.select__label
+                select: s.select,
+                label: s.select__label,
               }}
               setValues={setValues}
               values={values}
             />
             <CountrySelect
               className={{
-                select:s.select,
-                label:s.select__label
+                select: s.select,
+                label: s.select__label,
               }}
               setValues={setValues}
               values={values}
@@ -213,8 +188,8 @@ function ProfileSettings() {
             onClick={myHandleClick}
             ref={buttonRef}
             className={classNames(s.form__submit, {
-              [s.form__submit_disable]: checkUpdate() === false,
-              [s.form__submit_active]: checkUpdate() === true,
+              [s.form__submit_disable]: !checkUpdate(),
+              [s.form__submit_active]: checkUpdate(),
             })}
           >
             Сохранить изменения

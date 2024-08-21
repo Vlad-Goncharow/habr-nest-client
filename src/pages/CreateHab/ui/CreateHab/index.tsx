@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
 import { checkRolesAdmin } from 'entities/User'
 import React from 'react'
-import { Helmet } from "react-helmet"
+import { Helmet } from 'react-helmet'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { postCategories } from 'shared/global'
@@ -63,9 +63,9 @@ function CreateHab() {
   return (
     <>
       <Helmet>
-        <meta charSet="utf-8" />
+        <meta charSet='utf-8' />
         <title>Создание хаба / Не Хабр</title>
-        <meta name="description" content={`Создание хаба / Не Хабр`}></meta>
+        <meta name='description' content={`Создание хаба / Не Хабр`}></meta>
       </Helmet>
       <div className={s.wrapper}>
         <header>
@@ -82,7 +82,9 @@ function CreateHab() {
                 Категория Хаба
               </label>
               {errors?.category && (
-                <span className={s.item__error}>{errors?.category.message}</span>
+                <span className={s.item__error}>
+                  {errors?.category.message}
+                </span>
               )}
             </div>
             <ul className={s.types}>

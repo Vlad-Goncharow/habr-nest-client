@@ -7,7 +7,7 @@ import { useTheme } from 'entities/Theme'
 interface GenderSelectProps {
   values: ValuesType
   setValues: Dispatch<SetStateAction<ValuesType>>
-  className: {select:string, label:string}
+  className: { select: string; label: string }
 }
 
 const GenderSelect: React.FC<GenderSelectProps> = ({
@@ -21,16 +21,16 @@ const GenderSelect: React.FC<GenderSelectProps> = ({
     }
   }
 
-  const {theme} = useTheme()
-  const styles = theme === 'dark' ? darkThemeStyles : lightThemeStyles;
+  const { theme } = useTheme()
+  const styles = theme === 'dark' ? darkThemeStyles : lightThemeStyles
 
   return (
     <div className={className.select}>
       <span className={className.label}>Пол</span>
-      <Select 
-        value={values.gender} 
-        onChange={changeGender} 
-        options={males} 
+      <Select
+        value={values.gender}
+        onChange={changeGender}
+        options={males}
         styles={styles}
       />
     </div>

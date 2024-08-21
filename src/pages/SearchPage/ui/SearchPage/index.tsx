@@ -9,7 +9,7 @@ import {
   useSearchParams,
 } from 'react-router-dom'
 import s from './SearchPage.module.scss'
-import {Helmet} from "react-helmet";
+import { Helmet } from 'react-helmet'
 
 const navList = [
   {
@@ -56,9 +56,12 @@ function SearchPage() {
   return (
     <>
       <Helmet>
-        <meta charSet="utf-8" />
+        <meta charSet='utf-8' />
         <title>Пойск / Не Хабр</title>
-        <meta name="description" content={`Страница пойска постов, людей, хабов на Не Хабре`}></meta>
+        <meta
+          name='description'
+          content={`Страница пойска постов, людей, хабов на Не Хабре`}
+        ></meta>
       </Helmet>
       <div className={'wrapper'}>
         <div className={'wrapper__left'}>

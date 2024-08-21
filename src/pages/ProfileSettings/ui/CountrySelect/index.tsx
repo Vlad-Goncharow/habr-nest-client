@@ -7,7 +7,7 @@ import { useTheme } from 'entities/Theme'
 interface CountrySelectProps {
   values: ValuesType
   setValues: Dispatch<SetStateAction<ValuesType>>
-  className: {select:string, label:string}
+  className: { select: string; label: string }
 }
 
 const CountrySelect: React.FC<CountrySelectProps> = ({
@@ -21,11 +21,11 @@ const CountrySelect: React.FC<CountrySelectProps> = ({
     }
   }
 
-  const {theme} = useTheme()
-  const styles = theme === 'dark' ? darkThemeStyles : lightThemeStyles;
+  const { theme } = useTheme()
+  const styles = theme === 'dark' ? darkThemeStyles : lightThemeStyles
 
   return (
-   <div className={className.select}>
+    <div className={className.select}>
       <span className={className.label}>Страна</span>
       <Select
         value={values.country}

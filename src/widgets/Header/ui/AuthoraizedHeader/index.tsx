@@ -25,10 +25,16 @@ const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({ user }) => {
         <CreateSvg />
       </Link>
       <div className={s.icon}>
-        <div onClick={() => setDropDown((prev) => !prev)} className={s.icon__dropdown}>
+        <div
+          onClick={() => setDropDown((prev) => !prev)}
+          className={s.icon__dropdown}
+        >
           <UserSvg />
         </div>
-        <div onClick={() => setSideAuth((prev) => !prev)} className={s.icon__sidebar}>
+        <div
+          onClick={() => setSideAuth((prev) => !prev)}
+          className={s.icon__sidebar}
+        >
           <UserSvg />
         </div>
       </div>
@@ -39,9 +45,7 @@ const AuthoraizedHeader: React.FC<AuthoraizedHeaderProps> = ({ user }) => {
         </div>
       )}
 
-      {sideAuth && (
-        <SideBarUserNav user={user} setSideNav={setSideAuth} />
-      )}
+      {sideAuth && <SideBarUserNav user={user} setSideNav={setSideAuth} />}
     </div>
   )
 }

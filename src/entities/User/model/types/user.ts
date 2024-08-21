@@ -9,8 +9,8 @@ export interface IUser {
   nickname: string
   avatar: string
   gender: string
-  description?: string | null
-  country?: string | null
+  description: string
+  country: string
   karma: number
   rating: number
   habSubscribers: IHab[]

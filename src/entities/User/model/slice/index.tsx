@@ -119,6 +119,7 @@ const userSlice = createSlice({
       if (action.payload && state.user !== null) {
         state.user = {
           ...state.user,
+          avatar: action.payload.avatar,
           description: action.payload.description,
           fullName: action.payload.fullName,
           gender: action.payload.gender,
