@@ -63,8 +63,8 @@ function PostPage() {
         <div className={'wrapper'}>
           <div className={'wrapper__left'}>
             <div className={s.post}>
-              <header className={s.post__header}>
-                <div className={s.post__authorImg}>
+              <div className={s.author}>
+                <div className={s.author__img}>
                   <img
                     src={`${process.env.REACT_APP_SERVER_URL}/${postData.author.avatar}`}
                     alt=''
@@ -72,14 +72,14 @@ function PostPage() {
                 </div>
                 <Link
                   to={`/user/${postData.author.id}/profile/1`}
-                  className={s.post__authorName}
+                  className={s.author__name}
                 >
                   {postData.author.nickname}
                 </Link>
                 <div className={s.post__date}>
                   {moment(postData.createdAt).locale('ru').format('LLL')}
                 </div>
-              </header>
+              </div>
               <h1 className={s.post__title}>{postData.title}</h1>
               <div className={s.stats}>
                 <div
@@ -98,7 +98,7 @@ function PostPage() {
                   <span>{`${postData.views}`}</span>
                 </div>
               </div>
-              <div className={s.post__info}>
+              <div className={s.habs}>
                 <span>Хабы:</span>
                 <ul>
                   {postData.habs.map((el: IHab) => (

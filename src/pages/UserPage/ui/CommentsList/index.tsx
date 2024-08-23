@@ -1,25 +1,39 @@
-import { useParams } from 'react-router-dom'
-import { useComments } from '../../model'
-import Comments from '../Comments'
+import React from 'react'
+import { ICommentEx } from 'shared/types/comments'
+import Empty from 'shared/ui/Empty'
+import Pagination from 'widgets/Pagination'
+import Comment from '../Comment'
 
-function CommentsList() {
-  const { userId, page, type } = useParams()
+interface CommentsListProps {
+  comments: ICommentEx[] | []
+  length: number
+  navigatePath: string
+  loading: boolean
+}
 
-  const { comments, length, isLoading, isSuccess } = useComments({
-    userId,
-    page,
-    type,
-  })
-
+const CommentsList: React.FC<CommentsListProps> = ({
+  comments,
+  length,
+  loading,
+  navigatePath,
+}) => {
   return (
     <>
-      {isSuccess && (
-        <Comments
-          comments={comments}
-          length={length}
-          loading={isLoading}
-          navigatePath={`/user/${userId}/comments`}
-        />
+      {loading ? (
+        <div>loading</div>
+      ) : length > 0 ? (
+        <>
+          {comments.map((comment: ICommentEx) => (
+            <Comment key={comment.id} comment={comment} />
+          ))}
+          <Pagination
+            length={length}
+            pageSize={20}
+            navigatePath={navigatePath}
+          />
+        </>
+      ) : (
+        <Empty />
       )}
     </>
   )

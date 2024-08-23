@@ -113,7 +113,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
         habs: values.habs.map((el) => el.id),
         image: data.filename,
       })
-      navigate('/flows/all/all/1')
+      navigate('/flows/all/articles/1')
     } catch (error) {
       dispatch(
         fetchModalActions.showModal({

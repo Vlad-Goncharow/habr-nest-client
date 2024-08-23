@@ -12,8 +12,8 @@ function ProfileSkeleton() {
         width={Number(width)}
         height={210}
         viewBox={`0 0 ${width} 210`}
-        backgroundColor='#f3f3f3'
-        foregroundColor='#ecebeb'
+        backgroundColor='var(--seashell)'
+        foregroundColor='var(--romance)'
       >
         <rect x='0' y='0' rx='7' ry='7' width={Number(width) / 2} height='20' />
         <rect x='0' y='30' rx='0' ry='0' width={Number(width)} height='20' />

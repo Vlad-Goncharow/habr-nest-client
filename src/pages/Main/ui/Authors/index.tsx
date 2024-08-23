@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
-import { UsersList } from 'shared/ui/UsersList'
+import { UsersList, UsersSkeleton } from 'shared/ui/UsersList'
 import { useAuthors } from '../../model'
 
 const Authors: React.FC = () => {
@@ -12,7 +12,7 @@ const Authors: React.FC = () => {
   const order = searchParams.get('order')
   const query = searchParams.get('q')
 
-  const { isLoading, isSuccess, length, authors } = useAuthors({
+  const { isLoading, isSuccess, data } = useAuthors({
     type,
     category,
     sort,
@@ -23,13 +23,15 @@ const Authors: React.FC = () => {
 
   return (
     <>
-      {isSuccess && (
+      {!isLoading && isSuccess ? (
         <UsersList
           navigatePath={`/flows/${category}/${type}`}
-          users={authors}
+          users={data.authors}
           usersLoading={isLoading}
-          usersTotalCount={length}
+          usersTotalCount={data.length}
         />
+      ) : (
+        <UsersSkeleton />
       )}
     </>
   )

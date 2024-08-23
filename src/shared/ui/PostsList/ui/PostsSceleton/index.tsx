@@ -14,8 +14,8 @@ function PostsSceleton() {
             width={200}
             height={36}
             viewBox='0 0 200 36'
-            backgroundColor='#f3f3f3'
-            foregroundColor='#ecebeb'
+            backgroundColor='var(--seashell)'
+            foregroundColor='var(--romance)'
           >
             <rect x='0' y='0' rx='100' ry='100' width='36' height='36' />
             <rect x='45' y='0' rx='0' ry='0' width='128' height='15' />
@@ -28,8 +28,8 @@ function PostsSceleton() {
             width={Number(width)}
             height={250}
             viewBox={`0 0 ${Number(width)} 250`}
-            backgroundColor='#f3f3f3'
-            foregroundColor='#ecebeb'
+            backgroundColor='var(--seashell)'
+            foregroundColor='var(--romance)'
           >
             <rect x='0' y='0' rx='3' ry='3' width='400' height='25' />
             <rect

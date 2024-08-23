@@ -33,17 +33,12 @@
   margin-top: 16px;
 }
 
-.post {
-  padding: 16px 20px;
-  background: var(--romance);
+.author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
 
-  &__header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 12px;
-  }
-
-  &__authorImg {
+  &__img {
     width: 24px;
     height: 24px;
     position: relative;
@@ -61,7 +56,7 @@
     }
   }
 
-  &__authorName {
+  &__name {
     color: var(--mine-shaft);
     font-size: 0.8125rem;
     font-weight: 700;
@@ -71,6 +66,11 @@
     white-space: nowrap;
     margin-right: 10px;
   }
+}
+
+.post {
+  padding: 16px 20px;
+  background: var(--romance);
 
   &__date {
     color: var(--mountain-mist);
@@ -86,7 +86,6 @@
     line-height: 1.3;
     color: var(--mine-shaft);
     font-weight: 700;
-    cursor: pointer;
     transition: color 0.3s;
     margin-bottom: 12px;
   }
@@ -117,39 +116,6 @@
     }
   }
 
-  &__info {
-    margin-bottom: 15px;
-    display: flex;
-    align-items: center;
-
-    &:last-child {
-      margin-bottom: 25px;
-    }
-
-    span {
-      font-weight: 700;
-      margin-right: 12px;
-      color: var(--mine-shaft) !important;
-    }
-
-    ul {
-      display: flex;
-      align-items: center;
-      list-style: none;
-      flex-wrap: wrap;
-
-      a,
-      div {
-        color: #487284;
-        font-size: 1rem;
-        font-weight: 500;
-        line-height: 1.75rem;
-        text-decoration: none;
-        margin-right: 12px;
-      }
-    }
-  }
-
   &__footer {
     display: flex;
     align-items: center;
@@ -176,6 +142,39 @@
       svg {
         fill: #fe7d7d;
       }
+    }
+  }
+}
+
+.habs {
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+
+  &:last-child {
+    margin-bottom: 25px;
+  }
+
+  span {
+    font-weight: 700;
+    margin-right: 12px;
+    color: var(--mine-shaft) !important;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    flex-wrap: wrap;
+
+    a,
+    div {
+      color: #487284;
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.75rem;
+      text-decoration: none;
+      margin-right: 12px;
     }
   }
 }

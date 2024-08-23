@@ -14,8 +14,8 @@ function PageSkeleton() {
           width={Number(width) - 30}
           height={180}
           viewBox={`0 0 ${Number(width) - 30} 180`}
-          backgroundColor='#f3f3f3'
-          foregroundColor='#ecebeb'
+          backgroundColor='var(--seashell)'
+          foregroundColor='var(--romance)'
           style={{ marginBottom: 15 }}
         >
           <rect x='0' y='0' rx='7' ry='7' width='48' height='48' />

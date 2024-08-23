@@ -1,6 +1,6 @@
 import useFavoritesComments from 'pages/UserPage/model/hooks/useFavoriteComments'
 import { useParams } from 'react-router-dom'
-import Comments from '../../../Comments'
+import CommentsList from '../../../CommentsList'
 
 function FavoriteComments() {
   const { userId, type, subType, page } = useParams()
@@ -15,7 +15,7 @@ function FavoriteComments() {
   return (
     <>
       {isSuccess && (
-        <Comments
+        <CommentsList
           comments={comments}
           length={length}
           loading={isLoading}

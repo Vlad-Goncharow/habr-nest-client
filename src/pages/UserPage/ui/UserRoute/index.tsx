@@ -1,7 +1,7 @@
 import React from 'react'
 import { useOutletContext, useParams } from 'react-router-dom'
 import UserPosts from '../UserPosts'
-import CommentsList from '../CommentsList'
+import UserComments from '../UserComments'
 import Subscribers from '../Subscribers'
 import UserFavorites from '../UserFavorites'
 import { Profile } from '../Profile'
@@ -16,7 +16,7 @@ function UserRoute() {
       {(type === 'profile' && <Profile userData={userData} />) ||
         (type === 'publications' && <UserPosts />) ||
         (type === 'favorites' && <UserFavorites />) ||
-        (type === 'comments' && <CommentsList />) ||
+        (type === 'comments' && <UserComments />) ||
         ((type === 'subscribers' || type === 'subscriptions') && (
           <Subscribers />
         ))}

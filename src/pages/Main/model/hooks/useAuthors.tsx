@@ -36,14 +36,11 @@ const useAuthors = (props: usePostsProps): any => {
     }
   }, [isError])
 
-  return (
-    isSuccess && {
-      authors: data.authors,
-      length: data.length,
-      isLoading,
-      isSuccess,
-    }
-  )
+  return {
+    data,
+    isLoading,
+    isSuccess,
+  }
 }
 
 export default useAuthors
