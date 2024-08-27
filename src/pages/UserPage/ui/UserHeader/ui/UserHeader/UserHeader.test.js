@@ -8,15 +8,15 @@ import { userReducer } from '../../../../../../entities/User';
 import { checkRolesAdmin } from '../../../../../../entities/User';
 import { useAppSelector } from '../../../../../../shared/hooks/useAppSelector';
 import '@testing-library/jest-dom';
-const mockUserData = {
+
+const mockAdminUser = {
   id: 1,
-  nickname: 'vladika',
-  fullName: 'vladika vip',
+  nickname: 'mockAdminUser',
+  fullName: 'mockAdminUser mockAdminUser',
   karma: 1234,
-  description: 'vlad test',
+  description: 'mockAdminUser mockAdminUser',
   rating: 5252,
-  isSubscribed: true, // или false в зависимости от теста
-  avatarUrl: 'https://example.com/avatar.jpg',
+  avatar: 'https://example.com/avatar.jpg',
   roles: [{
     id: 1,
     value: "ADMIN",
@@ -24,39 +24,122 @@ const mockUserData = {
   }]
 };
 
+const mockUser = {
+  id: 1,
+  nickname: 'mockUser',
+  fullName: 'mockUser mockUser',
+  karma: 12342,
+  description: 'mockUser mockUser',
+  rating: 52522,
+  isSubscribed: true, // или false в зависимости от теста
+  avatar: 'https://example.com/avatar.jpg',
+  roles: [{
+    id: 2,
+    value: "USER",
+    description: "USER role"
+  }]
+};
+
 jest.mock('../../../../../../shared/hooks/useAppSelector', () => ({
   useAppSelector: jest.fn()
 }));
 
-const store = configureStore({
-  reducer: {
-    user: userReducer,
-  },
-});
-
 describe('UserHeader Component', () => {
   beforeEach(() => {
-    useAppSelector.mockImplementation(selector => {
-      if (selector === checkRolesAdmin) {
-        return true; 
-      }
-      return {}; 
-    });
+    useAppSelector.mockReset(); // Reset mock before each test
   });
 
-  it('should render user data correctly', () => {
+  it('show user data values', () => {
+    useAppSelector.mockImplementation(selector => {
+      if (selector === checkRolesAdmin) {
+        return false;
+      }
+      return {};
+    });
+
     render(
-      <Provider store={store}>
+      <Provider store={configureStore({
+        reducer: { user: userReducer },
+      })}>
         <BrowserRouter>
-          <UserHeader userData={mockUserData} />
+          <UserHeader userData={mockUser} />
         </BrowserRouter>
       </Provider>
     );
 
-    expect(screen.getByText('@vladika')).toBeInTheDocument();
-    expect(screen.getByText('Карма')).toBeInTheDocument();
-    expect(screen.getByText('Рейтинг')).toBeInTheDocument();
-    expect(screen.getByText('vlad test')).toBeInTheDocument();
-    expect(screen.getByText('Полное имя - vladika vip')).toBeInTheDocument();
+    expect(screen.getByText(`${mockUser.karma}`)).toBeInTheDocument();
+    expect(screen.getByText(`${mockUser.rating}`)).toBeInTheDocument();
+    expect(screen.getByText(`@${mockUser?.nickname}`)).toBeInTheDocument();
+    expect(screen.getByText(`${mockUser.fullName}`)).toBeInTheDocument();
+    expect(screen.getByText(`${mockUser.description}`)).toBeInTheDocument();
+  })
+
+  it('if user not admin, dont show user-roles', () => {
+    useAppSelector.mockImplementation(selector => {
+      if (selector === checkRolesAdmin) {
+        return false;
+      }
+      return {}; 
+    });
+
+    render(
+      <Provider store={configureStore({
+        reducer: { user: userReducer },
+        preloadedState: { user: { user: mockUser } }
+      })}>
+        <BrowserRouter>
+          <UserHeader userData={mockUser} />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    const rolesMenuIcon = screen.queryByTestId('roles-menu');
+    expect(rolesMenuIcon).toBeNull();
+  });
+
+  it('if user admin, show user-roles', () => {
+    useAppSelector.mockImplementation(selector => {
+      if (selector === checkRolesAdmin) {
+        return true;
+      }
+      return {}; 
+    });
+
+    render(
+      <Provider store={configureStore({
+        reducer: { user: userReducer },
+        preloadedState: { user: mockAdminUser } 
+      })}>
+        <BrowserRouter>
+          <UserHeader userData={mockUser} />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    const rolesMenuIcon = screen.queryByTestId('roles-menu');
+    expect(rolesMenuIcon).toBeInTheDocument();
+  });
+
+  it('hide user-roles if opened user has admin role', () => {
+    useAppSelector.mockImplementation(selector => {
+      if (selector === checkRolesAdmin) {
+        return true;
+      }
+      return {}; 
+    });
+
+    render(
+      <Provider store={configureStore({
+        reducer: { user: userReducer },
+        preloadedState: { user: mockAdminUser } 
+      })}>
+        <BrowserRouter>
+          <UserHeader userData={mockAdminUser} />
+        </BrowserRouter>
+      </Provider>
+    );
+
+    const rolesMenuIcon = screen.queryByTestId('roles-menu');
+    expect(rolesMenuIcon).not.toBeInTheDocument();
   });
 });

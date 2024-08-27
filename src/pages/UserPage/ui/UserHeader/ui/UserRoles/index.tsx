@@ -78,7 +78,7 @@ const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
   return (
     <>
       {!userData.roles.find((el) => el.id === 1) && (
-        <div ref={menuRef} className={s.menu}>
+        <div data-testid='roles-menu' ref={menuRef} className={s.menu}>
           <div
             onClick={() => setIsOpen((prev) => !prev)}
             className={s.menu__icon}

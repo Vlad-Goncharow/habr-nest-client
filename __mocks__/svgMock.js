@@ -1,2 +1,5 @@
-// __mocks__/svgMock.js
-module.exports = 'SvgMock';
+const React = require('react');
+
+module.exports = {
+  ReactComponent: 'svg',
+};
