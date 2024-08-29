@@ -82,6 +82,7 @@ const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
           <div
             onClick={() => setIsOpen((prev) => !prev)}
             className={s.menu__icon}
+            data-testid='open-menu-icon'
           >
             <Dotst />
           </div>

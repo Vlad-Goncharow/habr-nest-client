@@ -8,37 +8,7 @@ import { userReducer } from '../../../../../../entities/User';
 import { checkRolesAdmin } from '../../../../../../entities/User';
 import { useAppSelector } from '../../../../../../shared/hooks/useAppSelector';
 import '@testing-library/jest-dom';
-
-const mockAdminUser = {
-  id: 1,
-  nickname: 'mockAdminUser',
-  fullName: 'mockAdminUser mockAdminUser',
-  karma: 1234,
-  description: 'mockAdminUser mockAdminUser',
-  rating: 5252,
-  avatar: 'https://example.com/avatar.jpg',
-  roles: [{
-    id: 1,
-    value: "ADMIN",
-    description: "ADMIN role"
-  }]
-};
-
-const mockUser = {
-  id: 1,
-  nickname: 'mockUser',
-  fullName: 'mockUser mockUser',
-  karma: 12342,
-  description: 'mockUser mockUser',
-  rating: 52522,
-  isSubscribed: true, // или false в зависимости от теста
-  avatar: 'https://example.com/avatar.jpg',
-  roles: [{
-    id: 2,
-    value: "USER",
-    description: "USER role"
-  }]
-};
+import { userMock,userAdminMock } from 'shared/tests';
 
 jest.mock('../../../../../../shared/hooks/useAppSelector', () => ({
   useAppSelector: jest.fn()
@@ -62,16 +32,16 @@ describe('UserHeader Component', () => {
         reducer: { user: userReducer },
       })}>
         <BrowserRouter>
-          <UserHeader userData={mockUser} />
+          <UserHeader userData={userMock} />
         </BrowserRouter>
       </Provider>
     );
 
-    expect(screen.getByText(`${mockUser.karma}`)).toBeInTheDocument();
-    expect(screen.getByText(`${mockUser.rating}`)).toBeInTheDocument();
-    expect(screen.getByText(`@${mockUser?.nickname}`)).toBeInTheDocument();
-    expect(screen.getByText(`${mockUser.fullName}`)).toBeInTheDocument();
-    expect(screen.getByText(`${mockUser.description}`)).toBeInTheDocument();
+    expect(screen.getByText(`${userMock.karma}`)).toBeInTheDocument();
+    expect(screen.getByText(`${userMock.rating}`)).toBeInTheDocument();
+    expect(screen.getByText(`@${userMock?.nickname}`)).toBeInTheDocument();
+    expect(screen.getByText(`${userMock.fullName}`)).toBeInTheDocument();
+    expect(screen.getByText(`${userMock.description}`)).toBeInTheDocument();
   })
 
   it('if user not admin, dont show user-roles', () => {
@@ -85,10 +55,10 @@ describe('UserHeader Component', () => {
     render(
       <Provider store={configureStore({
         reducer: { user: userReducer },
-        preloadedState: { user: { user: mockUser } }
+        preloadedState: { user: { user: userMock } }
       })}>
         <BrowserRouter>
-          <UserHeader userData={mockUser} />
+          <UserHeader userData={userMock} />
         </BrowserRouter>
       </Provider>
     );
@@ -108,10 +78,10 @@ describe('UserHeader Component', () => {
     render(
       <Provider store={configureStore({
         reducer: { user: userReducer },
-        preloadedState: { user: mockAdminUser } 
+        preloadedState: { user: userAdminMock } 
       })}>
         <BrowserRouter>
-          <UserHeader userData={mockUser} />
+          <UserHeader userData={userMock} />
         </BrowserRouter>
       </Provider>
     );
@@ -131,10 +101,10 @@ describe('UserHeader Component', () => {
     render(
       <Provider store={configureStore({
         reducer: { user: userReducer },
-        preloadedState: { user: mockAdminUser } 
+        preloadedState: { user: userAdminMock } 
       })}>
         <BrowserRouter>
-          <UserHeader userData={mockAdminUser} />
+          <UserHeader userData={userAdminMock} />
         </BrowserRouter>
       </Provider>
     );
