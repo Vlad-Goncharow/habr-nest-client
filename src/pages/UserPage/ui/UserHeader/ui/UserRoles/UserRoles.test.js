@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import UserRoles from './UserRoles'; 
 import { userReducer } from '../../../../../../entities/User';
-import '@testing-library/jest-dom';
 import { fetchModalActions } from '../../../../../../entities/FetchModal';
 import { useAppDispatch } from '../../../../../../shared/hooks/useAppDispatch';
 import axios from '../../../../../../axios'

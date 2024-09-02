@@ -2,7 +2,7 @@ import { checkRolesAdmin, IUser } from 'entities/User'
 import { SubscribeUser } from 'features/SubscribeUser'
 import React from 'react'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
-import UserNav from '../../../UserNav'
+import UserNav from '../../../UserNav/UserNav'
 import UserRoles from '../UserRoles/UserRoles'
 import s from './UserHeader.module.scss'
 

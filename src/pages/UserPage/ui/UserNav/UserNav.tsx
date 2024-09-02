@@ -57,22 +57,11 @@ const subCategoriesPosts: subCategoriesType[] = [
 ]
 
 const subCategoriesFavorites: subCategoriesType[] = [
-  {
-    subCategoryRu: 'Статьи',
-    subCategoryEng: 'articles',
-  },
-  {
-    subCategoryRu: 'Посты',
-    subCategoryEng: 'posts',
-  },
-  {
-    subCategoryRu: 'Новости',
-    subCategoryEng: 'news',
-  },
+  ...subCategoriesPosts,
   {
     subCategoryRu: 'Коментарии',
     subCategoryEng: 'comments',
-  },
+  }
 ]
 
 const UserNav = () => {
@@ -81,6 +70,12 @@ const UserNav = () => {
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
   const popupRef = React.useRef<HTMLDivElement>(null)
   UseClickOutside(popupRef, () => setPopupIsOpen(false))
+
+
+  const getSubCategories = () => {
+  return type === 'publications' ? subCategoriesPosts : subCategoriesFavorites;
+};
+  const selectedCategory = getSubCategories().find((el) => el.subCategoryEng === subType)?.subCategoryRu;
 
   return (
     <div className={s.navigation}>
@@ -97,55 +92,28 @@ const UserNav = () => {
           </Link>
         ))}
       </div>
-      {type === 'publications' && (
+
+
+      {(type === 'publications' || type === 'favorites') && (
         <div ref={popupRef} className={s.menu}>
           <div
-            onClick={() => setPopupIsOpen((prev) => !prev)}
+            data-testid={`${type}-click-item`}
+              onClick={() => setPopupIsOpen((prev) => !prev)}
             className={s.menu__item}
           >
-            {
-              subCategoriesPosts.find((el) => el.subCategoryEng === subType)
-                ?.subCategoryRu
-            }
+            {selectedCategory}
           </div>
           {popupIsOpen && (
             <div className={s.popup}>
-              {subCategoriesPosts.map((el: subCategoriesType) => (
+              {getSubCategories().map((el: subCategoriesType) => (
                 <Link
+                  role={`subcategory-${type}`}
                   key={`${el.subCategoryEng}`}
                   to={`/user/${userId}/${type}/${el.subCategoryEng}/1`}
                   onClick={() => setPopupIsOpen(false)}
                   className={classNames(s.popup__item, {
                     [s.popup__item_active]: el.subCategoryEng === subType,
                   })}
-                >
-                  {el.subCategoryRu}
-                </Link>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      {type === 'favorites' && (
-        <div ref={popupRef} className={s.menu}>
-          <div
-            onClick={() => setPopupIsOpen((prev) => !prev)}
-            className={s.menu__item}
-          >
-            {
-              subCategoriesFavorites.find((el) => el.subCategoryEng === subType)
-                ?.subCategoryRu
-            }
-          </div>
-          {popupIsOpen && (
-            <div className={s.popup}>
-              {subCategoriesFavorites.map((el: subCategoriesType) => (
-                <Link
-                  key={`${el.subCategoryEng}`}
-                  to={`/user/${userId}/${type}/${el.subCategoryEng}/1`}
-                  onClick={() => setPopupIsOpen(false)}
-                  className={s.popup__item}
                 >
                   {el.subCategoryRu}
                 </Link>

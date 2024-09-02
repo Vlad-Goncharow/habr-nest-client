@@ -7,7 +7,6 @@ import UserHeader from './UserHeader';
 import { userReducer } from '../../../../../../entities/User';
 import { checkRolesAdmin } from '../../../../../../entities/User';
 import { useAppSelector } from '../../../../../../shared/hooks/useAppSelector';
-import '@testing-library/jest-dom';
 import { userMock,userAdminMock } from 'shared/tests';
 
 jest.mock('../../../../../../shared/hooks/useAppSelector', () => ({

@@ -18,4 +18,5 @@ module.exports = {
     '^shared/(.*)$': '<rootDir>/src/shared/$1',
     '^features/(.*)$': '<rootDir>/src/features/$1',
   },
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 }
