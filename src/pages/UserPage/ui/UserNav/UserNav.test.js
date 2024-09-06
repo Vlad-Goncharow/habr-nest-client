@@ -1,6 +1,7 @@
 import React from 'react';
 import UserNav from "./UserNav"
-import { render,screen,fireEvent } from "@testing-library/react"
+import { screen,fireEvent } from "@testing-library/react"
+import { renderWithProviders } from 'shared/tests/utils/test-utils';
 import {
   MemoryRouter,
   Route,
@@ -10,7 +11,7 @@ import {
 
 describe('test UserNav', () => {
   it('test user nav links', () => {
-    render(
+    renderWithProviders(
       <BrowserRouter >
         <UserNav />
       </BrowserRouter>
@@ -25,7 +26,7 @@ describe('test UserNav', () => {
   })
   
   it('test publications events',async () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={['/user/1/publications/articles/1']}>
         <Routes>
           <Route path="/user/:userId/:type/:subType/:page" element={<UserNav />} />
@@ -35,14 +36,14 @@ describe('test UserNav', () => {
 
     fireEvent.click(screen.getByTestId('publications-click-item'));
 
-    const subcategoryItems = screen.getAllByRole('subcategory-post');
+    const subcategoryItems = screen.getAllByRole('subcategory-publications');
     expect(subcategoryItems.some(item => item.textContent === 'Статьи')).toBe(true);
     expect(subcategoryItems.some(item => item.textContent === 'Посты')).toBe(true);
     expect(subcategoryItems.some(item => item.textContent === 'Новости')).toBe(true);
   })
 
   it('test favorites events',async () => {
-    render(
+    renderWithProviders(
       <MemoryRouter initialEntries={['/user/1/favorites/articles/1']}>
         <Routes>
           <Route path="/user/:userId/:type/:subType/:page" element={<UserNav />} />

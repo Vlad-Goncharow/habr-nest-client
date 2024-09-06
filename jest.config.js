@@ -14,6 +14,7 @@ module.exports = {
     '^.+\\.(css|sass|scss)$': 'identity-obj-proxy',
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
     '\\.svg$': '<rootDir>/__mocks__/svgMock.js',
+    '^app/(.*)$': '<rootDir>/src/app/$1',
     '^entities/(.*)$': '<rootDir>/src/entities/$1',
     '^shared/(.*)$': '<rootDir>/src/shared/$1',
     '^features/(.*)$': '<rootDir>/src/features/$1',

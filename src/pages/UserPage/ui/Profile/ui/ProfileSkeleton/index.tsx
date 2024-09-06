@@ -6,7 +6,7 @@ function ProfileSkeleton() {
   const width = useElementWidth(s.wrapper)
 
   return (
-    <div className={s.wrapper}>
+    <div data-testid='profile-skeleton' className={s.wrapper}>
       <ContentLoader
         speed={2}
         width={Number(width)}
