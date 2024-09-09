@@ -3,7 +3,6 @@ import { screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { userMock } from 'shared/tests';
 import { renderWithProviders } from 'shared/tests/utils/test-utils';
-import { getUserData } from '../../../../../../entities/User';
 import { useAppSelector } from '../../../../../../shared/hooks/useAppSelector';
 import Hab from './index';
 
@@ -26,13 +25,7 @@ jest.mock('../../../../../../shared/hooks/useAppSelector', () => ({
 
 describe('Hab Component', () => {
   beforeEach(() => {
-    useAppSelector.mockImplementation((selector) => {
-      if (selector === getUserData) {
-        return {
-          user: userHabsMock
-        };
-      }
-    });
+    useAppSelector.mockReturnValue({user:userHabsMock});
   });
 
   it('check active title if user subscribe to same hab', async () => {
