@@ -6,7 +6,7 @@ import s from './HabsHeader.module.scss'
 import { useTranslation } from 'react-i18next'
 
 const HabsHeader: React.FC = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const [searchParams] = useSearchParams()
 
   const sort = searchParams.get('sort')

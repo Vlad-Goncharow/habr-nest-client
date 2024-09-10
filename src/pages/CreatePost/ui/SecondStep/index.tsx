@@ -40,7 +40,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
   setValues,
   values,
 }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
@@ -219,9 +219,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
         </div>
         <div className={s.image}>
           <p className={s.image__title}>{t('postCreateAddCoverTitle')}</p>
-          <p className={s.image__subtitle}>
-            {t('postCreateDragFileSubtitle')}
-          </p>
+          <p className={s.image__subtitle}>{t('postCreateDragFileSubtitle')}</p>
           <button className={s.image__btn} type='button'>
             {t('postCreateUploadButton')}
           </button>

@@ -6,7 +6,7 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { ReactComponent as LogoutSvg } from 'shared/images/svg/logout.svg'
 
 function Logout() {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const logout = async () => {

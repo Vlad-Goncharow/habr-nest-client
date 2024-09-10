@@ -14,7 +14,7 @@ interface SidebarReadWeeklyProps {
 }
 
 const SidebarReadWeekly: React.FC<SidebarReadWeeklyProps> = ({ category }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const [loading, setLoading] = React.useState<boolean>(true)

@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next'
 const Navbar = () => {
   const { category } = useParams()
 
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   return (
     <nav className={s.nav}>
       <Link

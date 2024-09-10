@@ -10,11 +10,31 @@ import { ReactComponent as PlusSvg } from 'shared/images/svg/plusEditor.svg'
 import { useTranslation } from 'react-i18next'
 
 const BLOCK_TYPES = [
-  { label: 'postCreateControlsTitleOne', style: 'custom-title-one', Icon: TitleIcon },
-  { label: 'postCreateControlsTitleTwo', style: 'custom-title-two', Icon: TitleIcon },
-  { label: 'postCreateControlsTitleThree', style: 'custom-title-three', Icon: TitleIcon },
-  { label: 'postCreateControlsSunorderedList', style: 'unordered-list-item', Icon: UlIcon },
-  { label: 'postCreateControlsSorderedList', style: 'ordered-list-item', Icon: OlIcon },
+  {
+    label: 'postCreateControlsTitleOne',
+    style: 'custom-title-one',
+    Icon: TitleIcon,
+  },
+  {
+    label: 'postCreateControlsTitleTwo',
+    style: 'custom-title-two',
+    Icon: TitleIcon,
+  },
+  {
+    label: 'postCreateControlsTitleThree',
+    style: 'custom-title-three',
+    Icon: TitleIcon,
+  },
+  {
+    label: 'postCreateControlsSunorderedList',
+    style: 'unordered-list-item',
+    Icon: UlIcon,
+  },
+  {
+    label: 'postCreateControlsSorderedList',
+    style: 'ordered-list-item',
+    Icon: OlIcon,
+  },
   { label: 'postCreateControlsCodeBlock', style: 'code-block', Icon: CodeIcon },
 ]
 
@@ -26,7 +46,7 @@ type EditorControlsProps = {
 
 const EditorControls: React.FC<EditorControlsProps> = React.memo(
   ({ toggleBlockType, editorRef, editorState }) => {
-    const {t} = useTranslation()
+    const { t } = useTranslation()
     const [visible, setVisible] = React.useState<boolean>()
 
     const [absolutetop, setAbsoluteTop] = React.useState<number>(0)

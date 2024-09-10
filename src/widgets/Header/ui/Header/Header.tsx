@@ -18,7 +18,7 @@ interface IHeaderContext {
 export const HeaderContext = createContext<IHeaderContext>({})
 
 function Header() {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const { user } = useAppSelector(getUserData)
 
   const [settingIsOpen, setSettingsIsOpen] = React.useState<boolean>(false)

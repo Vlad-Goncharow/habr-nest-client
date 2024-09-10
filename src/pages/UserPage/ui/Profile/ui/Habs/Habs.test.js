@@ -1,27 +1,24 @@
-
 import React from 'react'
-import { screen, waitFor } from '@testing-library/react';
-import { MemoryRouter, Route, Routes, } from 'react-router-dom';
-import { renderWithProviders } from 'shared/tests/utils/test-utils';
-import axios from '../../../../../../axios';
-import { fetchModalActions } from '../../../../../../entities/FetchModal';
-import { useAppDispatch } from '../../../../../../shared/hooks/useAppDispatch';
-import Habs from './index';
+import { screen, waitFor } from '@testing-library/react'
+import { MemoryRouter, Route, Routes } from 'react-router-dom'
+import { renderWithProviders } from 'shared/tests/utils/test-utils'
+import axios from '../../../../../../axios'
+import { fetchModalActions } from '../../../../../../entities/FetchModal'
+import { useAppDispatch } from '../../../../../../shared/hooks/useAppDispatch'
+import Habs from './index'
 
 jest.mock('../../../../../../axios', () => ({
   get: jest.fn(),
-}));
-jest.mock('../../../../../../shared/hooks/useAppDispatch');
+}))
+jest.mock('../../../../../../shared/hooks/useAppDispatch')
 
 describe('test Habs list', () => {
   beforeEach(() => {
-    useAppDispatch.mockReturnValue(jest.fn());
-  });
+    useAppDispatch.mockReturnValue(jest.fn())
+  })
 
   it('test loading', () => {
-    renderWithProviders(
-      <Habs />
-    )
+    renderWithProviders(<Habs />)
     expect(screen.getByTestId('profile-skeleton')).toBeInTheDocument()
   })
 
@@ -35,38 +32,46 @@ describe('test Habs list', () => {
     renderWithProviders(
       <MemoryRouter initialEntries={['/user/1/profile/1']}>
         <Routes>
-          <Route path="/user/:userId/:type/:subType?/:page" element={<Habs />} />
+          <Route
+            path='/user/:userId/:type/:subType?/:page'
+            element={<Habs />}
+          />
         </Routes>
       </MemoryRouter>
     )
 
     await waitFor(() => {
-      expect(axios.get).toHaveBeenCalledWith(`/habs/user/1/subscribed-habs`);
-    });
-    expect(screen.getByText('Hab 1')).toBeInTheDocument();
-    expect(screen.getByText('Hab 2')).toBeInTheDocument();
+      expect(axios.get).toHaveBeenCalledWith(`/habs/user/1/subscribed-habs`)
+    })
+    expect(screen.getByText('Hab 1')).toBeInTheDocument()
+    expect(screen.getByText('Hab 2')).toBeInTheDocument()
   })
-  
+
   it('empty test when habs []', async () => {
     axios.get.mockResolvedValueOnce({ data: [] })
 
     renderWithProviders(
       <MemoryRouter initialEntries={['/user/1/profile/1']}>
         <Routes>
-          <Route path="/user/:userId/:type/:subType?/:page" element={<Habs />} />
+          <Route
+            path='/user/:userId/:type/:subType?/:page'
+            element={<Habs />}
+          />
         </Routes>
       </MemoryRouter>
     )
 
     await waitFor(() => {
-      expect(axios.get).toHaveBeenCalledWith(`/habs/user/1/subscribed-habs`);
-    });
-    expect(screen.getByText('Пользователь не состоит в хабах')).toBeInTheDocument();
+      expect(axios.get).toHaveBeenCalledWith(`/habs/user/1/subscribed-habs`)
+    })
+    expect(
+      screen.getByText('Пользователь не состоит в хабах')
+    ).toBeInTheDocument()
   })
 
   it('show modal error', async () => {
-    const mockDispatch = jest.fn();
-    useAppDispatch.mockReturnValue(mockDispatch);
+    const mockDispatch = jest.fn()
+    useAppDispatch.mockReturnValue(mockDispatch)
     axios.get.mockRejectedValueOnce(new Error('API Error'))
 
     renderWithProviders(
@@ -74,12 +79,14 @@ describe('test Habs list', () => {
         <Habs />
       </MemoryRouter>
     )
-    
+
     await waitFor(() => {
-      expect(mockDispatch).toHaveBeenCalledWith(fetchModalActions.showModal({
-        type: 'bad',
-        content: 'Ошибка, попробуйте еще раз!',
-      }));
-    });
+      expect(mockDispatch).toHaveBeenCalledWith(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: 'Ошибка, попробуйте еще раз!',
+        })
+      )
+    })
   })
 })

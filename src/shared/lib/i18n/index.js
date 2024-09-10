@@ -1,29 +1,29 @@
-import i18n from "i18next";
-import { initReactI18next } from "react-i18next";
-import detector from "i18next-browser-languagedetector";
-import { ru } from "./langs/ru";
-import { en } from "./langs/en";
-import { LOCALS } from "./constans";
+import i18n from 'i18next'
+import { initReactI18next } from 'react-i18next'
+import detector from 'i18next-browser-languagedetector'
+import { ru } from './langs/ru'
+import { en } from './langs/en'
+import { LOCALS } from './constans'
 
 const resources = {
   [LOCALS.EN]: {
-    translation: en
+    translation: en,
   },
   [LOCALS.RU]: {
-    translation: ru
-  }
-};
+    translation: ru,
+  },
+}
 
 i18n
   .use(detector)
-  .use(initReactI18next) 
+  .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: "ru",
+    fallbackLng: 'ru',
 
     interpolation: {
-      escapeValue: false
-    }
+      escapeValue: false,
+    },
   })
 
-export default i18n;
+export default i18n

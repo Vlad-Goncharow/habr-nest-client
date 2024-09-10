@@ -1,5 +1,5 @@
 export const LOCALS = {
-  EN:'en',
-  UA:'ua',
-  RU:'ru'
+  EN: 'en',
+  UA: 'ua',
+  RU: 'ru',
 }

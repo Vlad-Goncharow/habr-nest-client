@@ -6,7 +6,7 @@ import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
 
 function UsersHeader() {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const [searchParams] = useSearchParams()
 
   const sort = searchParams.get('sort')

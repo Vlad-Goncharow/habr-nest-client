@@ -19,7 +19,7 @@ const themes = [
 ]
 
 const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const { theme, toggleTheme } = useTheme()
 
   React.useEffect(() => {
@@ -43,12 +43,18 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
         <button onClick={onClose} className={s.close}></button>
 
         <form className={s.form}>
-          <header className={s.header}>{t("langThemeSettingsTitle")}</header>
+          <header className={s.header}>{t('langThemeSettingsTitle')}</header>
           <div className={s.form__item}>
-            <div className={s.form__title}>{t("langThemeSettingsInterface")}</div>
+            <div className={s.form__title}>
+              {t('langThemeSettingsInterface')}
+            </div>
             <div className={s.container}>
               {languages.map((el) => (
-                <div onClick={() => i18n.changeLanguage(el.id)} key={el.id} className={s.checkbox}>
+                <div
+                  onClick={() => i18n.changeLanguage(el.id)}
+                  key={el.id}
+                  className={s.checkbox}
+                >
                   <label htmlFor={el.id}>
                     <div className={s.checkbox__ui}>
                       <input
@@ -66,7 +72,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
             </div>
           </div>
           <div className={s.form__item}>
-            <div className={s.form__title}>{t("langThemeSettingsTheme")}</div>
+            <div className={s.form__title}>{t('langThemeSettingsTheme')}</div>
             <div className={s.container}>
               {themes.map((el) => (
                 <div key={el.id} className={s.checkbox}>

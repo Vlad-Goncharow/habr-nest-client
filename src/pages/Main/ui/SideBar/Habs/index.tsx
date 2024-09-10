@@ -8,7 +8,7 @@ import s from './Habs.module.scss'
 import { useTranslation } from 'react-i18next'
 
 function Habs() {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const { category } = useParams()
 
   const dispatch = useAppDispatch()

@@ -48,7 +48,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
   setStep,
   values,
 }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const editorRef = React.useRef<any>(null)
 
   const [editorState, setEditorState] = React.useState(

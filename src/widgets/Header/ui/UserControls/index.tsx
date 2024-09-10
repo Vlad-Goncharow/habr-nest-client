@@ -15,7 +15,7 @@ interface UserControlsProps {
 }
 
 const UserControls: React.FC<UserControlsProps> = ({ user }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const checkRoles = useAppSelector(checkRolesAdmin)
 
   const { setSettingsIsOpen } = useContext(HeaderContext)
@@ -36,13 +36,19 @@ const UserControls: React.FC<UserControlsProps> = ({ user }) => {
       </Link>
       <ul className={s.list}>
         <li>
-          <Link to={`/user/${user?.id}/publications/articles/1`}>{t('headerUserPublications')}</Link>
+          <Link to={`/user/${user?.id}/publications/articles/1`}>
+            {t('headerUserPublications')}
+          </Link>
         </li>
         <li>
-          <Link to={`/user/${user?.id}/comments/1`}>{t('headerUserComments')}</Link>
+          <Link to={`/user/${user?.id}/comments/1`}>
+            {t('headerUserComments')}
+          </Link>
         </li>
         <li>
-          <Link to={`/user/${user?.id}/favorites/articles/1`}>{t('headerUserFavorites')}</Link>
+          <Link to={`/user/${user?.id}/favorites/articles/1`}>
+            {t('headerUserFavorites')}
+          </Link>
         </li>
         {checkRoles && (
           <li>

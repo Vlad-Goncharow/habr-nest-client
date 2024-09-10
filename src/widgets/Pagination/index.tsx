@@ -15,7 +15,7 @@ const Pagination: React.FC<PaginationProps> = ({
   length,
   pageSize,
 }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const { page } = useParams()
   const navigate = useNavigate()
 

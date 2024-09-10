@@ -2,12 +2,10 @@ module.exports = {
   preset: 'ts-jest', // Add this line
   testEnvironment: 'jsdom',
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest",
-    "^.+\\.(js|jsx)$": "babel-jest",
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+    '^.+\\.(js|jsx)$': 'babel-jest',
   },
-  transformIgnorePatterns: [
-    "/node_modules/(?!(axios|react-router-dom)/)"
-  ],
+  transformIgnorePatterns: ['/node_modules/(?!(axios|react-router-dom)/)'],
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx', 'json', 'node'],
   moduleNameMapper: {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',

@@ -3,7 +3,7 @@ import s from './Sidebar.module.scss'
 import { useTranslation } from 'react-i18next'
 
 function Sidebar() {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   return (
     <aside className={s.sidebar}>
       <div className={s.sidebar__item}>
@@ -38,9 +38,7 @@ function Sidebar() {
                 strokeWidth='2'
               ></rect>
             </svg>
-            <span>
-              {t('createSidebarAuthorRemindRule1')}
-            </span>
+            <span>{t('createSidebarAuthorRemindRule1')}</span>
           </li>
           <li className={s.list__item}>
             <svg
@@ -117,9 +115,7 @@ function Sidebar() {
                 strokeWidth='2'
               ></rect>
             </svg>
-            <span>
-              {t('createSidebarAuthorRemindRule3')}
-            </span>
+            <span>{t('createSidebarAuthorRemindRule3')}</span>
           </li>
         </ul>
       </div>

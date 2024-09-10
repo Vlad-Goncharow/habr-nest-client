@@ -7,7 +7,7 @@ import s from './PostsNavigation.module.scss'
 import { useTranslation } from 'react-i18next'
 
 const PostsNavigation: React.FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation()
 
   const { category, type } = useParams()
   const currentCategory = postCategories.find(
@@ -70,9 +70,7 @@ const PostsNavigation: React.FC = () => {
             </button>
           </form>
         </div>
-      ) : (
-        null
-      )}
+      ) : null}
     </div>
   )
 }

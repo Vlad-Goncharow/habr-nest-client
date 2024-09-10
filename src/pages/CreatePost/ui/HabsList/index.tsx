@@ -15,7 +15,7 @@ interface HabsListProps {
 }
 
 const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const [habsList, setHabsList] = React.useState<IHab[] | []>([])

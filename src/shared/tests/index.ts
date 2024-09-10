@@ -1,1 +1,6 @@
-export {userMock,userAdminMock,userAdminModeratorMock,userModeratorMock} from './mocks/userMoks'
+export {
+  userMock,
+  userAdminMock,
+  userAdminModeratorMock,
+  userModeratorMock,
+} from './mocks/userMoks'

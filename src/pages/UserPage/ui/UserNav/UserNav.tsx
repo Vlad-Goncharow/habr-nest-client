@@ -61,7 +61,7 @@ const subCategoriesFavorites: subCategoriesType[] = [
   {
     subCategoryRu: 'Коментарии',
     subCategoryEng: 'comments',
-  }
+  },
 ]
 
 const UserNav = () => {
@@ -71,11 +71,12 @@ const UserNav = () => {
   const popupRef = React.useRef<HTMLDivElement>(null)
   UseClickOutside(popupRef, () => setPopupIsOpen(false))
 
-
   const getSubCategories = () => {
-  return type === 'publications' ? subCategoriesPosts : subCategoriesFavorites;
-};
-  const selectedCategory = getSubCategories().find((el) => el.subCategoryEng === subType)?.subCategoryRu;
+    return type === 'publications' ? subCategoriesPosts : subCategoriesFavorites
+  }
+  const selectedCategory = getSubCategories().find(
+    (el) => el.subCategoryEng === subType
+  )?.subCategoryRu
 
   return (
     <div className={s.navigation}>
@@ -93,12 +94,11 @@ const UserNav = () => {
         ))}
       </div>
 
-
       {(type === 'publications' || type === 'favorites') && (
         <div ref={popupRef} className={s.menu}>
           <div
             data-testid={`${type}-click-item`}
-              onClick={() => setPopupIsOpen((prev) => !prev)}
+            onClick={() => setPopupIsOpen((prev) => !prev)}
             className={s.menu__item}
           >
             {selectedCategory}

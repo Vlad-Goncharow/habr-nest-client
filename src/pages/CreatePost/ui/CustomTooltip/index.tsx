@@ -4,7 +4,7 @@ import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 import { useTranslation } from 'react-i18next'
 
 const CustomTooltip = (props: any) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const { editorState, removeBlock } = props
 
   const menuRef = React.useRef(null)

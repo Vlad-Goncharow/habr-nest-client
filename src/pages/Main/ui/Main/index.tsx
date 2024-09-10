@@ -10,23 +10,23 @@ import 'shared/lib/i18n'
 import { useTranslation } from 'react-i18next'
 
 function Main() {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const { type, category } = useParams()
 
-  const categoryFind = postCategories.find(
-    (el) => el.categoryEng === category
-  )
+  const categoryFind = postCategories.find((el) => el.categoryEng === category)
 
-  const typeFind = subCategories.find(
-    (el) => el.subCategoryEng === type
-  )
-  
+  const typeFind = subCategories.find((el) => el.subCategoryEng === type)
+
   return (
     <>
       <Helmet>
         <meta charSet='utf-8' />
         <title>
-          {(categoryFind ? t(`${categoryFind.categoryI18n}`) : false && t(`${typeFind?.subCategoryI18n}`))
+          {(
+            categoryFind
+              ? t(`${categoryFind.categoryI18n}`)
+              : false && t(`${typeFind?.subCategoryI18n}`)
+          )
             ? `${t(`${categoryFind?.categoryI18n}`)} / ${t(`${typeFind?.subCategoryI18n}`)} / ${t('siteTitle')}!`
             : `${t(`${typeFind?.subCategoryI18n}`)} / ${t('siteTitle')}!`}
         </title>
