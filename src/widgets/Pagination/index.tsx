@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import Paginations from 'react-js-pagination'
 import s from './Pagination.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface PaginationProps {
   length: number
@@ -14,6 +15,7 @@ const Pagination: React.FC<PaginationProps> = ({
   length,
   pageSize,
 }) => {
+  const {t} = useTranslation()
   const { page } = useParams()
   const navigate = useNavigate()
 
@@ -37,8 +39,8 @@ const Pagination: React.FC<PaginationProps> = ({
       totalItemsCount={Number(length)}
       pageRangeDisplayed={3}
       onChange={handlePageClick}
-      prevPageText='< Сюда'
-      nextPageText='Туда >'
+      prevPageText={t('paginationPrev')}
+      nextPageText={t('paginationNext')}
       hideFirstLastPages={true}
       innerClass={s.pagination}
       linkClass={s.pagination__item}

@@ -6,24 +6,29 @@ import Habs from '../Habs'
 import Posts from '../Posts'
 import PostsNavigation from '../PostsNavigation'
 import Sidebar from '../SideBar/Main'
+import 'shared/lib/i18n'
+import { useTranslation } from 'react-i18next'
 
 function Main() {
+  const {t} = useTranslation()
   const { type, category } = useParams()
 
-  const categoryRu = postCategories.find(
+  const categoryFind = postCategories.find(
     (el) => el.categoryEng === category
-  )?.categoryRu
-  const typeRu = subCategories.find(
+  )
+
+  const typeFind = subCategories.find(
     (el) => el.subCategoryEng === type
-  )?.subCategoryRu
+  )
+  
   return (
     <>
       <Helmet>
         <meta charSet='utf-8' />
         <title>
-          {categoryRu && typeRu
-            ? `${categoryRu} / ${typeRu} / Не Хабр!`
-            : `${typeRu} / Не Хабр!`}
+          {(categoryFind ? t(`${categoryFind.categoryI18n}`) : false && t(`${typeFind?.subCategoryI18n}`))
+            ? `${t(`${categoryFind?.categoryI18n}`)} / ${t(`${typeFind?.subCategoryI18n}`)} / ${t('siteTitle')}!`
+            : `${t(`${typeFind?.subCategoryI18n}`)} / ${t('siteTitle')}!`}
         </title>
         <meta
           name='description'

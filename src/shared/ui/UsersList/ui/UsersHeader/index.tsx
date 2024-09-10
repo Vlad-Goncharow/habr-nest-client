@@ -3,8 +3,10 @@ import s from './UsersHeader.module.scss'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ReactComponent as ArrowSvg } from 'shared/images/svg/arrow.svg'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 function UsersHeader() {
+  const {t} = useTranslation()
   const [searchParams] = useSearchParams()
 
   const sort = searchParams.get('sort')
@@ -14,7 +16,7 @@ function UsersHeader() {
 
   return (
     <div className={s.row}>
-      <div className={s.name}>Имя</div>
+      <div className={s.name}>{t('authorsListSortTitle')}</div>
       <div className={s.sort}>
         <Link
           to={`./?sort=rating&order=${order === 'desc' ? 'asc' : 'desc'}${queryString}`}
@@ -23,7 +25,7 @@ function UsersHeader() {
             [s.sort__item_rotate]: order === 'asc' && sort === 'rating',
           })}
         >
-          <span>Рейтинг</span>
+          <span>{t('authorsListSortRating')}</span>
           <ArrowSvg />
         </Link>
         <Link
@@ -33,7 +35,7 @@ function UsersHeader() {
             [s.sort__item_rotate]: order === 'asc' && sort === 'karma',
           })}
         >
-          <span>Карма</span>
+          <span>{t('authorsListSortKarma')}</span>
           <ArrowSvg />
         </Link>
       </div>

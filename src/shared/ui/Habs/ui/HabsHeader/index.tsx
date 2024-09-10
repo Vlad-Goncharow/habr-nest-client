@@ -3,8 +3,10 @@ import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { ReactComponent as ArrowSvg } from 'shared/images/svg/arrow.svg'
 import s from './HabsHeader.module.scss'
+import { useTranslation } from 'react-i18next'
 
 const HabsHeader: React.FC = () => {
+  const {t} = useTranslation()
   const [searchParams] = useSearchParams()
 
   const sort = searchParams.get('sort')
@@ -17,7 +19,7 @@ const HabsHeader: React.FC = () => {
   return (
     <div className={s.row}>
       <div className={s.name}>
-        <span>Название</span>
+        <span>{t('habsListSortTitle')}</span>
       </div>
       <div className={s.sort}>
         <Link
@@ -27,7 +29,7 @@ const HabsHeader: React.FC = () => {
             [s.sort__item_rotate]: order === 'asc' && sort === 'rating',
           })}
         >
-          <span>Рейтинг</span>
+          <span>{t('habsListSortRating')}</span>
           <ArrowSvg />
         </Link>
         <Link
@@ -37,7 +39,7 @@ const HabsHeader: React.FC = () => {
             [s.sort__item_rotate]: order === 'asc' && sort === 'subs',
           })}
         >
-          <span>Подписчики</span>
+          <span>{t('habsListSortSubs')}</span>
           <ArrowSvg />
         </Link>
       </div>

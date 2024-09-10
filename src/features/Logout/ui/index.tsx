@@ -1,10 +1,12 @@
 import { fetchModalActions } from 'entities/FetchModal'
 import { fetchLogout } from 'entities/User'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { ReactComponent as LogoutSvg } from 'shared/images/svg/logout.svg'
 
 function Logout() {
+  const {t} = useTranslation()
   const dispatch = useAppDispatch()
 
   const logout = async () => {
@@ -24,7 +26,7 @@ function Logout() {
     <li onClick={logout}>
       <Link to='/flows/all/articles/1'>
         <LogoutSvg />
-        Выход
+        {t('headerLogout')}
       </Link>
     </li>
   )

@@ -8,6 +8,7 @@ import Navbar from '../Navbar'
 import SettingsMenu from '../SettingsMenu'
 import SidebarNavbar from '../SidebarNavbar'
 import s from './Header.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface IHeaderContext {
   settingIsOpen?: boolean
@@ -17,6 +18,7 @@ interface IHeaderContext {
 export const HeaderContext = createContext<IHeaderContext>({})
 
 function Header() {
+  const {t} = useTranslation()
   const { user } = useAppSelector(getUserData)
 
   const [settingIsOpen, setSettingsIsOpen] = React.useState<boolean>(false)
@@ -33,7 +35,7 @@ function Header() {
               </div>
 
               <Link to='/flows/all/articles/1' className={s.logo}>
-                Не Хабр!
+                {t('siteTitle')}
               </Link>
 
               <div className={s['media__controls-top']}>

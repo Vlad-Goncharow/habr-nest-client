@@ -7,12 +7,14 @@ import { IPost } from 'shared/types/posts'
 import axios from '../../../axios'
 import s from './SidebarReadWeekly.module.scss'
 import { fetchModalActions } from 'entities/FetchModal'
+import { useTranslation } from 'react-i18next'
 
 interface SidebarReadWeeklyProps {
   category: string
 }
 
 const SidebarReadWeekly: React.FC<SidebarReadWeeklyProps> = ({ category }) => {
+  const {t} = useTranslation()
   const dispatch = useAppDispatch()
 
   const [loading, setLoading] = React.useState<boolean>(true)
@@ -42,7 +44,7 @@ const SidebarReadWeekly: React.FC<SidebarReadWeeklyProps> = ({ category }) => {
       {!loading && (
         <section className={s.sidebar}>
           <header className='sidebar__header'>
-            <h2 className='sidebar__title'>Лучшее за неделю</h2>
+            <h2 className='sidebar__title'>{t('sidebarWeekBestTitle')}</h2>
           </header>
           <ul className={s.list}>
             {posts.map((post: IPost) => (

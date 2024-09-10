@@ -8,23 +8,24 @@ import s from './SecondStep.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
+import { useTranslation } from 'react-i18next'
 
 const postDifficulty = [
   {
-    dificultEng: 'unknown',
-    dificultRu: 'Не указано',
+    dificulty: 'unknown',
+    dificultyI18n: 'postDifficultyUnknown',
   },
   {
-    dificultEng: 'easy',
-    dificultRu: 'Легко',
+    dificulty: 'easy',
+    dificultyI18n: 'postDifficultyEasy',
   },
   {
-    dificultEng: 'medium',
-    dificultRu: 'Сложно',
+    dificulty: 'medium',
+    dificultyI18n: 'postDifficultyMedium',
   },
   {
-    dificultEng: 'hard',
-    dificultRu: 'Тяжело',
+    dificulty: 'hard',
+    dificultyI18n: 'postDifficultyHard',
   },
 ]
 
@@ -39,6 +40,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
   setValues,
   values,
 }) => {
+  const {t} = useTranslation()
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
@@ -146,7 +148,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
     <div className={s.wrapper}>
       <div className={s.item}>
         <div className={s.type}>
-          <span className={s.item__title}>Категория публикации</span>
+          <span className={s.item__title}>{t('postCreateCategoryTitle')}</span>
           <ul className={s.type__list}>
             {postCategories.map((el) => (
               <li
@@ -156,7 +158,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
                 })}
                 onClick={() => changePostCategory(el.categoryEng)}
               >
-                <span>{el.categoryRu}</span>
+                <span>{t(el.categoryI18n)}</span>
               </li>
             ))}
           </ul>
@@ -164,7 +166,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
       </div>
       <div className={s.item}>
         <div className={s.type}>
-          <span className={s.item__title}>Тип публикации</span>
+          <span className={s.item__title}>{t('postCreateTypeTitle')}</span>
           <ul className={s.type__list}>
             {postTypeOne.map((el) => (
               <li
@@ -174,38 +176,38 @@ const SecondStep: React.FC<SecondStepProps> = ({
                 })}
                 onClick={() => changePostType(el.typeEng)}
               >
-                <span>{el.typeRu}</span>
+                <span>{t(el.typeI18n)}</span>
               </li>
             ))}
           </ul>
         </div>
       </div>
       <div className={s.item}>
-        <span className={s.item__title}>Хабы</span>
+        <span className={s.item__title}>{t('postCreateHabs')}</span>
         <HabsList habs={values.habs} setValues={setValues} />
       </div>
       <div className={s.item}>
-        <div className={s.item__title}>Укажите сложность публикации</div>
+        <div className={s.item__title}>{t('postCreateCategoryDifficulty')}</div>
         <form className={s.dificult}>
           {postDifficulty.map((el) => (
             <div
-              key={el.dificultEng}
+              key={el.dificulty}
               className={classNames(s.dificult__item, {
-                [s.dificult__item_unknown]: el.dificultRu === 'Не указано',
-                [s.dificult__item_easy]: el.dificultRu === 'Легко',
-                [s.dificult__item_normal]: el.dificultRu === 'Сложно',
-                [s.dificult__item_hard]: el.dificultRu === 'Тяжело',
+                [s.dificult__item_unknown]: el.dificulty === 'unknown',
+                [s.dificult__item_easy]: el.dificulty === 'easy',
+                [s.dificult__item_normal]: el.dificulty === 'medium',
+                [s.dificult__item_hard]: el.dificulty === 'hard',
               })}
             >
               <input
                 onChange={handleCheckboxChange}
                 className={s.dificult__input}
-                id={el.dificultRu}
+                id={el.dificulty}
                 type='checkbox'
-                checked={el.dificultRu === values.difficulty || false}
+                checked={el.dificulty === values.difficulty || false}
               />
-              <label htmlFor={el.dificultRu}>
-                <span>{el.dificultRu}</span>
+              <label htmlFor={el.dificulty}>
+                <span>{t(el.dificultyI18n)}</span>
               </label>
             </div>
           ))}
@@ -213,15 +215,15 @@ const SecondStep: React.FC<SecondStepProps> = ({
       </div>
       <div className={s.item}>
         <div className={`${s.item__title} ${s.item__title_big}`}>
-          Отображение публикации в ленте
+          {t('postCreateImageTitle')}
         </div>
         <div className={s.image}>
-          <p className={s.image__title}>Добавьте обложку</p>
+          <p className={s.image__title}>{t('postCreateAddCoverTitle')}</p>
           <p className={s.image__subtitle}>
-            Перенесите сюда файл (jpg, gif, png) размером 780×440 или нажмите
+            {t('postCreateDragFileSubtitle')}
           </p>
           <button className={s.image__btn} type='button'>
-            Загрузить обложку
+            {t('postCreateUploadButton')}
           </button>
           <input
             type='file'
@@ -232,7 +234,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
             <>
               <img src={image} alt='' className={s.image__img} />
               <button onClick={clearImage} className={s.image__delete}>
-                Удалить обложку
+                {t('postCreateDeleteCoverButton')}
               </button>
             </>
           )}
@@ -243,7 +245,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
           className={`${s.buttons__btn} ${s.buttons__prev}`}
           onClick={() => setStep(1)}
         >
-          Назад
+          {t('postCreatePrevStepBtn')}
         </button>
         <button
           ref={createButtonRef}
@@ -253,7 +255,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
           })}
           onClick={handleButtonClick}
         >
-          Создать
+          {t('postCreateBtn')}
         </button>
       </div>
     </div>

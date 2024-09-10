@@ -1,8 +1,10 @@
 import React from 'react'
 import s from './CustomTooltip.module.scss'
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
+import { useTranslation } from 'react-i18next'
 
 const CustomTooltip = (props: any) => {
+  const {t} = useTranslation()
   const { editorState, removeBlock } = props
 
   const menuRef = React.useRef(null)
@@ -72,7 +74,7 @@ const CustomTooltip = (props: any) => {
           {open && (
             <div ref={menuRef} className={s.menu}>
               <div onMouseDown={deleteBlock} className={s.button}>
-                Удалить
+                {t('postCreateControlsDelete')}
               </div>
             </div>
           )}

@@ -5,8 +5,10 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { HabsType } from 'shared/types/habs'
 import axios from '../../../../../axios'
 import s from './Habs.module.scss'
+import { useTranslation } from 'react-i18next'
 
 function Habs() {
+  const {t} = useTranslation()
   const { category } = useParams()
 
   const dispatch = useAppDispatch()
@@ -38,7 +40,7 @@ function Habs() {
       {!loading && (
         <section className={s.habs}>
           <header className='sidebar__header'>
-            <h2 className='sidebar__title'>Хабы</h2>
+            <h2 className='sidebar__title'>{t('sidebarHabsTitle')}</h2>
           </header>
 
           <ul className={s.habs__list}>
@@ -48,7 +50,7 @@ function Habs() {
                   <div className={s.hab__image}>
                     <img
                       src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`}
-                      alt={`Картинка хаба ${hab.title}`}
+                      alt={`${t('habImageAltText')} ${hab.title}`}
                     />
                   </div>
                   <div className={s.hab__info}>
@@ -63,13 +65,13 @@ function Habs() {
                         className={s.hab__stats}
                         to={`/hab/${hab.id}/authors/1`}
                       >
-                        Авторы {hab.authorsCount}
+                        {t('sidebarHabsAuthorsCount')} {hab.authorsCount}
                       </Link>
                       <Link
                         className={s.hab__stats}
                         to={`/hab/${hab.id}/articles/1`}
                       >
-                        Публицкаий {hab.postsCount}
+                        {t('sidebarHabsPublicationsCount')} {hab.postsCount}
                       </Link>
                     </div>
                   </div>

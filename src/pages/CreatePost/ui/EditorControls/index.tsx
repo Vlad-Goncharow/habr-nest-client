@@ -7,14 +7,15 @@ import { ReactComponent as OlIcon } from '../../../../shared/images/svg/list-ol.
 import { ReactComponent as UlIcon } from '../../../../shared/images/svg/list-ul.svg'
 import s from './EditorControls.module.scss'
 import { ReactComponent as PlusSvg } from 'shared/images/svg/plusEditor.svg'
+import { useTranslation } from 'react-i18next'
 
 const BLOCK_TYPES = [
-  { label: 'Загаловок 1', style: 'custom-title-one', Icon: TitleIcon },
-  { label: 'Загаловок 2', style: 'custom-title-two', Icon: TitleIcon },
-  { label: 'Загаловок 3', style: 'custom-title-three', Icon: TitleIcon },
-  { label: 'Список', style: 'unordered-list-item', Icon: UlIcon },
-  { label: 'Нумерованый список', style: 'ordered-list-item', Icon: OlIcon },
-  { label: 'Код', style: 'code-block', Icon: CodeIcon },
+  { label: 'postCreateControlsTitleOne', style: 'custom-title-one', Icon: TitleIcon },
+  { label: 'postCreateControlsTitleTwo', style: 'custom-title-two', Icon: TitleIcon },
+  { label: 'postCreateControlsTitleThree', style: 'custom-title-three', Icon: TitleIcon },
+  { label: 'postCreateControlsSunorderedList', style: 'unordered-list-item', Icon: UlIcon },
+  { label: 'postCreateControlsSorderedList', style: 'ordered-list-item', Icon: OlIcon },
+  { label: 'postCreateControlsCodeBlock', style: 'code-block', Icon: CodeIcon },
 ]
 
 type EditorControlsProps = {
@@ -25,6 +26,7 @@ type EditorControlsProps = {
 
 const EditorControls: React.FC<EditorControlsProps> = React.memo(
   ({ toggleBlockType, editorRef, editorState }) => {
+    const {t} = useTranslation()
     const [visible, setVisible] = React.useState<boolean>()
 
     const [absolutetop, setAbsoluteTop] = React.useState<number>(0)
@@ -94,7 +96,7 @@ const EditorControls: React.FC<EditorControlsProps> = React.memo(
                     onMouseDown={() => customClick(style)}
                   >
                     <Icon />
-                    <span>{label}</span>
+                    <span>{t(label)}</span>
                   </div>
                 ))}
               </div>

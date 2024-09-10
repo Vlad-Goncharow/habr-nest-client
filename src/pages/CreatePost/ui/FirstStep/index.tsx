@@ -16,6 +16,7 @@ import InlineControls from '../InlineControls'
 import { ValuesType } from '../CreatePost'
 import s from './FirstStep.module.scss'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 export const styleMap = {
   CODE: {
@@ -47,6 +48,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
   setStep,
   values,
 }) => {
+  const {t} = useTranslation()
   const editorRef = React.useRef<any>(null)
 
   const [editorState, setEditorState] = React.useState(
@@ -289,9 +291,9 @@ const FirstStep: React.FC<FirstStepProps> = ({
         {isShowStorage && (
           <div className={s.wrapper__top}>
             <div className={s.wrapper__saved}>
-              У вас есть резервное сохранение{' '}
+              {t('createPostBackupTitle')}{' '}
               <span onClick={loadEditorStateFromLocalStorage}>
-                Восстановить
+                {t('createPostBackup')}
               </span>
             </div>
           </div>
@@ -302,7 +304,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
               type='text'
               value={values.title}
               onChange={changeInputValue}
-              placeholder='Введите название публикации'
+              placeholder={t('createPostInputPlaceholder')}
             />
           </form>
           <div
@@ -343,7 +345,7 @@ const FirstStep: React.FC<FirstStepProps> = ({
             })}
             onClick={handleButtonClick}
           >
-            Далее к настройкам
+            {t('postCreateNextStepBtn')}
           </button>
         </div>
       </div>

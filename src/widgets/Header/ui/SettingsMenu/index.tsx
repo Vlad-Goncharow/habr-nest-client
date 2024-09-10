@@ -1,22 +1,25 @@
 import { Theme, useTheme } from 'entities/Theme'
 import React from 'react'
 import s from './SettingsMenu.module.scss'
-
+import i18n from 'shared/lib/i18n'
+import { useTranslation } from 'react-i18next'
 interface SettingsMenuProps {
   onClose: any
 }
 
 const languages = [
-  { language: 'Русский', id: 'ru' },
-  { language: 'English', id: 'en' },
+  { language: 'langThemeSettingsInterfaceRu', id: 'ru' },
+  { language: 'langThemeSettingsInterfaceEn', id: 'en' },
+  { language: 'langThemeSettingsInterfaceUa', id: 'ua' },
 ]
 
 const themes = [
-  { theme: 'Темная', id: 'dark' },
-  { theme: 'Светлая', id: 'light' },
+  { theme: 'langThemeSettingsThemeDark', id: 'dark' },
+  { theme: 'langThemeSettingsThemeLight', id: 'light' },
 ]
 
 const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
+  const {t} = useTranslation()
   const { theme, toggleTheme } = useTheme()
 
   React.useEffect(() => {
@@ -40,12 +43,12 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
         <button onClick={onClose} className={s.close}></button>
 
         <form className={s.form}>
-          <header className={s.header}>Настройка страницы</header>
+          <header className={s.header}>{t("langThemeSettingsTitle")}</header>
           <div className={s.form__item}>
-            <div className={s.form__title}>Интерфейс</div>
+            <div className={s.form__title}>{t("langThemeSettingsInterface")}</div>
             <div className={s.container}>
               {languages.map((el) => (
-                <div key={el.id} className={s.checkbox}>
+                <div onClick={() => i18n.changeLanguage(el.id)} key={el.id} className={s.checkbox}>
                   <label htmlFor={el.id}>
                     <div className={s.checkbox__ui}>
                       <input
@@ -56,14 +59,14 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
                       />
                       <span className={s.checkbox__radio_fake}></span>
                     </div>
-                    {el.language}
+                    {t(el.language)}
                   </label>
                 </div>
               ))}
             </div>
           </div>
           <div className={s.form__item}>
-            <div className={s.form__title}>Цветовая тема</div>
+            <div className={s.form__title}>{t("langThemeSettingsTheme")}</div>
             <div className={s.container}>
               {themes.map((el) => (
                 <div key={el.id} className={s.checkbox}>
@@ -79,7 +82,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
                       />
                       <span className={s.checkbox__radio_fake}></span>
                     </div>
-                    {el.theme}
+                    {t(el.theme)}
                   </label>
                 </div>
               ))}

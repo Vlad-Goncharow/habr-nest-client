@@ -4,8 +4,11 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import { postCategories, subCategories, subCategoriesType } from 'shared/global'
 import useDebounce from 'shared/hooks/useDebounce'
 import s from './PostsNavigation.module.scss'
+import { useTranslation } from 'react-i18next'
 
 const PostsNavigation: React.FC = () => {
+  const { t } = useTranslation();
+
   const { category, type } = useParams()
   const currentCategory = postCategories.find(
     (el) => el.categoryEng === category
@@ -23,7 +26,7 @@ const PostsNavigation: React.FC = () => {
   return (
     <div className={s.wrapper}>
       <h1 className={s.title}>
-        {currentCategory ? currentCategory.categoryRu : 'Все потоки'}
+        {currentCategory ? t(currentCategory.categoryI18n) : t('categoryAll')}
       </h1>
       <div className={s.category}>
         {subCategories.map((el: subCategoriesType) => (
@@ -34,10 +37,11 @@ const PostsNavigation: React.FC = () => {
             })}
             key={el.subCategoryEng}
           >
-            {el.subCategoryRu}
+            {t(el.subCategoryI18n).toUpperCase()}
           </Link>
         ))}
       </div>
+      <span></span>
       {type === 'habs' || type === 'authors' ? (
         <div className={s.search}>
           <form
@@ -47,7 +51,7 @@ const PostsNavigation: React.FC = () => {
           >
             <input
               type='text'
-              placeholder='Пойск'
+              placeholder={t('inputPlaceHolderSearch')}
               value={newInputValue}
               onChange={(e) => setNewInputValue(e.target.value)}
               className={s.search__input}
@@ -67,7 +71,7 @@ const PostsNavigation: React.FC = () => {
           </form>
         </div>
       ) : (
-        <div className={s.filter}>Все подряд</div>
+        null
       )}
     </div>
   )

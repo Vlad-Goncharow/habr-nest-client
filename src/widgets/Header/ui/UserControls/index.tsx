@@ -8,12 +8,14 @@ import { ReactComponent as Settings } from 'shared/images/svg/settingPage.svg'
 import { ReactComponent as UserSvg } from 'shared/images/svg/user.svg'
 import { HeaderContext } from '../Header/Header'
 import s from './UserControls.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface UserControlsProps {
   user: IUser
 }
 
 const UserControls: React.FC<UserControlsProps> = ({ user }) => {
+  const {t} = useTranslation()
   const checkRoles = useAppSelector(checkRolesAdmin)
 
   const { setSettingsIsOpen } = useContext(HeaderContext)
@@ -34,17 +36,17 @@ const UserControls: React.FC<UserControlsProps> = ({ user }) => {
       </Link>
       <ul className={s.list}>
         <li>
-          <Link to={`/user/${user?.id}/publications/articles/1`}>Статьи</Link>
+          <Link to={`/user/${user?.id}/publications/articles/1`}>{t('headerUserPublications')}</Link>
         </li>
         <li>
-          <Link to={`/user/${user?.id}/comments/1`}>Коментарии</Link>
+          <Link to={`/user/${user?.id}/comments/1`}>{t('headerUserComments')}</Link>
         </li>
         <li>
-          <Link to={`/user/${user?.id}/favorites/articles/1`}>Закладки</Link>
+          <Link to={`/user/${user?.id}/favorites/articles/1`}>{t('headerUserFavorites')}</Link>
         </li>
         {checkRoles && (
           <li>
-            <Link to='/create-hab'>Создать Хаб</Link>
+            <Link to='/create-hab'>{t('headerUserCreateHab')}</Link>
           </li>
         )}
       </ul>
@@ -52,13 +54,13 @@ const UserControls: React.FC<UserControlsProps> = ({ user }) => {
         <li>
           <Link to='/profile-settings'>
             <ProfileSettings />
-            Настройка профиля
+            {t('headerUserSettings')}
           </Link>
         </li>
-        <li>
-          <div onClick={openSettingMenu} className={s.list__settings}>
+        <li onClick={openSettingMenu}>
+          <div className={s.list__settings}>
             <Settings />
-            Язык, лента, тема
+            {t('headerLangTheme')}
           </div>
         </li>
         <Logout />

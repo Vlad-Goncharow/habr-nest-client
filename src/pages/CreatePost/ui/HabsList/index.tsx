@@ -7,6 +7,7 @@ import { IHab } from 'shared/types/habs'
 import axios from '../../../../axios'
 import { ValuesType } from '../CreatePost'
 import s from './HabsList.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface HabsListProps {
   habs: IHab[] | []
@@ -14,6 +15,7 @@ interface HabsListProps {
 }
 
 const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
+  const {t} = useTranslation()
   const dispatch = useAppDispatch()
 
   const [habsList, setHabsList] = React.useState<IHab[] | []>([])
@@ -103,7 +105,7 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
           onChange={(e) => setInputValue(e.target.value)}
           type='text'
           className={s.form__input}
-          placeholder='Выберите Хабы'
+          placeholder={t('postCreateHabsPlaceholder')}
         />
       </div>
       {popupIsOpen && habsList.length > 0 && (

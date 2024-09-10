@@ -1,29 +1,21 @@
 import { Link } from 'react-router-dom'
 import s from './Sidebar.module.scss'
+import { useTranslation } from 'react-i18next'
 
 function Sidebar() {
+  const {t} = useTranslation()
   return (
     <aside className={s.sidebar}>
       <div className={s.sidebar__item}>
-        <div className={s.sidebar__title}>ХАБР ИЩЕТ АВТОРОВ</div>
-        <p className={s.sidebar__text}>
-          Мы ищем авторов в контент-студию — помогать компаниям делать крутые
-          статьи для техноблогов и мегапроекты.Хотите писать не только на Хабр,
-          но и для Хабра? Давайте познакомимся!
-        </p>
+        <div className={s.sidebar__title}>{t('createSidebarSearchTitle')}</div>
+        <p className={s.sidebar__text}>{t('createSidebarSearchText')}</p>
       </div>
       <div className={s.sidebar__item}>
-        <div className={s.sidebar__title}>НОВЫЙ РЕДАКТОР</div>
-        <p className={s.sidebar__text}>
-          Это новый WYSIWYG-редактор, в котором по умолчанию будут создаваться
-          все новые публикации. Подробнее о работе нового редактора можно узнать
-          в этом
-          {<Link to={'/help/wysiwyg'}> разделе</Link>}. Старый редактор доступен
-          по ссылке, но скоро его поддержка прекратится.
-        </p>
+        <div className={s.sidebar__title}>{t('createSidebarEditorTitle')}</div>
+        <p className={s.sidebar__text}>{t('createSidebarEditorText')} </p>
       </div>
       <div className={s.sidebar__item}>
-        <div className={s.sidebar__title}>ПАМЯТКА АВТОРУ</div>
+        <div className={s.sidebar__title}>{t('createSidebarAuthorRemind')}</div>
         <ul className={s.list}>
           <li className={s.list__item}>
             <svg
@@ -47,8 +39,7 @@ function Sidebar() {
               ></rect>
             </svg>
             <span>
-              Соблюдайте
-              {<Link to={'/help/rules'}> правила сайта</Link>}
+              {t('createSidebarAuthorRemindRule1')}
             </span>
           </li>
           <li className={s.list__item}>
@@ -92,7 +83,7 @@ function Sidebar() {
                 strokeWidth='2'
               ></rect>
             </svg>
-            <span>Следуйте советам и заботливо оформляйте публикации</span>
+            <span>{t('createSidebarAuthorRemindRule2')}</span>
           </li>
           <li className={s.list__item}>
             <svg
@@ -127,8 +118,7 @@ function Sidebar() {
               ></rect>
             </svg>
             <span>
-              Загружайте картинки меньше 8МБ для тела публикации и меньше 1МБ
-              для обложки публикации
+              {t('createSidebarAuthorRemindRule3')}
             </span>
           </li>
         </ul>
