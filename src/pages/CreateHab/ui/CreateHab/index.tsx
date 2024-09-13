@@ -1,9 +1,9 @@
 import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
 import { checkRolesAdmin } from 'entities/User'
-import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { postCategories } from 'shared/global'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
@@ -16,9 +16,11 @@ interface IFormInput {
   title: string
   description: string
   category: string
+  image: File
 }
 
 function CreateHab() {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
@@ -28,19 +30,18 @@ function CreateHab() {
     navigate('/flows/all/articles/1')
   }
 
-  const [imageFile, setImageFile] = React.useState<File>()
-
   const {
     control,
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<IFormInput>()
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     const formData = new FormData()
-    if (imageFile) {
-      formData.append('file', imageFile)
+    if (data.image) {
+      formData.append('file', data.image)
     }
 
     try {
@@ -54,33 +55,60 @@ function CreateHab() {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Ошибка, попробуйте еще раз!',
+          content: t('defaultError'),
         })
       )
     }
   }
-
+  const checkCreateAvailable = () => {
+    if (
+      watch('category') &&
+      watch('title').length > 5 &&
+      watch('description').length > 10
+    ) {
+      return true
+    } else {
+      return false
+    }
+  }
   return (
     <>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Создание хаба / Не Хабр</title>
-        <meta name='description' content={`Создание хаба / Не Хабр`}></meta>
+        <title>
+          {t('habCreateTitle')} / {t('siteTitle')}
+        </title>
+        <meta
+          name='description'
+          content={`{t('habCreateTitle')} / {t('siteTitle')}`}
+        ></meta>
       </Helmet>
       <div className={s.wrapper}>
         <header>
-          <h1 className={s.wrapper__title}>Создание Хаба</h1>
+          <h1 className={s.wrapper__title}>{t('habCreateTitle')}</h1>
         </header>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className={s.item}>
-            <div className={s.item__title}>Картинка Хаба</div>
-            <ImageComp setImageFile={setImageFile} />
+            <div className={s.item__header}>
+              <div className={s.item__title}>
+                <div className={s.item__title}>{t('habCreateImage')}</div>
+              </div>
+              {errors.image && (
+                <span className={s.item__error}>{errors.image.message}</span>
+              )}
+            </div>
+            <Controller
+              name='image'
+              control={control}
+              rules={{ required: t('habCreateImageRequired') }}
+              render={({ field }) => (
+                <ImageComp setImageFile={(file: any) => field.onChange(file)} />
+              )}
+            />
           </div>
           <div className={s.item}>
             <div className={s.item__header}>
-              <label htmlFor='title' className={s.item__title}>
-                Категория Хаба
-              </label>
+              <div className={s.item__title}>{t('habCreateCategory')}</div>
               {errors?.category && (
                 <span className={s.item__error}>
                   {errors?.category.message}
@@ -91,17 +119,17 @@ function CreateHab() {
               <Controller
                 name='category'
                 control={control}
-                rules={{ required: 'Пожалуйста, выберите категорию' }}
+                rules={{ required: t('habCreateCategoryRequired') }}
                 render={({ field }): any =>
                   postCategories.map((el) => (
                     <li
-                      key={el.categoryEng}
+                      key={el.category}
                       className={classNames(s.types__li, {
-                        [s.types__li_active]: field.value === el.categoryEng,
+                        [s.types__li_active]: field.value === el.category,
                       })}
-                      onClick={() => field.onChange(el.categoryEng)}
+                      onClick={() => field.onChange(el.category)}
                     >
-                      <span>{el.categoryRu}</span>
+                      <span>{t(el.category)}</span>
                     </li>
                   ))
                 }
@@ -111,7 +139,7 @@ function CreateHab() {
           <div className={s.item}>
             <div className={s.item__header}>
               <label htmlFor='title' className={s.item__title}>
-                Название Хаба
+                {t('habCreateName')}
               </label>
               {errors?.title && (
                 <span className={s.item__error}>{errors?.title.message}</span>
@@ -120,25 +148,25 @@ function CreateHab() {
             <input
               id='title'
               type='text'
-              placeholder='Введите название Хаба'
+              placeholder={t('habCreateNamePlaceholder')}
               className={s.item__input}
               {...register('title', {
                 minLength: {
                   value: 5,
-                  message: 'Название минимум 5 символов',
+                  message: t('habCreateNameMinLength'),
                 },
                 maxLength: {
                   value: 100,
-                  message: 'Название максимум из 100 символов',
+                  message: t('habCreateNameMaxLength'),
                 },
-                required: 'Напишите Название',
+                required: t('habCreateNamePlaceholder'),
               })}
             />
           </div>
           <div className={s.item}>
             <div className={s.item__header}>
               <label htmlFor='descr' className={s.item__title}>
-                Описание Хаба
+                {t('habCreateDescr')}
               </label>
               {errors?.description && (
                 <span className={s.item__error}>
@@ -149,23 +177,29 @@ function CreateHab() {
             <input
               id='descr'
               type='text'
-              placeholder='Введите описание Хаба'
+              placeholder={t('habCreateDescrPlaceholder')}
               className={s.item__input}
               {...register('description', {
                 minLength: {
                   value: 10,
-                  message: 'Описание минимум 10 символов',
+                  message: t('habCreateDescrMin'),
                 },
                 maxLength: {
                   value: 100,
-                  message: 'Описание максимум из 100 символов',
+                  message: t('habCreateDescrMax'),
                 },
-                required: 'Напишите описание',
+                required: t('habCreateDescrPlaceholder'),
               })}
             />
           </div>
-          <button type='submit' className={s.create}>
-            Создать
+          <button
+            type='submit'
+            className={classNames(s.create, {
+              [s.create_active]: checkCreateAvailable() === true,
+              [s.create_disable]: checkCreateAvailable() === false,
+            })}
+          >
+            {t('habCreate')}
           </button>
         </form>
       </div>

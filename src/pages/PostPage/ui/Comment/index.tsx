@@ -11,6 +11,7 @@ import { ReactComponent as Dots } from 'shared/images/svg/dots.svg'
 import { ReactComponent as Share } from 'shared/images/svg/share.svg'
 import { IComment } from 'shared/types/comments'
 import s from './Comment.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface CommentProps {
   item: IComment
@@ -19,6 +20,7 @@ interface CommentProps {
 }
 
 const Comment: React.FC<CommentProps> = ({ item, user, deleteComment }) => {
+  const { t } = useTranslation()
   const checkUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
 
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
@@ -87,7 +89,7 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment }) => {
                 {(user?.id === item.author.id || checkUserAdminOrModerator) && (
                   <li onClick={() => deleteComment(item.id)}>
                     <Delete />
-                    <span>Удалить</span>
+                    <span>{t('delete')}</span>
                   </li>
                 )}
                 <li
@@ -98,7 +100,7 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment }) => {
                   }
                 >
                   <Share />
-                  <span>Поделиться</span>
+                  <span>{t('share')}</span>
                 </li>
               </ul>
             </div>

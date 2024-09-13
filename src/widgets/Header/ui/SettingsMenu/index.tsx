@@ -62,6 +62,7 @@ const SettingsMenu: React.FC<SettingsMenuProps> = ({ onClose }) => {
                         name='language'
                         type='radio'
                         className={s.checkbox__radio_real}
+                        checked={localStorage.getItem('i18nextLng') === el.id}
                       />
                       <span className={s.checkbox__radio_fake}></span>
                     </div>

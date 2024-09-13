@@ -2,7 +2,7 @@ import React, { ChangeEvent } from 'react'
 import s from './ImageComp.module.scss'
 
 interface ImageProps {
-  setImageFile: any
+  setImageFile: (file: File) => void
 }
 
 const ImageComp: React.FC<ImageProps> = ({ setImageFile }) => {

@@ -9,6 +9,7 @@
   &__title {
     text-align: center;
     margin-bottom: 30px;
+    color: var(--mine-shaft);
   }
 
   @media (max-width: 768px) {
@@ -30,14 +31,17 @@
     height: 40px;
     border: 2px solid var(--loblolly, #d5dddf);
     border-radius: 3px;
-    color: var(--rolling-stone, #6c797f);
     font-size: 13px;
     cursor: pointer;
     margin: 5px;
 
+    span {
+      color: var(--mine-shaft);
+    }
+
     &_active {
       border-color: var(--horizon, #77a8d0);
-      color: var(--horizon, #4d80aa);
+      background: var(--horizon, #4d80aa);
     }
   }
 }
@@ -56,6 +60,7 @@
     display: block;
     font-size: 20px;
     font-weight: 700;
+    color: var(--mine-shaft);
   }
 
   &__input {

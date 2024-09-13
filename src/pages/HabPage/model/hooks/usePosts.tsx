@@ -3,6 +3,7 @@ import { fetchModalActions } from 'entities/FetchModal'
 import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { loadPostsFN } from '../lib'
+import { useTranslation } from 'react-i18next'
 
 interface usePostsProps {
   habId: string | undefined
@@ -11,6 +12,7 @@ interface usePostsProps {
 }
 
 const usePosts = (props: usePostsProps): any => {
+  const { t } = useTranslation()
   const { page, habId, type } = props
   const dispatch = useAppDispatch()
 
@@ -25,7 +27,7 @@ const usePosts = (props: usePostsProps): any => {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Ошибка, попробуйте еще раз!',
+          content: t('habPageLoadPostsError'),
         })
       )
     }

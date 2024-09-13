@@ -27,7 +27,7 @@ function Habs() {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'Ошибка, попробуйте еще раз!',
+            content: t('mainLoadHabsError'),
           })
         )
         setLoading(false)

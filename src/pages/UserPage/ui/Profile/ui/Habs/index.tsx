@@ -7,8 +7,10 @@ import axios from '../../../../../../axios'
 import Hab from '../Hab'
 import ProfileSkeleton from '../ProfileSkeleton'
 import s from './Habs.module.scss'
+import { useTranslation } from 'react-i18next'
 
 const Habs = () => {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const { userId } = useParams()
@@ -29,7 +31,7 @@ const Habs = () => {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'Ошибка, попробуйте еще раз!',
+            content: t('defaultError'),
           })
         )
       }
@@ -42,7 +44,7 @@ const Habs = () => {
         <ProfileSkeleton />
       ) : habs.length > 0 ? (
         <div className={s.item}>
-          <h2 className={s.item__title}>Состоит в хабах</h2>
+          <h2 className={s.item__title}>{t('userHabsTitle')}</h2>
           <div className={s.item__list}>
             {habs.map((el) => (
               <Hab key={el.id} habData={el} />
@@ -51,7 +53,7 @@ const Habs = () => {
         </div>
       ) : (
         <div className={s.item}>
-          <h2 className={s.item__title}>Пользователь не состоит в хабах</h2>
+          <h2 className={s.item__title}>{t('userHabsTitleEmpty')}</h2>
         </div>
       )}
     </>

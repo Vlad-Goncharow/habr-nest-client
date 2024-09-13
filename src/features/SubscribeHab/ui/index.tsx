@@ -9,12 +9,14 @@ import {
   subscribeToHab,
   unsubscribeFromHab,
 } from '../model'
+import { useTranslation } from 'react-i18next'
 
 interface HabSubscribeBtnProps {
   habId: number
 }
 
 const SubscribeHab: React.FC<HabSubscribeBtnProps> = ({ habId }) => {
+  const { t } = useTranslation()
   const { user } = useAppSelector(getUserData)
   const dispatch = useAppDispatch()
   const isSubscribed = useAppSelector((state) =>
@@ -40,7 +42,7 @@ const SubscribeHab: React.FC<HabSubscribeBtnProps> = ({ habId }) => {
             isSubscribed ? handleUnsubscribe() : handleSubscribe()
           }}
         >
-          {isSubscribed ? 'Отписаться' : 'Подписаться'}
+          {isSubscribed ? t('unSubscribe') : t('subscribe')}
           {isSubscribed && <span></span>}
         </button>
       )}

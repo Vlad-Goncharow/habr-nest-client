@@ -1,14 +1,17 @@
 import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
 import { FormLogin } from 'entities/User'
+import i18next from 'i18next'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
-import s from './LoginForm.module.scss'
 import UseLogin from '../model/lib'
+import s from './LoginForm.module.scss'
 
 function LoginForm() {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
@@ -39,7 +42,7 @@ function LoginForm() {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При авторизации произошла ошибка!',
+          content: i18next.t('loginError'),
         })
       )
       return
@@ -48,7 +51,7 @@ function LoginForm() {
 
   return (
     <form action='' className={s.form}>
-      <h1 className={s.form__title}>Вход</h1>
+      <h1 className={s.form__title}>{t('loginTitle')}</h1>
       <div className={s.form__item}>
         <label htmlFor='' className={s.form__label}>
           E-mail
@@ -58,18 +61,18 @@ function LoginForm() {
           type='text'
           className={s.form__input}
           {...register('email', {
-            required: 'Укажите вашу почту',
+            required: t('emailRequired'),
             pattern: {
               value:
                 /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: 'Введите корректный email',
+              message: t('emailRequiredValidate'),
             },
           })}
         />
       </div>
       <div className={s.form__item}>
         <label htmlFor='' className={s.form__label}>
-          Пароль
+          {t('password')}
         </label>
         {errors?.password && <span>{errors?.password.message}</span>}
         <input
@@ -78,13 +81,13 @@ function LoginForm() {
           {...register('password', {
             minLength: {
               value: 7,
-              message: 'Пароль минимум из 7 символов',
+              message: t('passwordMin'),
             },
             maxLength: {
               value: 50,
-              message: 'Пароль максимум из 50 символов',
+              message: t('passwordMax'),
             },
-            required: 'Укажите ваш пароль',
+            required: t('passwordRequired'),
           })}
         />
       </div>
@@ -94,7 +97,7 @@ function LoginForm() {
           [s.form__submit_disabled]: Object.keys(errors).length !== 0,
         })}
       >
-        Войти
+        {t('login')}
       </button>
     </form>
   )

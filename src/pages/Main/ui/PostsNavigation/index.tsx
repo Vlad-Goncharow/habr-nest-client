@@ -10,9 +10,7 @@ const PostsNavigation: React.FC = () => {
   const { t } = useTranslation()
 
   const { category, type } = useParams()
-  const currentCategory = postCategories.find(
-    (el) => el.categoryEng === category
-  )
+  const currentCategory = postCategories.find((el) => el.category === category)
 
   const [newInputValue, setNewInputValue] = React.useState('')
   const newInputValueDebounceInput = useDebounce(newInputValue, 700)
@@ -26,18 +24,18 @@ const PostsNavigation: React.FC = () => {
   return (
     <div className={s.wrapper}>
       <h1 className={s.title}>
-        {currentCategory ? t(currentCategory.categoryI18n) : t('categoryAll')}
+        {currentCategory ? t(currentCategory.category) : t('AllStreams')}
       </h1>
       <div className={s.category}>
         {subCategories.map((el: subCategoriesType) => (
           <Link
-            to={`/flows/${category}/${el.subCategoryEng}/1`}
+            to={`/flows/${category}/${el.subCategory}/1`}
             className={classNames(s.category__item, {
-              [s.category__item_active]: type === el.subCategoryEng,
+              [s.category__item_active]: type === el.subCategory,
             })}
-            key={el.subCategoryEng}
+            key={el.subCategory}
           >
-            {t(el.subCategoryI18n).toUpperCase()}
+            {t(el.subCategory).toUpperCase()}
           </Link>
         ))}
       </div>
@@ -51,7 +49,7 @@ const PostsNavigation: React.FC = () => {
           >
             <input
               type='text'
-              placeholder={t('inputPlaceHolderSearch')}
+              placeholder={t('inputPlaceholderSearch')}
               value={newInputValue}
               onChange={(e) => setNewInputValue(e.target.value)}
               className={s.search__input}

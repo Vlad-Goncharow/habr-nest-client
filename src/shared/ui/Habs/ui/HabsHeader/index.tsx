@@ -19,7 +19,7 @@ const HabsHeader: React.FC = () => {
   return (
     <div className={s.row}>
       <div className={s.name}>
-        <span>{t('habsListSortTitle')}</span>
+        <span>{t('name')}</span>
       </div>
       <div className={s.sort}>
         <Link
@@ -29,7 +29,7 @@ const HabsHeader: React.FC = () => {
             [s.sort__item_rotate]: order === 'asc' && sort === 'rating',
           })}
         >
-          <span>{t('habsListSortRating')}</span>
+          <span>{t('rating')}</span>
           <ArrowSvg />
         </Link>
         <Link
@@ -39,7 +39,7 @@ const HabsHeader: React.FC = () => {
             [s.sort__item_rotate]: order === 'asc' && sort === 'subs',
           })}
         >
-          <span>{t('habsListSortSubs')}</span>
+          <span>{t('subscribers')}</span>
           <ArrowSvg />
         </Link>
       </div>

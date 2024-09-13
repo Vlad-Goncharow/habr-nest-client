@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from '../../../../axios'
 import { userActions } from 'entities/User'
 import { fetchModalActions } from 'entities/FetchModal'
+import i18next from 'i18next'
 
 export const subscribeUser = createAsyncThunk(
   'user/subscribeUser',
@@ -16,7 +17,7 @@ export const subscribeUser = createAsyncThunk(
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При подписке произошла ошибка!',
+          content: i18next.t('subcribeError'),
         })
       )
       return false
@@ -37,7 +38,7 @@ export const unsubscribeUser = createAsyncThunk(
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При отписке произошла ошибка!',
+          content: i18next.t('unSubcribeError'),
         })
       )
       return false

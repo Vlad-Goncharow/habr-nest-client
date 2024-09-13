@@ -3,6 +3,7 @@ import { fetchModalActions } from 'entities/FetchModal'
 import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { loadCommentsFN } from '../api'
+import { useTranslation } from 'react-i18next'
 
 interface useCommentsProps {
   userId: string | undefined
@@ -11,6 +12,7 @@ interface useCommentsProps {
 }
 
 const useComments = (props: useCommentsProps): any => {
+  const { t } = useTranslation()
   const { page, type, userId } = props
   const dispatch = useAppDispatch()
 
@@ -25,7 +27,7 @@ const useComments = (props: useCommentsProps): any => {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Ошибка, попробуйте еще раз!',
+          content: t('userPageLoadCommentsError'),
         })
       )
     }

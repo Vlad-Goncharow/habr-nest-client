@@ -1,9 +1,10 @@
 import i18n from 'i18next'
-import { initReactI18next } from 'react-i18next'
 import detector from 'i18next-browser-languagedetector'
-import { ru } from './langs/ru'
-import { en } from './langs/en'
+import { initReactI18next } from 'react-i18next'
 import { LOCALS } from './constans'
+import { en } from './langs/en'
+import { ru } from './langs/ru'
+import { ua } from './langs/ua'
 
 const resources = {
   [LOCALS.EN]: {
@@ -12,6 +13,9 @@ const resources = {
   [LOCALS.RU]: {
     translation: ru,
   },
+  [LOCALS.UA]: {
+    translation: ua,
+  },
 }
 
 i18n
@@ -19,7 +23,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    fallbackLng: 'ru',
+    fallbackLng: 'ua',
 
     interpolation: {
       escapeValue: false,

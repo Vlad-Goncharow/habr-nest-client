@@ -3,8 +3,10 @@ import s from './UnauthorizedHeader.module.scss'
 import { ReactComponent as Settings } from 'shared/images/svg/settingPage.svg'
 import { Link } from 'react-router-dom'
 import { HeaderContext } from '../Header/Header'
+import { useTranslation } from 'react-i18next'
 
 function UnauthorizedHeader() {
+  const { t } = useTranslation()
   const { setSettingsIsOpen } = useContext(HeaderContext)
 
   const openSettingMenu = () => {
@@ -19,7 +21,7 @@ function UnauthorizedHeader() {
         <Settings />
       </div>
       <Link to='/login' type='button' className={s.btn}>
-        Войти
+        {t('login')}
       </Link>
     </>
   )

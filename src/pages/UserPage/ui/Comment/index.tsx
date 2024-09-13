@@ -4,12 +4,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { ICommentEx } from 'shared/types/comments'
 import s from './Comment.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface CommentProps {
   comment: ICommentEx
 }
 
 const Comment: React.FC<CommentProps> = ({ comment }) => {
+  const { t } = useTranslation()
   const contentStateFromJSON = convertFromRaw(JSON.parse(comment.content))
   const restoredEditorState =
     EditorState.createWithContent(contentStateFromJSON)
@@ -45,7 +47,7 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
         to={`/article/${comment.postId}/comments/#comment_${comment.id}`}
         className={s.comment__watch}
       >
-        Посмотреть
+        {t('commentsView')}
       </Link>
     </div>
   )

@@ -74,7 +74,7 @@ const CustomTooltip = (props: any) => {
           {open && (
             <div ref={menuRef} className={s.menu}>
               <div onMouseDown={deleteBlock} className={s.button}>
-                {t('postCreateControlsDelete')}
+                {t('delete')}
               </div>
             </div>
           )}

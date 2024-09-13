@@ -3,6 +3,7 @@ import axios from '../../../../axios'
 import { userActions } from 'entities/User'
 import { fetchModalActions } from 'entities/FetchModal'
 import { RootState } from 'app/providers/StoreProvider'
+import i18next from 'i18next'
 
 export const subscribeToHab = createAsyncThunk(
   'user/subscribeToHab',
@@ -22,7 +23,7 @@ export const subscribeToHab = createAsyncThunk(
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При подписке произошла ошибка!',
+          content: i18next.t('subcribeError'),
         })
       )
       return false
@@ -48,7 +49,7 @@ export const unsubscribeFromHab = createAsyncThunk(
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При отписке произошла ошибка!',
+          content: i18next.t('unSubcribeError'),
         })
       )
       return false

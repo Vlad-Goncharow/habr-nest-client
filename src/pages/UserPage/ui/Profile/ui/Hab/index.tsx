@@ -6,12 +6,14 @@ import { Link } from 'react-router-dom'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import s from './Hab.module.scss'
 import { HabsType } from 'shared/types/habs'
+import { useTranslation } from 'react-i18next'
 
 interface HabProps {
   habData: HabsType
 }
 
 const Hab: React.FC<HabProps> = ({ habData }) => {
+  const { t } = useTranslation()
   const { user } = useAppSelector(getUserData)
 
   const habRef = React.useRef<HTMLDivElement>(null)
@@ -46,16 +48,18 @@ const Hab: React.FC<HabProps> = ({ habData }) => {
             </div>
             <div className={s.rating}>
               <span>{habData.rating}</span>
-              <span>Рейтинг</span>
+              <span>{t('rating')}</span>
             </div>
           </div>
           <span className={s.hab__title}>{habData.title}</span>
           <span className={s.hab__descr}>{habData.description}</span>
           <SubscribeHab habId={habData.id} />
           <div className={s.stats}>
-            <div className={s.stats__item}>Публикации {habData.postsCount}</div>
             <div className={s.stats__item}>
-              Подписчики {habData.subscribersCount}
+              {t('sidebarHabsPublicationsCount')} {habData.postsCount}
+            </div>
+            <div className={s.stats__item}>
+              {t('subscribers')} {habData.subscribersCount}
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { loadFavoritePostsFN } from '../api'
 import { fetchModalActions } from 'entities/FetchModal'
+import { useTranslation } from 'react-i18next'
 
 interface useFavoritesPostsProps {
   userId: string | undefined
@@ -12,6 +13,7 @@ interface useFavoritesPostsProps {
 }
 
 const useFavoritesPosts = (props: useFavoritesPostsProps): any => {
+  const { t } = useTranslation()
   const { page, type, subType, userId } = props
   const dispatch = useAppDispatch()
 
@@ -26,7 +28,7 @@ const useFavoritesPosts = (props: useFavoritesPostsProps): any => {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Ошибка, попробуйте еще раз!',
+          content: t('loadFavoritePublicationsError'),
         })
       )
     }

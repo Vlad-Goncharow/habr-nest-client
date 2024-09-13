@@ -31,7 +31,7 @@ const SidebarReadWeekly: React.FC<SidebarReadWeeklyProps> = ({ category }) => {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'Ошибка, попробуйте еще раз!',
+            content: t('sidebarWeeklyPostsError'),
           })
         )
         setLoading(false)

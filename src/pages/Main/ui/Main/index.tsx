@@ -13,9 +13,9 @@ function Main() {
   const { t } = useTranslation()
   const { type, category } = useParams()
 
-  const categoryFind = postCategories.find((el) => el.categoryEng === category)
+  const categoryFind = postCategories.find((el) => el.category === category)
 
-  const typeFind = subCategories.find((el) => el.subCategoryEng === type)
+  const typeFind = subCategories.find((el) => el.subCategory === type)
 
   return (
     <>
@@ -24,16 +24,12 @@ function Main() {
         <title>
           {(
             categoryFind
-              ? t(`${categoryFind.categoryI18n}`)
-              : false && t(`${typeFind?.subCategoryI18n}`)
+              ? t(`${categoryFind.category}`)
+              : false && t(`${typeFind?.subCategory}`)
           )
-            ? `${t(`${categoryFind?.categoryI18n}`)} / ${t(`${typeFind?.subCategoryI18n}`)} / ${t('siteTitle')}!`
-            : `${t(`${typeFind?.subCategoryI18n}`)} / ${t('siteTitle')}!`}
+            ? `${t(`${categoryFind?.category}`)} / ${t(`${typeFind?.subCategory}`)} / ${t('siteTitle')}!`
+            : `${t(`${typeFind?.subCategory}`)} / ${t('siteTitle')}!`}
         </title>
-        <meta
-          name='description'
-          content='Лучшие статьи за последние 24 часа на Не Хабре'
-        ></meta>
       </Helmet>
       <div className={'wrapper'}>
         <div className='wrapper__left'>

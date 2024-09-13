@@ -3,68 +3,70 @@ import React from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 import s from './UserNav.module.scss'
+import { useTranslation } from 'react-i18next'
 
 type categoriesType = {
-  categoryRu: string
-  categoryEng: string
+  categoryI18n: string
+  category: string
 }
 
 type subCategoriesType = {
-  subCategoryRu: string
-  subCategoryEng: string
+  subCategoryI18n: string
+  subCategory: string
 }
 
 const categories: categoriesType[] = [
   {
-    categoryRu: 'Профиль',
-    categoryEng: 'profile',
+    categoryI18n: 'userNavProfile',
+    category: 'profile',
   },
   {
-    categoryRu: 'Публикации',
-    categoryEng: 'publications',
+    categoryI18n: 'userNavPublications',
+    category: 'publications',
   },
   {
-    categoryRu: 'Коментарии',
-    categoryEng: 'comments',
+    categoryI18n: 'userNavComments',
+    category: 'comments',
   },
   {
-    categoryRu: 'Закладки',
-    categoryEng: 'favorites',
+    categoryI18n: 'userNavFavorites',
+    category: 'favorites',
   },
   {
-    categoryRu: 'Подписчики',
-    categoryEng: 'subscribers',
+    categoryI18n: 'userNavSubscribers',
+    category: 'subscribers',
   },
   {
-    categoryRu: 'Подписки',
-    categoryEng: 'subscriptions',
+    categoryI18n: 'userNavSubscriptions',
+    category: 'subscriptions',
   },
 ]
 
 const subCategoriesPosts: subCategoriesType[] = [
   {
-    subCategoryRu: 'Статьи',
-    subCategoryEng: 'articles',
+    subCategoryI18n: 'userNavPublicationsAricles',
+    subCategory: 'articles',
   },
   {
-    subCategoryRu: 'Посты',
-    subCategoryEng: 'posts',
+    subCategoryI18n: 'userNavPublicationsPosts',
+    subCategory: 'posts',
   },
   {
-    subCategoryRu: 'Новости',
-    subCategoryEng: 'news',
+    subCategoryI18n: 'userNavPublicationsNews',
+    subCategory: 'news',
   },
 ]
 
 const subCategoriesFavorites: subCategoriesType[] = [
   ...subCategoriesPosts,
   {
-    subCategoryRu: 'Коментарии',
-    subCategoryEng: 'comments',
+    subCategoryI18n: 'userNavFavoritesComments',
+    subCategory: 'comments',
   },
 ]
 
 const UserNav = () => {
+  const { t } = useTranslation()
   const { type, subType, userId } = useParams()
 
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
@@ -75,21 +77,21 @@ const UserNav = () => {
     return type === 'publications' ? subCategoriesPosts : subCategoriesFavorites
   }
   const selectedCategory = getSubCategories().find(
-    (el) => el.subCategoryEng === subType
-  )?.subCategoryRu
+    (el) => el.subCategory === subType
+  )
 
   return (
     <div className={s.navigation}>
       <div className={s.navigation__top}>
         {categories.map((el: categoriesType) => (
           <Link
-            key={`${el.categoryEng}`}
-            to={`/user/${userId}/${el.categoryEng === 'publications' || el.categoryEng === 'favorites' ? `${el.categoryEng}/articles` : el.categoryEng}/1`}
+            key={`${el.category}`}
+            to={`/user/${userId}/${el.category === 'publications' || el.category === 'favorites' ? `${el.category}/articles` : el.category}/1`}
             className={classNames(s.navigation__item, {
-              [s.navigation__item_active]: el.categoryEng === type,
+              [s.navigation__item_active]: el.category === type,
             })}
           >
-            {el.categoryRu}
+            {t(el.categoryI18n)}
           </Link>
         ))}
       </div>
@@ -101,21 +103,21 @@ const UserNav = () => {
             onClick={() => setPopupIsOpen((prev) => !prev)}
             className={s.menu__item}
           >
-            {selectedCategory}
+            {t(`${selectedCategory?.subCategoryI18n}`)}
           </div>
           {popupIsOpen && (
             <div className={s.popup}>
               {getSubCategories().map((el: subCategoriesType) => (
                 <Link
                   role={`subcategory-${type}`}
-                  key={`${el.subCategoryEng}`}
-                  to={`/user/${userId}/${type}/${el.subCategoryEng}/1`}
+                  key={`${el.subCategory}`}
+                  to={`/user/${userId}/${type}/${el.subCategory}/1`}
                   onClick={() => setPopupIsOpen(false)}
                   className={classNames(s.popup__item, {
-                    [s.popup__item_active]: el.subCategoryEng === subType,
+                    [s.popup__item_active]: el.subCategory === subType,
                   })}
                 >
-                  {el.subCategoryRu}
+                  {t(el.subCategoryI18n)}
                 </Link>
               ))}
             </div>

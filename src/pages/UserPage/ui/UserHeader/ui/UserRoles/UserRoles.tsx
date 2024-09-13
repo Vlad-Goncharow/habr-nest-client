@@ -7,12 +7,14 @@ import axios from '../../../../../../axios'
 import { fetchModalActions } from 'entities/FetchModal'
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 import classNames from 'classnames'
+import { useTranslation } from 'react-i18next'
 
 interface UserRolesProps {
   userData: IUser
 }
 
 const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const [isOpen, setIsOpen] = React.useState(false)
@@ -31,7 +33,7 @@ const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
         dispatch(
           fetchModalActions.showModal({
             type: 'good',
-            content: 'Роль успешно выдана!',
+            content: t('roleAddSuccess'),
           })
         )
       }
@@ -39,7 +41,7 @@ const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При добовлении роли произошла ошибка!',
+          content: t('userAddRoleError'),
         })
       )
     }
@@ -53,7 +55,7 @@ const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
         dispatch(
           fetchModalActions.showModal({
             type: 'good',
-            content: 'Роль успешно забрана!',
+            content: t('roleRemoveSuccess'),
           })
         )
       }
@@ -61,7 +63,7 @@ const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При удалении роли произошла ошибка!',
+          content: t('userDeleteRoleError'),
         })
       )
     }
@@ -88,7 +90,7 @@ const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
           </div>
           {isOpen && (
             <div className={s.popup}>
-              <h2 className={s.popup__title}>Роль Модератора</h2>
+              <h2 className={s.popup__title}>{t('roleModeratorTitle')}</h2>
               <button
                 onClick={handleRoles}
                 className={classNames(s.button, {
@@ -96,7 +98,7 @@ const UserRoles: React.FC<UserRolesProps> = ({ userData }) => {
                   [s.button_disable]: isUserModer === true,
                 })}
               >
-                {isUserModer ? 'Забрать' : 'Выдать'}
+                {isUserModer ? t('roleRemove') : t('roleAdd')}
               </button>
             </div>
           )}

@@ -7,8 +7,11 @@ import { useNavigate } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import UseRegister from '../model/lib'
 import s from './RegisterForm.module.scss'
+import { useTranslation } from 'react-i18next'
+import i18next from 'i18next'
 
 function RegisterForm() {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const navigate = useNavigate()
@@ -42,7 +45,7 @@ function RegisterForm() {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При авторизации произошла ошибка!',
+          content: i18next.t('registerError'),
         })
       )
       return
@@ -51,7 +54,7 @@ function RegisterForm() {
 
   return (
     <form action='' className={s.form}>
-      <h1 className={s.form__title}>Регистрация</h1>
+      <h1 className={s.form__title}>{t('register')}</h1>
       <div className={s.form__item}>
         <label htmlFor='' className={s.form__label}>
           E-mail
@@ -61,39 +64,39 @@ function RegisterForm() {
           type='text'
           className={s.form__input}
           {...register('email', {
-            required: 'Укажите вашу почту',
+            required: t('emailRequired'),
             pattern: {
               value:
                 /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-              message: 'Введите корректный email',
+              message: t('emailRequiredValidate'),
             },
           })}
         />
       </div>
       <div className={s.form__item}>
         <label htmlFor='' className={s.form__label}>
-          Никнейм
+          {t('nickname')}
         </label>
         {errors?.nickname && <span>{errors?.nickname.message}</span>}
         <input
           type='text'
           className={s.form__input}
           {...register('nickname', {
-            required: 'Укажите ваш никнейм',
+            required: t('nicknameRequired'),
             minLength: {
               value: 10,
-              message: 'Длина ника минимум 10 символов',
+              message: t('nicknameMin'),
             },
             maxLength: {
               value: 20,
-              message: 'Длина ника максимум 20 символов',
+              message: t('nicknameMax'),
             },
           })}
         />
       </div>
       <div className={s.form__item}>
         <label htmlFor='' className={s.form__label}>
-          Пароль
+          {t('password')}
         </label>
         {errors?.password && <span>{errors?.password.message}</span>}
         <input
@@ -102,19 +105,19 @@ function RegisterForm() {
           {...register('password', {
             minLength: {
               value: 7,
-              message: 'Пароль минимум из 7 символов',
+              message: t('passwordMin'),
             },
             maxLength: {
               value: 50,
-              message: 'Пароль максимум из 50 символов',
+              message: t('passwordMax'),
             },
-            required: 'Укажите ваш пароль',
+            required: t('passwordRequired'),
           })}
         />
       </div>
       <div className={s.form__item}>
         <label htmlFor='passwordEqual' className={s.form__label}>
-          Пароль еще раз
+          {t('passwordRepeat')}
         </label>
         {errors?.passwordEqual && <span>{errors?.passwordEqual.message}</span>}
         <input
@@ -126,18 +129,18 @@ function RegisterForm() {
               : s.form__input
           }
           {...register('passwordEqual', {
-            required: 'Повторите пароль',
+            required: t('passwordRepeatRequiredError'),
             minLength: {
               value: 7,
-              message: 'Пароль минимум из 7 символов',
+              message: t('passwordMin'),
             },
             maxLength: {
               value: 50,
-              message: 'Пароль максимум из 50 символов',
+              message: t('passwordMax'),
             },
             validate: (val) => {
               if (watch('password') !== val) {
-                return 'Пароли не совпадают'
+                return t('passwordRepeatRequiredError')
               }
             },
           })}
@@ -149,7 +152,7 @@ function RegisterForm() {
           [s.form__submit_disabled]: Object.keys(errors).length !== 0,
         })}
       >
-        Регистрация
+        {t('register')}
       </button>
     </form>
   )

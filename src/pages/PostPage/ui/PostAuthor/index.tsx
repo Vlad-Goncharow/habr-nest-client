@@ -3,12 +3,14 @@ import { SubscribeUser } from 'features/SubscribeUser'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import s from './PostAuthor.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface PostAuthorProps {
   author: IUser
 }
 
 const PostAuthor: React.FC<PostAuthorProps> = ({ author }) => {
+  const { t } = useTranslation()
   return (
     <div className={s.author}>
       <div className={s.author__top}>
@@ -20,11 +22,11 @@ const PostAuthor: React.FC<PostAuthorProps> = ({ author }) => {
         </div>
         <div className={s.author__item}>
           <span>{`${author?.karma}`}</span>
-          <p>Карма</p>
+          <p>{t('karma')}</p>
         </div>
         <div className={s.author__item}>
           <span>{`${author?.rating}`}</span>
-          <p>Рейтинг</p>
+          <p>{t('rating')}</p>
         </div>
         <SubscribeUser userId={author.id} />
       </div>

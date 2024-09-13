@@ -5,8 +5,10 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { IPost } from 'shared/types/posts'
 import { PostsList, PostsSceleton } from 'shared/ui/PostsList'
 import axios from '../../../../axios'
+import { useTranslation } from 'react-i18next'
 
 function Articles() {
+  const { t } = useTranslation()
   const { page } = useParams()
 
   const dispatch = useAppDispatch()
@@ -32,7 +34,7 @@ function Articles() {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'Ошибка, попробуйте еще раз!',
+            content: t('searchPageArticlesError'),
           })
         )
       }

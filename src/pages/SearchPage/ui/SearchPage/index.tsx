@@ -10,23 +10,25 @@ import {
 } from 'react-router-dom'
 import s from './SearchPage.module.scss'
 import { Helmet } from 'react-helmet'
+import { useTranslation } from 'react-i18next'
 
 const navList = [
   {
-    navRu: 'Статьй',
+    navI18n: 'articles',
     navEng: 'articles',
   },
   {
-    navRu: 'Хабы',
+    navI18n: 'habs',
     navEng: 'habs',
   },
   {
-    navRu: 'Пользователи',
+    navI18n: 'users',
     navEng: 'authors',
   },
 ]
 
 function SearchPage() {
+  const { t } = useTranslation()
   const { type } = useParams()
   const navigate = useNavigate()
 
@@ -57,10 +59,12 @@ function SearchPage() {
     <>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Пойск / Не Хабр</title>
+        <title>
+          {t('search')} / {t('siteTitle')}
+        </title>
         <meta
           name='description'
-          content={`Страница пойска постов, людей, хабов на Не Хабре`}
+          content={`${'searchDescr'} ${'siteTitle'}`}
         ></meta>
       </Helmet>
       <div className={'wrapper'}>
@@ -95,7 +99,7 @@ function SearchPage() {
                       [s.nav__item_active]: type === el.navEng,
                     })}
                   >
-                    {el.navRu}
+                    {t(el.navI18n)}
                   </Link>
                 ))}
               </nav>

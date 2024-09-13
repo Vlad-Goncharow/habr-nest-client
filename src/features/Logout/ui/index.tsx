@@ -1,5 +1,6 @@
 import { fetchModalActions } from 'entities/FetchModal'
 import { fetchLogout } from 'entities/User'
+import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
@@ -16,7 +17,7 @@ function Logout() {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Произошла ошибка!',
+          content: i18next.t('defaultError'),
         })
       )
     }

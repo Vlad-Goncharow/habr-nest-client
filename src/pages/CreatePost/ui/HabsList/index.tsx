@@ -1,13 +1,13 @@
 import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { IHab } from 'shared/types/habs'
 import axios from '../../../../axios'
 import { ValuesType } from '../CreatePost'
 import s from './HabsList.module.scss'
-import { useTranslation } from 'react-i18next'
 
 interface HabsListProps {
   habs: IHab[] | []
@@ -35,7 +35,7 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'При загрузки списка хабов произошла ошибка!',
+            content: t('loadAllHabsError'),
           })
         )
       }

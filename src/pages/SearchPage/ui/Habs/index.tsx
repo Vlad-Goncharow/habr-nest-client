@@ -4,8 +4,10 @@ import { useParams, useSearchParams } from 'react-router-dom'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { HabsList, HabsSkeleton } from 'shared/ui/Habs'
 import axios from '../../../../axios'
+import { useTranslation } from 'react-i18next'
 
 function Habs() {
+  const { t } = useTranslation()
   const { page } = useParams()
 
   const dispatch = useAppDispatch()
@@ -33,7 +35,7 @@ function Habs() {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'Ошибка, попробуйте еще раз!',
+            content: t('searchPageHabsError'),
           })
         )
       }

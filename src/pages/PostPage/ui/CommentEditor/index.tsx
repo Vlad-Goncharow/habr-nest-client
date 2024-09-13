@@ -8,12 +8,14 @@ import { IComment } from 'shared/types/comments'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
 import { convertToRaw } from 'draft-js'
+import { useTranslation } from 'react-i18next'
 
 interface CommentEditorProps {
   setComments: React.Dispatch<React.SetStateAction<IComment[]>>
 }
 
 const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const { postId } = useParams()
@@ -42,7 +44,7 @@ const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При отправке комментария произошла ошибка!',
+          content: t('commentSendError'),
         })
       )
     }
@@ -78,7 +80,7 @@ const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
 
   return (
     <div className={s.form}>
-      <h3 className={s.form__title}>Ваш Коментарий</h3>
+      <h3 className={s.form__title}>{t('commentsTitle')}</h3>
       <div onClick={() => editorRef.current.focus()} className={s.editor}>
         <Editor
           editorState={editorState}
@@ -89,7 +91,7 @@ const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
       <div className={s.form__bottom}>
         <div onClick={handleButtonClick} className={s.buttons}>
           <button ref={submitComment} type='button' className={s.buttons__btn}>
-            Отправить
+            {t('commentsSend')}
           </button>
         </div>
       </div>

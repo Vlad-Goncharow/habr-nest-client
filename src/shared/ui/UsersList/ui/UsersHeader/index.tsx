@@ -16,7 +16,7 @@ function UsersHeader() {
 
   return (
     <div className={s.row}>
-      <div className={s.name}>{t('authorsListSortTitle')}</div>
+      <div className={s.name}>{t('name')}</div>
       <div className={s.sort}>
         <Link
           to={`./?sort=rating&order=${order === 'desc' ? 'asc' : 'desc'}${queryString}`}
@@ -25,7 +25,7 @@ function UsersHeader() {
             [s.sort__item_rotate]: order === 'asc' && sort === 'rating',
           })}
         >
-          <span>{t('authorsListSortRating')}</span>
+          <span>{t('rating')}</span>
           <ArrowSvg />
         </Link>
         <Link
@@ -35,7 +35,7 @@ function UsersHeader() {
             [s.sort__item_rotate]: order === 'asc' && sort === 'karma',
           })}
         >
-          <span>{t('authorsListSortKarma')}</span>
+          <span>{t('karma')}</span>
           <ArrowSvg />
         </Link>
       </div>

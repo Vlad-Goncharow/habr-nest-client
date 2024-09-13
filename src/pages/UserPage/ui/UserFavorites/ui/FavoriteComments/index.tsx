@@ -1,6 +1,7 @@
 import useFavoritesComments from 'pages/UserPage/model/hooks/useFavoriteComments'
 import { useParams } from 'react-router-dom'
 import CommentsList from '../../../CommentsList'
+import CommentsSkeleton from 'pages/UserPage/ui/CommentsSkeleton'
 
 function FavoriteComments() {
   const { userId, type, subType, page } = useParams()
@@ -14,13 +15,14 @@ function FavoriteComments() {
 
   return (
     <>
-      {isSuccess && (
+      {!isLoading && isSuccess ? (
         <CommentsList
           comments={comments}
           length={length}
-          loading={isLoading}
           navigatePath={`/user/${userId}/${type}/${subType}`}
         />
+      ) : (
+        <CommentsSkeleton />
       )}
     </>
   )

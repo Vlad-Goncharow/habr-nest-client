@@ -5,12 +5,14 @@ import { useAppSelector } from 'shared/hooks/useAppSelector'
 import UserNav from '../../../UserNav/UserNav'
 import UserRoles from '../UserRoles/UserRoles'
 import s from './UserHeader.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface UserHeaderProps {
   userData: IUser
 }
 
 const UserHeader: React.FC<UserHeaderProps> = ({ userData }) => {
+  const { t } = useTranslation()
   const isUserAdmin = useAppSelector(checkRolesAdmin)
 
   return (
@@ -26,11 +28,11 @@ const UserHeader: React.FC<UserHeaderProps> = ({ userData }) => {
           <div className={s.stat}>
             <div className={s.stat__item}>
               <span>{userData.karma}</span>
-              <p>Карма</p>
+              <p>{t('karma')}</p>
             </div>
             <div className={s.stat__item}>
               <span>{userData.rating}</span>
-              <p>Рейтинг</p>
+              <p>{t('rating')}</p>
             </div>
           </div>
         </div>
@@ -39,7 +41,9 @@ const UserHeader: React.FC<UserHeaderProps> = ({ userData }) => {
       </div>
       <h1 className={s.name}>{`@${userData?.nickname}`}</h1>
       <p className={s.descr}>{userData?.description}</p>
-      <p className={s.descr}>Полное имя - {userData?.fullName}</p>
+      <p className={s.descr}>
+        {t('userFullname')} - {userData?.fullName}
+      </p>
       <UserNav />
     </header>
   )

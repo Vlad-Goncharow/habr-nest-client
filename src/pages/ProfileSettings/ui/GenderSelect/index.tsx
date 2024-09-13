@@ -3,6 +3,7 @@ import Select, { SingleValue } from 'react-select'
 import { SelectOption, ValuesType } from '../../types'
 import { darkThemeStyles, lightThemeStyles, males } from '../../utils'
 import { useTheme } from 'entities/Theme'
+import { useTranslation } from 'react-i18next'
 
 interface GenderSelectProps {
   values: ValuesType
@@ -15,6 +16,7 @@ const GenderSelect: React.FC<GenderSelectProps> = ({
   values,
   className,
 }) => {
+  const { t } = useTranslation()
   const changeGender = (e: SingleValue<SelectOption>) => {
     if (e) {
       setValues((prev: ValuesType) => ({ ...prev, gender: e }))
@@ -24,13 +26,22 @@ const GenderSelect: React.FC<GenderSelectProps> = ({
   const { theme } = useTheme()
   const styles = theme === 'dark' ? darkThemeStyles : lightThemeStyles
 
+  const options = males.map((el) => {
+    return {
+      value: el.value,
+      label: t(el.value),
+    }
+  })
+
+  const value = { ...values.gender, label: t(values.gender.label) }
+
   return (
     <div className={className.select}>
-      <span className={className.label}>Пол</span>
+      <span className={className.label}>{t('userGender')}</span>
       <Select
-        value={values.gender}
+        value={value}
         onChange={changeGender}
-        options={males}
+        options={options}
         styles={styles}
       />
     </div>

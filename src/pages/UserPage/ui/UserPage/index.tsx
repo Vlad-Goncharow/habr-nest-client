@@ -8,8 +8,10 @@ import PageSkeleton from '../PageSkeleton'
 import SideBar from '../SideBar'
 import { UserHeader } from '../UserHeader'
 import { Helmet } from 'react-helmet'
+import { useTranslation } from 'react-i18next'
 
 function UserPage() {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const { userId } = useParams()
@@ -29,7 +31,7 @@ function UserPage() {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'Ошибка, попробуйте еще раз!',
+            content: t('userLoadError'),
           })
         )
       }

@@ -1,9 +1,8 @@
-import React from 'react'
-import s from './Navbar.module.scss'
-import { Link, useParams } from 'react-router-dom'
-import { postCategories } from 'shared/global'
 import classNames from 'classnames'
 import { useTranslation } from 'react-i18next'
+import { Link, useParams } from 'react-router-dom'
+import { postCategories } from 'shared/global'
+import s from './Navbar.module.scss'
 
 const Navbar = () => {
   const { category } = useParams()
@@ -14,22 +13,22 @@ const Navbar = () => {
       <Link
         className={classNames(s.nav__link, {
           [s.nav__link_active]: !postCategories.some(
-            (el) => el.categoryEng === category
+            (el) => el.category === category
           ),
         })}
         to='/flows/all/articles/1'
       >
-        {t('categoryAll')}
+        {t('AllStreams')}
       </Link>
       {postCategories.map((el) => (
         <Link
-          key={el.categoryEng}
+          key={el.category}
           className={classNames(s.nav__link, {
-            [s.nav__link_active]: category === el.categoryEng,
+            [s.nav__link_active]: category === el.category,
           })}
-          to={`/flows/${el.categoryEng}/articles/1`}
+          to={`/flows/${el.category}/articles/1`}
         >
-          {t(el.categoryI18n)}
+          {t(el.category)}
         </Link>
       ))}
     </nav>

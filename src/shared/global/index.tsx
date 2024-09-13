@@ -1,90 +1,61 @@
 export type categoriesType = {
-  categoryI18n: string
-  categoryRu: string
-  categoryEng: string
+  category: string
 }
 
 export const postCategories: categoriesType[] = [
   {
-    categoryI18n: 'categoryDev',
-    categoryRu: 'Разработка',
-    categoryEng: 'develop',
+    category: 'develop',
   },
   {
-    categoryI18n: 'categoryAdmin',
-    categoryRu: 'Администрирование',
-    categoryEng: 'admin',
+    category: 'admin',
   },
   {
-    categoryI18n: 'categoryDesign',
-    categoryRu: 'Дизайн',
-    categoryEng: 'design',
+    category: 'design',
   },
   {
-    categoryI18n: 'categoryManagment',
-    categoryRu: 'Менеджмент',
-    categoryEng: 'management',
+    category: 'management',
   },
   {
-    categoryI18n: 'categoryMarketing',
-    categoryRu: 'Маркетинг',
-    categoryEng: 'marketing',
+    category: 'marketing',
   },
   {
-    categoryI18n: 'categoryPopsci',
-    categoryRu: 'Научпоп',
-    categoryEng: 'popsci',
+    category: 'popsci',
   },
 ]
 
 export const postTypeOne = [
   {
-    typeI18n: 'postTypeArticle',
-    typeEng: 'articles',
-    typeRu: 'Статья',
+    type: 'articles',
+    typeSingle: 'article',
   },
   {
-    typeI18n: 'postTypePost',
-    typeEng: 'posts',
-    typeRu: 'Пост',
+    type: 'posts',
+    typeSingle: 'post',
   },
   {
-    typeI18n: 'postTypeNews',
-    typeEng: 'news',
-    typeRu: 'Новость',
+    type: 'news',
+    typeSingle: 'newsSingle',
   },
 ]
 
 export type subCategoriesType = {
-  subCategoryI18n: string
-  subCategoryRu: string
-  subCategoryEng: string
+  subCategory: string
 }
 
 export const subCategories: subCategoriesType[] = [
   {
-    subCategoryI18n: 'navPublications',
-    subCategoryRu: 'Статьи',
-    subCategoryEng: 'articles',
+    subCategory: 'articles',
   },
   {
-    subCategoryI18n: 'navPosts',
-    subCategoryRu: 'Посты',
-    subCategoryEng: 'posts',
+    subCategory: 'posts',
   },
   {
-    subCategoryI18n: 'navNews',
-    subCategoryRu: 'Новости',
-    subCategoryEng: 'news',
+    subCategory: 'news',
   },
   {
-    subCategoryI18n: 'navHabs',
-    subCategoryRu: 'Хабы',
-    subCategoryEng: 'habs',
+    subCategory: 'habs',
   },
   {
-    subCategoryI18n: 'navAuthors',
-    subCategoryRu: 'Авторы',
-    subCategoryEng: 'authors',
+    subCategory: 'authors',
   },
 ]

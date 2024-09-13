@@ -1,31 +1,27 @@
 import classNames from 'classnames'
-import React, { ChangeEvent } from 'react'
-import { postCategories, postTypeOne } from 'shared/global'
-import axios from '../../../../axios'
-import HabsList from '../HabsList'
-import { ValuesType } from '../CreatePost'
-import s from './SecondStep.module.scss'
-import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
+import React, { ChangeEvent } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
+import { postCategories, postTypeOne } from 'shared/global'
+import { useAppDispatch } from 'shared/hooks/useAppDispatch'
+import axios from '../../../../axios'
+import { ValuesType } from '../CreatePost'
+import HabsList from '../HabsList'
+import s from './SecondStep.module.scss'
 
 const postDifficulty = [
   {
-    dificulty: 'unknown',
-    dificultyI18n: 'postDifficultyUnknown',
+    dificulty: 'Unknown',
   },
   {
-    dificulty: 'easy',
-    dificultyI18n: 'postDifficultyEasy',
+    dificulty: 'Easy',
   },
   {
-    dificulty: 'medium',
-    dificultyI18n: 'postDifficultyMedium',
+    dificulty: 'Medium',
   },
   {
-    dificulty: 'hard',
-    dificultyI18n: 'postDifficultyHard',
+    dificulty: 'Hard',
   },
 ]
 
@@ -120,7 +116,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Ошибка, попробуйте еще раз!',
+          content: t('defaultError'),
         })
       )
     }
@@ -144,6 +140,8 @@ const SecondStep: React.FC<SecondStepProps> = ({
       createPost()
     }
   }
+  console.log(values)
+
   return (
     <div className={s.wrapper}>
       <div className={s.item}>
@@ -152,13 +150,13 @@ const SecondStep: React.FC<SecondStepProps> = ({
           <ul className={s.type__list}>
             {postCategories.map((el) => (
               <li
-                key={el.categoryEng}
+                key={el.category}
                 className={classNames(s.type__li, {
-                  [s.type__li_active]: values.category === el.categoryEng,
+                  [s.type__li_active]: values.category === el.category,
                 })}
-                onClick={() => changePostCategory(el.categoryEng)}
+                onClick={() => changePostCategory(el.category)}
               >
-                <span>{t(el.categoryI18n)}</span>
+                <span>{t(el.category)}</span>
               </li>
             ))}
           </ul>
@@ -170,13 +168,13 @@ const SecondStep: React.FC<SecondStepProps> = ({
           <ul className={s.type__list}>
             {postTypeOne.map((el) => (
               <li
-                key={el.typeEng}
+                key={el.type}
                 className={classNames(s.type__li, {
-                  [s.type__li_active]: values.type === el.typeEng,
+                  [s.type__li_active]: values.type === el.type,
                 })}
-                onClick={() => changePostType(el.typeEng)}
+                onClick={() => changePostType(el.type)}
               >
-                <span>{t(el.typeI18n)}</span>
+                <span>{t(el.typeSingle)}</span>
               </li>
             ))}
           </ul>
@@ -193,10 +191,10 @@ const SecondStep: React.FC<SecondStepProps> = ({
             <div
               key={el.dificulty}
               className={classNames(s.dificult__item, {
-                [s.dificult__item_unknown]: el.dificulty === 'unknown',
-                [s.dificult__item_easy]: el.dificulty === 'easy',
-                [s.dificult__item_normal]: el.dificulty === 'medium',
-                [s.dificult__item_hard]: el.dificulty === 'hard',
+                [s.dificult__item_unknown]: el.dificulty === 'Unknown',
+                [s.dificult__item_easy]: el.dificulty === 'Easy',
+                [s.dificult__item_normal]: el.dificulty === 'Medium',
+                [s.dificult__item_hard]: el.dificulty === 'Hard',
               })}
             >
               <input
@@ -207,7 +205,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
                 checked={el.dificulty === values.difficulty || false}
               />
               <label htmlFor={el.dificulty}>
-                <span>{t(el.dificultyI18n)}</span>
+                <span>{t(el.dificulty)}</span>
               </label>
             </div>
           ))}

@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import axios from '../../axios'
 import { useAppDispatch } from './useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
@@ -8,6 +9,7 @@ interface useDeletePostProps {
 }
 
 export const useDeletePost = (props: useDeletePostProps): any => {
+  const { t } = useTranslation()
   const { query } = props
   const dispatch = useAppDispatch()
 
@@ -21,7 +23,7 @@ export const useDeletePost = (props: useDeletePostProps): any => {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Ошибка, попробуйте еще раз!',
+          content: t('deletePostError'),
         })
       )
     }

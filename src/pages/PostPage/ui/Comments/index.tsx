@@ -11,8 +11,10 @@ import axios from '../../../../axios'
 import Comment from '../Comment'
 import CommentEditor from '../CommentEditor'
 import s from './Comments.module.scss'
+import { useTranslation } from 'react-i18next'
 
 const Comments: React.FC = () => {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const { postId } = useParams()
@@ -37,7 +39,7 @@ const Comments: React.FC = () => {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'При загрузки комментариев произошла ошибка!',
+            content: t('commentLoadError'),
           })
         )
       }
@@ -65,7 +67,7 @@ const Comments: React.FC = () => {
     <div className={s.wrapper}>
       <div className={s.comments}>
         <h2 className={s.comments__title}>
-          Коментарии
+          {t('comments')}
           <span>{comments.length}</span>
         </h2>
         {loading ? (
@@ -91,8 +93,8 @@ const Comments: React.FC = () => {
       {user === null && (
         <div className={s.auth}>
           <span>
-            Только полноправные пользователи могут оставлять комментарии.{' '}
-            <Link to='/login'>Войдите</Link>, пожалуйста.
+            {t('commentsAuth')} <Link to='/login'>{t('login')}</Link>,{' '}
+            {t('please')}.
           </span>
         </div>
       )}

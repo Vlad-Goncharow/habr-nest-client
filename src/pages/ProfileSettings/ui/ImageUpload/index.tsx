@@ -1,6 +1,7 @@
 import { IUser } from 'entities/User'
 import React, { ChangeEvent } from 'react'
 import s from './ImageUpload.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface ImageUploadProps {
   setImageFile: any
@@ -8,6 +9,7 @@ interface ImageUploadProps {
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ setImageFile, user }) => {
+  const { t } = useTranslation()
   const [image, setImage] = React.useState<string>()
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
@@ -24,7 +26,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ setImageFile, user }) => {
 
   return (
     <div className={s.user}>
-      <h4 className={s.user__title}>Аватар</h4>
+      <h4 className={s.user__title}>{t('settingPageAvatar')}</h4>
       <div className={s.user__image}>
         <input
           type='file'
@@ -45,9 +47,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ setImageFile, user }) => {
         </>
       </div>
       <p className={s.user__info}>
-        Формат: jpg, gif, png. <br />
-        Максимальный размер файла: 1Mb. <br />
-        Разрешение: до 96x96px.
+        {t('settingPageAvatarFormats')}
+        <br />
+        {t('settingPageAvatarSize')}
+        <br />
+        {t('settingPageAvatarResolution')}
       </p>
     </div>
   )

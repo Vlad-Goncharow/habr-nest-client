@@ -16,6 +16,7 @@ import { ReactComponent as Share } from 'shared/images/svg/share.svg'
 import { IHab } from 'shared/types/habs'
 import { IPost } from 'shared/types/posts'
 import s from './Post.module.scss'
+import { useTranslation } from 'react-i18next'
 
 interface PostProps {
   post: IPost
@@ -23,6 +24,7 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ post, query }) => {
+  const { t } = useTranslation()
   const { user } = useAppSelector(getUserData)
 
   const deletePost = useDeletePost({ query })
@@ -86,7 +88,7 @@ const Post: React.FC<PostProps> = ({ post, query }) => {
         />
       </div>
       <Link to={`/post/${post.id}`} className={s.item__link}>
-        Читать далее
+        {t('readMore')}
       </Link>
       <footer className={s.footer}>
         <div className={s.footer__left}>
@@ -118,7 +120,7 @@ const Post: React.FC<PostProps> = ({ post, query }) => {
                       checkUserAdminOrModerator) && (
                       <li onClick={() => deletePost(post.id)}>
                         <Delete />
-                        <span>Удалить</span>
+                        <span>{t('delete')}</span>
                       </li>
                     )}
                   <li
@@ -129,7 +131,7 @@ const Post: React.FC<PostProps> = ({ post, query }) => {
                     }
                   >
                     <Share />
-                    <span>Поделиться</span>
+                    <span>{t('share')}</span>
                   </li>
                 </ul>
               </div>

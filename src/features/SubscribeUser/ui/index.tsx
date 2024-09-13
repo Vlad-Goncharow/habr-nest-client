@@ -4,12 +4,14 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import s from './SubscribeUser.module.scss'
 import { selectIsSubscribed, subscribeUser, unsubscribeUser } from '../model'
+import { useTranslation } from 'react-i18next'
 
 interface SubscribeUserProps {
   userId: number
 }
 
 const SubscribeUser: React.FC<SubscribeUserProps> = ({ userId }) => {
+  const { t } = useTranslation()
   const { user } = useAppSelector(getUserData)
   const dispatch = useAppDispatch()
 
@@ -36,7 +38,7 @@ const SubscribeUser: React.FC<SubscribeUserProps> = ({ userId }) => {
             isSubscribed ? handleUnsubscribe() : handleSubscribe()
           }}
         >
-          {isSubscribed ? 'Отписаться' : 'Подписаться'}
+          {isSubscribed ? t('unSubscribe') : t('subscribe')}
           {isSubscribed && <span></span>}
         </button>
       )}

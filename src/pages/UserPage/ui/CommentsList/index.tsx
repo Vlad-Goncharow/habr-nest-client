@@ -8,20 +8,16 @@ interface CommentsListProps {
   comments: ICommentEx[] | []
   length: number
   navigatePath: string
-  loading: boolean
 }
 
 const CommentsList: React.FC<CommentsListProps> = ({
   comments,
   length,
-  loading,
   navigatePath,
 }) => {
   return (
     <>
-      {loading ? (
-        <div>loading</div>
-      ) : length > 0 ? (
+      {comments.length > 0 ? (
         <>
           {comments.map((comment: ICommentEx) => (
             <Comment key={comment.id} comment={comment} />

@@ -16,8 +16,10 @@ import axios from '../../../../axios'
 import Comments from '../Comments'
 import PostAuthor from '../PostAuthor'
 import s from './PostPage.module.scss'
+import { useTranslation } from 'react-i18next'
 
 function PostPage() {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const { postId, type } = useParams()
@@ -33,7 +35,7 @@ function PostPage() {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'Ошибка, попробуйте еще раз!',
+            content: t('loadPostError'),
           })
         )
       }
@@ -91,7 +93,7 @@ function PostPage() {
                     [s.stats__item_hard]: postData.difficulty === 'Тяжело',
                   })}
                 >
-                  Сложность:<span>{postData.difficulty}</span>
+                  {t('complexity')}:<span>{t(postData.difficulty)}</span>
                 </div>
                 <div className={s.stats__item}>
                   <Views />
@@ -99,7 +101,7 @@ function PostPage() {
                 </div>
               </div>
               <div className={s.habs}>
-                <span>Хабы:</span>
+                <span>{t('habs')}:</span>
                 <ul>
                   {postData.habs.map((el: IHab) => (
                     <li key={`${el.id}`}>

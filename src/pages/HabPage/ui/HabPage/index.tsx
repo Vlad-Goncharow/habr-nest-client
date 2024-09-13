@@ -10,8 +10,10 @@ import axios from '../../../../axios'
 import Authors from '../Authors'
 import HabHeader from '../HabHeader'
 import HabPosts from '../HabPosts'
+import { useTranslation } from 'react-i18next'
 
 function HabPage() {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const { habId, type } = useParams()
@@ -27,7 +29,7 @@ function HabPage() {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
-            content: 'Ошибка, попробуйте еще раз!',
+            content: t('habPageLoadError'),
           })
         )
       }
@@ -38,7 +40,9 @@ function HabPage() {
     <div>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>{habData ? habData?.title : 'Страница хаба'} / Не Хабр</title>
+        <title>
+          {habData ? habData?.title : t('habPage')} / {t('siteTitle')}
+        </title>
         <meta
           name='description'
           content={`Страница хаба - ${habData?.title}`}

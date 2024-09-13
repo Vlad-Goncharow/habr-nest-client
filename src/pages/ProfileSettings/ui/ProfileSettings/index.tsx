@@ -13,8 +13,10 @@ import CountrySelect from '../CountrySelect'
 import GenderSelect from '../GenderSelect'
 import ImageUpload from '../ImageUpload'
 import s from './ProfileSettings.module.scss'
+import { useTranslation } from 'react-i18next'
 
 function ProfileSettings() {
+  const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
   const { user } = useAppSelector(getUserData)
@@ -57,18 +59,21 @@ function ProfileSettings() {
           gender: values.gender.value,
           country: values.country.value,
         })
-      )
+      ).unwrap()
+
       dispatch(
         fetchModalActions.showModal({
           type: 'good',
-          content: 'Профиль успешно обновлен',
+          content: t('profileUpdateSuccess'),
         })
       )
     } catch (e) {
+      console.log('error')
+
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Ошибка, попробуйте еще раз!',
+          content: t('updatePorofileError'),
         })
       )
     }
@@ -76,8 +81,10 @@ function ProfileSettings() {
 
   const checkUpdate = () => {
     if (
-      values.description !== user?.description ||
-      values.fullName !== user?.fullName ||
+      (values.description !== user?.description &&
+        values.description.length > 10 &&
+        values.description.length <= 20) ||
+      (values.fullName !== user?.fullName && values.fullName.length > 10) ||
       user?.country !== values.country.value ||
       user?.gender !== values.gender.value ||
       user?.dateOfBirth !== values.dateOfBirth ||
@@ -106,12 +113,12 @@ function ProfileSettings() {
         <meta name='description' content={`Страница профилья`}></meta>
       </Helmet>
       <div className={s.wrapper}>
-        <h1 className={s.header}>Настройки профиля</h1>
+        <h1 className={s.header}>{t('settingPageTitle')}</h1>
         <form action='' className={s.form}>
           <div className={s.top}>
             <div className={s.top__inputs}>
               <div className={s.inpitItem}>
-                <label htmlFor='name'>Настоящее имя</label>
+                <label htmlFor='name'>{t('settingPageRealName')}</label>
                 <input
                   id='name'
                   value={values.fullName}
@@ -123,13 +130,10 @@ function ProfileSettings() {
                   }
                   type='text'
                 />
-                <p>
-                  Укажите ваши имя и фамилию, чтобы другие пользователи смогли
-                  узнать, как вас зовут
-                </p>
+                <p>{t('settingPageRealNameDescr')}</p>
               </div>
               <div className={s.inpitItem}>
-                <label htmlFor='descr'>Опишите себя</label>
+                <label htmlFor='descr'>{t('settingPageAbout')}</label>
                 <input
                   id='desc'
                   value={values.description}
@@ -141,9 +145,7 @@ function ProfileSettings() {
                     }))
                   }
                 />
-                <p>
-                  Укажите свою специализацию. Например: Администратор баз данных
-                </p>
+                <p>{t('settingPageAboutDescr')}</p>
               </div>
             </div>
             <ImageUpload setImageFile={setImageFile} user={user} />
@@ -168,7 +170,7 @@ function ProfileSettings() {
           </div>
           <div className={s.row}>
             <div className={s.select}>
-              <span className={s.select__label}>Дата рождения</span>
+              <span className={s.select__label}>{t('userDateOfBirth')}</span>
               <DatePicker
                 wrapperClassName={s.select__date}
                 selected={
@@ -192,7 +194,7 @@ function ProfileSettings() {
               [s.form__submit_active]: checkUpdate(),
             })}
           >
-            Сохранить изменения
+            {t('settingPageSave')}
           </button>
         </form>
       </div>

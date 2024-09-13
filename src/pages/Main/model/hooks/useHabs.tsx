@@ -3,6 +3,7 @@ import { fetchModalActions } from 'entities/FetchModal'
 import React from 'react'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { loadHabsFN } from '../lib'
+import { useTranslation } from 'react-i18next'
 
 interface useHabsProps {
   type: string | undefined
@@ -14,6 +15,7 @@ interface useHabsProps {
 }
 
 const useHabs = (props: useHabsProps): any => {
+  const { t } = useTranslation()
   const { page, category, type, title, order, sort } = props
   const dispatch = useAppDispatch()
 
@@ -31,7 +33,7 @@ const useHabs = (props: useHabsProps): any => {
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'Ошибка, попробуйте еще раз!',
+          content: t('mainLoadHabsError'),
         })
       )
     }

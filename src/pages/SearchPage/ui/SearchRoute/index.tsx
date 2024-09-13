@@ -5,7 +5,6 @@ import Authors from '../Authors'
 
 function SearchRoute() {
   const { type } = useParams()
-  console.log(type)
 
   return (
     <>

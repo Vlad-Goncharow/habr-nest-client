@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchModalActions } from 'entities/FetchModal'
 import { userActions } from 'entities/User'
 import axios from '../../../../axios'
+import i18next from 'i18next'
 
 export const addFavoritePost = createAsyncThunk(
   'user/addFavoritePost',
@@ -16,7 +17,7 @@ export const addFavoritePost = createAsyncThunk(
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При подписке произошла ошибка!',
+          content: i18next.t('addFavorite'),
         })
       )
       return false
@@ -39,7 +40,7 @@ export const removeFavoritePost = createAsyncThunk(
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: 'При отписке произошла ошибка!',
+          content: i18next.t('removeFavorite'),
         })
       )
       return false

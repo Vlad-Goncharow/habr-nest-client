@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useComments } from '../../model'
 import CommentsList from '../CommentsList'
+import CommentsSkeleton from '../CommentsSkeleton'
 
 function UserComments() {
   const { userId, page, type } = useParams()
@@ -13,13 +14,14 @@ function UserComments() {
 
   return (
     <>
-      {isSuccess && (
+      {!isLoading && isSuccess ? (
         <CommentsList
           comments={comments}
           length={length}
-          loading={isLoading}
           navigatePath={`/user/${userId}/comments`}
         />
+      ) : (
+        <CommentsSkeleton />
       )}
     </>
   )
