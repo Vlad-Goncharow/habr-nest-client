@@ -14,22 +14,20 @@ function Main() {
   const { type, category } = useParams()
 
   const categoryFind = postCategories.find((el) => el.category === category)
-
   const typeFind = subCategories.find((el) => el.subCategory === type)
 
+  const myMeth = () =>{
+    if(categoryFind){
+      return `${t(categoryFind.category)} / ${t(`${typeFind?.subCategory}`)} / ${t('siteTitle')}`
+    } else {
+      return `${t('AllStreams')} / ${t(`${typeFind?.subCategory}`)} / ${t('siteTitle')}`
+    }
+  }
   return (
     <>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>
-          {(
-            categoryFind
-              ? t(`${categoryFind.category}`)
-              : false && t(`${typeFind?.subCategory}`)
-          )
-            ? `${t(`${categoryFind?.category}`)} / ${t(`${typeFind?.subCategory}`)} / ${t('siteTitle')}!`
-            : `${t(`${typeFind?.subCategory}`)} / ${t('siteTitle')}!`}
-        </title>
+        <title>{myMeth()}</title>
       </Helmet>
       <div className={'wrapper'}>
         <div className='wrapper__left'>

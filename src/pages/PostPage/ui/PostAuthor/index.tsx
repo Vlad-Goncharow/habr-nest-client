@@ -16,7 +16,7 @@ const PostAuthor: React.FC<PostAuthorProps> = ({ author }) => {
       <div className={s.author__top}>
         <div className={s.author__img}>
           <img
-            src={`${process.env.REACT_APP_SERVER_URL}/${author?.avatar}`}
+            src={`${process.env.REACT_APP_SERVER_URL}/uploads/avatars/${author?.avatar}`}
             alt=''
           />
         </div>

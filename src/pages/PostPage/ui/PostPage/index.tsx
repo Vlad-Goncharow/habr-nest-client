@@ -13,10 +13,10 @@ import { IPost } from 'shared/types/posts'
 import SidebarWrapper from 'shared/ui/SidebarWrapper'
 import { SidebarReadWeekly } from 'widgets/SidebarReadWeekly'
 import axios from '../../../../axios'
-import Comments from '../Comments'
 import PostAuthor from '../PostAuthor'
 import s from './PostPage.module.scss'
 import { useTranslation } from 'react-i18next'
+import { Comments } from '../Comments'
 
 function PostPage() {
   const { t } = useTranslation()
@@ -68,7 +68,7 @@ function PostPage() {
               <div className={s.author}>
                 <div className={s.author__img}>
                   <img
-                    src={`${process.env.REACT_APP_SERVER_URL}/${postData.author.avatar}`}
+                    src={`${process.env.REACT_APP_SERVER_URL}/uploads/avatars/${postData.author.avatar}`}
                     alt=''
                   />
                 </div>
@@ -112,7 +112,7 @@ function PostPage() {
               </div>
               <div className={s.post__img}>
                 <img
-                  src={`${process.env.REACT_APP_SERVER_URL}/${postData.image}`}
+                  src={`${process.env.REACT_APP_SERVER_URL}/uploads/publications/${postData.image}`}
                   alt=''
                 />
               </div>

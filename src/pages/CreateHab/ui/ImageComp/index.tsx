@@ -28,8 +28,8 @@ const ImageComp: React.FC<ImageProps> = ({ setImageFile }) => {
         className={s.image__upload}
       />
       <img
-        src={image ? image : `${process.env.REACT_APP_SERVER_URL}/default.jpg`}
-        alt='Картинка Хаба'
+        src={image}
+        alt=''
         className={s.image__img}
       />
     </div>

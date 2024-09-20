@@ -13,7 +13,7 @@ const HabItem: React.FC<HabItemProps> = ({ hab }) => {
       <div className={s.hab__left}>
         <div className={s.hab__image}>
           <img
-            src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`}
+            src={`${process.env.REACT_APP_SERVER_URL}/uploads/habs/${hab.image}`}
             alt=''
           />
         </div>

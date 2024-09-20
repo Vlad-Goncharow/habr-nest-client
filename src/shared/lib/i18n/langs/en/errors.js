@@ -1,6 +1,6 @@
 export const errorsEn = {
-  addFavorite: 'An error occurred while adding to favorites!',
-  removeFavorite: 'An error occurred while removing from favorites!',
+  addFavoriteError: 'An error occurred while adding to favorites!',
+  removeFavoriteError: 'An error occurred while removing from favorites!',
   subscribeError: 'An error occurred while subscribing!',
   unSubscribeError: 'An error occurred while unsubscribing!',
   loginError: 'An error occurred during authorization!',
@@ -35,4 +35,5 @@ export const errorsEn = {
   userLoadError: 'An error occurred while loading the user!',
   deletePostError: 'An error occurred while deleting the post!',
   sidebarWeeklyPostsError: 'An error occurred while loading the weekly posts!',
+  fileSizeError: 'Image to large',
 }

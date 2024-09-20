@@ -43,11 +43,11 @@ function UserPage() {
       <Helmet>
         <meta charSet='utf-8' />
         <title>
-          {userData ? userData?.nickname : 'Страница пользователя'} — Не Хабр
+          {userData ? userData?.nickname : t('userPageTitle')} — {t('siteTitle')}
         </title>
         <meta
           name='description'
-          content={`Страница пользователя - ${userData?.nickname} Не Хабре`}
+          content={`${t('userPageTitle')} - ${userData?.nickname} ${t('siteTitle')}`}
         ></meta>
       </Helmet>
       <div className={'wrapper'}>

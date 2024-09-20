@@ -13,7 +13,7 @@ const UserItem: React.FC<UserItemProps> = ({ user }) => {
       <div className={s.user__info}>
         <div className={s.user__image}>
           <img
-            src={`${process.env.REACT_APP_SERVER_URL}/${user.avatar}`}
+            src={`${process.env.REACT_APP_SERVER_URL}/uploads/avatars/${user.avatar}`}
             alt={`Картинка юзера ${user.nickname}`}
           />
         </div>

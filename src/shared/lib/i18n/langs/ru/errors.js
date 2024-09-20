@@ -1,6 +1,6 @@
 export const errorsRu = {
-  addFavorite: 'При добавлении в избранное произошла ошибка!',
-  removeFavorite: 'При удаления из избранного произошла ошибка!',
+  addFavoriteError: 'При добавлении в избранное произошла ошибка!',
+  removeFavoriteError: 'При удаления из избранного произошла ошибка!',
   subcribeError: 'При подписке произошла ошибка!',
   unSubcribeError: 'При отписке произошла ошибка!',
   loginError: 'При авторизации произошла ошибка!',
@@ -33,4 +33,5 @@ export const errorsRu = {
   deletePostError: 'При удалении публикации произошла ошибка!',
   sidebarWeeklyPostsError:
     'При загрузке недельных публикации произошла ошибка!',
+  fileSizeError:'Картика слишкой большая',
 }

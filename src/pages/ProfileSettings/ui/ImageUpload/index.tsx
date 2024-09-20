@@ -39,7 +39,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ setImageFile, user }) => {
             src={
               image
                 ? image
-                : `${process.env.REACT_APP_SERVER_URL}/${user?.avatar}`
+                : `${process.env.REACT_APP_SERVER_URL}/uploads/avatars//${user?.avatar}`
             }
             alt='Аватар пользователя'
             className={s.image__img}

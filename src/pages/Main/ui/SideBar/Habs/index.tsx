@@ -49,7 +49,7 @@ function Habs() {
                 <div className={s.hab__row}>
                   <div className={s.hab__image}>
                     <img
-                      src={`${process.env.REACT_APP_SERVER_URL}/${hab.image}`}
+                      src={`${process.env.REACT_APP_SERVER_URL}/uploads/habs/${hab.image}`}
                       alt={`${t('habImageAltText')} ${hab.title}`}
                     />
                   </div>

@@ -52,7 +52,7 @@ const Post: React.FC<PostProps> = ({ post, query }) => {
       <header className={s.item__header}>
         <div className={s.item__authorImg}>
           <img
-            src={`${process.env.REACT_APP_SERVER_URL}/${post.author.avatar}`}
+            src={`${process.env.REACT_APP_SERVER_URL}/uploads/avatars/${post.author.avatar}`}
             alt=''
           />
         </div>
@@ -77,7 +77,7 @@ const Post: React.FC<PostProps> = ({ post, query }) => {
         ))}
       </div>
       <div className={s.item__img}>
-        <img src={`${process.env.REACT_APP_SERVER_URL}/${post.image}`} alt='' />
+        <img src={`${process.env.REACT_APP_SERVER_URL}/uploads/publications/${post.image}`} alt='' />
       </div>
       <div className={s.item__text}>
         <Editor

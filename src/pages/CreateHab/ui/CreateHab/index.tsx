@@ -41,11 +41,11 @@ function CreateHab() {
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     const formData = new FormData()
     if (data.image) {
-      formData.append('file', data.image)
+      formData.append('hab', data.image)
     }
 
     try {
-      const image = await axios.post(`/files/upload`, formData)
+      const image = await axios.post(`/files/upload-hab`, formData)
       const hab = await axios.post(`/habs`, {
         ...data,
         image: image.data.filename,

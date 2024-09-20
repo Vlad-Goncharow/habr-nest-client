@@ -24,7 +24,7 @@ const Comment: React.FC<CommentProps> = ({ comment }) => {
       <header className={s.user}>
         <Link to={`/user/${comment.userId}/profile/1`} className={s.user__img}>
           <img
-            src={`${process.env.REACT_APP_SERVER_URL}/${comment.author?.avatar}`}
+            src={`${process.env.REACT_APP_SERVER_URL}/uploads/avatars/${comment.author?.avatar}`}
             alt=''
           />
         </Link>

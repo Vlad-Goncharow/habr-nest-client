@@ -62,7 +62,7 @@ const Comment: React.FC<CommentProps> = ({ item, user, deleteComment }) => {
       >
         <div className={s.comment__authorImg}>
           <img
-            src={`${process.env.REACT_APP_SERVER_URL}/${item.author?.avatar}`}
+            src={`${process.env.REACT_APP_SERVER_URL}/uploads/avatars/${item.author?.avatar}`}
             alt=''
           />
         </div>

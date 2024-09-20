@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Helmet } from 'react-helmet'
 import { uploadImage } from 'shared/api/images'
+import axios from '../../../../axios'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
 import { ValuesType } from '../../types'
@@ -47,9 +48,12 @@ function ProfileSettings() {
   const update = async () => {
     try {
       let url: string = user !== null ? user.avatar : ''
+      const formData = new FormData()
       if (imageFile) {
-        const data = await uploadImage(imageFile)
-        url = data
+        formData.append('avatar', imageFile)
+
+        const { data } = await axios.post('/files/upload-avatar', formData)
+        url = data.filename
       }
 
       await dispatch(
@@ -68,8 +72,6 @@ function ProfileSettings() {
         })
       )
     } catch (e) {
-      console.log('error')
-
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',

@@ -6,53 +6,42 @@ import s from './UserNav.module.scss'
 import { useTranslation } from 'react-i18next'
 
 type categoriesType = {
-  categoryI18n: string
   category: string
 }
 
 type subCategoriesType = {
-  subCategoryI18n: string
   subCategory: string
 }
 
 const categories: categoriesType[] = [
   {
-    categoryI18n: 'userNavProfile',
     category: 'profile',
   },
   {
-    categoryI18n: 'userNavPublications',
     category: 'publications',
   },
   {
-    categoryI18n: 'userNavComments',
     category: 'comments',
   },
   {
-    categoryI18n: 'userNavFavorites',
     category: 'favorites',
   },
   {
-    categoryI18n: 'userNavSubscribers',
     category: 'subscribers',
   },
   {
-    categoryI18n: 'userNavSubscriptions',
     category: 'subscriptions',
   },
 ]
 
 const subCategoriesPosts: subCategoriesType[] = [
   {
-    subCategoryI18n: 'userNavPublicationsAricles',
     subCategory: 'articles',
   },
   {
-    subCategoryI18n: 'userNavPublicationsPosts',
     subCategory: 'posts',
   },
   {
-    subCategoryI18n: 'userNavPublicationsNews',
     subCategory: 'news',
   },
 ]
@@ -60,7 +49,6 @@ const subCategoriesPosts: subCategoriesType[] = [
 const subCategoriesFavorites: subCategoriesType[] = [
   ...subCategoriesPosts,
   {
-    subCategoryI18n: 'userNavFavoritesComments',
     subCategory: 'comments',
   },
 ]
@@ -91,7 +79,7 @@ const UserNav = () => {
               [s.navigation__item_active]: el.category === type,
             })}
           >
-            {t(el.categoryI18n)}
+            {t(el.category)}
           </Link>
         ))}
       </div>
@@ -103,7 +91,7 @@ const UserNav = () => {
             onClick={() => setPopupIsOpen((prev) => !prev)}
             className={s.menu__item}
           >
-            {t(`${selectedCategory?.subCategoryI18n}`)}
+            {t(`${selectedCategory?.subCategory}`)}
           </div>
           {popupIsOpen && (
             <div className={s.popup}>
@@ -117,7 +105,7 @@ const UserNav = () => {
                     [s.popup__item_active]: el.subCategory === subType,
                   })}
                 >
-                  {t(el.subCategoryI18n)}
+                  {t(el.subCategory)}
                 </Link>
               ))}
             </div>

@@ -102,7 +102,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
 
   const createPost = async () => {
     const formData = new FormData()
-    formData.append('file', imageFile)
+    formData.append('publication', imageFile)
 
     try {
       const { data } = await axios.post(`/files/upload`, formData)
@@ -112,7 +112,16 @@ const SecondStep: React.FC<SecondStepProps> = ({
         image: data.filename,
       })
       navigate('/flows/all/articles/1')
-    } catch (error) {
+    } catch (error:any) {
+      if(error.response.status === 413){
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'bad',
+            content: t('fileSizeError'),
+          })
+        )
+        return
+      }
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
@@ -140,7 +149,6 @@ const SecondStep: React.FC<SecondStepProps> = ({
       createPost()
     }
   }
-  console.log(values)
 
   return (
     <div className={s.wrapper}>

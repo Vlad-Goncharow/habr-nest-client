@@ -1,0 +1,14 @@
+.wrapper {
+  background: var(--romance);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

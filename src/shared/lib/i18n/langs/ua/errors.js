@@ -1,6 +1,6 @@
 export const errorsUa = {
-  addFavorite: 'Сталася помилка при додаванні в обране!',
-  removeFavorite: 'Сталася помилка при видаленні з обраного!',
+  addFavoriteError: 'Сталася помилка при додаванні в обране!',
+  removeFavoriteError: 'Сталася помилка при видаленні з обраного!',
   subscribeError: 'Сталася помилка при підписці!',
   unsubscribeError: 'Сталася помилка при відписці!',
   loginError: 'Сталася помилка при авторизації!',
@@ -37,4 +37,5 @@ export const errorsUa = {
   deletePostError: 'Сталася помилка при видаленні публікації!',
   sidebarWeeklyPostsError:
     'Сталася помилка при завантаженні тижневих публікацій!',
+  fileSizeError: 'Картика надто велика',
 }

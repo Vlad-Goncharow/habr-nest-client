@@ -19,7 +19,7 @@ export const addFavoriteComment = createAsyncThunk(
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: i18next.t('addFavorite'),
+          content: i18next.t('addFavoriteError'),
         })
       )
       return false
@@ -42,7 +42,7 @@ export const removeFavoriteComment = createAsyncThunk(
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',
-          content: i18next.t('removeFavorite'),
+          content: i18next.t('removeFavoriteError'),
         })
       )
       return false

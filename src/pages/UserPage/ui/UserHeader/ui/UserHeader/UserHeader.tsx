@@ -21,7 +21,7 @@ const UserHeader: React.FC<UserHeaderProps> = ({ userData }) => {
         <div className={s.header__left}>
           <div className={s.header__image}>
             <img
-              src={`${process.env.REACT_APP_SERVER_URL}/${userData?.avatar}`}
+              src={`${process.env.REACT_APP_SERVER_URL}/uploads/avatars/${userData?.avatar}`}
               alt=''
             />
           </div>

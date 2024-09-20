@@ -4,6 +4,7 @@ import { IHab } from 'shared/types/habs'
 import FirstStep from '../FirstStep'
 import SecondStep from '../SecondStep'
 import Sidebar from '../Sidebar'
+import { useTranslation } from 'react-i18next'
 
 export interface ValuesType {
   title: string
@@ -16,6 +17,7 @@ export interface ValuesType {
 }
 
 function CreatePost() {
+  const {t} = useTranslation()
   const [step, setStep] = React.useState<number>(1)
 
   const [values, setValues] = React.useState<ValuesType>({
@@ -32,10 +34,10 @@ function CreatePost() {
     <>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>Создание публикации / Не Хабр</title>
+        <title>{t('publicationsCreate')} / {t('siteTitle')}</title>
         <meta
           name='description'
-          content={`Создание публикации / Не Хабр`}
+          content={`${t('publicationsCreate')} / ${t('siteTitle')}`}
         ></meta>
       </Helmet>
       <div className={'wrapper'}>
