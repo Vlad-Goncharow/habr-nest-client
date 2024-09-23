@@ -20,6 +20,10 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
 
   const [habsList, setHabsList] = React.useState<IHab[] | []>([])
 
+  let mainHabs = React.useMemo(() => {
+    return habsList.filter((el) => !habs.some(hab => hab.id === el.id))
+  },[habs, habsList])
+
   const [inputValue, setInputValue] = React.useState<string>('')
 
   const [popupIsOpen, setPopupIsOpen] = React.useState<boolean>(false)
@@ -44,11 +48,11 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
 
   const serachHabs = () => {
     if (inputValue) {
-      return habsList.filter((hub) =>
+        return mainHabs.filter((hub) =>
         hub.title.toLowerCase().includes(inputValue.toLowerCase())
       )
     } else {
-      return habsList
+      return mainHabs
     }
   }
 
@@ -60,16 +64,14 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
       }
     })
 
-    setHabsList((prev: IHab[]) => {
-      return prev.filter((el) => el.id !== hab.id)
-    })
+    mainHabs = mainHabs.filter((el) => el.id !== hab.id)
   }
 
   const deleteHab = (id: number) => {
     const findHab = habs.find((el) => el.id === id)
 
     if (findHab) {
-      setHabsList((prev: IHab[]) => [findHab, ...prev])
+      mainHabs = [findHab, ...mainHabs]
 
       setValues((prev: ValuesType) => {
         return {

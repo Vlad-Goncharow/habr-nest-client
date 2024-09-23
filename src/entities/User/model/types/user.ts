@@ -64,7 +64,7 @@ export type FormLoginFields = 'email' | 'password'
 
 export interface AuthRegisterError {
   message: string
-  param: FormRegisterFields[]
+  param: FormRegisterFields
 }
 export interface AuthLoginError {
   message: string

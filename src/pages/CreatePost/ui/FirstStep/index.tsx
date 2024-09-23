@@ -51,10 +51,12 @@ const FirstStep: React.FC<FirstStepProps> = ({
   const { t } = useTranslation()
   const editorRef = React.useRef<any>(null)
 
-  const [editorState, setEditorState] = React.useState(
-    EditorState.createEmpty()
+ const [editorState, setEditorState] = React.useState(
+    values.content 
+      ? EditorState.createWithContent(convertFromRaw(JSON.parse(values.content))) 
+      : EditorState.createEmpty()
   )
-
+  
   const [isShowStorage, setIsShowStorage] = React.useState<boolean>(false)
   React.useEffect(() => {
     const valuesLocalStorage = localStorage.getItem('postData')
