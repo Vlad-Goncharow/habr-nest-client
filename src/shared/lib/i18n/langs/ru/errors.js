@@ -33,5 +33,12 @@ export const errorsRu = {
   deletePostError: 'При удалении публикации произошла ошибка!',
   sidebarWeeklyPostsError:
     'При загрузке недельных публикации произошла ошибка!',
-  fileSizeError:'Картика слишкой большая',
+  fileSizeError: 'Картика слишкой большая',
+  sendVerifyEmailError: 'При отправке письма произошла ошибка!',
+  deleteUserError: 'При удалении произошла ошибка!',
+
+  emailTaken: 'Данная почта занята',
+  emailNotRegistered: 'Данная почта не зарегистрирована',
+  wrongPassword: 'Неверный пароль',
+  nicknameOcupied: 'Данная ник занят',
 }

@@ -9,12 +9,16 @@ import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { fetchModalActions } from 'entities/FetchModal'
 import { convertToRaw } from 'draft-js'
 import { useTranslation } from 'react-i18next'
+import IsActiveEmail from 'shared/ui/isActiveEmail'
+import { useAppSelector } from 'shared/hooks/useAppSelector'
+import { checkIsActiveEmail } from 'entities/User'
 
 interface CommentEditorProps {
   setComments: React.Dispatch<React.SetStateAction<IComment[]>>
 }
 
 const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
+  const isActiveEmail = useAppSelector(checkIsActiveEmail)
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
@@ -32,13 +36,15 @@ const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
 
   const clickSubmit = async () => {
     try {
-      const { data } = await axios.post(`/comments/create/${postId}`, {
-        content: value,
-      })
+      if (isActiveEmail) {
+        const { data } = await axios.post(`/comments/create/${postId}`, {
+          content: value,
+        })
 
-      if (data) {
-        setComments((prev: IComment[]) => [...prev, data])
-        setEditorState(EditorState.createEmpty())
+        if (data) {
+          setComments((prev: IComment[]) => [...prev, data])
+          setEditorState(EditorState.createEmpty())
+        }
       }
     } catch (e) {
       dispatch(
@@ -79,23 +85,30 @@ const CommentEditor: React.FC<CommentEditorProps> = ({ setComments }) => {
   }, [editorState])
 
   return (
-    <div className={s.form}>
-      <h3 className={s.form__title}>{t('commentsTitle')}</h3>
-      <div onClick={() => editorRef.current.focus()} className={s.editor}>
-        <Editor
-          editorState={editorState}
-          onChange={setEditorState}
-          ref={editorRef}
-        />
-      </div>
-      <div className={s.form__bottom}>
-        <div onClick={handleButtonClick} className={s.buttons}>
-          <button ref={submitComment} type='button' className={s.buttons__btn}>
-            {t('commentsSend')}
-          </button>
+    <IsActiveEmail>
+      <div className={s.form}>
+        <h3 className={s.form__title}>{t('commentsTitle')}</h3>
+        <div onClick={() => editorRef.current.focus()} className={s.editor}>
+          <Editor
+            editorState={editorState}
+            onChange={setEditorState}
+            ref={editorRef}
+            tabIndex={isActiveEmail ? 0 : -1}
+          />
+        </div>
+        <div className={s.form__bottom}>
+          <div onClick={handleButtonClick} className={s.buttons}>
+            <button
+              ref={submitComment}
+              type='button'
+              className={s.buttons__btn}
+            >
+              {t('commentsSend')}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </IsActiveEmail>
   )
 }
 

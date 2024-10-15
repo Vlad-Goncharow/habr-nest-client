@@ -38,4 +38,10 @@ export const errorsUa = {
   sidebarWeeklyPostsError:
     'Сталася помилка при завантаженні тижневих публікацій!',
   fileSizeError: 'Картика надто велика',
+  sendVerifyEmailError: 'Під час надсилання листа сталася помилка!',
+  deleteUserError: 'Під час видалення сталася помилка!',
+  emailTaken: 'Ця пошта зайнята',
+  emailNotRegistered: 'Ця пошта не зареєстрована',
+  wrongPassword: 'Невірний пароль',
+  nicknameOcupied: 'Цей нік зайнятий',
 }

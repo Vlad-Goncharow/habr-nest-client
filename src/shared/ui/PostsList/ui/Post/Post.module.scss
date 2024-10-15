@@ -103,12 +103,8 @@
   &__text {
     font-size: 1rem;
     line-height: 1.5rem;
-    max-height: 150px;
     overflow: hidden;
-    word-break: break-all;
-    * {
-      color: var(--mine-shaft) !important;
-    }
+    color: var(--mine-shaft) !important;
   }
 
   &__link {

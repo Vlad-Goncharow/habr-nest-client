@@ -75,10 +75,9 @@ const Comments: React.FC = () => {
         </h2>
         {loading ? (
           <CommentsSkeleton />
+        ) : error ? (
+          <LoadingError message={t('commentLoadError')} />
         ) : (
-          error ?
-            <LoadingError message={t('commentLoadError')} />
-          :
           <div ref={commentsRef} className={s.row}>
             {comments.length > 0 ? (
               comments.map((item: IComment) => (

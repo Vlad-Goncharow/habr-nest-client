@@ -5,6 +5,7 @@ import { useAppSelector } from 'shared/hooks/useAppSelector'
 import s from './SubscribeUser.module.scss'
 import { selectIsSubscribed, subscribeUser, unsubscribeUser } from '../model'
 import { useTranslation } from 'react-i18next'
+import IsActiveEmail from 'shared/ui/isActiveEmail'
 
 interface SubscribeUserProps {
   userId: number
@@ -30,17 +31,19 @@ const SubscribeUser: React.FC<SubscribeUserProps> = ({ userId }) => {
   return (
     <>
       {user && user.id !== userId && (
-        <button
-          className={classNames(s.sub, {
-            [s.sub__active]: isSubscribed,
-          })}
-          onClick={() => {
-            isSubscribed ? handleUnsubscribe() : handleSubscribe()
-          }}
-        >
-          {isSubscribed ? t('unSubscribe') : t('subscribe')}
-          {isSubscribed && <span></span>}
-        </button>
+        <IsActiveEmail>
+          <button
+            className={classNames(s.sub, {
+              [s.sub__active]: isSubscribed,
+            })}
+            onClick={() => {
+              isSubscribed ? handleUnsubscribe() : handleSubscribe()
+            }}
+          >
+            {isSubscribed ? t('unSubscribe') : t('subscribe')}
+            {isSubscribed && <span></span>}
+          </button>
+        </IsActiveEmail>
       )}
     </>
   )

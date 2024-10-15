@@ -10,6 +10,7 @@ import {
   removeFavoritePost,
   selectIsSubscribed,
 } from '../model'
+import IsActiveEmail from 'shared/ui/isActiveEmail'
 
 interface FavoritePostBtnProps {
   postId: number
@@ -37,18 +38,20 @@ const FavoritePostBtn: React.FC<FavoritePostBtnProps> = ({ postId, count }) => {
   }
 
   return (
-    <div
-      className={classNames(s.item, {
-        [s.item_active]: isSubscribed,
-      })}
-      onClick={() => {
-        selectIsAuthh &&
-          (isSubscribed ? handleRemoveFavorite() : handleAddFavorite())
-      }}
-    >
-      <FavoriteSvg />
-      <span>{myCount}</span>
-    </div>
+    <IsActiveEmail>
+      <div
+        className={classNames(s.item, {
+          [s.item_active]: isSubscribed,
+        })}
+        onClick={() => {
+          selectIsAuthh &&
+            (isSubscribed ? handleRemoveFavorite() : handleAddFavorite())
+        }}
+      >
+        <FavoriteSvg />
+        <span>{myCount}</span>
+      </div>
+    </IsActiveEmail>
   )
 }
 

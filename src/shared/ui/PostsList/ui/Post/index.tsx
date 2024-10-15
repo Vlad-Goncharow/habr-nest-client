@@ -1,9 +1,9 @@
-import Draft, { Editor, EditorState, convertFromRaw } from 'draft-js'
+import { convertFromRaw } from 'draft-js'
 import { checkRolesAdminModerator, getUserData } from 'entities/User'
 import { FavoritePostBtn } from 'features/FavoritePostBtn'
 import moment from 'moment'
-import { blockRenderMap, styleMap } from 'pages/CreatePost/ui/FirstStep'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { UseClickOutside } from 'shared/hooks/UseClickOutside'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
@@ -16,7 +16,6 @@ import { ReactComponent as Share } from 'shared/images/svg/share.svg'
 import { IHab } from 'shared/types/habs'
 import { IPost } from 'shared/types/posts'
 import s from './Post.module.scss'
-import { useTranslation } from 'react-i18next'
 
 interface PostProps {
   post: IPost
@@ -32,11 +31,10 @@ const Post: React.FC<PostProps> = ({ post, query }) => {
   const checkUserAdminOrModerator = useAppSelector(checkRolesAdminModerator)
 
   const contentStateFromJSON = convertFromRaw(JSON.parse(post.content))
-  const restoredEditorState =
-    EditorState.createWithContent(contentStateFromJSON)
+  const plainText = contentStateFromJSON.getPlainText()
 
-  const extendedBlockRenderMap =
-    Draft.DefaultDraftBlockRenderMap.merge(blockRenderMap)
+  const truncatedText =
+    plainText.length > 450 ? plainText.slice(0, 450) + '...' : plainText
 
   const [popupIsOpen, setPopupIsOpen] = React.useState(false)
   const popupRef = React.useRef<HTMLDivElement | null>(null)
@@ -77,16 +75,12 @@ const Post: React.FC<PostProps> = ({ post, query }) => {
         ))}
       </div>
       <div className={s.item__img}>
-        <img src={`${process.env.REACT_APP_SERVER_URL}/uploads/publications/${post.image}`} alt='' />
-      </div>
-      <div className={s.item__text}>
-        <Editor
-          editorState={restoredEditorState}
-          blockRenderMap={extendedBlockRenderMap}
-          customStyleMap={styleMap}
-          readOnly
+        <img
+          src={`${process.env.REACT_APP_SERVER_URL}/uploads/publications/${post.image}`}
+          alt=''
         />
       </div>
+      <div className={s.item__text}>{truncatedText}</div>
       <Link to={`/post/${post.id}`} className={s.item__link}>
         {t('readMore')}
       </Link>

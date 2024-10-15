@@ -39,8 +39,7 @@ export const en = {
   createSidebarAuthorRemindRule1: 'Follow the rules of the site',
   createSidebarAuthorRemindRule2:
     'Follow the advice and take care to design your publications carefully',
-  createSidebarAuthorRemindRule3:
-    'Upload images up to 4 MB in size',
+  createSidebarAuthorRemindRule3: 'Upload images up to 4 MB in size',
   createPostBackupTitle: 'You have backup storage',
   createPostBackup: 'Restore',
   createPostInputPlaceholder: 'Enter the title of the publication',
@@ -122,7 +121,6 @@ export const en = {
   searchDescr: 'The page of catching posts, people, hubs on ',
   readMore: 'Read more',
   complexity: 'complexity',
-  comments: 'Comments',
   commentsSend: 'Send',
   commentsTitle: 'Your comment',
   commentsAuth: 'Only full users can post comments.',
@@ -168,7 +166,14 @@ export const en = {
   roleAdd: 'Add',
   roleRemove: 'Remove',
   publicationsCreate: 'Creating a publication',
-  userPageTitle:'User page',
+  userPageTitle: 'User page',
+  notFoundPageTitle: 'Page not found',
+  notFoundPageSubTitle:
+    'The page is outdated, has been deleted or does not exist at all',
+  createHabTitleAtr: "You didn't confirm the e-mail ",
+  sendVerifyEmail: 'The confirmation email has been sent!',
+  createPublicationTitle: 'Write a publication',
+  resendEmailVerify: 'Send the confirmation email again',
   ...errorsEn,
   ...countriesEn,
 }

@@ -1,11 +1,15 @@
 import classNames from 'classnames'
 import { fetchModalActions } from 'entities/FetchModal'
-import { fetchUpdateUser, getUserData } from 'entities/User'
+import {
+  checkIsActiveEmail,
+  fetchUpdateUser,
+  getUserData,
+  userActions,
+} from 'entities/User'
 import React from 'react'
 import DatePicker from 'react-datepicker'
 import 'react-datepicker/dist/react-datepicker.css'
 import { Helmet } from 'react-helmet'
-import { uploadImage } from 'shared/api/images'
 import axios from '../../../../axios'
 import { useAppDispatch } from 'shared/hooks/useAppDispatch'
 import { useAppSelector } from 'shared/hooks/useAppSelector'
@@ -15,13 +19,16 @@ import GenderSelect from '../GenderSelect'
 import ImageUpload from '../ImageUpload'
 import s from './ProfileSettings.module.scss'
 import { useTranslation } from 'react-i18next'
+import { useNavigate } from 'react-router-dom'
 
 function ProfileSettings() {
   const { t } = useTranslation()
   const dispatch = useAppDispatch()
 
-  const { user } = useAppSelector(getUserData)
+  const navigate = useNavigate()
 
+  const { user } = useAppSelector(getUserData)
+  const isActiveEmail = useAppSelector(checkIsActiveEmail)
   const [imageFile, setImageFile] = React.useState<File | null>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
 
@@ -101,9 +108,54 @@ function ProfileSettings() {
   const myHandleClick = () => {
     if (
       buttonRef.current !== null &&
-      buttonRef.current.classList.contains(s.form__submit_active)
+      buttonRef.current.classList.contains(s.form__btn_active)
     ) {
       update()
+    }
+  }
+
+  const deleteUser = async () => {
+    try {
+      if (user) {
+        const { data } = await axios.delete(`/auth/${user.id}`)
+
+        if (data.success) {
+          localStorage.removeItem('token')
+          dispatch(userActions.deleteUser())
+          navigate('/flows/all/articles/1')
+        }
+      }
+    } catch (e) {
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: t('deleteUserError'),
+        })
+      )
+    }
+  }
+
+  const sendVerifyEmail = async () => {
+    try {
+      if (user) {
+        const { data } = await axios.post(`/auth/send/verify/${user.id}`)
+
+        if (data.success) {
+          dispatch(
+            fetchModalActions.showModal({
+              type: 'good',
+              content: t('sendVerifyEmail'),
+            })
+          )
+        }
+      }
+    } catch (e) {
+      dispatch(
+        fetchModalActions.showModal({
+          type: 'bad',
+          content: t('sendVerifyEmailError'),
+        })
+      )
     }
   }
 
@@ -187,17 +239,35 @@ function ProfileSettings() {
               />
             </div>
           </div>
-          <button
-            type='button'
-            onClick={myHandleClick}
-            ref={buttonRef}
-            className={classNames(s.form__submit, {
-              [s.form__submit_disable]: !checkUpdate(),
-              [s.form__submit_active]: checkUpdate(),
-            })}
-          >
-            {t('settingPageSave')}
-          </button>
+          <div className={s.form__btns}>
+            <button
+              type='button'
+              onClick={myHandleClick}
+              ref={buttonRef}
+              className={classNames(s.form__btn, s.form__btn_submit, {
+                [s.form__btn_disable]: !checkUpdate(),
+                [s.form__btn_active]: checkUpdate(),
+              })}
+            >
+              {t('settingPageSave')}
+            </button>
+            {!isActiveEmail && (
+              <button
+                onClick={sendVerifyEmail}
+                type='button'
+                className={classNames(s.form__btn, s.form__btn_sendEmail)}
+              >
+                {t('resendEmailVerify')}
+              </button>
+            )}
+            <button
+              onClick={deleteUser}
+              type='button'
+              className={classNames(s.form__btn, s.form__btn_delete)}
+            >
+              {t('delete')} {t('profile').toLowerCase()}
+            </button>
+          </div>
         </form>
       </div>
     </>

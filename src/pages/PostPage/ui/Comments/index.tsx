@@ -1,5 +1,3 @@
-import Comments from "./ui/Comments";
+import Comments from './ui/Comments'
 
-export {
-  Comments
-}
+export { Comments }

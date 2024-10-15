@@ -16,6 +16,11 @@ export const checkRolesAdmin = createSelector(
   (user) => user.user?.roles.some((el) => el.value === 'ADMIN')
 )
 
+export const checkIsActiveEmail = createSelector(
+  [getUserData, (state: RootState) => state.user],
+  (user) => user.user?.isActive
+)
+
 export const selectIsAuth = createSelector(
   [getUserData, (state: RootState) => state.user],
   (user) => user.user !== null

@@ -10,6 +10,7 @@ import {
   removeFavoriteComment,
   selectIsSubscribed,
 } from '../model'
+import IsActiveEmail from 'shared/ui/isActiveEmail'
 
 interface FavoriteCommentBtnProps {
   commentId: number
@@ -34,17 +35,19 @@ const FavoriteCommentBtn: React.FC<FavoriteCommentBtnProps> = ({
   }
 
   return (
-    <div
-      className={classNames(s.item, {
-        [s.item_active]: isSubscribed,
-      })}
-      onClick={() => {
-        selectIsAuthh &&
-          (isSubscribed ? handleRemoveFavorite() : handleAddFavorite())
-      }}
-    >
-      <FavoriteSvg />
-    </div>
+    <IsActiveEmail>
+      <div
+        className={classNames(s.item, {
+          [s.item_active]: isSubscribed,
+        })}
+        onClick={() => {
+          selectIsAuthh &&
+            (isSubscribed ? handleRemoveFavorite() : handleAddFavorite())
+        }}
+      >
+        <FavoriteSvg />
+      </div>
+    </IsActiveEmail>
   )
 }
 

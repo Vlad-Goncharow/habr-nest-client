@@ -41,7 +41,13 @@ function RegisterForm() {
     }
 
     if (!isSuccess && error) {
-      setError(error.param, { message: error.message })
+      if (error.message === 'Данная почта занята') {
+        setError(error.param, { message: t('emailTaken') })
+      }
+      if (error.message === 'Данная ник занят') {
+        setError(error.param, { message: t('nicknameOcupied') })
+      }
+
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',

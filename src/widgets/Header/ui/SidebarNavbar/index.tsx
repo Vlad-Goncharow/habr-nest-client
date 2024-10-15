@@ -42,10 +42,13 @@ const SidebarNavbar: React.FC<SidebarNavbarProps> = ({ setSideNav }) => {
   }, [isClose, show])
 
   return (
-    <div onClick={() => setIsClose(true)} className={s.wrapper}>
-      <div className={s.wrapper__overlay}></div>
+    <div className={s.wrapper}>
+      <div
+        onClick={() => setIsClose(true)}
+        className={s.wrapper__overlay}
+      ></div>
       <div ref={wrapperRef} className={s.sidebar}>
-        <Navbar />
+        <Navbar setIsClose={setIsClose} />
       </div>
     </div>
   )

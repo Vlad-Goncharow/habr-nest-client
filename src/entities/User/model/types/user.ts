@@ -7,6 +7,7 @@ export interface IUser {
   email: string
   password: string
   nickname: string
+  isActive: boolean
   avatar: string
   gender: string
   description: string

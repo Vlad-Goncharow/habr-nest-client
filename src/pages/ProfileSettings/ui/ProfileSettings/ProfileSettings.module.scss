@@ -22,8 +22,14 @@
 }
 
 .form {
-  &__submit {
-    background-color: #7aa600;
+  &__btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &__btn {
     border: none;
     color: #fff;
     height: 32px;
@@ -31,14 +37,38 @@
     font-size: 13px;
     padding: 0 14px;
     cursor: pointer;
+    margin-bottom: 15px;
 
-    &_disable {
-      opacity: 0.7;
-      cursor: not-allowed;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
+    &_submit {
+      background-color: #7aa600;
+    }
+
+    &_sendEmail {
+      background: #2edbdb;
+      color: #000;
+      font-weight: 600;
+      margin-right: auto;
+      margin-left: 15px;
+      @media (max-width: 768px) {
+        margin-left: 0;
+      }
+    }
+
+    &_delete {
+      background-color: #ec3030;
     }
 
     &_active {
       opacity: 1;
+    }
+
+    &_disable {
+      opacity: 0.7;
+      cursor: not-allowed;
     }
   }
 }

@@ -1,0 +1,10 @@
+.item {
+  &_disable * {
+    pointer-events: none;
+  }
+
+  &_disable {
+    cursor: not-allowed !important;
+    opacity: 0.7;
+  }
+}

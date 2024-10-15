@@ -27,11 +27,7 @@ const ImageComp: React.FC<ImageProps> = ({ setImageFile }) => {
         onChange={handleImageUpload}
         className={s.image__upload}
       />
-      <img
-        src={image}
-        alt=''
-        className={s.image__img}
-      />
+      <img src={image} alt='' className={s.image__img} />
     </div>
   )
 }

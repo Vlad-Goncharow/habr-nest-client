@@ -42,6 +42,7 @@ const SecondStep: React.FC<SecondStepProps> = ({
   const navigate = useNavigate()
 
   const [image, setImage] = React.useState<string | null>(null)
+  const fileInputRef = React.useRef<HTMLInputElement | null>(null)
   const [imageFile, setImageFile] = React.useState<any>(null)
 
   const clearImage = () => {
@@ -52,6 +53,9 @@ const SecondStep: React.FC<SecondStepProps> = ({
       }
     })
     setImage(null)
+    if (fileInputRef.current) {
+      fileInputRef.current.value = ''
+    }
   }
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
@@ -112,8 +116,8 @@ const SecondStep: React.FC<SecondStepProps> = ({
         image: data.filename,
       })
       navigate('/flows/all/articles/1')
-    } catch (error:any) {
-      if(error.response.status === 413){
+    } catch (error: any) {
+      if (error.response.status === 413) {
         dispatch(
           fetchModalActions.showModal({
             type: 'bad',
@@ -224,21 +228,28 @@ const SecondStep: React.FC<SecondStepProps> = ({
           {t('postCreateImageTitle')}
         </div>
         <div className={s.image}>
-          <p className={s.image__title}>{t('postCreateAddCoverTitle')}</p>
-          <p className={s.image__subtitle}>{t('postCreateDragFileSubtitle')}</p>
-          <button className={s.image__btn} type='button'>
-            {t('postCreateUploadButton')}
-          </button>
           <input
             type='file'
+            accept='image/*'
             onChange={handleImageUpload}
             className={s.image__upload}
+            ref={fileInputRef}
           />
-          {image && (
+          {image ? (
             <>
               <img src={image} alt='' className={s.image__img} />
               <button onClick={clearImage} className={s.image__delete}>
                 {t('postCreateDeleteCoverButton')}
+              </button>
+            </>
+          ) : (
+            <>
+              <p className={s.image__title}>{t('postCreateAddCoverTitle')}</p>
+              <p className={s.image__subtitle}>
+                {t('postCreateDragFileSubtitle')}
+              </p>
+              <button className={s.image__btn} type='button'>
+                {t('postCreateUploadButton')}
               </button>
             </>
           )}

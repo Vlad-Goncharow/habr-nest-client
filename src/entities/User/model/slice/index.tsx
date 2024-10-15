@@ -68,6 +68,11 @@ const userSlice = createSlice({
         )
       }
     },
+    deleteUser(state) {
+      if (state.user) {
+        state.user = null
+      }
+    },
   },
   extraReducers(builder) {
     builder.addCase(fetchAuth.pending, (state) => {

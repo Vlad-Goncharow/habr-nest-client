@@ -21,8 +21,8 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
   const [habsList, setHabsList] = React.useState<IHab[] | []>([])
 
   let mainHabs = React.useMemo(() => {
-    return habsList.filter((el) => !habs.some(hab => hab.id === el.id))
-  },[habs, habsList])
+    return habsList.filter((el) => !habs.some((hab) => hab.id === el.id))
+  }, [habs, habsList])
 
   const [inputValue, setInputValue] = React.useState<string>('')
 
@@ -48,7 +48,7 @@ const HabsList: React.FC<HabsListProps> = ({ habs, setValues }) => {
 
   const serachHabs = () => {
     if (inputValue) {
-        return mainHabs.filter((hub) =>
+      return mainHabs.filter((hub) =>
         hub.title.toLowerCase().includes(inputValue.toLowerCase())
       )
     } else {

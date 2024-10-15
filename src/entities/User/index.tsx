@@ -3,6 +3,7 @@ export {
   checkRolesAdminModerator,
   selectIsAuth,
   checkRolesAdmin,
+  checkIsActiveEmail,
 } from './model/selectors'
 export { userActions, userReducer } from './model/slice'
 export {

@@ -39,8 +39,7 @@ export const ua = {
   createSidebarAuthorRemindRule1: 'Дотримуйтесь правил сайту',
   createSidebarAuthorRemindRule2:
     'Дотримуйтесь рекомендацій та ретельно оформлюйте свої публікації',
-  createSidebarAuthorRemindRule3:
-    'Завантажуйте зображення розміром до 4 МБ',
+  createSidebarAuthorRemindRule3: 'Завантажуйте зображення розміром до 4 МБ',
   createPostBackupTitle: 'У вас є резервне сховище',
   createPostBackup: 'Відновити',
   createPostInputPlaceholder: 'Введіть заголовок публікації',
@@ -169,6 +168,13 @@ export const ua = {
   roleRemove: 'Видалити',
   publicationsCreate: 'Створення публікації',
   userPageTitle: 'Сторінка користувача',
+  notFoundPageTitle: 'Сторінку не знайдено',
+  notFoundPageSubTitle:
+    'Сторінка застаріла, була видалена або не існувала зовсім',
+  createHabTitleAtr: 'Ви не підтвердили пошту',
+  sendVerifyEmail: 'Лист підтвердження відправлено!',
+  createPublicationTitle: 'Написати публікацію',
+  resendEmailVerify: 'Надіслати лист із підтвердженням ще раз',
   ...errorsUa,
   ...countriesUa,
 }

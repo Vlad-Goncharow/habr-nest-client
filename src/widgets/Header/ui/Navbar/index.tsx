@@ -4,12 +4,22 @@ import { Link, useParams } from 'react-router-dom'
 import { postCategories } from 'shared/global'
 import s from './Navbar.module.scss'
 
-const Navbar = () => {
-  const { category } = useParams()
+interface NavbarProps {
+  setIsClose?: (bool: boolean) => void
+}
 
+const Navbar: React.FC<NavbarProps> = ({ setIsClose }) => {
+  const { category } = useParams()
   const { t } = useTranslation()
+
+  const handleNavClick = () => {
+    if (setIsClose) {
+      setIsClose(true)
+    }
+  }
+
   return (
-    <nav className={s.nav}>
+    <nav className={s.nav} onClick={handleNavClick}>
       <Link
         className={classNames(s.nav__link, {
           [s.nav__link_active]: !postCategories.some(

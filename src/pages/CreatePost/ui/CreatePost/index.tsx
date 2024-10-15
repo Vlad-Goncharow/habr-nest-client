@@ -17,7 +17,7 @@ export interface ValuesType {
 }
 
 function CreatePost() {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const [step, setStep] = React.useState<number>(1)
 
   const [values, setValues] = React.useState<ValuesType>({
@@ -34,7 +34,9 @@ function CreatePost() {
     <>
       <Helmet>
         <meta charSet='utf-8' />
-        <title>{t('publicationsCreate')} / {t('siteTitle')}</title>
+        <title>
+          {t('publicationsCreate')} / {t('siteTitle')}
+        </title>
         <meta
           name='description'
           content={`${t('publicationsCreate')} / ${t('siteTitle')}`}

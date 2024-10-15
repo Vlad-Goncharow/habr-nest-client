@@ -16,8 +16,8 @@ function Main() {
   const categoryFind = postCategories.find((el) => el.category === category)
   const typeFind = subCategories.find((el) => el.subCategory === type)
 
-  const myMeth = () =>{
-    if(categoryFind){
+  const myMeth = () => {
+    if (categoryFind) {
       return `${t(categoryFind.category)} / ${t(`${typeFind?.subCategory}`)} / ${t('siteTitle')}`
     } else {
       return `${t('AllStreams')} / ${t(`${typeFind?.subCategory}`)} / ${t('siteTitle')}`

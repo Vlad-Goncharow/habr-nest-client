@@ -39,8 +39,7 @@ export const ru = {
   createSidebarAuthorRemindRule1: 'Следуйте правилам сайта',
   createSidebarAuthorRemindRule2:
     'Следуйте рекомендациям и тщательно оформляйте свои публикации',
-  createSidebarAuthorRemindRule3:
-    'Загружайте изображения размером до 4 МБ',
+  createSidebarAuthorRemindRule3: 'Загружайте изображения размером до 4 МБ',
   createPostBackupTitle: 'У вас есть резервное хранилище',
   createPostBackup: 'Восстановить',
   createPostInputPlaceholder: 'Введите заголовок публикации',
@@ -122,7 +121,6 @@ export const ru = {
   searchDescr: 'Страница поиска постов, людей, хабов на ',
   readMore: 'Читать далее',
   complexity: 'сложность',
-  comments: 'Комментарии',
   commentsSend: 'Отправить',
   commentsTitle: 'Ваш комментарий',
   commentsAuth:
@@ -170,6 +168,13 @@ export const ru = {
   roleRemove: 'Удалить',
   publicationsCreate: 'Создание публикации',
   userPageTitle: 'Страница пользователя',
+  notFoundPageTitle: 'Страница не найдена',
+  notFoundPageSubTitle:
+    'Страница устарела, была удалена или не существовала вовсе',
+  createHabTitleAtr: 'Вы не подтвердили почту',
+  sendVerifyEmail: 'Письмо подтверждения отправлено!',
+  createPublicationTitle: 'Написать публикацию',
+  resendEmailVerify: 'Отправить письмо с подтверждением еще раз',
   ...errorsRu,
   ...countriesRu,
 }

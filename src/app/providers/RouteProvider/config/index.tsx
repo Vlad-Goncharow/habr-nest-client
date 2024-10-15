@@ -4,6 +4,7 @@ import { CreatePost } from 'pages/CreatePost'
 import { HabPage } from 'pages/HabPage'
 import Login from 'pages/Login'
 import { Main } from 'pages/Main'
+import { NotFound } from 'pages/NotFound'
 import { PostPage } from 'pages/PostPage'
 import { ProfileSettings } from 'pages/ProfileSettings'
 import Register from 'pages/Register'
@@ -18,6 +19,7 @@ import {
 export const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Root />}>
+      <Route path='*' element={<NotFound />} />
       <Route path='/login' element={<Login />} />
       <Route path='/register' element={<Register />} />
       <Route path='/profile-settings' element={<ProfileSettings />} />

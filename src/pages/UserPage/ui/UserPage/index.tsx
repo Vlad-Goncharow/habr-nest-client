@@ -43,7 +43,8 @@ function UserPage() {
       <Helmet>
         <meta charSet='utf-8' />
         <title>
-          {userData ? userData?.nickname : t('userPageTitle')} — {t('siteTitle')}
+          {userData ? userData?.nickname : t('userPageTitle')} —{' '}
+          {t('siteTitle')}
         </title>
         <meta
           name='description'

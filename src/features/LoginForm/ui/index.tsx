@@ -38,7 +38,13 @@ function LoginForm() {
     }
 
     if (!isSuccess && error) {
-      setError(error.param, { message: error.message })
+      if (error.message === 'Данная почта не зарегистрирована') {
+        setError(error.param, { message: t('emailNotRegistered') })
+      }
+      if (error.message === 'Неверный пароль') {
+        setError(error.param, { message: t('wrongPassword') })
+      }
+
       dispatch(
         fetchModalActions.showModal({
           type: 'bad',

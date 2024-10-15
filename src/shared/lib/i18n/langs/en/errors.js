@@ -36,4 +36,10 @@ export const errorsEn = {
   deletePostError: 'An error occurred while deleting the post!',
   sidebarWeeklyPostsError: 'An error occurred while loading the weekly posts!',
   fileSizeError: 'Image to large',
+  sendVerifyEmailError: 'There was an error when sending the email!',
+  deleteUserError: 'An error occurred during deletion!',
+  emailTaken: 'This mail is taken',
+  emailNotRegistered: 'This mail is not registered',
+  wrongPassword: 'Wrong password',
+  nicknameOcupied: 'This nickname is taken',
 }
