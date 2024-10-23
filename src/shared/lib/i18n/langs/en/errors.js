@@ -42,4 +42,7 @@ export const errorsEn = {
   emailNotRegistered: 'This mail is not registered',
   wrongPassword: 'Wrong password',
   nicknameOcupied: 'This nickname is taken',
+  updateAvatarResolutionError: 'Image must be exactly 256x256 pixels',
+  updatePorofileError: 'An error occurred while updating!',
+  updateAvatarSizeError: 'Maximum file size: 2 MB',
 }

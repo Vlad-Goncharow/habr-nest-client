@@ -44,4 +44,7 @@ export const errorsUa = {
   emailNotRegistered: 'Ця пошта не зареєстрована',
   wrongPassword: 'Невірний пароль',
   nicknameOcupied: 'Цей нік зайнятий',
+  updateAvatarResolutionError: 'Зображення має бути точно 256x256 пікселів',
+  updatePorofileError: 'Під час оновлення сталася помилка!',
+  updateAvatarSizeError: 'Максимальний розмір файлу: 2 МБ',
 }

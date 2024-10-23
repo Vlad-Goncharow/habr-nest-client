@@ -41,4 +41,6 @@ export const errorsRu = {
   emailNotRegistered: 'Данная почта не зарегистрирована',
   wrongPassword: 'Неверный пароль',
   nicknameOcupied: 'Данная ник занят',
+  updateAvatarResolutionError: 'Изображение должно быть точно 256x256 пикселей',
+  updateAvatarSizeError: 'Максимальный размер файла: 2 МБ',
 }

@@ -13,6 +13,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ setImageFile, user }) => {
   const [image, setImage] = React.useState<string>()
 
   const handleImageUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log(event);
+    
     const selectedImage = event.target.files?.[0]
     if (selectedImage) {
       setImageFile(selectedImage)

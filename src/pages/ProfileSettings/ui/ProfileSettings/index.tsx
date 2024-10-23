@@ -78,13 +78,29 @@ function ProfileSettings() {
           content: t('profileUpdateSuccess'),
         })
       )
-    } catch (e) {
-      dispatch(
+    } catch (e:any) {
+      if(e.response.data.message === 'Image must be exactly 256x256 pixels'){
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'bad',
+            content: t('updateAvatarResolutionError'),
+          })
+        )
+      } else if(e.response.data.message === 'File too large'){
+        dispatch(
+          fetchModalActions.showModal({
+            type: 'bad',
+            content: t('updateAvatarSizeError'),
+          })
+        )
+      } else {
+        dispatch(
         fetchModalActions.showModal({
           type: 'bad',
           content: t('updatePorofileError'),
         })
       )
+      }
     }
   }
 
